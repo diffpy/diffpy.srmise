@@ -1,0 +1,205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Ag_singlepeak.py &mdash; SrMise 0.5 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.5',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/sidebar.js"></script>
+    <link rel="top" title="SrMise 0.5 documentation" href="../index.html" />
+    <link rel="up" title="Examples" href="../examples.html" />
+    <link rel="next" title="Ag_multiplepeaks.py" href="Ag_multiplepeaks.html" />
+    <link rel="prev" title="Examples" href="../examples.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="Ag_multiplepeaks.html" title="Ag_multiplepeaks.py"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../examples.html" title="Examples"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">SrMise 0.5 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../examples.html" accesskey="U">Examples</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="ag-singlepeak-py">
+<span id="id1"></span><h1>Ag_singlepeak.py<a class="headerlink" href="#ag-singlepeak-py" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-python"><div class="highlight"><pre><span class="c">#!/usr/bin/env python</span>
+<span class="c">##############################################################################</span>
+<span class="c">#</span>
+<span class="c"># diffpy.srmise     by Luke Granlund</span>
+<span class="c">#                   (c) 2015 trustees of the Michigan State University.</span>
+<span class="c">#                   All rights reserved.</span>
+<span class="c">#</span>
+<span class="c"># File coded by:    Luke Granlund</span>
+<span class="c">#</span>
+<span class="c"># See LICENSE.txt for license information.</span>
+<span class="c">#</span>
+<span class="c">##############################################################################</span>
+<span class="sd">&quot;&quot;&quot;Example of extracting an isolated peak from a crystalline PDF.</span>
+
+<span class="sd">This example shows how to extract an isolated peak from a simple crystalline</span>
+<span class="sd">PDF with accurate experimentally-determined uncertainties using a crystalline</span>
+<span class="sd">baseline estimated from the data.  This is the simplest use case</span>
+<span class="sd">for diffpy.srmise, and covers initializing diffpy.srmise, defining extraction</span>
+<span class="sd">parameters, running peak extraction, and saving the results.</span>
+
+<span class="sd">This script is equivalent to running</span>
+<span class="sd"> srmise data/Ag_nyquist_qmax30.gr --range 2. 3.5 --baseline=Polynomial(degree=1) --save output/Ag_singlepeak.srmise --pwa output/Ag_singlepeak.pwa --plot</span>
+<span class="sd">at the command line.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+
+<span class="kn">from</span> <span class="nn">diffpy.srmise</span> <span class="kn">import</span> <span class="n">PDFPeakExtraction</span>
+<span class="kn">from</span> <span class="nn">diffpy.srmise.baselines</span> <span class="kn">import</span> <span class="n">Polynomial</span>
+
+<span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="n">plot</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+    
+    <span class="c">## Initialize peak extraction</span>
+    <span class="c"># Create peak extraction object</span>
+    <span class="n">ppe</span> <span class="o">=</span> <span class="n">PDFPeakExtraction</span><span class="p">()</span>
+    
+    <span class="c"># Load the PDF from a file</span>
+    <span class="n">ppe</span><span class="o">.</span><span class="n">loadpdf</span><span class="p">(</span><span class="s">&quot;data/Ag_nyquist_qmax30.gr&quot;</span><span class="p">)</span>
+
+    <span class="c">## Set up extraction parameters.</span>
+    <span class="c"># For convenience we add all parameters to a dictionary before passing them</span>
+    <span class="c"># to the extraction object.</span>
+    <span class="c">#</span>
+    <span class="c"># The &quot;rng&quot; (range) parameter defines the region over which peaks will be</span>
+    <span class="c"># extracted and fit.  For the well isolated nearest-neighbor silver peak,</span>
+    <span class="c"># which occurs near 2.9 angstroms, it is sufficient to perform extraction</span>
+    <span class="c"># between 2 and 3.5 angstroms.</span>
+    <span class="c">#</span>
+    <span class="c"># The &quot;baseline&quot; parameter lets us define the PDF baseline, which is</span>
+    <span class="c"># linear for a crystal.  If a linear baseline is specified without</span>
+    <span class="c"># numerical parameters diffpy.srmise attempts to estimate them from the</span>
+    <span class="c"># data, and this is usually sufficient when peaks do not overlap much.</span>
+    <span class="n">kwds</span> <span class="o">=</span> <span class="p">{}</span> 
+    <span class="n">kwds</span><span class="p">[</span><span class="s">&quot;rng&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">]</span>
+    <span class="n">kwds</span><span class="p">[</span><span class="s">&quot;baseline&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Polynomial</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="c"># Apply peak extraction parameters.</span>
+    <span class="n">ppe</span><span class="o">.</span><span class="n">setvars</span><span class="p">(</span><span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+
+    <span class="c">## Perform peak extraction</span>
+    <span class="n">ppe</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>
+    
+    <span class="c">## Save output</span>
+    <span class="c"># The write() method saves a file which preserves all aspects of peak</span>
+    <span class="c"># extraction and its results, by convention using the .srmise extension,</span>
+    <span class="c"># and which can later be read by diffpy.srmise.</span>
+    <span class="c">#</span>
+    <span class="c"># The writepwa() method saves a file intended as a human-readable summary.</span>
+    <span class="c"># In particular, it reports the position, width (as full-width at</span>
+    <span class="c"># half-maximum), and area of of extracted peaks.  The reported values</span>
+    <span class="c"># are for Gaussians in the radial distribution function (RDF) corresponding</span>
+    <span class="c"># to this PDF.</span>
+    <span class="n">ppe</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&quot;output/Ag_singlepeak.srmise&quot;</span><span class="p">)</span>
+    <span class="n">ppe</span><span class="o">.</span><span class="n">writepwa</span><span class="p">(</span><span class="s">&quot;output/Ag_singlepeak.pwa&quot;</span><span class="p">)</span>
+
+    <span class="c">## Plot results.</span>
+    <span class="c"># Display plot of extracted peak.  It is also possible to plot an existing</span>
+    <span class="c"># .srmise file from the command line using</span>
+    <span class="c">#     srmise output/Ag_singlepeak.srmise --no-extract --plot</span>
+    <span class="c"># or, for a somewhat prettier plot,</span>
+    <span class="c">#     srmiseplot output/Ag_singlepeak.srmise --show</span>
+    <span class="k">if</span> <span class="n">plot</span><span class="p">:</span>
+        <span class="n">ppe</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../examples.html"
+                        title="previous chapter">Examples</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="Ag_multiplepeaks.html"
+                        title="next chapter">Ag_multiplepeaks.py</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/examples/Ag_singlepeak.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="Ag_multiplepeaks.html" title="Ag_multiplepeaks.py"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../examples.html" title="Examples"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">SrMise 0.5 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../examples.html" >Examples</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Board of Trustees of Michigan State University.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
+    </div>
+  </body>
+</html>
