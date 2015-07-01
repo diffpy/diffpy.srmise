@@ -6,15 +6,15 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Extending SrMise &mdash; SrMise 0.5.1 documentation</title>
+    <title>Extending SrMise &mdash; SrMise 0.5.2 documentation</title>
     
-    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.5.1',
+        VERSION:     '0.5.2',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -23,9 +23,8 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/sidebar.js"></script>
-    <link rel="top" title="SrMise 0.5.1 documentation" href="index.html" />
-    <link rel="prev" title="C60_multimodelanalysis.py" href="examples/C60_multimodelanalysis.html" /> 
+    <link rel="top" title="SrMise 0.5.2 documentation" href="index.html" />
+    <link rel="prev" title="Multimodeling with unknown uncertainty" href="tutorial/multimodel_unknown_uncertainties.html" /> 
   </head>
   <body role="document">
     <div class="related" role="navigation" aria-label="related navigation">
@@ -35,9 +34,9 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="examples/C60_multimodelanalysis.html" title="C60_multimodelanalysis.py"
+          <a href="tutorial/multimodel_unknown_uncertainties.html" title="Multimodeling with unknown uncertainty"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">SrMise 0.5.1 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">SrMise 0.5.2 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -47,13 +46,12 @@
           <div class="body" role="main">
             
   <div class="section" id="extending-srmise">
-<span id="developers-guide-extending"></span><h1>Extending SrMise<a class="headerlink" href="#extending-srmise" title="Permalink to this headline">¶</a></h1>
-<p>The <a class="reference internal" href="examples.html#developers-guide-examples"><span>Examples</span></a> give an overview of how to
-use SrMise with the existing peak and baseline functions.  These inherit from
-classes providing generic peak and baseline functionality, and from which
-additional peaks and baselines can be implemented.  The process for adding
-new peaks and baselines is summarized below, but see the source code for
-additional details.</p>
+<span id="id1"></span><h1>Extending SrMise<a class="headerlink" href="#extending-srmise" title="Permalink to this headline">¶</a></h1>
+<p>The <a class="reference internal" href="tutorial/index.html#tutorial"><span>Tutorial</span></a> gives an overview of how to use SrMise with the existing
+peak and baseline functions.  These inherit from classes providing generic peak
+and baseline functionality, and from which additional peaks and baselines can be
+implemented.  The process for adding new peaks and baselines is summarized
+below, but see the source code for additional details.</p>
 <p>If you implement a peak or baseline likely to be of broad interest to the PDF
 community, please consider submitting a pull request to the GitHub
 <a class="reference external" href="https://github.com/diffpy/diffpy.srmise">SrMise repository</a>.</p>
@@ -321,7 +319,7 @@ while the position of the peak&#8217;s maxima remains unchanged.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>pars</strong> (<cite>Sequence(float)</cite>) &#8211; The parameters of the baseline.</li>
+<li><strong>pars</strong> (<cite>Sequence(float)</cite>) &#8211; The parameters of the peak.</li>
 <li><strong>r</strong> (<cite>int</cite> or <cite>float</cite>) &#8211; Position where the peak will be rescaled.</li>
 <li><strong>scale</strong> (<cite>float</cite>) &#8211; A scale factor &gt; 0.</li>
 </ul>
@@ -357,8 +355,8 @@ while the position of the peak&#8217;s maxima remains unchanged.</p>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="examples/C60_multimodelanalysis.html"
-                        title="previous chapter">C60_multimodelanalysis.py</a></p>
+  <p class="topless"><a href="tutorial/multimodel_unknown_uncertainties.html"
+                        title="previous chapter">Multimodeling with unknown uncertainty</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -390,9 +388,9 @@ while the position of the peak&#8217;s maxima remains unchanged.</p>
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="examples/C60_multimodelanalysis.html" title="C60_multimodelanalysis.py"
+          <a href="tutorial/multimodel_unknown_uncertainties.html" title="Multimodeling with unknown uncertainty"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">SrMise 0.5.1 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">SrMise 0.5.2 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

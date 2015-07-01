@@ -1,0 +1,287 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Tutorial &mdash; SrMise 0.5.2 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.5.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="SrMise 0.5.2 documentation" href="../index.html" />
+    <link rel="next" title="Peak extraction of a single peak" href="extract_single_peak.html" />
+    <link rel="prev" title="SrMise Documentation" href="../index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="extract_single_peak.html" title="Peak extraction of a single peak"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="SrMise Documentation"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">SrMise 0.5.2 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="tutorial">
+<span id="id1"></span><h1>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="purpose">
+<h2>Purpose<a class="headerlink" href="#purpose" title="Permalink to this headline">¶</a></h2>
+<p>This tutorial is an introduction to the SrMise library and command-line tool,
+intended to expose new users and developers to the major use cases and options
+anticipated for SrMise.</p>
+<p>Generating interest in SrMise is another goal of these examples, and we hope
+you will discover exciting ways to apply its capabilities to your scientific
+goals. If you think SrMise may help you do so, please feel free to contact us
+through the DiffPy website.</p>
+<p><a class="reference external" href="http://www.diffpy.org">http://www.diffpy.org</a></p>
+</div>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>SrMise is an implementation of the <a class="reference external" href="https://dx.doi.org/10.1107/S2053273315005276">ParSCAPE algorithm</a>, which incorporates
+standard chi-square fitting within an iterative clustering framework.  The
+algorithm supposes that, in the absence of an atomic structure model, the model
+complexity (informally, the number of extracted peaks) which can be
+justifiably obtained from a PDF is primarily determined by the experimental
+uncertainties.  The Akaike Information Criterion (AIC), summarized in the
+manual, is the information-theoretic tool used to balance model complexity
+with goodness-of-fit.</p>
+<p>Three primary use cases are envisioned for SrMise:</p>
+<ol class="arabic simple">
+<li>Peak fitting, where user-specified peaks are fit to the experimental data.</li>
+<li>Peak extraction, where the number of peaks and their parameters are
+estimated solely from the experimental data.</li>
+<li>Multimodel selection, where multiple sets of peaks are ranked in an
+AIC-driven analysis to determine the most plausible sets to guide
+additional investigation.</li>
+</ol>
+<p>Productively running SrMise requires, in basic, the following elements:</p>
+<ol class="arabic simple">
+<li>An experimental PDF.  Note that peak extraction, though not peak fitting,
+requires that all peaks of interest be positive.  This rules out peak
+extraction using SrMise for neutron PDFs obtained from samples containing
+elements with both positive and negative scattering factors.</li>
+<li>The experimental uncertainties.  In principle these should be reported with
+the data, but in practice experimental uncertainties are frequently not
+reported, or are unreliable due to details of the data reduction process.
+In these cases the user should specify an <em>ad hoc</em> value.  In peak extraction
+an <em>ad hoc</em> uncertainty necessarily results in <em>ad hoc</em> model complexity, or,
+more precisely, a reasonable model complexity if the provided uncertainty
+is presumed correct.  (Even when the uncertainties are known, specifying an
+<em>ad hoc</em> value can be a pragmatic tool for exploring alternate models,
+especially in conjunction with multimodeling analysis.)  For both peak
+extraction and peak fitting the estimated uncertainties of peak parameters
+(i.e. location, width, intensity) are dependent on the experimental
+uncertainty.</li>
+<li>The PDF baseline.  For crystalline samples the baseline is linear and can
+be readily estimated.  For nanoparticles more effort is required as SrMise
+includes explicit support for only a few basic shapes, although the user
+can define a baseline using arbitrary polynomials or an interpolating
+function constructed from a list of arbitrary numerical values.</li>
+<li>The range over which to extract or fit peaks.  By default SrMise will use
+the entire PDF, but it is usually wise to restrict the range to the region
+of immediate interest.</li>
+</ol>
+<p>The examples described below, though not exhaustive, go into detail about each
+of these points.  They also cover other parameters for which good default
+values can usually be estimated directly from the data.</p>
+</div>
+<div class="section" id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<p>The examples are contained in the <em>doc/examples/</em> directory of the SrMise
+<a class="reference external" href="https://github.com/diffpy/diffpy.srmise/releases">source distribution</a>,
+available as both a <a class="reference external" href="https://github.com/diffpy/diffpy.srmise/archive/v0.5.2.zip">zip</a> and <a class="reference external" href="https://github.com/diffpy/diffpy.srmise/archive/v0.5.2.tar.gz">tar.gz</a> archive.  Download one of these files
+(Windows users will generally favor the .zip, while Linux/Mac users the .tar.gz)
+to a directory of your choosing.</p>
+<p>Uncompress the archive.  If the downloaded file is <em>archivename.zip</em> or
+<em>archivename.tar.gz</em> this will create a new directory <em>archivename</em> in its
+current directory.  On Windows this can be accomplished by right-clicking
+and choosing &#8220;Extract all&#8221;.  On Linux/Mac OS X run, from the containing
+directory,</p>
+<div class="highlight-python"><div class="highlight"><pre>tar xvzf archivename.tar.gz
+</pre></div>
+</div>
+<p>From a command window change to the <em>doc/examples</em> directory of the new
+folder.  For example, a Windows&#8217; user who extracted <em>archivename.zip</em> in the
+folder <em>C:\Research</em> would type</p>
+<div class="highlight-python"><div class="highlight"><pre>cd C:\Research\archivename\doc\examples
+</pre></div>
+</div>
+<p>Every example below includes a Python script that may be run from this
+directory.  While such scripts expose the full functionality of SrMise, for
+many common tasks the command-line program <code class="docutils literal"><span class="pre">srmise</span></code> included with the package
+is both sufficient and convenient, and the tutorial uses it to introduce many
+fundamental concepts.  Its options may be examined in detail by running</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">srmise</span> <span class="o">--</span><span class="n">help</span>
+</pre></div>
+</div>
+<p>It is recommended to work through, in the order presented, at least the
+command-line portion of each example.  Users looking for more detail should find
+the copiously commented scripts helpful.</p>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="extract_single_peak.html">Peak extraction of a single peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parameter_summary.html">Summary of SrMise parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fit_initial.html">Peak fitting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="query_results.html">Querying SrMise results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multimodel_known_uncertainties.html">Multimodeling with known uncertainty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multimodel_unknown_uncertainties.html">Multimodeling with unknown uncertainty</a></li>
+</ul>
+</div>
+<blockquote>
+<div></div></blockquote>
+</div>
+<div class="section" id="pdf-information">
+<h2>PDF Information<a class="headerlink" href="#pdf-information" title="Permalink to this headline">¶</a></h2>
+<p>Information on the sample, experimental methods, and data reduction procedures
+for the example PDFs are summarized below.  Special attention is given to why
+each PDF does or does not report reliable uncertainties.</p>
+<div class="section" id="ag">
+<h3>Ag<a class="headerlink" href="#ag" title="Permalink to this headline">¶</a></h3>
+<p>A synchotron X-ray PDF (Q<sub>max</sub> = 30 Å<sup>-1</sup>, Nyquist sampled) with
+reliable experimentally-estimated uncertainties for a crystalline powder of
+face-centered cubic silver.  The 2D diffraction pattern was measured
+on an integrating detector.  A Q-space 1D pattern with nearly uncorrelated
+experimentally-estimated uncertainties was obtained using <a class="reference external" href="http://github.com/diffpy/diffpy.srxplanar">SrXplanar</a>.  All
+other data reduction was performed using <a class="reference external" href="http://www.pa.msu.edu/cmp/billinge-group/programs/PDFgetX2/">PDFgetX2</a>.</p>
+<p>Reliable experimental uncertainties were preserved during error propagation to
+the PDF by transforming the 1D pattern to the minimally-correlated (Nyquist)
+grid without intermediate resampling.</p>
+</div>
+<div class="section" id="c60">
+<h3>C<sub>60</sub><a class="headerlink" href="#c60" title="Permalink to this headline">¶</a></h3>
+<p>A synchotron X-ray PDF (Q<sub>max</sub> = 21.3 Å<sup>-1</sup>, finely sampled) for a
+powder of buckminsterfullerene nanoparticles in a face-centered cubic
+lattice, but with no fixed orientation at the lattice sites.  The 2D diffraction
+pattern was measured on an integrating detector.  A 2<em>θ</em> 1D pattern without
+propagated uncertainties was obtained using <a class="reference external" href="http://www.esrf.eu/computing/scientific/FIT2D/">FIT2D</a>.  All other data reduction
+was performed using <a class="reference external" href="http://www.pa.msu.edu/cmp/billinge-group/programs/PDFgetX2/">PDFgetX2</a>.  This PDF is unnormalized, so the scale of the
+y-axis is arbitrary.  The nanoparticle baseline used for testing this PDF with
+SrMise is a fit to the observed interparticle contribution using an empirical
+model of thin spherical shells of constant density in an FCC lattice.</p>
+<p>This PDF has unreliable uncertainties.  Since the 1D pattern reports no
+uncertainty, PDFgetX2 treats the uncertainty as equal to the square-root of the
+values in the 1D pattern, which is invalid for integrating detectors.  Moreover,
+the 1D pattern must be resampled onto a Q-space grid before the PDF can be
+calculated, and this introduces correlations between points. Finally, the PDF is
+itself oversampled, resulting in further correlations.</p>
+</div>
+<div class="section" id="tio2">
+<h3>TiO<sub>2</sub><a class="headerlink" href="#tio2" title="Permalink to this headline">¶</a></h3>
+<p>A synchotron X-ray PDF (Q<sub>max</sub> = 26 Å<sup>-1</sup>, finely sampled) for a
+crystalline powder of titanium dioxide (rutile).  The 2D diffraction pattern was
+measured on an integrating detector.  A Q-space 1D pattern with nearly
+uncorrelated experimentally-estimated uncertainties was obtained using
+<a class="reference external" href="http://github.com/diffpy/diffpy.srxplanar">SrXplanar</a>.  All other data reduction was performed using <a class="reference external" href="http://www.pa.msu.edu/cmp/billinge-group/programs/PDFgetX2/">PDFgetX2</a>.</p>
+<p>Although the 1D diffraction pattern has reliable uncertainties, this PDF was
+(illustratively) sampled faster than the Nyquist rate, introducing significant
+correlations between nearby data points.  Resampling this PDF at the Nyquist
+rate cannot recover reliable uncertainties unless the full variance-covariance
+matrix has been preserved and is propagated during resampling.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Tutorial</a><ul>
+<li><a class="reference internal" href="#purpose">Purpose</a></li>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#getting-started">Getting Started</a></li>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+<li><a class="reference internal" href="#pdf-information">PDF Information</a><ul>
+<li><a class="reference internal" href="#ag">Ag</a></li>
+<li><a class="reference internal" href="#c60">C<sub>60</sub></a></li>
+<li><a class="reference internal" href="#tio2">TiO<sub>2</sub></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../index.html"
+                        title="previous chapter">SrMise Documentation</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="extract_single_peak.html"
+                        title="next chapter">Peak extraction of a single peak</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/tutorial/index.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="extract_single_peak.html" title="Peak extraction of a single peak"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="SrMise Documentation"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">SrMise 0.5.2 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2015, Board of Trustees of Michigan State University.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
+    </div>
+  </body>
+</html>
