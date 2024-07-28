@@ -32,7 +32,7 @@ def gitinfo():
 
 
 def getversioncfg():
-#    from ConfigParser import SafeConfigParser
+    #    from ConfigParser import SafeConfigParser
 
     cp = SafeConfigParser()
     cp.read(versioncfgfile)
