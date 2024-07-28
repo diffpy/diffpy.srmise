@@ -1,5 +1,0 @@
-python
-setuptools
-matplotlib
-numpy
-scipy

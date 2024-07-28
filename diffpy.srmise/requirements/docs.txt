@@ -1,4 +1,0 @@
-sphinx
-sphinx_rtd_theme
-doctr
-m2r
