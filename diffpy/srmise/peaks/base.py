@@ -3,7 +3,7 @@
 #
 # SrMise            by Luke Granlund
 #                   (c) 2014 trustees of the Michigan State University
-#                   (c) 2024 trustees of Columia University in the City of New York
+#                   (c) 2024 trustees of Columbia University in the City of New York
 #                   All rights reserved.
 #
 # File coded by:    Luke Granlund
@@ -16,10 +16,9 @@ import logging
 
 import numpy as np
 
-import diffpy.srmise.srmiselog
 from diffpy.srmise.basefunction import BaseFunction
 from diffpy.srmise.modelparts import ModelPart, ModelParts
-from diffpy.srmise.srmiseerrors import *
+from diffpy.srmise.srmiseerrors import SrMiseDataFormatError, SrMiseScalingError
 
 logger = logging.getLogger("diffpy.srmise")
 
@@ -263,17 +262,16 @@ class Peak(ModelPart):
         peakstr: string representing peak
         ownerlist: List of BaseFunctions that owner is in
         """
-        from numpy import array
 
         data = peakstr.strip().splitlines()
 
         # dictionary of parameters
         pdict = {}
         for d in data:
-            l = d.split("=", 1)
-            if len(l) == 2:
+            parse_value = d.split("=", 1)
+            if len(parse_value) == 2:
                 try:
-                    pdict[l[0]] = eval(l[1])
+                    pdict[parse_value[0]] = eval(parse_value[1])
                 except Exception:
                     emsg = "Invalid parameter: %s" % d
                     raise SrMiseDataFormatError(emsg)
