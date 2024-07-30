@@ -2,7 +2,8 @@
 ##############################################################################
 #
 # SrMise            by Luke Granlund
-#                   (c) 2014 trustees of the Michigan State University.
+#                   (c) 2014 trustees of the Michigan State University
+#                   (c) 2024 trustees of Columia University in the City of New York
 #                   All rights reserved.
 #
 # File coded by:    Luke Granlund
@@ -527,7 +528,7 @@ class MultimodelSelection(PeakStability):
                 verts.append(np.concatenate([[p0], zip(xs, ys), [p1], [p0]]))
                 zlabels.append(i)
 
-        ### Define face colors
+        #  Define face colors
         fc = np.array([len(self.classes[z]) for z in zlabels])
         if class_size is "fraction":
             fc = fc / float(len(self.results))

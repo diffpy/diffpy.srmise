@@ -2,7 +2,8 @@
 ##############################################################################
 #
 # SrMise            by Luke Granlund
-#                   (c) 2014 trustees of the Michigan State University.
+#                   (c) 2014 trustees of the Michigan State University
+#                   (c) 2024 trustees of Columia University in the City of New York
 #                   All rights reserved.
 #
 # File coded by:    Luke Granlund
@@ -43,9 +44,6 @@ import logging
 
 import numpy as np
 
-import diffpy.srmise.srmiselog
-from diffpy.srmise.srmiseerrors import SrMiseModelEvaluatorError
-
 logger = logging.getLogger("diffpy.srmise")
 
 
@@ -68,9 +66,9 @@ class ModelEvaluator:
         """ """
 
         assert self.method == other.method  # Comparison between same types required
-        assert self.stat != None and other.stat != None  # The statistic must already be calculated
+        assert self.stat is not None and other.stat is not None  # The statistic must already be calculated
 
-        if self.higher_is_better:
+        if self.higher_is_better is not None:
             return self.stat < other.stat
         else:
             return other.stat < self.stat
@@ -79,9 +77,9 @@ class ModelEvaluator:
         """ """
 
         assert self.method == other.method  # Comparison between same types required
-        assert self.stat != None and other.stat != None  # The statistic must already be calculated
+        assert self.stat is not None and other.stat is not None  # The statistic must already be calculated
 
-        if self.higher_is_better:
+        if self.higher_is_better is not None:
             return self.stat <= other.stat
         else:
             return other.stat <= self.stat
@@ -90,7 +88,7 @@ class ModelEvaluator:
         """ """
 
         assert self.method == other.method  # Comparison between same types required
-        assert self.stat != None and other.stat != None  # The statistic must already be calculated
+        assert self.stat is not None and other.stat is not None  # The statistic must already be calculated
 
         return self.stat == other.stat
 
@@ -98,7 +96,7 @@ class ModelEvaluator:
         """ """
 
         assert self.method == other.method  # Comparison between same types required
-        assert self.stat != None and other.stat != None  # The statistic must already be calculated
+        assert self.stat is not None and other.stat is not None  # The statistic must already be calculated
 
         return self.stat != other.stat
 
@@ -106,9 +104,9 @@ class ModelEvaluator:
         """ """
 
         assert self.method == other.method  # Comparison between same types required
-        assert self.stat != None and other.stat != None  # The statistic must already be calculated
+        assert self.stat is not None and other.stat is not None  # The statistic must already be calculated
 
-        if self.higher_is_better:
+        if self.higher_is_better is not None:
             return self.stat > other.stat
         else:
             return other.stat > self.stat
@@ -117,9 +115,9 @@ class ModelEvaluator:
         """ """
 
         assert self.method == other.method  # Comparison between same types required
-        assert self.stat != None and other.stat != None  # The statistic must already be calculated
+        assert self.stat is not None and other.stat is not None  # The statistic must already be calculated
 
-        if self.higher_is_better:
+        if self.higher_is_better is not None:
             return self.stat >= other.stat
         else:
             return other.stat >= self.stat

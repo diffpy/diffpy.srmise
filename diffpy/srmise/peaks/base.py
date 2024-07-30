@@ -2,7 +2,8 @@
 ##############################################################################
 #
 # SrMise            by Luke Granlund
-#                   (c) 2014 trustees of the Michigan State University.
+#                   (c) 2014 trustees of the Michigan State University
+#                   (c) 2024 trustees of Columia University in the City of New York
 #                   All rights reserved.
 #
 # File coded by:    Luke Granlund
@@ -91,13 +92,13 @@ class PeakFunction(BaseFunction):
             raise ValueError(emsg)
         BaseFunction.__init__(self, parameterdict, parformats, default_formats, metadict, base, Cache)
 
-    #### "Virtual" class methods ####
+    # # "Virtual" class methods ####
 
     def scale_at(self, peak, x, scale):
         emsg = "scale_at must be implemented in a PeakFunction subclass."
         raise NotImplementedError(emsg)
 
-    #### Methods required by BaseFunction ####
+    # # Methods required by BaseFunction ####
 
     def actualize(
         self,
