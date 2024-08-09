@@ -68,12 +68,34 @@ class DataClusters:
     def __iter__(self):
         return self
 
+    def __eq__(self, other):
+        return (
+            np.array_equal(self.x, other.x)
+            and np.array_equal(self.y, other.y)
+            and np.array_equal(self.data_order, other.data_order)
+            and np.array_equal(self.clusters, other.clusters)
+            and self.res == other.res
+            and self.current_idx == other.current_idx
+            and self.lastcluster_idx == other.lastcluster_idx
+            and self.lastpoint_idx == other.lastpoint_idx
+            and self.status == other.status
+        )
+
     def clear(self):
-        """Clear all members, including user data."""
+        """
+        Clear all data and reset the cluster object to a transient initial state.
+
+        The purpose of this method is to provide a clean state before creating new clustering operations.
+        The object is updated in-place and no new instance is returned.
+
+        Returns
+        -------
+        None
+        """
         self.x = np.array([])
         self.y = np.array([])
-        self.data_order = np.array([], dtype=np.int32)
-        self.clusters = np.array([[]], dtype=np.int32)
+        self.data_order = np.array([])
+        self.clusters = np.array([[]])
         self.res = 0
         self.current_idx = 0
         self.lastcluster_idx = None
