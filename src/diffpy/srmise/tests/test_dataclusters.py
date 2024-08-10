@@ -1,7 +1,6 @@
 from copy import copy
 
 import numpy as np
-import pytest
 
 from diffpy.srmise.dataclusters import DataClusters
 
@@ -15,13 +14,9 @@ def test_clear():
     assert actual == expected
 
 
-data = [([np.array([1, 2, 3]), np.array([3, 2, 1]), 0], [np.array([1, 2, 3]), np.array([3, 2, 1]), 0])]
-
-
-@pytest.mark.parametrize("inputs, expected", data)
-def test___eq__(inputs, expected):
-    actual = DataClusters(*inputs)
-    expected = DataClusters(*expected)
+def test___eq__():
+    actual = DataClusters(np.array([1, 2, 3]), np.array([3, 2, 1]), 0)
+    expected = DataClusters(np.array([1, 2, 3]), np.array([3, 2, 1]), 0)
     assert expected == actual
     attributes = vars(actual)
     for attr_key, attr_val in attributes.items():
