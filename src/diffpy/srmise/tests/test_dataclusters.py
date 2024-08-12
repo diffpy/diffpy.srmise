@@ -1,6 +1,7 @@
 from copy import copy
-import pytest
+
 import numpy as np
+import pytest
 
 from diffpy.srmise.dataclusters import DataClusters
 
@@ -32,6 +33,7 @@ def test___eq__():
             print(f"not-equal test failed on {attr_key}")
             assert not expected == actual
         attributes.update({attr_key: reset})
+
 
 # For reset clusters test, we have two test cases:
 # Precondition: DataClusters object should be a valid object.
