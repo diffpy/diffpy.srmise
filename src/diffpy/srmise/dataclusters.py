@@ -110,7 +110,10 @@ class DataClusters:
         return
 
     def reset_clusters(self):
-        """Reset all progress on clustering."""
+        """Reset all progress on clustering while leave datapoints and res unchanged.
+
+        The purpose of this method is to provide a clean state before creating new clustering operations.
+        """
         self.clusters = np.array([[self.data_order[-1], self.data_order[-1]]])
         self.current_idx = self.data_order.size - 1
         self.lastcluster_idx = 0
@@ -189,10 +192,10 @@ class DataClusters:
         if np.abs(nearest_cluster[1]) <= self.res:
             # Add to an existing cluster
             self.lastcluster_idx = nearest_cluster[0]
-            if test_idx < self.clusters[nearest_cluster[0], 0]:
-                self.clusters[nearest_cluster[0], 0] = test_idx
+            if test_idx < self.clusters[int(nearest_cluster[0]), 0]:
+                self.clusters[int(nearest_cluster[0]), 0] = test_idx
             else:
-                self.clusters[nearest_cluster[0], 1] = test_idx
+                self.clusters[int(nearest_cluster[0]), 1] = test_idx
         else:
             # Make a new cluster
             if nearest_cluster[1] < 0:

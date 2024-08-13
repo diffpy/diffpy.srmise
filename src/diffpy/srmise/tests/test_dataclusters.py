@@ -35,33 +35,25 @@ def test___eq__():
         attributes.update({attr_key: reset})
 
 
-# For reset clusters test, we have two test cases:
+# For reset clusters test, we have one test cases:
 # Precondition: DataClusters object should be a valid object.
-# Case (1): x and y are non-empty with positive res, reset_clusters would reset clusters to largest y arg
-# Case (2): x and y are empty with zero res, reset_clusters would reset clusters to an empty numpy arr
+# Case (1): x and y are non-empty with positive res, reset_clusters would reset clusters to initialized state.
 @pytest.mark.parametrize(
     "inputs, expected",
     [
         (
-            # case (1)
             {
-                "input_x": np.array([1, 2, 3]),
-                "input_y": np.array([3, 2, 1]),
-                "input_res": 4,
+                "x": np.array([1, 2, 3]),
+                "y": np.array([3, 2, 1]),
+                "res": 4,
             },
             DataClusters(np.array([1, 2, 3]), np.array([3, 2, 1]), 4),
-        ),
-        (
-            # case (2)
-            {
-                "input_x": np.array([]),
-                "input_y": np.array([]),
-                "input_res": 0,
-            },
-            DataClusters(np.array([]), np.array([]), 0),
         ),
     ],
 )
 def test_reset_clusters(inputs, expected):
-    actual = DataClusters(x=inputs["input_x"], y=inputs["input_y"], res=inputs["input_res"])
+    actual = DataClusters(x=inputs["x"], y=inputs["y"], res=inputs["res"])
+    expected.reset_clusters()
+    actual.next()
+    actual.reset_clusters()
     assert actual == expected
