@@ -160,10 +160,15 @@ class DataClusters:
         return
 
     def next(self):
-        """Cluster point with largest y-coordinate left, returning self.
+        """Find and return the updated DataClusters with the largest y-coordinate that has not yet been clustered.
 
-        next() always adds at least one additional point to the existing
-        cluster, or raises an exception if all points have been clustered.
+        This method extends the current clustering by selecting the unclustered point with the maximum
+        y-coordinate value. If all points have been clustered, an appropriate exception is raised to
+        indicate that there are no more points available for clustering.
+
+        Returns
+        -------
+        The updated DataClusters() object
         """
         if self.status == self.INIT:
             raise Exception("Cannot cluster next point while status is INIT.")
