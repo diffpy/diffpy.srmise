@@ -1,306 +1,153 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>diffpy.srmise documentation &mdash; diffpy.srmise 0.5.2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>SrMise Documentation &mdash; SrMise 0.5.2 documentation</title>
-    
-    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '0.5.2',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="SrMise 0.5.2 documentation" href="#" />
-    <link rel="next" title="Tutorial" href="tutorial/index.html" /> 
-  </head>
-  <body role="document">
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="tutorial/index.html" title="Tutorial"
-             accesskey="N">next</a> |</li>
-        <li class="nav-item nav-item-0"><a href="#">SrMise 0.5.2 documentation</a> &raquo;</li> 
-      </ul>
-    </div>  
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=f909c4a4"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="License" href="license.html" /> 
+</head>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <div class="section" id="srmise-documentation">
-<span id="srmise-documentation-index"></span><h1>SrMise Documentation<a class="headerlink" href="#srmise-documentation" title="Permalink to this headline">¶</a></h1>
-<p>Software version 0.5.2.</p>
-<p>Last updated July 01, 2015.</p>
-<p>Tool for unbiased peak extraction from atomic pair distribution functions.</p>
-<p>The diffpy.srmise package is an implementation of the <a class="reference external" href="https://dx.doi.org/10.1107/S2053273315005276">ParSCAPE algorithm</a> for peak extraction from
-atomic pair distribution functions (PDFs).  It is designed to function even
-when <em>a priori</em> knowledge of the physical sample is limited, utilizing the
-Akaike Information Criterion (AIC) to estimate whether peaks are
-statistically justified relative to alternate models.  Three basic use cases
-are anticipated for diffpy.srmise.  The first is peak fitting a user-supplied
-collections of peaks.  The second is peak extraction from a PDF with no (or
-only partial) user-supplied peaks.  The third is an AIC-driven multimodeling
-analysis where the output of multiple diffpy.srmise trials are ranked.</p>
-<p>The framework for peak extraction defines peak-like clusters within the data,
-extracts a single peak within each cluster, and iteratively combines nearby
-clusters while performing a recursive search on the residual to identify
-occluded peaks.  Eventually this results in a single global cluster
-containing many peaks fit over all the data.  Over- and underfitting are
-discouraged by use of the AIC when adding or removing (during a pruning step)
-peaks.  Termination effects, which can lead to physically spurious peaks in
-the PDF, are incorporated in the mathematical peak model and the pruning step
-attempts to remove peaks which are fit better as termination ripples due to
-another peak.</p>
-<p>Where possible, diffpy.srmise provides physically reasonable default values
-for extraction parameters.  However, the PDF baseline should be estimated by
-the user before extraction, or by performing provisional peak extraction with
-varying baseline parameters.  The package defines a linear (crystalline)
-baseline, arbitrary polynomial baseline, a spherical nanoparticle baseline,
-and an arbitrary baseline interpolated from a list of user-supplied values.
-In addition, PDFs with accurate experimentally-determined uncertainties are
-necessary to provide the most reliable results, but historically such PDFs
-are rare.  In the absence of accurate uncertainties an ad hoc uncertainty
-must be specified.</p>
-<div class="section" id="disclaimer">
-<h2>Disclaimer<a class="headerlink" href="#disclaimer" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python"><div class="highlight"><pre>If you use this program to do productive scientific research that
-leads to publication, we ask that you acknowledge use of the
-program by citing the following paper in your publication:
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
 
-    L. Granlund, S.J.L. Billinge, P.M. Duxbury, Algorithm for
-    systematic peak extraction from atomic pair distribution
-    functions, Acta Crystallographica A 71(4), 392-409 (2015).
-    doi:10.1107/S2053273315005276
-
-Copyright 2014-2015, Board of Trustees of Michigan State University
-
-For more information please visit the diffpy web-page at
-    http://www.diffpy.org
-or email Luke Granlund at luke.r.granlund@gmail.com, or Prof. Simon
-Billinge at sb2896@columbia.edu.
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions
-are met:
-
-  * Redistributions of source code must retain the above copyright
-    notice, this list of conditions and the following disclaimer.
-
-  * Redistributions in binary form must reproduce the above copyright
-    notice, this list of conditions and the following disclaimer in the
-    documentation and/or other materials provided with the distribution.
-
-  * Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY COPYRIGHT HOLDER &quot;AS IS&quot;. COPYRIGHT
-HOLDER EXPRESSLY DISCLAIMS ANY AND ALL WARRANTIES AND CONDITIONS,
-EITHER EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE
-IMPLIED WARRANTIES OF MERCHANTABILITY, TITLE, FITNESS, ADEQUACY OR
-SUITABILITY FOR A PARTICULAR PURPOSE, AND ANY WARRANTIES OF FREEDOM
-FROM INFRINGEMENT OF ANY DOMESTIC OR FOREIGN PATENT, COPYRIGHTS,
-TRADE SECRETS OR OTHER PROPRIETARY RIGHTS OF ANY PARTY. IN NO EVENT
-SHALL COPYRIGHT HOLDER BE LIABLE TO ANY PARTY FOR ANY DIRECT,
-INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
-HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
-STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE OR RELATING TO
-THIS AGREEMENT, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-</pre></div>
+          
+          
+          <a href="#" class="icon icon-home">
+            diffpy.srmise
+          </a>
+              <div class="version">
+                0.5.2
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
 </div>
-<div class="highlight-python"><div class="highlight"><pre>SrMise incorporates source code from diffpy.pdfgui in the file
-pdfdataset.py. The PDFgui license is reproduced in full below.
-===================================================================
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/diffpy.srmise.html">Package API</a></li>
+</ul>
 
-This program is part of the DiffPy and DANSE open-source projects
-and is available subject to the conditions and terms laid out
-below.
+        </div>
+      </div>
+    </nav>
 
-If you use this program to do productive scientific research that
-leads to publication, we ask that you acknowledge use of the
-program by citing the following paper in your publication:
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">diffpy.srmise</a>
+      </nav>
 
-    C. L. Farrow, P. Juhas, J. W. Liu, D. Bryndin, E. S. Bozin,
-    J. Bloch, Th. Proffen and S. J. L. Billinge, PDFfit2 and
-    PDFgui: computer programs for studying nanostructure in
-    crystals, J. Phys.: Condens.  Matter 19, 335219 (2007)
-
-Copyright 2006-2007, Board of Trustees of Michigan State
-University, Copyright 2008-2009, Board of Trustees of Columbia
-University in the city of New York. (Copyright holder indicated in
-each source file).
-
-For more information please visit the project web-page:
-    http://www.diffpy.org/
-or email Prof. Simon Billinge at sb2896@columbia.edu
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions
-are met:
-
-  * Redistributions of source code must retain the above copyright
-    notice, this list of conditions and the following disclaimer.
-
-  * Redistributions in binary form must reproduce the above copyright
-    notice, this list of conditions and the following disclaimer in the
-    documentation and/or other materials provided with the distribution.
-
-  * Neither the name of the copyright holder nor the names of its
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY COPYRIGHT HOLDER &quot;AS IS&quot;. COPYRIGHT
-HOLDER EXPRESSLY DISCLAIMS ANY AND ALL WARRANTIES AND CONDITIONS,
-EITHER EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE
-IMPLIED WARRANTIES OF MERCHANTABILITY, TITLE, FITNESS, ADEQUACY OR
-SUITABILITY FOR A PARTICULAR PURPOSE, AND ANY WARRANTIES OF FREEDOM
-FROM INFRINGEMENT OF ANY DOMESTIC OR FOREIGN PATENT, COPYRIGHTS,
-TRADE SECRETS OR OTHER PROPRIETARY RIGHTS OF ANY PARTY. IN NO EVENT
-SHALL COPYRIGHT HOLDER BE LIABLE TO ANY PARTY FOR ANY DIRECT,
-INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
-HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
-STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE OR RELATING TO
-THIS AGREEMENT, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-</pre></div>
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">diffpy.srmise documentation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
 </div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="title">
+<h1>diffpy.srmise documentation<a class="headerlink" href="#title" title="Link to this heading"></a></h1>
+<p>diffpy.srmise - Peak extraction and peak fitting tool for atomic pair distribution functions..</p>
+<div class="line-block">
+<div class="line">Software version 0.5.2.</div>
+<div class="line">Last updated September 04, 2024.</div>
 </div>
-<div class="section" id="acknowledgments">
-<h2>Acknowledgments<a class="headerlink" href="#acknowledgments" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="developers">
-<h3>Developers<a class="headerlink" href="#developers" title="Permalink to this headline">¶</a></h3>
-<p>diffpy.srmise is developed and maintained by</p>
-<div class="highlight-python"><div class="highlight"><pre>SrMise (diffpy.srmise) authors:
-
-Luke Granlund
-</pre></div>
-</div>
-<p>The source code of <em>pdfdataset.py</em> was derived from diffpy.pdfgui.</p>
-</div>
-</div>
-<div class="section" id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
-<p>See the <a class="reference external" href="https://github.com/diffpy/diffpy.srmise#getting-started">README.rst</a>
+<section id="authors">
+<h2>Authors<a class="headerlink" href="#authors" title="Link to this heading"></a></h2>
+<p>diffpy.srmise is developed by Billinge Group
+and its community contributors.</p>
+<p>For a detailed list of contributors see
+<a class="reference external" href="https://github.com/diffpy/diffpy.srmise/graphs/contributors">https://github.com/diffpy/diffpy.srmise/graphs/contributors</a>.</p>
+</section>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
+<p>See the <a class="reference external" href="https://github.com/diffpy/diffpy.srmise#installation">README</a>
 file included with the distribution.</p>
-</div>
-<div class="section" id="where-next">
-<h2>Where next?<a class="headerlink" href="#where-next" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="table-of-contents">
+<h2>Table of contents<a class="headerlink" href="#table-of-contents" title="Link to this heading"></a></h2>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="tutorial/index.html">Tutorial</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="tutorial/index.html#purpose">Purpose</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorial/index.html#overview">Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorial/index.html#getting-started">Getting Started</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorial/index.html#examples">Examples</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorial/index.html#pdf-information">PDF Information</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="extending.html">Extending SrMise</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="extending.html#organization-of-functions">Organization of Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="extending.html#adding-baselines">Adding Baselines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="extending.html#adding-peaks">Adding Peaks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/diffpy.srmise.html">Package API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/diffpy.srmise.peaks.html">diffpy.srmise.peaks package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/diffpy.srmise.modelevaluators.html">diffpy.srmise.modelevaluators package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/diffpy.srmise.applications.html">diffpy.srmise.applications package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/diffpy.srmise.baselines.html">diffpy.srmise.baselines package</a></li>
 </ul>
 </li>
 </ul>
 </div>
-</div>
-<div class="section" id="api">
-<h2>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h2>
-<p>Detailed API documentation will be available in a future version of
-diffpy.srmise.</p>
+</section>
+<section id="indices">
+<h2>Indices<a class="headerlink" href="#indices" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><a class="reference internal" href="genindex.html"><span>Index</span></a></li>
-<li><a class="reference internal" href="search.html"><span>Search Page</span></a></li>
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
 </ul>
-</div>
-</div>
+</section>
+</section>
 
 
+           </div>
           </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <h3><a href="#">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">SrMise Documentation</a><ul>
-<li><a class="reference internal" href="#disclaimer">Disclaimer</a></li>
-<li><a class="reference internal" href="#acknowledgments">Acknowledgments</a><ul>
-<li><a class="reference internal" href="#developers">Developers</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#installation">Installation</a></li>
-<li><a class="reference internal" href="#where-next">Where next?</a></li>
-<li><a class="reference internal" href="#api">API</a></li>
-</ul>
-</li>
-</ul>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="license.html" class="btn btn-neutral float-right" title="License" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
-  <h4>Next topic</h4>
-  <p class="topless"><a href="tutorial/index.html"
-                        title="next chapter">Tutorial</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/index.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, The Trustees of Columbia University in the City of New York.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="tutorial/index.html" title="Tutorial"
-             >next</a> |</li>
-        <li class="nav-item nav-item-0"><a href="#">SrMise 0.5.2 documentation</a> &raquo;</li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-        &copy; Copyright 2015, Board of Trustees of Michigan State University.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
-    </div>
-  </body>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
 </html>
