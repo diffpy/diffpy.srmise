@@ -119,15 +119,15 @@
 <span class="sd">      The array of r values.</span>
 <span class="sd">    y : sequence of y values</span>
 <span class="sd">      The array of PDF values, G(r)</span>
-<span class="sd">    res : int</span>
-<span class="sd">      The clustering resolution, i.e., the number of points another point has to</span>
+<span class="sd">    res : float</span>
+<span class="sd">      The clustering resolution, i.e., the number of distance another point has to</span>
 <span class="sd">      be away from the center of an existing cluster to before a new cluster is</span>
-<span class="sd">      formed.  A value of zero allows every point to be cluster.</span>
+<span class="sd">      formed.  A value of zero allows every point to be a cluster.</span>
 <span class="sd">    data_order : array</span>
 <span class="sd">      The array of x, y indices ordered by decreasing y</span>
-<span class="sd">    clusters :</span>
+<span class="sd">    clusters : ndarray</span>
 <span class="sd">      The array of cluster ranges</span>
-<span class="sd">    current_idx - int</span>
+<span class="sd">    current_idx : int</span>
 <span class="sd">      The index of data_order currently considered</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -140,8 +140,8 @@
 <span class="sd">          The array of r values.</span>
 <span class="sd">        y : sequence of y values</span>
 <span class="sd">          The array of PDF values, G(r)</span>
-<span class="sd">        res : int</span>
-<span class="sd">          The clustering resolution, i.e., the number of points another point has to</span>
+<span class="sd">        res : float</span>
+<span class="sd">          The clustering resolution, i.e., the distance another point has to</span>
 <span class="sd">          be away from the center of an existing cluster to before a new cluster is</span>
 <span class="sd">          formed.  A value of zero allows every point to be cluster.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -225,8 +225,8 @@
 <span class="sd">          The array of r values.</span>
 <span class="sd">        y : sequence of y values</span>
 <span class="sd">          The array of PDF values, G(r)</span>
-<span class="sd">        res : int</span>
-<span class="sd">          The clustering resolution, i.e., the number of points another point has to</span>
+<span class="sd">        res : float</span>
+<span class="sd">          The clustering resolution, i.e., the distance another point has to</span>
 <span class="sd">          be away from the center of an existing cluster to before a new cluster is</span>
 <span class="sd">          formed.  A value of zero allows every point to be cluster.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -317,13 +317,18 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return [cluster index, distance] for cluster nearest to x.</span>
 
 <span class="sd">        Parameters</span>
-<span class="sd">        x - Coordinate of point of interest</span>
+<span class="sd">        ----------</span>
+<span class="sd">        x : ndarray</span>
+<span class="sd">            Coordinate of point of interest</span>
 
 <span class="sd">        The distance is positive/negative if the point is right/left of the</span>
 <span class="sd">        nearest cluster.  If the point is within an existing cluster then</span>
 <span class="sd">        distance = 0.</span>
 
-<span class="sd">        Return None if no clusters exists.</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        array-like</span>
+<span class="sd">            The index of the nearest cluster, and the distance for cluster nearest to x. None if no cluster</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">INIT</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Cannot cluster next point while status is INIT.&quot;</span><span class="p">)</span>
@@ -349,9 +354,14 @@
 <span class="sd">        distance = 0.</span>
 
 <span class="sd">        Parameters</span>
-<span class="sd">        idx - index of point in self.x of interest.</span>
+<span class="sd">        ----------</span>
+<span class="sd">        idx : array-like</span>
+<span class="sd">            index of point in self.x of interest.</span>
 
-<span class="sd">        Return None if no clusters exist.</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        array-like</span>
+<span class="sd">            The array of cluster index and the distacne to the nearest cluster. None if no clusters exist.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">INIT</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Cannot cluster next point while status is INIT.&quot;</span><span class="p">)</span>
@@ -395,7 +405,14 @@
 <span class="sd">        boundaries.</span>
 
 <span class="sd">        Parameters</span>
-<span class="sd">        cluster_idx - The index of the cluster to test</span>
+<span class="sd">        ----------</span>
+<span class="sd">        cluster_idx : array-like</span>
+<span class="sd">            The index of the cluster to test</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        bools</span>
+<span class="sd">            True if the cluster is full, False otherwise</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">cluster_idx</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">low</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">clusters</span><span class="p">[</span><span class="n">cluster_idx</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
@@ -417,7 +434,13 @@
 <span class="sd">        unclustered points between them.</span>
 
 <span class="sd">        Parameters</span>
-<span class="sd">        combine - [[leftmost_idx1, ..., rightmost_idx1], ...]</span>
+<span class="sd">        ----------</span>
+<span class="sd">        combine : ndarray</span>
+<span class="sd">            [[leftmost_idx1, ..., rightmost_idx1], ...]</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Ensure that the same clusters aren&#39;t combined multiple times.</span>
         <span class="n">combine_flat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">combine</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>

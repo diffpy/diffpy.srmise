@@ -2773,15 +2773,15 @@ point under consideration is greater than a given distance (the
 </dd>
 <dt>y<span class="classifier">sequence of y values</span></dt><dd><p>The array of PDF values, G(r)</p>
 </dd>
-<dt>res<span class="classifier">int</span></dt><dd><p>The clustering resolution, i.e., the number of points another point has to
+<dt>res<span class="classifier">float</span></dt><dd><p>The clustering resolution, i.e., the number of distance another point has to
 be away from the center of an existing cluster to before a new cluster is
-formed.  A value of zero allows every point to be cluster.</p>
+formed.  A value of zero allows every point to be a cluster.</p>
 </dd>
 <dt>data_order<span class="classifier">array</span></dt><dd><p>The array of x, y indices ordered by decreasing y</p>
 </dd>
-<dt>clusters :</dt><dd><p>The array of cluster ranges</p>
+<dt>clusters<span class="classifier">ndarray</span></dt><dd><p>The array of cluster ranges</p>
 </dd>
-<dt>current_idx - int</dt><dd><p>The index of data_order currently considered</p>
+<dt>current_idx<span class="classifier">int</span></dt><dd><p>The index of data_order currently considered</p>
 </dd>
 </dl>
 <dl class="py method">
@@ -2802,8 +2802,17 @@ formed.  A value of zero allows every point to be cluster.</p>
 <dd><p>Return whether the given cluster can grow.</p>
 <p>A cluster is full if no unclustered points remain adjacent to its
 boundaries.</p>
-<p>Parameters
-cluster_idx - The index of the cluster to test</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>cluster_idx</strong> (<em>array-like</em>) – The index of the cluster to test</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the cluster is full, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bools</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -2812,8 +2821,14 @@ cluster_idx - The index of the cluster to test</p>
 <dd><p>Combine clusters specified by each subarray of cluster indices.</p>
 <p>Clusters to combine must be contiguous, increasing, and have no
 unclustered points between them.</p>
-<p>Parameters
-combine - [[leftmost_idx1, …, rightmost_idx1], …]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>combine</strong> (<em>ndarray</em>) – [[leftmost_idx1, …, rightmost_idx1], …]</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -2840,21 +2855,39 @@ are no unclustered points between each element in subarray of clusters
 <p>The distance is positive/negative if the point is right/left of the
 nearest cluster.  If the point is within an existing cluster then
 distance = 0.</p>
-<p>Parameters
-idx - index of point in self.x of interest.</p>
-<p>Return None if no clusters exist.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>idx</strong> (<em>array-like</em>) – index of point in self.x of interest.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The array of cluster index and the distacne to the nearest cluster. None if no clusters exist.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>array-like</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.dataclusters.DataClusters.find_nearest_cluster2">
 <span class="sig-name descname"><span class="pre">find_nearest_cluster2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/dataclusters.html#DataClusters.find_nearest_cluster2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.dataclusters.DataClusters.find_nearest_cluster2" title="Link to this definition"></a></dt>
 <dd><p>Return [cluster index, distance] for cluster nearest to x.</p>
-<p>Parameters
-x - Coordinate of point of interest</p>
-<p>The distance is positive/negative if the point is right/left of the
-nearest cluster.  If the point is within an existing cluster then
-distance = 0.</p>
-<p>Return None if no clusters exists.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>ndarray</em>) – Coordinate of point of interest</p></li>
+<li><p><strong>the</strong> (<em>The distance is positive/negative if the point is right/left of</em>)</p></li>
+<li><p><strong>then</strong> (<em>nearest cluster.  If the point is within an existing cluster</em>)</p></li>
+<li><p><strong>0.</strong> (<em>distance =</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The index of the nearest cluster, and the distance for cluster nearest to x. None if no cluster</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>array-like</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
