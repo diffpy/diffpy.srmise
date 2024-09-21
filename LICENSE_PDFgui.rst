@@ -1,5 +1,7 @@
 Copyright 2006-2007, Board of Trustees of Michigan State University
-          2008-2024, The Trustees of Columbia University in the City of New York.
+
+Copyright 2008-2024, The Trustees of Columbia University in the City of New York.
+
 All rights reserved.
 
 SrMise incorporates source code from diffpy.pdfgui in the file
