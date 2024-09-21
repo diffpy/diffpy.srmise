@@ -1,5 +1,7 @@
 Copyright 2014-2015, Board of Trustees of Michigan State University
-          2016-2024, The Trustees of Columbia University in the City of New York.
+
+Copyright 2016-2024, The Trustees of Columbia University in the City of New York.
+
 All rights reserved.
 
 If you use this program to do productive scientific research that
