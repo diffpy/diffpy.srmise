@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Extending SrMise &mdash; diffpy.srmise 0.1.0rc0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=9205c5d6"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            diffpy.srmise
+          </a>
+              <div class="version">
+                0.1.0rc0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/diffpy.srmise.html">Package API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">diffpy.srmise</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Extending SrMise</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/extending.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="extending-srmise">
+<span id="id1"></span><h1>Extending SrMise<a class="headerlink" href="#extending-srmise" title="Link to this heading"></a></h1>
+<p>The <a class="reference internal" href="tutorial/index.html#tutorial"><span class="std std-ref">Tutorial</span></a> gives an overview of how to use SrMise with the existing
+peak and baseline functions.  These inherit from classes providing generic peak
+and baseline functionality, and from which additional peaks and baselines can be
+implemented.  The process for adding new peaks and baselines is summarized
+below, but see the source code for additional details.</p>
+<p>If you implement a peak or baseline likely to be of broad interest to the PDF
+community, please consider submitting a pull request to the GitHub
+<a class="reference external" href="https://github.com/diffpy/diffpy.srmise">SrMise repository</a>.</p>
+<section id="organization-of-functions">
+<h2>Organization of Functions<a class="headerlink" href="#organization-of-functions" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">BaseFunction</span></code> class in <code class="docutils literal notranslate"><span class="pre">diffpy.srmise.basefunction</span></code> implements the
+functionality common to all SrMise baseline and peak functions, which are
+separately implemented in the <code class="docutils literal notranslate"><span class="pre">diffpy.srmise.baselines</span></code> and
+<code class="docutils literal notranslate"><span class="pre">diffpy.srmise.peaks</span></code> subpackages.  Specific baseline and peak functions
+inherit from the <code class="docutils literal notranslate"><span class="pre">BaselineFunction</span></code> and <code class="docutils literal notranslate"><span class="pre">PeakFunction</span></code> classes in those
+subpackges, as shown below.</p>
+<ul>
+<li><dl class="py class">
+<dt class="sig sig-object py" id="BaseFunction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BaseFunction</span></span><a class="headerlink" href="#BaseFunction" title="Link to this definition"></a></dt>
+<dd><ul>
+<li><dl class="py class">
+<dt class="sig sig-object py" id="BaseFunction.BaselineFunction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BaselineFunction</span></span><a class="headerlink" href="#BaseFunction.BaselineFunction" title="Link to this definition"></a></dt>
+<dd><ul>
+<li><dl class="py class">
+<dt class="sig sig-object py" id="BaseFunction.BaselineFunction.FromSequence">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">FromSequence</span></span><a class="headerlink" href="#BaseFunction.BaselineFunction.FromSequence" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</li>
+<li><dl class="py class">
+<dt class="sig sig-object py" id="BaseFunction.BaselineFunction.NanoSpherical">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">NanoSpherical</span></span><a class="headerlink" href="#BaseFunction.BaselineFunction.NanoSpherical" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</li>
+<li><dl class="py class">
+<dt class="sig sig-object py" id="BaseFunction.BaselineFunction.Polynomial">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Polynomial</span></span><a class="headerlink" href="#BaseFunction.BaselineFunction.Polynomial" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</li>
+<li><p><em>etc.</em></p></li>
+</ul>
+</dd></dl>
+
+</li>
+<li><dl class="py class">
+<dt class="sig sig-object py" id="BaseFunction.PeakFunction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">PeakFunction</span></span><a class="headerlink" href="#BaseFunction.PeakFunction" title="Link to this definition"></a></dt>
+<dd><ul>
+<li><dl class="py class">
+<dt class="sig sig-object py" id="BaseFunction.PeakFunction.Gaussian">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Gaussian</span></span><a class="headerlink" href="#BaseFunction.PeakFunction.Gaussian" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</li>
+<li><dl class="py class">
+<dt class="sig sig-object py" id="BaseFunction.PeakFunction.GaussianOverR">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GaussianOverR</span></span><a class="headerlink" href="#BaseFunction.PeakFunction.GaussianOverR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</li>
+<li><p><em>etc.</em></p></li>
+</ul>
+</dd></dl>
+
+</li>
+</ul>
+</dd></dl>
+
+</li>
+</ul>
+</section>
+<section id="adding-baselines">
+<h2>Adding Baselines<a class="headerlink" href="#adding-baselines" title="Link to this heading"></a></h2>
+<p>To add a baseline, create a new module which defines a class inheriting from
+<code class="docutils literal notranslate"><span class="pre">diffpy.srmise.baselines.base.BaselineFunction</span></code>.  The class data and methods
+which need to be implemented are summarized in the source code.</p>
+<p>The class methods should follow these specifications.  See existing baselines
+for examples.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="estimate_parameters">
+<span class="sig-name descname"><span class="pre">estimate_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#estimate_parameters" title="Link to this definition"></a></dt>
+<dd><p>Return a Numpy array of parameters estimated from the data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>r</strong> (<cite>Sequence</cite>) – Grid on which the data are defined.</p></li>
+<li><p><strong>y</strong> (<cite>Sequence</cite>) – The data.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Estimated parameters</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><cite>numpy.ndarray</cite></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p>NotImplementedError if estimation has not been implemented.</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p>SrMiseEstimationError if estimation fails.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="jacobian_raw">
+<span class="sig-name descname"><span class="pre">_jacobian_raw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">free</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#jacobian_raw" title="Link to this definition"></a></dt>
+<dd><p>Return Jacobian for parameters evaluated over <cite>r</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pars</strong> (<cite>Sequence(float)</cite>) – The parameters of the baseline.</p></li>
+<li><p><strong>r</strong> (<cite>int</cite>, <cite>float</cite>, or <cite>Sequence(int</cite> or <cite>float)</cite>) – Scalar or grid on which to calculate the Jacobian.</p></li>
+<li><p><strong>free</strong> (<cite>Sequence(boolean)</cite>) – Boolean values indicating if corresponding parameter is free (True) or fixed (False).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of Jacobian values (or None if parameter is not free) for each parameter evaluated at <cite>r</cite>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><cite>list(numpy.ndarray(float) or float or None)</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="transform_derivativesraw">
+<span class="sig-name descname"><span class="pre">_transform_derivativesraw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">in_format</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_format</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transform_derivativesraw" title="Link to this definition"></a></dt>
+<dd><p>Return the gradient matrix of <cite>pars</cite> represented in format ‘out_format’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pars</strong> (<cite>Sequence(float)</cite>) – The parameters of the baseline.</p></li>
+<li><p><strong>in_format</strong> (<cite>str</cite>) – The format of <cite>pars</cite>.</p></li>
+<li><p><strong>out_format</strong> (<cite>str</cite>) – The desired format of <cite>pars</cite>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The gradient matrix for the transformation.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><cite>numpy.ndarray</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="transform_parametersraw">
+<span class="sig-name descname"><span class="pre">_transform_parametersraw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">in_format</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_format</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#transform_parametersraw" title="Link to this definition"></a></dt>
+<dd><p>Return parameters transformed into format ‘out_format’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pars</strong> (<cite>Sequence(float)</cite>) – The parameters of the baseline.</p></li>
+<li><p><strong>in_format</strong> (<cite>str</cite>) – The format of <cite>pars</cite>.</p></li>
+<li><p><strong>out_format</strong> (<cite>str</cite>) – The desired format of <cite>pars</cite>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The transformed parameters.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><cite>numpy.ndarray</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="valueraw">
+<span class="sig-name descname"><span class="pre">_valueraw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#valueraw" title="Link to this definition"></a></dt>
+<dd><p>Return value of baseline with given parameters at r.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pars</strong> (<cite>Sequence(float)</cite>) – The parameters of the baseline.</p></li>
+<li><p><strong>r</strong> (<cite>int</cite>, <cite>float</cite>, or <cite>Sequence(int</cite> or <cite>float)</cite>) – Scalar or grid on which to calculate the baseline.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The value of the baseline.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><cite>float</cite> or <cite>numpy.ndarray(float)</cite>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="adding-peaks">
+<h2>Adding Peaks<a class="headerlink" href="#adding-peaks" title="Link to this heading"></a></h2>
+<p>To add a new peak function, create a new module which defines a class
+inheriting from <code class="docutils literal notranslate"><span class="pre">diffpy.srmise.peaks.base.PeakFunction</span></code>.  Implementing a peak
+function is nearly identical to implementing a baseline function, with the
+following differences:</p>
+<ol class="arabic simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">estimate_parameters</span></code> method is required.</p></li>
+<li><p>The “position” key must be defined in the <code class="docutils literal notranslate"><span class="pre">parameterdict</span></code> class member.</p></li>
+<li><p>Peak functions must implement the additional method <code class="docutils literal notranslate"><span class="pre">scale_at</span></code>.</p></li>
+</ol>
+<dl class="py method">
+<dt class="sig sig-object py" id="scale_at">
+<span class="sig-name descname"><span class="pre">scale_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scale_at" title="Link to this definition"></a></dt>
+<dd><p>Return peak parameters such that the value at <code class="docutils literal notranslate"><span class="pre">r</span></code> is scaled by <code class="docutils literal notranslate"><span class="pre">scale</span></code>
+while the position of the peak’s maxima remains unchanged.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pars</strong> (<cite>Sequence(float)</cite>) – The parameters of the peak.</p></li>
+<li><p><strong>r</strong> (<cite>int</cite> or <cite>float</cite>) – Position where the peak will be rescaled.</p></li>
+<li><p><strong>scale</strong> (<cite>float</cite>) – A scale factor &gt; 0.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The adjusted peak parameters.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><cite>numpy.ndarray(float)</cite>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, The Trustees of Columbia University in the City of New York.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
