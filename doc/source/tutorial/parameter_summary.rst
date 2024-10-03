@@ -3,7 +3,7 @@
 .. include:: sample_links.txt
 
 
-.. include:: ../../../examples/README
+.. include:: ../../examples/README.rst
    :start-after: ~Example 2~
    :end-before: ~Example 3~
 
@@ -13,4 +13,4 @@
 Script (parameter_summary.py)
 -----------------------------
 
-.. literalinclude:: ../../../examples/parameter_summary.py
+.. literalinclude:: ../../examples/parameter_summary.py

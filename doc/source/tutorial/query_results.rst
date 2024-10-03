@@ -3,7 +3,7 @@
 .. include:: sample_links.txt
 
 
-.. include:: ../../../examples/README
+.. include:: ../../examples/README.rst
    :start-after: ~Example 4~
    :end-before: ~Example 5~
 
@@ -13,4 +13,4 @@
 Script (query_results.py)
 -------------------------
 
-.. literalinclude:: ../../../examples/query_results.py
+.. literalinclude:: ../../examples/query_results.py

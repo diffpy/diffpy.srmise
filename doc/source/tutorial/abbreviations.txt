@@ -10,21 +10,18 @@
 .. |tar.gz| replace:: :source-release:`tar.gz`
 
 .. Image substitutions
-.. |images/extract_single_peak1.png| image:: ../../../examples/images/extract_single_peak1.png
-.. |images/extract_single_peak2.png| image:: ../../../examples/images/extract_single_peak2.png
-.. |images/extract_single_peak3.png| image:: ../../../examples/images/extract_single_peak3.png
-.. |images/parameter_summary1.png| image:: ../../../examples/images/parameter_summary1.png
-.. |images/parameter_summary2.png| image:: ../../../examples/images/parameter_summary2.png
-.. |images/parameter_summary3.png| image:: ../../../examples/images/parameter_summary3.png
-.. |images/parameter_summary4.png| image:: ../../../examples/images/parameter_summary4.png
-.. |images/fit_initial1.png| image:: ../../../examples/images/fit_initial1.png
-.. |images/fit_initial2.png| image:: ../../../examples/images/fit_initial2.png
-.. |images/query_results1.png| image:: ../../../examples/images/query_results1.png
-.. |images/query_results2.png| image:: ../../../examples/images/query_results2.png
-.. |images/query_results3.png| image:: ../../../examples/images/query_results3.png
-
-.. Links to non-tutorial parts of documentation.
-.. |Extending SrMise| replace:: :ref:`extending-srmise`
+.. |images/extract_single_peak1.png| ge:: ../../examples/images/extract_single_peak1.png
+.. |images/extract_single_peak2.png| image:: ../../examples/images/extract_single_peak2.png
+.. |images/extract_single_peak3.png| image:: ../../examples/images/extract_single_peak3.png
+.. |images/parameter_summary1.png| image:: ../../examples/images/parameter_summary1.png
+.. |images/parameter_summary2.png| image:: ../../examples/images/parameter_summary2.png
+.. |images/parameter_summary3.png| image:: ../../examples/images/parameter_summary3.png
+.. |images/parameter_summary4.png| image:: ../../examples/images/parameter_summary4.png
+.. |images/fit_initial1.png| image:: ../../examples/images/fit_initial1.png
+.. |images/fit_initial2.png| image:: ../../examples/images/fit_initial2.png
+.. |images/query_results1.png| image:: ../../examples/images/query_results1.png
+.. |images/query_results2.png| image:: ../../examples/images/query_results2.png
+.. |images/query_results3.png| image:: ../../examples/images/query_results3.png
 
 .. External links
 .. _ParSCAPE algorithm: https://dx.doi.org/10.1107/S2053273315005276
