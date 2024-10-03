@@ -35,7 +35,7 @@
 .. |Tracking| image:: https://img.shields.io/badge/issue_tracking-github-blue
         :target: https://github.com/diffpy/diffpy.srmise/issues
 
-implementation of the ParSCAPE algorithm for peak extraction from atomic pair distribution functions (PDFs)
+Implementation of the ParSCAPE algorithm for peak extraction from atomic pair distribution functions (PDFs)
 
 SrMise is an implementation of the `ParSCAPE algorithm
 <https://dx.doi.org/10.1107/S2053273315005276>`_ for peak extraction from
