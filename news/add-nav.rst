@@ -17,7 +17,7 @@
 **Fixed:**
 
 * add pip dependencies under pip.txt, conda dependencies under conda.txt
-* 
+* add tutorial and extending examples to docs
 
 **Security:**
 
