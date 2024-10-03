@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Extending SrMise &mdash; diffpy.srmise 0.1.0rc0 documentation</title>
+  <title>Extending SrMise &mdash; diffpy.srmise 0.1.0rc1 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
 
@@ -15,12 +15,14 @@
   
         <script src="_static/jquery.js?v=5d32c60e"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=9205c5d6"></script>
+        <script src="_static/documentation_options.js?v=3b45b1b0"></script>
         <script src="_static/doctools.js?v=9a2dae69"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="diffpy.srmise package" href="api/diffpy.srmise.html" />
+    <link rel="prev" title="Multimodeling with unknown uncertainty" href="tutorial/multimodel_unknown_uncertainties.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -35,7 +37,7 @@
             diffpy.srmise
           </a>
               <div class="version">
-                0.1.0rc0
+                0.1.0rc1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -45,10 +47,12 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
-<li class="toctree-l1"><a class="reference internal" href="release.html">Release Notes</a></li>
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Extending SrMise</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api/diffpy.srmise.html">Package API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 </ul>
 
         </div>
@@ -76,7 +80,7 @@
            <div itemprop="articleBody">
              
   <section id="extending-srmise">
-<span id="id1"></span><h1>Extending SrMise<a class="headerlink" href="#extending-srmise" title="Link to this heading"></a></h1>
+<span id="index-0"></span><h1>Extending SrMise<a class="headerlink" href="#extending-srmise" title="Link to this heading"></a></h1>
 <p>The <a class="reference internal" href="tutorial/index.html#tutorial"><span class="std std-ref">Tutorial</span></a> gives an overview of how to use SrMise with the existing
 peak and baseline functions.  These inherit from classes providing generic peak
 and baseline functionality, and from which additional peaks and baselines can be
@@ -157,6 +161,47 @@ subpackges, as shown below.</p>
 <p>To add a baseline, create a new module which defines a class inheriting from
 <code class="docutils literal notranslate"><span class="pre">diffpy.srmise.baselines.base.BaselineFunction</span></code>.  The class data and methods
 which need to be implemented are summarized in the source code.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">BaselineFunction</span><span class="p">(</span><span class="n">BaseFunction</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Base class for functions which represent some data&#39;s baseline term.</span>
+
+<span class="sd">    Class members</span>
+<span class="sd">    -------------</span>
+<span class="sd">    parameterdict: dict</span>
+<span class="sd">        The dictionary mapping string keys to their index in the</span>
+<span class="sd">        sequence of parameters.  These keys apply only to</span>
+<span class="sd">        the default &quot;internal&quot; format.</span>
+<span class="sd">    parformats: array-like</span>
+<span class="sd">        The sequence of strings defining what formats are recognized</span>
+<span class="sd">        by a baseline function.</span>
+<span class="sd">    default_formats: dict</span>
+<span class="sd">        The dictionary which maps the strings &quot;default_input&quot; and</span>
+<span class="sd">        &quot;default_output&quot; to strings also appearing in parformats.</span>
+<span class="sd">        &quot;default_input&quot;-&gt; format used internally within the class</span>
+<span class="sd">        &quot;default_output&quot;-&gt; Default format to use when converting</span>
+<span class="sd">        parameters for outside use.</span>
+
+<span class="sd">    Class methods (implemented by inheriting classes)</span>
+<span class="sd">    -------------------------------------------------</span>
+<span class="sd">    estimate_parameters() (optional)</span>
+<span class="sd">    _jacobianraw() (optional, but strongly recommended)</span>
+<span class="sd">    _transform_derivativesraw() (optional, supports propagation of uncertainty for different paramaterizations)</span>
+<span class="sd">    _transform_parametersraw()</span>
+<span class="sd">    _valueraw()</span>
+
+<span class="sd">    Class methods</span>
+<span class="sd">    -------------</span>
+<span class="sd">    actualize()</span>
+
+<span class="sd">    Inherited methods</span>
+<span class="sd">    -----------------</span>
+<span class="sd">    jacobian()</span>
+<span class="sd">    value()</span>
+<span class="sd">    transform_derivatives()</span>
+<span class="sd">    transform_parameters()</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+</pre></div>
+</div>
 <p>The class methods should follow these specifications.  See existing baselines
 for examples.</p>
 <dl class="py method">
@@ -308,7 +353,10 @@ while the position of the peak’s maxima remains unchanged.</p>
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="tutorial/multimodel_unknown_uncertainties.html" class="btn btn-neutral float-left" title="Multimodeling with unknown uncertainty" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api/diffpy.srmise.html" class="btn btn-neutral float-right" title="diffpy.srmise package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

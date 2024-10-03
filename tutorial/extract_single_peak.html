@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Script (extract_single_peak.py) &mdash; diffpy.srmise 0.1.0rc0 documentation</title>
+  <title>Peak extraction of a single peak &mdash; diffpy.srmise 0.1.0rc1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
 
@@ -15,12 +15,14 @@
   
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../_static/documentation_options.js?v=9205c5d6"></script>
+        <script src="../_static/documentation_options.js?v=3b45b1b0"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Summary of SrMise parameters" href="parameter_summary.html" />
+    <link rel="prev" title="Tutorial" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -35,7 +37,7 @@
             diffpy.srmise
           </a>
               <div class="version">
-                0.1.0rc0
+                0.1.0rc1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -45,10 +47,20 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../release.html">Release Notes</a></li>
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorial</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Peak extraction of a single peak</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameter_summary.html">Summary of SrMise parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fit_initial.html">Peak fitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="query_results.html">Querying SrMise results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multimodel_known_uncertainties.html">Multimodeling with known uncertainty</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multimodel_unknown_uncertainties.html">Multimodeling with unknown uncertainty</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../extending.html">Extending SrMise</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api/diffpy.srmise.html">Package API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 </ul>
 
         </div>
@@ -65,7 +77,8 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Script (extract_single_peak.py)</li>
+          <li class="breadcrumb-item"><a href="index.html">Tutorial</a></li>
+      <li class="breadcrumb-item active">Peak extraction of a single peak</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/tutorial/extract_single_peak.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -75,14 +88,186 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="script-extract-single-peak-py">
-<span id="extract-single-peak-py"></span><h1>Script (extract_single_peak.py)<a class="headerlink" href="#script-extract-single-peak-py" title="Link to this heading"></a></h1>
+  <blockquote>
+<div></div></blockquote>
+<section id="peak-extraction-of-a-single-peak">
+<h1>Peak extraction of a single peak<a class="headerlink" href="#peak-extraction-of-a-single-peak" title="Link to this heading"></a></h1>
+<div class="line-block">
+<div class="line">Script: <a class="reference internal" href="#extract-single-peak-py">extract_single_peak.py</a></div>
+<div class="line">Sample: <a class="reference external" href="index.html#ag">Ag</a></div>
+</div>
+<p>This introductory example shows how to extract the nearest-neighbor peak of an
+X-ray PDF for crystalline (FCC) silver powder with experimentally determined
+uncertainties.  It demonstrates basic input/output with SrMise, how to set the
+region over which to extract peaks, and how to automatically estimate a linear
+baseline.</p>
+<p>First, plot the data without performing peak extraction.  The first argument
+must be either a PDF (as here) or a .srmise file (described later) saved by
+SrMise.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">srmise</span> <span class="n">data</span><span class="o">/</span><span class="n">Ag_nyquist_qmax30</span><span class="o">.</span><span class="n">gr</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">extract</span> <span class="o">--</span><span class="n">plot</span>
+</pre></div>
+</div>
+<p>This should result in an image very similar to the one below.  The top shows the
+experimental data in blue.  The bottom shows the difference curve, which is
+just the PDF itself since no baseline has been specified (it is identically 0),
+and no peaks have been extracted.</p>
+<p><a href="#id5"><span class="problematic" id="id6">|images/extract_single_peak1.png|</span></a></p>
+<p>By default peak extraction is performed over the entire PDF, but often only
+peaks in a particular region are of immediate interest.  In this case the
+nearest-neighbor peak near 2.9 Å is well separated from all other peaks, and
+performing peak extraction from around 2 Å to 3.5 Å will be sufficient.  To
+restrict peak extraction to this interval use the <code class="docutils literal notranslate"><span class="pre">--range</span></code> option, which
+accepts a pair of values.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">srmise</span> <span class="n">data</span><span class="o">/</span><span class="n">Ag_nyquist_qmax30</span><span class="o">.</span><span class="n">gr</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">extract</span> <span class="o">--</span><span class="n">plot</span> <span class="o">--</span><span class="nb">range</span> <span class="mi">2</span> <span class="mf">3.5</span>
+</pre></div>
+</div>
+<p>The PDF baseline of a crystal is linear, and a reasonable crystal baseline can
+often be automatically estimated.  To estimate baseline parameters
+automatically, specify the type of baseline to use with the <code class="docutils literal notranslate"><span class="pre">--baseline</span></code>
+option.  Here we specify a polynomial of degree 1, which is at present the only
+baseline for which SrMise provides automatic estimation. Since the results of
+peak extraction are conditioned on the baseline parameters, it is a good idea to
+see whether they are reasonable.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">srmise</span> <span class="n">data</span><span class="o">/</span><span class="n">Ag_nyquist_qmax30</span><span class="o">.</span><span class="n">gr</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">extract</span> <span class="o">--</span><span class="n">plot</span> <span class="o">--</span><span class="nb">range</span> <span class="mi">2</span> <span class="mf">3.5</span>
+    <span class="o">--</span><span class="n">baseline</span> <span class="s2">&quot;Polynomial(degree=1)&quot;</span>
+</pre></div>
+</div>
+<p><img alt="images/extract_single_peak2.png" src="../_images/extract_single_peak2.png" /></p>
+<p>The estimated baseline looks reasonable, so it’s time to perform peak extraction.
+By default <code class="docutils literal notranslate"><span class="pre">srmise</span></code> performs extraction when run, so simply remove the
+<code class="docutils literal notranslate"><span class="pre">--no-extract</span></code> option.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">srmise</span> <span class="n">data</span><span class="o">/</span><span class="n">Ag_nyquist_qmax30</span><span class="o">.</span><span class="n">gr</span> <span class="o">--</span><span class="n">plot</span> <span class="o">--</span><span class="nb">range</span> <span class="mi">2</span> <span class="mf">3.5</span>
+    <span class="o">--</span><span class="n">baseline</span> <span class="s2">&quot;Polynomial(degree=1)&quot;</span>
+</pre></div>
+</div>
+<p><img alt="images/extract_single_peak3.png" src="../_images/extract_single_peak3.png" /></p>
+<p>The plot shows the fit to the data and difference curve.  The top inset shows
+a vertical marker at the position of the extracted peak.  The console output
+indicates the nearest-neighbor peak is located at 2.9007 ± 0.0019 Å, with width
+(as full-width at half-maximum) 0.2672 ± 0.0049 Å, and intensity 9.8439 ±
+0.1866.  (Results may vary slightly by platform.)  Since this PDF has
+reliable uncertainties, the reported parameter uncertainties are quantitatively
+sound.  Note also that these parameters are for a Gaussian in the radial
+distribution function (RDF) corresponding to the experimental PDF, rather than
+the Gaussian divided by radius which is the actual function being fit to the
+PDF.</p>
+<p>SrMise has two basic formats for saving data.  The first are .srmise files,
+which record all information about the parameters and results of peak
+extraction.  These files may be loaded by <code class="docutils literal notranslate"><span class="pre">srmise</span></code> and in Python scripts.  The
+second are .pwa files, which are intended as a human readable summary, but do
+not contain enough information to reproduce peak extraction results.  These
+may be saved with the <code class="docutils literal notranslate"><span class="pre">--save</span> <span class="pre">filename.srmise</span></code> and <code class="docutils literal notranslate"><span class="pre">--savepwa</span> <span class="pre">filename.pwa</span></code>
+options.</p>
+<p>The script gives results identical to the commands above, and also saves both a
+.srmise and .pwa file in the <em>output</em> directory.  Verify this by running it.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">extract_single_peak</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<section id="script-extract-single-peak-py">
+<span id="extract-single-peak-py"></span><h2>Script (extract_single_peak.py)<a class="headerlink" href="#script-extract-single-peak-py" title="Link to this heading"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1">##############################################################################</span>
+<span class="c1">#</span>
+<span class="c1"># diffpy.srmise     by Luke Granlund</span>
+<span class="c1">#                   (c) 2015 trustees of the Michigan State University.</span>
+<span class="c1">#                   All rights reserved.</span>
+<span class="c1">#</span>
+<span class="c1"># File coded by:    Luke Granlund</span>
+<span class="c1">#</span>
+<span class="c1"># See LICENSE.txt for license information.</span>
+<span class="c1">#</span>
+<span class="c1">##############################################################################</span>
+<span class="sd">&quot;&quot;&quot;Example of extracting an isolated peak from a crystalline PDF.</span>
+
+<span class="sd">This example shows how to extract an isolated peak from a simple crystalline</span>
+<span class="sd">PDF with accurate experimentally-determined uncertainties using a crystalline</span>
+<span class="sd">baseline estimated from the data.  This is the simplest use case</span>
+<span class="sd">for diffpy.srmise, and covers initializing diffpy.srmise, defining extraction</span>
+<span class="sd">parameters, running peak extraction, and saving the results.</span>
+
+<span class="sd">This script is equivalent to running</span>
+<span class="sd">srmise data/Ag_nyquist_qmax30.gr --range 2. 3.5 \</span>
+<span class="sd">    --baseline &quot;Polynomial(degree=1)&quot; --save output/extract_single_peak.srmise \</span>
+<span class="sd">    --pwa output/extract_single_peak.pwa --plot</span>
+<span class="sd">at the command line.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">from</span> <span class="nn">diffpy.srmise.applications.plot</span> <span class="kn">import</span> <span class="n">makeplot</span>
+<span class="kn">from</span> <span class="nn">diffpy.srmise.baselines.polynomial</span> <span class="kn">import</span> <span class="n">Polynomial</span>
+<span class="kn">from</span> <span class="nn">diffpy.srmise.pdfpeakextraction</span> <span class="kn">import</span> <span class="n">PDFPeakExtraction</span>
+
+
+<span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+
+    <span class="c1"># Initialize peak extraction</span>
+    <span class="c1"># Create peak extraction object</span>
+    <span class="n">ppe</span> <span class="o">=</span> <span class="n">PDFPeakExtraction</span><span class="p">()</span>
+
+    <span class="c1"># Load the PDF from a file</span>
+    <span class="n">ppe</span><span class="o">.</span><span class="n">loadpdf</span><span class="p">(</span><span class="s2">&quot;data/Ag_nyquist_qmax30.gr&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Set up extraction parameters.</span>
+    <span class="c1"># For convenience, we add all parameters to a dictionary before passing them</span>
+    <span class="c1"># to the extraction object.</span>
+    <span class="c1">#</span>
+    <span class="c1"># The &quot;rng&quot; (range) parameter defines the region over which peaks will be</span>
+    <span class="c1"># extracted and fit. For the well isolated nearest-neighbor silver peak,</span>
+    <span class="c1"># which occurs near 2.9 angstroms, it is sufficient to perform extraction</span>
+    <span class="c1"># between 2 and 3.5 angstroms.</span>
+    <span class="c1">#</span>
+    <span class="c1"># The &quot;baseline&quot; parameter lets us define the PDF baseline, which is</span>
+    <span class="c1"># linear for a crystal.  If a linear baseline is specified without</span>
+    <span class="c1"># numerical parameters diffpy.srmise attempts to estimate them from the</span>
+    <span class="c1"># data, and this is usually sufficient when peaks do not overlap much.</span>
+    <span class="n">kwds</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;rng&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">]</span>
+    <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;baseline&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Polynomial</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Apply peak extraction parameters.</span>
+    <span class="n">ppe</span><span class="o">.</span><span class="n">setvars</span><span class="p">(</span><span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+
+    <span class="c1"># Perform peak extraction</span>
+    <span class="n">ppe</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>
+
+    <span class="c1"># Save output</span>
+    <span class="c1"># The write() method saves a file which preserves all aspects of peak</span>
+    <span class="c1"># extraction and its results, by convention using the .srmise extension,</span>
+    <span class="c1"># and which can later be read by diffpy.srmise.</span>
+    <span class="c1">#</span>
+    <span class="c1"># The writepwa() method saves a file intended as a human-readable summary.</span>
+    <span class="c1"># In particular, it reports the position, width (as full-width at</span>
+    <span class="c1"># half-maximum), and area of extracted peaks.  The reported values</span>
+    <span class="c1"># are for Gaussians in the radial distribution function (RDF) corresponding</span>
+    <span class="c1"># to this PDF.</span>
+    <span class="n">ppe</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;output/extract_single_peak.srmise&quot;</span><span class="p">)</span>
+    <span class="n">ppe</span><span class="o">.</span><span class="n">writepwa</span><span class="p">(</span><span class="s2">&quot;output/extract_single_peak.pwa&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Plot results.</span>
+    <span class="c1"># Display plot of extracted peak. It is also possible to plot an existing</span>
+    <span class="c1"># .srmise file from the command line using</span>
+    <span class="c1">#     srmise output/Ag_singlepeak.srmise --no-extract --plot</span>
+    <span class="c1"># For additional plotting options, run &quot;srmiseplot --help&quot;.</span>
+    <span class="k">if</span> <span class="n">plot</span><span class="p">:</span>
+        <span class="n">makeplot</span><span class="p">(</span><span class="n">ppe</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
 </section>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Tutorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="parameter_summary.html" class="btn btn-neutral float-right" title="Summary of SrMise parameters" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

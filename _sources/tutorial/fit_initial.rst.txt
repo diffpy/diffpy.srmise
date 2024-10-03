@@ -3,7 +3,7 @@
 .. include:: sample_links.txt
 
 
-.. include:: ../../../examples/README
+.. include:: ../../examples/README.rst
    :start-after: ~Example 3~
    :end-before: ~Example 4~
 
@@ -13,4 +13,4 @@
 Script (fit_initial.py)
 ---------------------------
 
-.. literalinclude:: ../../../examples/fit_initial.py
+.. literalinclude:: ../../examples/fit_initial.py

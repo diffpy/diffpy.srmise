@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Script (fit_initial.py) &mdash; diffpy.srmise 0.1.0rc0 documentation</title>
+  <title>Peak fitting &mdash; diffpy.srmise 0.1.0rc1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
 
@@ -15,12 +15,14 @@
   
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../_static/documentation_options.js?v=9205c5d6"></script>
+        <script src="../_static/documentation_options.js?v=3b45b1b0"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Querying SrMise results" href="query_results.html" />
+    <link rel="prev" title="Summary of SrMise parameters" href="parameter_summary.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -35,7 +37,7 @@
             diffpy.srmise
           </a>
               <div class="version">
-                0.1.0rc0
+                0.1.0rc1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -45,10 +47,20 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../release.html">Release Notes</a></li>
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorial</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="extract_single_peak.html">Peak extraction of a single peak</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameter_summary.html">Summary of SrMise parameters</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Peak fitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="query_results.html">Querying SrMise results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multimodel_known_uncertainties.html">Multimodeling with known uncertainty</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multimodel_unknown_uncertainties.html">Multimodeling with unknown uncertainty</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../extending.html">Extending SrMise</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api/diffpy.srmise.html">Package API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 </ul>
 
         </div>
@@ -65,7 +77,8 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Script (fit_initial.py)</li>
+          <li class="breadcrumb-item"><a href="index.html">Tutorial</a></li>
+      <li class="breadcrumb-item active">Peak fitting</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/tutorial/fit_initial.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -75,14 +88,167 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="script-fit-initial-py">
-<span id="fit-initial-py"></span><h1>Script (fit_initial.py)<a class="headerlink" href="#script-fit-initial-py" title="Link to this heading"></a></h1>
+  <blockquote>
+<div></div></blockquote>
+<section id="peak-fitting">
+<h1>Peak fitting<a class="headerlink" href="#peak-fitting" title="Link to this heading"></a></h1>
+<div class="line-block">
+<div class="line">Script: <a class="reference internal" href="#fit-initial-py">fit_initial.py</a></div>
+<div class="line">Sample: <a class="reference external" href="index.html#c60">C<sub>60</sub></a></div>
+</div>
+<p>This example demonstrates peak fitting with a set of initial peaks on a C<sub>60</sub>
+nanoparticle PDF with unreliable uncertainties.  An interpolated baseline is
+created from a list of (r, G(r)) pairs contained in a file.  Note that the
+command-line tool <code class="docutils literal notranslate"><span class="pre">srmise</span></code> does not currently support peak fitting.</p>
+<p>The initial peaks are specified as in the previous example, by giving an
+approximate list of peak positions to an estimation routine, or manually
+specifying peak parameters.  Peak fitting never alters the peak function, so
+termination effects are explicitly added to an existing peak function with
+the following pattern.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">diffpy.srmise.peaks</span> <span class="kn">import</span> <span class="n">TerminationRipples</span>
+
+<span class="o">...</span>
+
+<span class="c1"># Return new peak function instance which adds termination effects to</span>
+<span class="c1"># existing peak function instance &quot;base_pf&quot; with maximum momentum transfer</span>
+<span class="c1"># &quot;qmax&quot;.</span>
+<span class="n">pf</span> <span class="o">=</span> <span class="n">TerminationRipples</span><span class="p">(</span><span class="n">base_pf</span><span class="p">,</span> <span class="n">qmax</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The initial peaks used in this fit are shown below.  The last two peaks use
+manually specified parameters.  Note that this PDF is unnormalized, so the
+scale of the y-axis is arbitrary.</p>
+<p><img alt="images/fit_initial1.png" src="../_images/fit_initial1.png" /></p>
+<p>By default, peak fitting occurs on a Nyquist-sampled grid when Q<sub>max</sub> &gt; 0.  To
+fit a finely-sampled PDF without resampling set “nyquist” to False.</p>
+<p>Run the script to see the results of the fit.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">fit_initial</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p><img alt="images/fit_initial2.png" src="../_images/fit_initial2.png" /></p>
+<section id="script-fit-initial-py">
+<span id="fit-initial-py"></span><h2>Script (fit_initial.py)<a class="headerlink" href="#script-fit-initial-py" title="Link to this heading"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1">##############################################################################</span>
+<span class="c1">#</span>
+<span class="c1"># diffpy.srmise     by Luke Granlund</span>
+<span class="c1">#                   (c) 2015 trustees of the Michigan State University.</span>
+<span class="c1">#                   All rights reserved.</span>
+<span class="c1">#</span>
+<span class="c1"># File coded by:    Luke Granlund</span>
+<span class="c1">#</span>
+<span class="c1"># See LICENSE.txt for license information.</span>
+<span class="c1">#</span>
+<span class="c1">##############################################################################</span>
+<span class="sd">&quot;&quot;&quot;Example of peak fitting C60 PDF (unnormalized) with unreliable uncertainties.</span>
+
+<span class="sd">Peak fitting in SrMise means fitting a model of initial peaks, which may be</span>
+<span class="sd">specified manually or estimated with a clustering-based convenience function,</span>
+<span class="sd">just as with specifying initial peaks for peak extraction.  Unlike peak</span>
+<span class="sd">extraction, it does not attempt to add or remove peaks, apply termination</span>
+<span class="sd">ripples, or otherwise do anything beyond chi-square fitting using the specified</span>
+<span class="sd">grid.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">from</span> <span class="nn">diffpy.srmise.applications.plot</span> <span class="kn">import</span> <span class="n">makeplot</span>
+<span class="kn">from</span> <span class="nn">diffpy.srmise.baselines.fromsequence</span> <span class="kn">import</span> <span class="n">FromSequence</span>
+<span class="kn">from</span> <span class="nn">diffpy.srmise.pdfpeakextraction</span> <span class="kn">import</span> <span class="n">PDFPeakExtraction</span>
+<span class="kn">from</span> <span class="nn">diffpy.srmise.peaks.base</span> <span class="kn">import</span> <span class="n">Peaks</span>
+<span class="kn">from</span> <span class="nn">diffpy.srmise.peaks.terminationripples</span> <span class="kn">import</span> <span class="n">TerminationRipples</span>
+
+
+<span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+
+    <span class="c1"># Initialize peak extraction</span>
+    <span class="n">ppe</span> <span class="o">=</span> <span class="n">PDFPeakExtraction</span><span class="p">()</span>
+    <span class="n">ppe</span><span class="o">.</span><span class="n">loadpdf</span><span class="p">(</span><span class="s2">&quot;data/C60_fine_qmax21.gr&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Set up interpolated baseline.</span>
+    <span class="c1"># The FromSequence baseline creates an interpolated baseline from provided</span>
+    <span class="c1"># r and G(r) values, either two lists or a file containing (r, G(r)) pairs.</span>
+    <span class="c1"># The baseline has no parameters. This particular baseline was estimated</span>
+    <span class="c1"># by fitting interparticle correlations of an FCC lattice of hollow</span>
+    <span class="c1"># spheres to the PDF.</span>
+    <span class="n">blf</span> <span class="o">=</span> <span class="n">FromSequence</span><span class="p">(</span><span class="s2">&quot;data/C60baseline.dat&quot;</span><span class="p">)</span>
+    <span class="n">bl</span> <span class="o">=</span> <span class="n">blf</span><span class="o">.</span><span class="n">actualize</span><span class="p">([])</span>
+
+    <span class="c1"># Set up fitting parameters</span>
+    <span class="c1"># A summary of how parameters impact fitting is given below.</span>
+    <span class="c1"># &quot;rng&quot; - Same as peak extraction</span>
+    <span class="c1"># &quot;baseline&quot; - Same as peak extraction</span>
+    <span class="c1"># &quot;qmax&quot; and &quot;nyquist&quot; - If qmax &gt; 0 and Nyquist is true, fitting is</span>
+    <span class="c1">#                        performed on a Nyquist-sampled grid.  The data are</span>
+    <span class="c1">#                        never supersampled first.</span>
+    <span class="c1"># &quot;dg&quot; - Since the model to fit is prespecified, the uncertainty does not</span>
+    <span class="c1">#        impact model complexity.  Impact on refined parameter values and</span>
+    <span class="c1">#        estimated uncertainties as per standard chi-square fitting.</span>
+    <span class="c1"># &quot;pf&quot; - The peak function used when estimating peak parameters given an</span>
+    <span class="c1">#        approximate position.  Unike peak extraction, peak fitting never</span>
+    <span class="c1">#        alters the peak function used by initial peaks.</span>
+    <span class="c1"># &quot;cres&quot; - Estimation of peak parameters given an approximate position uses</span>
+    <span class="c1">#          clustering for peak finding.  No other effect on peak fitting.</span>
+    <span class="c1"># &quot;supersample&quot; - No effect.</span>
+    <span class="n">kwds</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;rng&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">7.25</span><span class="p">]</span>
+    <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;baseline&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">bl</span>
+    <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;cres&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.05</span>
+    <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;dg&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5000</span>  <span class="c1"># ad hoc, but gives each point equal weight in fit.</span>
+    <span class="n">ppe</span><span class="o">.</span><span class="n">setvars</span><span class="p">(</span><span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+
+    <span class="c1"># Set up termination ripples</span>
+    <span class="c1"># Peak fitting never changes the peak function, so termination ripples</span>
+    <span class="c1"># are not applied automatically as they are in peak extraction.</span>
+    <span class="c1"># Termination ripples require setting the underlying peak function and qmax.</span>
+    <span class="c1"># In this case they ared added to the default GaussianOverR peak function.</span>
+    <span class="c1"># TerminationRipples use the estimation methods of the base peak function.</span>
+    <span class="n">pf</span> <span class="o">=</span> <span class="n">TerminationRipples</span><span class="p">(</span><span class="n">ppe</span><span class="o">.</span><span class="n">pf</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ppe</span><span class="o">.</span><span class="n">qmax</span><span class="p">)</span>
+    <span class="n">ppe</span><span class="o">.</span><span class="n">setvars</span><span class="p">(</span><span class="n">pf</span><span class="o">=</span><span class="p">[</span><span class="n">pf</span><span class="p">])</span>
+
+    <span class="c1"># Specify some initial peaks using approximate positions.  These use the</span>
+    <span class="c1"># peak function passed to PDFPeakExtraction instance.</span>
+    <span class="n">rough_guess</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.4</span><span class="p">,</span> <span class="mf">2.4</span><span class="p">,</span> <span class="mf">2.8</span><span class="p">,</span> <span class="mf">3.6</span><span class="p">,</span> <span class="mf">4.1</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mf">4.8</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mf">5.4</span><span class="p">,</span> <span class="mf">5.7</span><span class="p">,</span> <span class="mf">6.1</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">rough_guess</span><span class="p">:</span>
+        <span class="n">ppe</span><span class="o">.</span><span class="n">estimate_peak</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+
+    <span class="c1"># Specify some peaks explicitly.  These may be constructed from any peak</span>
+    <span class="c1"># function, or combination of peak functions.</span>
+    <span class="n">explicit_guess</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">6.7</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mi">100000</span><span class="p">],</span> <span class="p">[</span><span class="mf">7.0</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mi">50000</span><span class="p">]]</span>
+    <span class="n">explicit_peaks</span> <span class="o">=</span> <span class="n">Peaks</span><span class="p">([</span><span class="n">pf</span><span class="o">.</span><span class="n">actualize</span><span class="p">(</span><span class="n">eg</span><span class="p">,</span> <span class="n">in_format</span><span class="o">=</span><span class="s2">&quot;pwa&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">eg</span> <span class="ow">in</span> <span class="n">explicit_guess</span><span class="p">])</span>
+    <span class="n">ppe</span><span class="o">.</span><span class="n">add_peaks</span><span class="p">(</span><span class="n">explicit_peaks</span><span class="p">)</span>
+
+    <span class="c1"># Plot initial peaks</span>
+    <span class="k">if</span> <span class="n">plot</span><span class="p">:</span>
+        <span class="n">makeplot</span><span class="p">(</span><span class="n">ppe</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Initial Peaks&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Perform fit.</span>
+    <span class="n">ppe</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+    <span class="c1"># Save results</span>
+    <span class="n">ppe</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;output/fit_initial.srmise&quot;</span><span class="p">)</span>
+    <span class="n">ppe</span><span class="o">.</span><span class="n">writepwa</span><span class="p">(</span><span class="s2">&quot;output/fit_initial.pwa&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">plot</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+        <span class="n">makeplot</span><span class="p">(</span><span class="n">ppe</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
 </section>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="parameter_summary.html" class="btn btn-neutral float-left" title="Summary of SrMise parameters" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="query_results.html" class="btn btn-neutral float-right" title="Querying SrMise results" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

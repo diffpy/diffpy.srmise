@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Script (parameter_summary.py) &mdash; diffpy.srmise 0.1.0rc0 documentation</title>
+  <title>Summary of SrMise parameters &mdash; diffpy.srmise 0.1.0rc1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
 
@@ -15,12 +15,14 @@
   
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../_static/documentation_options.js?v=9205c5d6"></script>
+        <script src="../_static/documentation_options.js?v=3b45b1b0"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Peak fitting" href="fit_initial.html" />
+    <link rel="prev" title="Peak extraction of a single peak" href="extract_single_peak.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -35,7 +37,7 @@
             diffpy.srmise
           </a>
               <div class="version">
-                0.1.0rc0
+                0.1.0rc1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -45,10 +47,20 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../release.html">Release Notes</a></li>
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorial</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="extract_single_peak.html">Peak extraction of a single peak</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Summary of SrMise parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fit_initial.html">Peak fitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="query_results.html">Querying SrMise results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multimodel_known_uncertainties.html">Multimodeling with known uncertainty</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multimodel_unknown_uncertainties.html">Multimodeling with unknown uncertainty</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../extending.html">Extending SrMise</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api/diffpy.srmise.html">Package API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 </ul>
 
         </div>
@@ -65,7 +77,8 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Script (parameter_summary.py)</li>
+          <li class="breadcrumb-item"><a href="index.html">Tutorial</a></li>
+      <li class="breadcrumb-item active">Summary of SrMise parameters</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/tutorial/parameter_summary.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -75,14 +88,584 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="script-parameter-summary-py">
-<span id="parameter-summary-py"></span><h1>Script (parameter_summary.py)<a class="headerlink" href="#script-parameter-summary-py" title="Link to this heading"></a></h1>
+  <blockquote>
+<div></div></blockquote>
+<section id="summary-of-srmise-parameters">
+<h1>Summary of SrMise parameters<a class="headerlink" href="#summary-of-srmise-parameters" title="Link to this heading"></a></h1>
+<div class="line-block">
+<div class="line">Script: <a class="reference internal" href="#parameter-summary-py">parameter_summary.py</a></div>
+<div class="line">Sample: <a class="reference external" href="index.html#tio2">TiO<sub>2</sub></a></div>
+</div>
+<p>This example offers an overview of the SrMise extraction parameters, and
+demonstrates their use by explicitly setting them to reasonable values in the
+context of a titanium dioxide (rutile) X-ray PDF with unreliable uncertainties.</p>
+<p>For brevity, code snippets below simply add an entry to the dictionary <code class="docutils literal notranslate"><span class="pre">kwds</span></code>,
+which sets SrMise parameters as part of the following pattern:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">diffpy.srmise</span> <span class="kn">import</span> <span class="n">PDFPeakExtraction</span>
+
+<span class="o">...</span>
+
+<span class="n">ppe</span> <span class="o">=</span> <span class="n">PDFPeakExtraction</span><span class="p">()</span> <span class="c1"># Initializes main extraction object</span>
+
+<span class="n">kwds</span> <span class="o">=</span> <span class="p">{}</span>           <span class="c1"># Dictionary for holding parameters</span>
+<span class="o">...</span>                 <span class="c1"># Code populating the dictionary</span>
+<span class="n">ppe</span><span class="o">.</span><span class="n">setvars</span><span class="p">(</span><span class="o">**</span><span class="n">kwds</span><span class="p">)</span> <span class="c1"># Set parameters</span>
+</pre></div>
+</div>
+<p>Run and plot the results of this example with</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">parameter_summary</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p><img alt="images/parameter_summary1.png" src="../_images/parameter_summary1.png" /></p>
+<section id="baseline">
+<h2>baseline<a class="headerlink" href="#baseline" title="Link to this heading"></a></h2>
+<div class="line-block">
+<div class="line">The PDF baseline.  Informally, a PDF is the baseline plus peaks.</div>
+<div class="line"><em>Accepts</em> - Baseline with parameters, or BaselineFunction implementing
+estimation.</div>
+<div class="line"><em>Default</em> - None (identically 0).  Users should specify one.</div>
+</div>
+<p>The PDF baseline is a function upon which peaks are added.  Crystalline
+materials have a linear baseline, while the baseline of finite
+nanomaterials is the shape-dependent “characteristic function”, which is
+the autocorrelation of the object.  The physical origin of the baseline
+is unmeasured scattering below some minimum value of the experimental
+momentum transfer, Q<sub>min</sub>.  The effect of interparticle correlations is
+sometimes also treated as part of the PDF baseline.  While linear baselines
+are readily estimated, for other materials the user will need to exercise
+judgement, as the results of peak extraction are generally conditioned upon
+a reasonable choice of baseline.</p>
+<p>Baselines may be specified by importing and instantiating the appropriate
+classes, or by using a baseline loaded from an existing .srmise file.  The
+following <code class="docutils literal notranslate"><span class="pre">BaselineFunction</span></code>s are importable from
+<code class="docutils literal notranslate"><span class="pre">diffpy.srmise.baselines</span></code>.</p>
+<ul class="simple">
+<li><p>Arbitrary. Any Python function which implements a simple interface.  For
+exploratory use only, as this baseline cannot be saved.  See the
+<span class="xref std std-ref">extending-srmise</span> documentation for information on creating new
+baselines.</p></li>
+<li><p>FromSequence.  Interpolated from lists of r and G(r) values. No
+parameters.</p></li>
+<li><p>NanoSpherical. Characteristic function of sphere. Radius and scale
+parameters.</p></li>
+<li><p>Polynomial(degree=1). Crystalline. Implements estimation.</p></li>
+<li><p>Polynomial(degree&gt;1). An arbitrary polynomial.</p></li>
+</ul>
+<hr class="docutils" />
+<p>Example</p>
+<p>The baseline G(r) = -0.65*r + 0, with the intercept fixed at 0, is visually
+reasonable for the TiO<sub>2</sub> sample.  This baseline may be utilized from the
+command-line with the <code class="docutils literal notranslate"><span class="pre">--bpoly1</span> <span class="pre">-0.65</span> <span class="pre">0c</span></code> options, or in a script as
+follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">diffpy.srmise.baselines</span> <span class="kn">import</span> <span class="n">Polynomial</span>
+
+<span class="o">...</span>
+
+<span class="n">blfunc</span> <span class="o">=</span> <span class="n">Polynomial</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">slope</span> <span class="o">=</span> <span class="o">-</span><span class="mf">.65</span>
+<span class="n">intercept</span> <span class="o">=</span> <span class="mf">0.</span>
+<span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;baseline&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">blfunc</span><span class="o">.</span><span class="n">actualize</span><span class="p">([</span><span class="n">slope</span><span class="p">,</span> <span class="n">intercept</span><span class="p">],</span> <span class="n">free</span><span class="o">=</span><span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Run the following command to view this baseline.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">srmise</span> <span class="n">data</span><span class="o">/</span><span class="n">TiO2_fine_qmax26</span><span class="o">.</span><span class="n">gr</span> <span class="o">--</span><span class="n">bpoly1</span> <span class="o">-</span><span class="mf">0.65</span> <span class="mi">0</span><span class="n">c</span> <span class="o">--</span><span class="nb">range</span> <span class="mi">0</span> <span class="mi">10</span>
+    <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">extract</span> <span class="o">--</span><span class="n">plot</span>
+</pre></div>
+</div>
+<p><img alt="images/parameter_summary2.png" src="../_images/parameter_summary2.png" /></p>
+</section>
+<section id="cres">
+<h2>cres<a class="headerlink" href="#cres" title="Link to this heading"></a></h2>
+<div class="line-block">
+<div class="line">The clustering resolution, which influences sensitivity of peak finding.</div>
+<div class="line"><em>Accepts</em> - Value greater than PDF sampling rate dr.</div>
+<div class="line"><em>Default</em> - Nyquist rate π/Q<sub>max</sub>, or 4*dr if Q<sub>max</sub> = ∞.</div>
+</div>
+<p>The clustering resolution d<sub>c</sub> determines when new clusters, and thus new
+peak-like structures, are identified during the clustering phase of peak
+extraction.  When a point is being clustered, it is added to an existing
+cluster if the distance (along the r-axis) to the nearest cluster, d, is
+less than d<sub>c</sub>. (See image.)  Otherwise this point is the first in a new
+cluster.  Note that SrMise oversamples the PDF during the clustering phase,
+so values less than the Nyquist rate may be specified.</p>
+<p><img alt="images/parameter_summary3.png" src="../_images/parameter_summary3.png" /></p>
+<hr class="docutils" />
+<p>Example</p>
+<p>A clustering resolution of 0.05, about half the Nyquist sampling interval for
+the TiO<sub>2</sub> PDF, is easily set from the command-line with the <code class="docutils literal notranslate"><span class="pre">--cres</span> <span class="pre">0.05</span></code>
+option, or from a script:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;cres&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.05</span>
+</pre></div>
+</div>
+</section>
+<section id="dg">
+<h2>dg<a class="headerlink" href="#dg" title="Link to this heading"></a></h2>
+<div class="line-block">
+<div class="line">PDF uncertainty used during peak extraction.</div>
+<div class="line"><em>Accepts</em> - Scalar or list of scalars &gt; 0.</div>
+<div class="line"><em>Default</em> - Value reported by PDF, otherwise 5% max value of PDF.</div>
+</div>
+<p>PDF reports reliable experimentally determined uncertainties, but otherwise
+an <em>ad hoc</em> value must be specified for fitting.  This parameter is the
+primary determinant of model complexity during peak extraction, and even
+when the reported values are reliable using an <em>ad hoc</em> value can be helpful
+in generating other plausible models.  This parameter can be set to a single
+value, or a value for each point.  The uncertainties of most PDFs have
+very little r-dependence, so using the same value for each data point often
+gives points with nearly the correct relative weight.  This means the
+refined value of peak parameters for a given model have very little
+dependence on the absolute scale of the uncertainties.  The estimated
+uncertainty of peak parameters, however, depends directly on the absolute
+magnitude.</p>
+<hr class="docutils" />
+<p>Example</p>
+<p>An <em>ad hoc</em> uncertainty of 0.35 (each point has equal weight) may be set for the
+TiO<sub>2</sub> example from the command-line with the <code class="docutils literal notranslate"><span class="pre">--dg</span> <span class="pre">0.35</span></code> option, or in a
+script with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;dg&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.35</span>
+</pre></div>
+</div>
+<p>The command-line tool also includes the <code class="docutils literal notranslate"><span class="pre">--dg-mode</span></code> option, which exposes
+several methods for setting more complex uncertainties concisely.  For details,
+run</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">srmise</span> <span class="o">--</span><span class="n">help</span>
+</pre></div>
+</div>
+</section>
+<section id="initial-peaks">
+<h2>initial_peaks<a class="headerlink" href="#initial-peaks" title="Link to this heading"></a></h2>
+<div class="line-block">
+<div class="line">Specifies peaks to include in model prior to extraction.</div>
+<div class="line"><em>Accepts</em> - A <code class="docutils literal notranslate"><span class="pre">Peaks</span></code> instance containing any number of <code class="docutils literal notranslate"><span class="pre">Peak</span></code> instances.</div>
+<div class="line"><em>Default</em> - Empty <code class="docutils literal notranslate"><span class="pre">Peaks</span></code> instance.</div>
+</div>
+<p>Initial peaks are held fixed for the early stages of peak extraction, which
+conditions any additional peaks extracted.  In later stages initial peaks
+have no special treatment, although they may be set as non-removable, which
+prevents removal by pruning.</p>
+<p>In peak fitting, this parameter specifies the peaks which are to be fit.</p>
+<p>Two basic methods exist for setting peaks.  The first is a convenience function
+which takes a position and attempts to estimate peak parameters.  The second
+is manual specification, where the user provides initial values for all
+peak parameters.</p>
+<p>SrMise version 0.1.0rc1 does not support setting initial_peaks from the
+command-line.</p>
+<hr class="docutils" />
+<p>Example</p>
+<p>Five initial peaks are specified for the TiO<sub>2</sub> sample, using the peak function
+described in the corresponding section. The first two peaks are estimated from
+position, and show the quality of estimated parameters in regions with little
+peak overlap.  The other three peaks have manually specified parameters,
+and occur in regions of somewhat greater overlap.  To aid convergence, the
+widths of these latter peaks have been fixed at a reasonable value for a peak
+arising from a single atomic pair distance.  Although initial_peaks may be set
+directly, the  <code class="docutils literal notranslate"><span class="pre">estimate_peak()</span></code> and <code class="docutils literal notranslate"><span class="pre">addpeaks()</span></code> methods of
+PDFPeakExtraction used below are often more convenient.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">diffpy.srmise.peaks</span> <span class="kn">import</span> <span class="n">GaussianOverR</span>
+
+<span class="n">pf</span> <span class="o">=</span> <span class="n">GaussianOverR</span><span class="p">(</span><span class="n">maxwidth</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+
+<span class="o">...</span>
+
+<span class="c1">## Initial peaks from approximate positions.</span>
+<span class="n">positions</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">positions</span><span class="p">:</span>
+    <span class="n">ppe</span><span class="o">.</span><span class="n">estimate_peak</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="c1"># adds to initial_peaks</span>
+
+<span class="c1">## Initial peaks from explicit parameters.</span>
+<span class="n">pars</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">6.2</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">2.6</span><span class="p">],[</span><span class="mf">6.45</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">2.7</span><span class="p">],[</span><span class="mf">7.15</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mi">5</span><span class="p">]]</span>
+<span class="n">peaks</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">pars</span><span class="p">:</span>
+    <span class="n">peaks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pf</span><span class="o">.</span><span class="n">actualize</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">free</span><span class="o">=</span><span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">],</span> <span class="n">in_format</span><span class="o">=</span><span class="s2">&quot;pwa&quot;</span><span class="p">))</span>
+<span class="n">ppe</span><span class="o">.</span><span class="n">addpeaks</span><span class="p">(</span><span class="n">peaks</span><span class="p">)</span> <span class="c1"># adds to initial_peaks</span>
+</pre></div>
+</div>
+<p><img alt="images/parameter_summary4.png" src="../_images/parameter_summary4.png" /></p>
+<p>While initial peaks are fixed during the early stages of peak extraction, in
+later stages they are treated as any other peak identified by SrMise.  In
+particular, they may be removed by pruning.  This can be prevented by setting
+them as non-removable.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## Don&#39;t prune initial peaks</span>
+<span class="k">for</span> <span class="n">ip</span> <span class="ow">in</span> <span class="n">ppe</span><span class="o">.</span><span class="n">initial_peaks</span><span class="p">:</span>
+    <span class="n">ip</span><span class="o">.</span><span class="n">removable</span> <span class="o">=</span> <span class="kc">False</span>
+</pre></div>
+</div>
+</section>
+<section id="nyquist">
+<h2>nyquist<a class="headerlink" href="#nyquist" title="Link to this heading"></a></h2>
+<div class="line-block">
+<div class="line">Whether to evaluate results on Nyquist-sampled grid with dr = π/Q<sub>max</sub> .</div>
+<div class="line"><em>Accepts</em> - True or False</div>
+<div class="line"><em>Default</em> - True when Q<sub>max</sub>&gt;0, otherwise False.</div>
+</div>
+<p>When nyquist is False, the PDF’s original sampling rate is used.  By the
+Nyquist-Shannon sampling theorem, all PDFs sampled faster than the Nyquist
+rate contain all the information which the experiment can provide.  Points
+sampled much faster than the Nyquist rate are strongly correlated, however,
+violating an assumption of chi-square fitting.  Nyquist sampling offers the
+best approximation to independently-distributed uncertainties possible for a
+PDF without loss of information.</p>
+<hr class="docutils" />
+<p>Example</p>
+<p>Setting the Nyquist parameter explicitly is straightforward, although the
+default value (True for this TiO<sub>2</sub> sample) is preferred in most cases.  From
+the command line include the <code class="docutils literal notranslate"><span class="pre">--nyquist</span></code> or <code class="docutils literal notranslate"><span class="pre">--no-nyquist</span></code> option.  To use
+Nyquist sampling in scripts, set</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;nyquist&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</section>
+<section id="pf">
+<h2>pf<a class="headerlink" href="#pf" title="Link to this heading"></a></h2>
+<div class="line-block">
+<div class="line">The peak function used for extracting peaks.</div>
+<div class="line"><em>Accepts</em> - An instance of any class inheriting from PeakFunction.</div>
+<div class="line"><em>Default</em> - GaussianOverR(maxwidth=0.7), reasonable if r-axis in Å.</div>
+</div>
+<p>The following peak functions are importable from <code class="docutils literal notranslate"><span class="pre">diffpy.srmise.peaks</span></code>.</p>
+<ul class="simple">
+<li><p>GaussianOverR(maxwidth).  A Gaussian divided by radius r.  Maxwidth gives
+maximum full-width at half maximum, to reduce likelihood of unphysically
+wide peaks.</p></li>
+<li><p>Gaussian(maxwidth).  A Gaussian with a maximum width, as above.</p></li>
+<li><p>TerminationRipples(base_pf, qmax).  Modifies another peak function,
+base_pf, to include termination effects for given Q<sub>max</sub>.  Peak
+extraction automatically applies termination ripples to peaks, but they
+should be specified explicitly if using SrMise for peak fitting.</p></li>
+</ul>
+<hr class="docutils" />
+<p>Example</p>
+<p>The default peak function is reasonable for the TiO<sub>2</sub> example, but can be
+explicitly specified from the command-line with <code class="docutils literal notranslate"><span class="pre">--pf</span> <span class="pre">&quot;GaussianOverR(0.7)&quot;</span></code>.
+In scripts, use</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">diffpy.srmise.peaks</span> <span class="kn">import</span> <span class="n">GaussianOverR</span>
+
+<span class="o">...</span>
+
+<span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;pf&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">GaussianOverR</span><span class="p">(</span><span class="mf">0.7</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="qmax">
+<h2>qmax<a class="headerlink" href="#qmax" title="Link to this heading"></a></h2>
+<div class="line-block">
+<div class="line">The experimental maximum momentum transfer Q<sub>max</sub>.</div>
+<div class="line"><em>Accepts</em> - Any value ≥ 0, where 0 indicates an infinite value.  Also
+allows “automatic”, which estimates Q<sub>max</sub> from the data.</div>
+<div class="line"><em>Default</em> - Value reported by data.  If not available, uses automatic
+estimate.</div>
+</div>
+<p>Q<sub>max</sub> is responsible for the characteristic termination ripples observed
+in the PDF.  SrMise models termination effects by taking the Fourier
+transform of a peak, zeroing all components above Q<sub>max</sub>, and performing the
+inverse transform back to real-space.  PDFs where termination ripples were
+smoothed during data reduction (e.g. using a Hann window) will be fit less
+well.</p>
+<hr class="docutils" />
+<p>Example</p>
+<p>For the TiO<sub>2</sub> PDF, Q<sub>max</sub> = 26 Å<sup>-1</sup>, which can be explicitly set
+with</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;qmax&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">26.0</span>
+</pre></div>
+</div>
+<p>Alternately, to automatically estimate Q<sub>max</sub> from the data (about 25.9
+Å<sup>-1</sup> in this case), use</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;qmax&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;automatic&quot;</span>
+</pre></div>
+</div>
+<p>At the command-line, both the <code class="docutils literal notranslate"><span class="pre">--qmax</span> <span class="pre">26.0</span></code> and <code class="docutils literal notranslate"><span class="pre">--qmax</span> <span class="pre">automatic</span></code> options
+are valid.</p>
+</section>
+<section id="rng">
+<h2>rng<a class="headerlink" href="#rng" title="Link to this heading"></a></h2>
+<div class="line-block">
+<div class="line">The range over which to perform peak extraction or peak fitting.</div>
+<div class="line"><em>Accepts</em> - A list [rmin, rmax], where rmin &lt; rmax and neither fall
+outside the data.  May specify either as <code class="docutils literal notranslate"><span class="pre">None</span></code> to use default value.</div>
+<div class="line"><em>Default</em> - The first and last r-values, respectively, in the PDF.</div>
+</div>
+<p>Users are encouraged to restrict fits to the regions of immediate interest.</p>
+<hr class="docutils" />
+<p>Example</p>
+<p>To extract peaks from the TiO<sub>2</sub> sample between 1.5 and 10 Å, in scripts use</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;rng&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.5</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>At the command-line use <code class="docutils literal notranslate"><span class="pre">--range</span> <span class="pre">1.5</span> <span class="pre">10</span></code>.</p>
+</section>
+<section id="supersample">
+<h2>supersample<a class="headerlink" href="#supersample" title="Link to this heading"></a></h2>
+<div class="line-block">
+<div class="line">Minimum degree to oversample PDF during early stages of peak extraction.</div>
+<div class="line"><em>Accepts</em> - A value ≥ 1.</div>
+<div class="line"><em>Default</em> - 4.0</div>
+</div>
+<p>Peak extraction oversamples the PDF during the early phases to assist in
+peak finding.  This value specifies a multiple of the Nyquist rate,
+equivalent to dividing the Nyquist sampling interval dr = π/Q<sub>max</sub> by this
+value.  The supersample parameter has no effect if the input PDF is already
+sampled faster than this.</p>
+<p>Note that large degrees of supersampling, whether due to this parameter or
+the input PDF, negatively impact the time required for chi-square fitting.</p>
+<hr class="docutils" />
+<p>Example</p>
+<p>The default value is sufficient for the TiO<sub>2</sub> sample, but to set explicitly in
+a script use</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;supersample&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">4.0</span>
+</pre></div>
+</div>
+<p>or <code class="docutils literal notranslate"><span class="pre">--supersample</span> <span class="pre">4.0</span></code> at the command-line.</p>
+</section>
+<section id="script-parameter-summary-py">
+<span id="parameter-summary-py"></span><h2>Script (parameter_summary.py)<a class="headerlink" href="#script-parameter-summary-py" title="Link to this heading"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1">##############################################################################</span>
+<span class="c1">#</span>
+<span class="c1"># diffpy.srmise     by Luke Granlund</span>
+<span class="c1">#                   (c) 2015 trustees of the Michigan State University.</span>
+<span class="c1">#                   All rights reserved.</span>
+<span class="c1">#</span>
+<span class="c1"># File coded by:    Luke Granlund</span>
+<span class="c1">#</span>
+<span class="c1"># See LICENSE.txt for license information.</span>
+<span class="c1">#</span>
+<span class="c1">##############################################################################</span>
+<span class="sd">&quot;&quot;&quot;Demonstrate setting all major SrMise peak exactraction parameters.</span>
+
+<span class="sd">This example shows how to explicitly set all major SrMise peak extraction</span>
+<span class="sd">parameters in the context of a crystalline PDF with unreliable uncertainties.</span>
+<span class="sd">This is illustrative, as the default values for many parameters are sufficient.</span>
+
+<span class="sd">The parameters covered are:</span>
+<span class="sd">rng (Extraction range)</span>
+<span class="sd">dg (PDF uncertainty)</span>
+<span class="sd">baseline (PDF baseline)</span>
+<span class="sd">pf (peak function used during extraction)</span>
+<span class="sd">qmax (maximum momentum transfer Q)</span>
+<span class="sd">nyquist (whether to use Nyquist sampling)</span>
+<span class="sd">supersample (minimum amount to oversample during initial stages)</span>
+<span class="sd">cres (clustering resolution)</span>
+<span class="sd">initial_peaks (peaks already assumed to exist during extraction)&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">from</span> <span class="nn">diffpy.srmise.applications.plot</span> <span class="kn">import</span> <span class="n">makeplot</span>
+<span class="kn">from</span> <span class="nn">diffpy.srmise.baselines.polynomial</span> <span class="kn">import</span> <span class="n">Polynomial</span>
+<span class="kn">from</span> <span class="nn">diffpy.srmise.pdfpeakextraction</span> <span class="kn">import</span> <span class="n">PDFPeakExtraction</span>
+<span class="kn">from</span> <span class="nn">diffpy.srmise.peaks.gaussianoverr</span> <span class="kn">import</span> <span class="n">GaussianOverR</span>
+
+
+<span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+
+    <span class="c1"># Initialize peak extraction</span>
+    <span class="c1"># Create peak extraction object</span>
+    <span class="n">ppe</span> <span class="o">=</span> <span class="n">PDFPeakExtraction</span><span class="p">()</span>
+
+    <span class="c1"># Load the PDF from a file</span>
+    <span class="n">ppe</span><span class="o">.</span><span class="n">loadpdf</span><span class="p">(</span><span class="s2">&quot;data/TiO2_fine_qmax26.gr&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Set up extraction parameters.</span>
+    <span class="c1"># In this section we&#39;ll examine the major extraction parameters in detail.</span>
+    <span class="c1"># diffpy.srmise strives to provide reasonable default values for these</span>
+    <span class="c1"># parameters.  For normal use setting the range, baseline, and uncertainty</span>
+    <span class="c1"># should be sufficient.</span>
+    <span class="n">kwds</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="c1"># Range</span>
+    <span class="c1"># Range defaults to the entire PDF if not specified.</span>
+    <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;rng&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">]</span>
+
+    <span class="c1"># dg</span>
+    <span class="c1"># diffpy.srmise selects model complexity based primarily on the uncertainty</span>
+    <span class="c1"># of the PDF.  Note that very small uncertainties (&lt;1%) can make peak</span>
+    <span class="c1"># extraction excessively slow.  In general, the smaller the uncertainty the</span>
+    <span class="c1"># more complex the model.  PDFs which report no uncertainty, or report</span>
+    <span class="c1"># unreliable values must be assigned one.  By default, a PDF which does not</span>
+    <span class="c1"># report uncertainties uses 5% the maximum minus minimum values. Common</span>
+    <span class="c1"># causes of unreliable uncertainties include oversampling (uncertainties in</span>
+    <span class="c1"># nearby data are strongly correlated, as for this PDF) and/or</span>
+    <span class="c1"># integrated diffraction patterns obtained by a method that also introduces</span>
+    <span class="c1"># correlation to the 1D diffraction pattern.  Consequently, the assumption</span>
+    <span class="c1"># of both least-squares fitting and the Akaike Information Criterion that</span>
+    <span class="c1"># the data are at least approximately independently distributed is not</span>
+    <span class="c1"># valid.  In this case results obtained by diffpy.srmise may be useful,</span>
+    <span class="c1"># especially when they can be intrepreted in light of prior knowledge, but</span>
+    <span class="c1"># strong statistical conclusions cannot be drawn.  For additional</span>
+    <span class="c1"># discussion of this subtle yet important issue see:</span>
+    <span class="c1"># [1] Egami and Billinge. (2012). Underneath the Bragg Peaks: Structural</span>
+    <span class="c1">#     Analysis of Complex Materials (2nd ed.). Oxford: Pergamon Press.</span>
+    <span class="c1"># [2] Granlund, et al. (2015) Acta Crystallographica A, 71(4), 392-409.</span>
+    <span class="c1">#     doi:10.1107/S2053273315005276</span>
+    <span class="c1"># [3] Yang, et al. (2014). Journal of Applied Crystallography, 47(4),</span>
+    <span class="c1">#     1273-1283. doi:10.1107/S1600576714010516</span>
+    <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;dg&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.35</span>  <span class="c1"># Play with this value!</span>
+
+    <span class="c1"># baseline</span>
+    <span class="c1"># As a crystal PDF, a linear baseline crossing the origin is appropriate.</span>
+    <span class="c1"># Here we define the linear baseline B(r) = -.5*r + 0, and explicitly set</span>
+    <span class="c1"># the y-intercept as a fixed parameter which will not be fit.  For</span>
+    <span class="c1"># crystal PDFs the theoretical value of the slope is -4*pi*rho0, where</span>
+    <span class="c1"># rho0 is the number density.  Nevertheless, imperfect normalization of the</span>
+    <span class="c1"># PDF means the experimental baseline is proportional to that value.</span>
+    <span class="n">blfunc</span> <span class="o">=</span> <span class="n">Polynomial</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">slope</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.65</span>  <span class="c1"># Play with this value!</span>
+    <span class="n">y_intercept</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;baseline&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">blfunc</span><span class="o">.</span><span class="n">actualize</span><span class="p">([</span><span class="n">slope</span><span class="p">,</span> <span class="n">y_intercept</span><span class="p">],</span> <span class="n">free</span><span class="o">=</span><span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">])</span>
+    <span class="c1"># pf</span>
+    <span class="c1"># The pf (peakfunction) parameter allows setting the shape of peaks to be</span>
+    <span class="c1"># extracted.  Termination effects are added automatically to the peak</span>
+    <span class="c1"># function during extraction.  In the harmonic approximation of atomic</span>
+    <span class="c1"># interactions peaks in the PDF are well approximated by a Gaussian/r.</span>
+    <span class="c1"># (Note, however, that the values used for peak parameters -- namely</span>
+    <span class="c1"># position, width, and area -- are for the Gaussian itself).  diffpy.srmise</span>
+    <span class="c1"># uses width-limited peaks to reduce the likelihood of extracting</span>
+    <span class="c1"># unphysically wide peaks in regions of high overlap.  The parameter</span>
+    <span class="c1"># indicates the max fwhm permitted.  By default, diffpy.srmise uses a</span>
+    <span class="c1"># maximum width of 0.7, which is generally reasonable if the r-axis of the</span>
+    <span class="c1"># PDF is given in angstroms.  Models where many peaks reach the maximum</span>
+    <span class="c1"># width, and models that are very sensitive to the choice in maximum width,</span>
+    <span class="c1"># are strong signs that diffpy.srmise is having difficulty finding peaks</span>
+    <span class="c1"># which are sufficiently constrained by the data.</span>
+    <span class="n">pf</span> <span class="o">=</span> <span class="n">GaussianOverR</span><span class="p">(</span><span class="mf">0.7</span><span class="p">)</span>
+    <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;pf&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">pf</span><span class="p">]</span>  <span class="c1"># Despite the list, only one entry is currently supported.</span>
+
+    <span class="c1"># qmax</span>
+    <span class="c1"># PDFs typically report the value of qmax (i.e. the maximum momentum</span>
+    <span class="c1"># transfer q in the measurement), but it can be specified explicitly also.</span>
+    <span class="c1"># If the PDF does not report qmax, diffpy.srmise attempts to estimate it</span>
+    <span class="c1"># directly from the data.  This estimate can also be used by setting qmax</span>
+    <span class="c1"># to &quot;automatic&quot;.  An infinite qmax can be specified by setting qmax to 0,</span>
+    <span class="c1"># In that case the Nyquist rate is 0 (infinite resolution), and</span>
+    <span class="c1"># diffpy.srmise does not consider Nyquist sampling or termination effects.</span>
+    <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;qmax&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">26.0</span>
+
+    <span class="c1"># nyquist</span>
+    <span class="c1"># This parameter governs whether diffpy.srmise attempts to find a model</span>
+    <span class="c1"># on a Nyquist-sampled grid with dr=pi/qmax, which is a grid where data</span>
+    <span class="c1"># uncertainties are least correlated without loss of information.  By</span>
+    <span class="c1"># default this parameter is True whenever qmax &gt; 0, and generally it</span>
+    <span class="c1"># should not need to be changed.  Setting it to False allows extracted</span>
+    <span class="c1"># models retain more complexity because the data appear to have more</span>
+    <span class="c1"># statistically independent points than they truly do.  For a detailed</span>
+    <span class="c1"># discussion of Nyquist sampling and the PDF see:</span>
+    <span class="c1"># [4] Farrow et al. (2011). Physical Review B, 84(13), 134105.</span>
+    <span class="c1">#     doi:10.1103/PhysRevB.84.134105</span>
+    <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;nyquist&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="c1"># supersample</span>
+    <span class="c1"># This parameter dictates the data be oversampled by at least this factor</span>
+    <span class="c1"># (relative to the Nyquist rate) during the early stages of peak</span>
+    <span class="c1"># extraction. If the input PDF is even more finely sampled, that level of</span>
+    <span class="c1"># sampling is used instead.  The default value of 4.0 is ad hoc, but has</span>
+    <span class="c1"># been empirically sufficient.  Increasing this value may help the peak-</span>
+    <span class="c1"># finding and clustering process, but reduces speed.</span>
+    <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;supersample&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">4.0</span>
+
+    <span class="c1"># cres</span>
+    <span class="c1"># The cres (clustering resolution) parameter governs the sensitivity of the</span>
+    <span class="c1"># clustering method used by diffpy.srmise.  In short, when the data are</span>
+    <span class="c1"># being clustered, data which are further than the clustering resolution</span>
+    <span class="c1"># from any other cluster (measured along the r-axis) are considered to be a</span>
+    <span class="c1"># new cluster rather than a member of an existing one.  The default value</span>
+    <span class="c1"># is the Nyquist sampling interval pi/qmax, and on most data it should not</span>
+    <span class="c1"># greatly impact model complexity.  In some cases making it smaller may</span>
+    <span class="c1"># help the peak-finding process.  Here it is roughly half the Nyquist</span>
+    <span class="c1"># interval.</span>
+    <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;cres&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.05</span>
+
+    <span class="c1"># Apply peak extraction parameters.</span>
+    <span class="n">ppe</span><span class="o">.</span><span class="n">setvars</span><span class="p">(</span><span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+
+    <span class="c1"># initial_peaks</span>
+    <span class="c1"># Initial peaks are peaks which are kept fixed during the early stages of</span>
+    <span class="c1"># peak extraction, effectively condition results upon their values.  Since</span>
+    <span class="c1"># initial peaks are sometimes dependent on other SrMise parameters (e.g.</span>
+    <span class="c1"># the peak function used) it is good practice to set them after other</span>
+    <span class="c1"># parameters.  Although the &quot;initial_peaks&quot; parameter can be set as with</span>
+    <span class="c1"># the parameters above, SrMise provides helper functions to do so more</span>
+    <span class="c1"># easily.  There are two basic ways to quickly specify initial peaks:</span>
+    <span class="c1"># 1) Supplying the approximate position of the peak, and letting</span>
+    <span class="c1"># diffpy.srmise estimate the peak parameters.</span>
+    <span class="c1"># 2) Explicit specification of peak parameters.</span>
+
+    <span class="c1"># Initial peaks from approximate positions.</span>
+    <span class="c1"># This routine estimates peak parameters by finding the peak-like cluster</span>
+    <span class="c1"># containing the specified point.  It does not search for occluded peaks,</span>
+    <span class="c1"># so works best on well-separated peaks.  It does, however, take any</span>
+    <span class="c1"># existing initial peaks into account during estimation.</span>
+    <span class="n">positions</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">positions</span><span class="p">:</span>
+        <span class="n">ppe</span><span class="o">.</span><span class="n">estimate_peak</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>  <span class="c1"># adds to initial_peaks</span>
+
+    <span class="c1"># Initial peaks from explicit parameters.</span>
+    <span class="c1"># Adding initial peaks explicitly is similar to defining a baseline.</span>
+    <span class="c1"># Namely, choosing a peak function and then actualizing it with given</span>
+    <span class="c1"># parameters. For this example peaks are created from the same GaussianOverR</span>
+    <span class="c1"># used during extraction, but one could use a different peak function from</span>
+    <span class="c1"># diffpy.srmise.peaks if desired.  The peak parameters are given in terms</span>
+    <span class="c1"># terms of position, width (fwhm), and area, and it is important to specify</span>
+    <span class="c1"># that format is being used so they are correctly changed into the</span>
+    <span class="c1"># internal parameterization.  Here two peaks are added in a region of</span>
+    <span class="c1"># overlap, and the width parameter is fixed at a reasonable value to aid</span>
+    <span class="c1"># convergence in this region.</span>
+    <span class="n">pars</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">6.2</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">2.6</span><span class="p">],</span> <span class="p">[</span><span class="mf">6.45</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">2.7</span><span class="p">],</span> <span class="p">[</span><span class="mf">7.15</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mi">5</span><span class="p">]]</span>
+    <span class="n">peaks</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">pars</span><span class="p">:</span>
+        <span class="n">peaks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pf</span><span class="o">.</span><span class="n">actualize</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">free</span><span class="o">=</span><span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">],</span> <span class="n">in_format</span><span class="o">=</span><span class="s2">&quot;pwa&quot;</span><span class="p">))</span>
+    <span class="n">ppe</span><span class="o">.</span><span class="n">add_peaks</span><span class="p">(</span><span class="n">peaks</span><span class="p">)</span>  <span class="c1"># adds to initial_peaks</span>
+
+    <span class="c1"># Initial peaks and pruning</span>
+    <span class="c1"># While initial peaks condition what other peaks can be extracted, by</span>
+    <span class="c1"># default they can also be pruned if a simpler model appears better.  To</span>
+    <span class="c1"># prevent this, they can be set as non-removable.</span>
+    <span class="k">for</span> <span class="n">ip</span> <span class="ow">in</span> <span class="n">ppe</span><span class="o">.</span><span class="n">initial_peaks</span><span class="p">:</span>
+        <span class="n">ip</span><span class="o">.</span><span class="n">removable</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="c1"># Plot initial parameters</span>
+    <span class="k">if</span> <span class="n">plot</span><span class="p">:</span>
+        <span class="n">makeplot</span><span class="p">(</span><span class="n">ppe</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Initial Peaks&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Perform peak extraction</span>
+    <span class="n">ppe</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>
+
+    <span class="c1"># Save output</span>
+    <span class="c1"># The write() method saves a file which preserves all aspects of peak</span>
+    <span class="c1"># extraction and its results, by convention using the .srmise extension,</span>
+    <span class="c1"># and which can later be read by diffpy.srmise.</span>
+    <span class="c1">#</span>
+    <span class="c1"># The writepwa() method saves a file intended as a human-readable summary.</span>
+    <span class="c1"># In particular, it reports the position, width (as full-width</span>
+    <span class="c1"># half-maximum), and area of of extracted peaks.  The reported values</span>
+    <span class="c1"># are for Gaussians in the radial distribution function (RDF) corresponding</span>
+    <span class="c1"># to this PDF.</span>
+    <span class="n">ppe</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;output/parameter_summary.srmise&quot;</span><span class="p">)</span>
+    <span class="n">ppe</span><span class="o">.</span><span class="n">writepwa</span><span class="p">(</span><span class="s2">&quot;output/parameter_summary.pwa&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Plot results.</span>
+    <span class="c1"># Display plot of extracted peak.  It is also possible to plot an existing</span>
+    <span class="c1"># .srmise file from the command line using</span>
+    <span class="c1">#     srmise output/TiO2_parameterdetail.srmise --no-extract --plot</span>
+    <span class="k">if</span> <span class="n">plot</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+        <span class="n">makeplot</span><span class="p">(</span><span class="n">ppe</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
 </section>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="extract_single_peak.html" class="btn btn-neutral float-left" title="Peak extraction of a single peak" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="fit_initial.html" class="btn btn-neutral float-right" title="Peak fitting" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

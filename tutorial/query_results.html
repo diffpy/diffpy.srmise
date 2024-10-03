@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Script (query_results.py) &mdash; diffpy.srmise 0.1.0rc0 documentation</title>
+  <title>Querying SrMise results &mdash; diffpy.srmise 0.1.0rc1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
 
@@ -15,12 +15,14 @@
   
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../_static/documentation_options.js?v=9205c5d6"></script>
+        <script src="../_static/documentation_options.js?v=3b45b1b0"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Multimodeling with known uncertainty" href="multimodel_known_uncertainties.html" />
+    <link rel="prev" title="Peak fitting" href="fit_initial.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -35,7 +37,7 @@
             diffpy.srmise
           </a>
               <div class="version">
-                0.1.0rc0
+                0.1.0rc1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -45,10 +47,20 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../release.html">Release Notes</a></li>
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorial</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="extract_single_peak.html">Peak extraction of a single peak</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameter_summary.html">Summary of SrMise parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fit_initial.html">Peak fitting</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Querying SrMise results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multimodel_known_uncertainties.html">Multimodeling with known uncertainty</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multimodel_unknown_uncertainties.html">Multimodeling with unknown uncertainty</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../extending.html">Extending SrMise</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api/diffpy.srmise.html">Package API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 </ul>
 
         </div>
@@ -65,7 +77,8 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Script (query_results.py)</li>
+          <li class="breadcrumb-item"><a href="index.html">Tutorial</a></li>
+      <li class="breadcrumb-item active">Querying SrMise results</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/tutorial/query_results.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -75,14 +88,328 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="script-query-results-py">
-<span id="query-results-py"></span><h1>Script (query_results.py)<a class="headerlink" href="#script-query-results-py" title="Link to this heading"></a></h1>
+  <blockquote>
+<div></div></blockquote>
+<section id="querying-srmise-results">
+<h1>Querying SrMise results<a class="headerlink" href="#querying-srmise-results" title="Link to this heading"></a></h1>
+<div class="line-block">
+<div class="line">Script: <a class="reference internal" href="#query-results-py">query_results.py</a></div>
+<div class="line">Sample: <a class="reference external" href="index.html#ag">Ag</a></div>
+</div>
+<p>In previous examples the results of peak extraction/fitting were read from the
+console, but this is not always convenient.  This example demonstrates the
+basic methods for querying SrMise objects about their parameters and values
+within scripts.</p>
+<p>First, visually check that the baseline obtained in the earlier silver example
+(set using the <code class="docutils literal notranslate"><span class="pre">--bsrmise</span> <span class="pre">filename.srmise</span></code> option) is reasonable over a
+larger range.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">srmise</span> <span class="n">data</span><span class="o">/</span><span class="n">Ag_nyquist_qmax30</span><span class="o">.</span><span class="n">gr</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">extract</span> <span class="o">--</span><span class="n">plot</span> <span class="o">--</span><span class="nb">range</span> <span class="mi">2</span> <span class="mi">10</span>
+    <span class="o">--</span><span class="n">bsrmise</span> <span class="n">output</span><span class="o">/</span><span class="n">query_results</span><span class="o">.</span><span class="n">srmise</span>
+</pre></div>
+</div>
+<p><img alt="images/query_results1.png" src="../_images/query_results1.png" /></p>
+<p>Next, run</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">query_results</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>to perform peak extraction, the example analysis, and obtain the two plots
+below.</p>
+<p><img alt="images/query_results2.png" src="../_images/query_results2.png" /></p>
+<p><img alt="images/query_results3.png" src="../_images/query_results3.png" /></p>
+<p>Now the methods of the script are described.  The way to evaluate model
+uncertainties with SrMise is with a <code class="docutils literal notranslate"><span class="pre">ModelCovariance</span></code> instance returned after
+peak extraction (or fitting).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cov</span> <span class="o">=</span> <span class="n">ppe</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Model parameters denoted by a tuple <code class="docutils literal notranslate"><span class="pre">(i,j)</span></code>, representing the <em>j</em>th
+parameter of the <em>i</em>th peak, are passed to this object’s methods.  For a
+Gaussian over r, the order of peak parameters in SrMise is position, width, and
+area.  Thus, the area of the nearest-neighbor peak is denoted by the tuple
+(0,2). (Indexing is zero-based.) By convention, the last element (<code class="docutils literal notranslate"><span class="pre">i=-1</span></code>) is
+the baseline. The methods of greatest interest are as follows.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get (value, uncertainty) tuple for this parameter</span>
+<span class="n">cov</span><span class="o">.</span><span class="n">get</span><span class="p">((</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">))</span>
+
+<span class="c1"># Get just the value of the parameter</span>
+<span class="n">cov</span><span class="o">.</span><span class="n">getvalue</span><span class="p">((</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">))</span>
+
+<span class="c1"># Get just the uncertainty of the parameter</span>
+<span class="n">cov</span><span class="o">.</span><span class="n">getuncertainty</span><span class="p">((</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">))</span>
+
+<span class="c1"># Get the covariance between two parameters</span>
+<span class="n">cov</span><span class="o">.</span><span class="n">getcovariance</span><span class="p">((</span><span class="n">i1</span><span class="p">,</span><span class="n">j1</span><span class="p">),</span> <span class="p">(</span><span class="n">i2</span><span class="p">,</span><span class="n">j2</span><span class="p">))</span>
+
+<span class="c1"># Get the correlation between two parameters</span>
+<span class="n">cov</span><span class="o">.</span><span class="n">getcorrelation</span><span class="p">((</span><span class="n">i1</span><span class="p">,</span><span class="n">j1</span><span class="p">),</span> <span class="p">(</span><span class="n">i2</span><span class="p">,</span><span class="n">j2</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Suppose, for example, one wants to emperically estimate the number of silver
+atoms contributing to each occupied coordination shell of the FCC structure,
+knowing that the coordination number (i.e. nearest neighbors) of an ideal FCC
+structure is exactly 12.  For a monoelemental material the intensity of a peak
+in a properly normalized PDF should equal the number of contributing atoms in
+the corresponding shell.  Thus, the intensity of the nearest neighbor peak
+permits an estimate of the PDF scale factor, and using that an estimate of other
+shell’s occupancy.  This simple procedure is implemented in the script using
+model parameters and uncertainties obtained with the methods above.</p>
+<p>Another useful capability is calculating the value of a model, in whole or
+part.  Given a PDFPeakExtraction instance <code class="docutils literal notranslate"><span class="pre">ppe</span></code> and a numpy array <code class="docutils literal notranslate"><span class="pre">r</span></code>, the
+usual methods are</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Return sum of peaks and baseline, evaluated on the current grid, or r.</span>
+<span class="n">ppe</span><span class="o">.</span><span class="n">extracted</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+<span class="n">ppe</span><span class="o">.</span><span class="n">extracted</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+
+<span class="c1"># Return residual (data - model) on the current grid.</span>
+<span class="n">ppe</span><span class="o">.</span><span class="n">extracted</span><span class="o">.</span><span class="n">residual</span><span class="p">()</span>
+
+<span class="c1"># Return the baseline evaluated on the current grid, or r.</span>
+<span class="n">ppe</span><span class="o">.</span><span class="n">extracted</span><span class="o">.</span><span class="n">valuebl</span><span class="p">()</span>
+<span class="n">ppe</span><span class="o">.</span><span class="n">extracted</span><span class="o">.</span><span class="n">valuebl</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+
+<span class="c1"># The ith peak evaluated on r</span>
+<span class="n">ppe</span><span class="o">.</span><span class="n">extracted</span><span class="o">.</span><span class="n">model</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+
+<span class="c1"># The baseline evaluated on r</span>
+<span class="n">ppe</span><span class="o">.</span><span class="n">extracted</span><span class="o">.</span><span class="n">baseline</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="script-query-results-py">
+<span id="query-results-py"></span><h2>Script (query_results.py)<a class="headerlink" href="#script-query-results-py" title="Link to this heading"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1">##############################################################################</span>
+<span class="c1">#</span>
+<span class="c1"># diffpy.srmise     by Luke Granlund</span>
+<span class="c1">#                   (c) 2015 trustees of the Michigan State University.</span>
+<span class="c1">#                   All rights reserved.</span>
+<span class="c1">#</span>
+<span class="c1"># File coded by:    Luke Granlund</span>
+<span class="c1">#</span>
+<span class="c1"># See LICENSE.txt for license information.</span>
+<span class="c1">#</span>
+<span class="c1">##############################################################################</span>
+<span class="sd">&quot;&quot;&quot;Example of extracting multiple peaks and accessing results programatically.</span>
+
+<span class="sd">This example shows how to extract a range of peaks from a simple crystalline</span>
+<span class="sd">PDF using a crystalline baseline obtained from an existing trial.  It shows</span>
+<span class="sd">how to access the value and uncertainty of peak parameters, including</span>
+<span class="sd">transforming between different peak parameterizations.  Finally, it shows how</span>
+<span class="sd">to evaluate the model on an arbitrary grid.</span>
+
+<span class="sd">The peaks extracted by this script are equivalent to those obtained running</span>
+<span class="sd">srmise data/Ag_nyquist_qmax30.gr --range 2. 10. \</span>
+<span class="sd">    --bsrmise output/extract_single_peak.srmise \</span>
+<span class="sd">    --save output/query_results.srmise \</span>
+<span class="sd">    --pwa output/query_results.pwa --plot</span>
+<span class="sd">at the command line.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">diffpy.srmise.modelcluster</span> <span class="kn">import</span> <span class="n">ModelCovariance</span>
+<span class="kn">from</span> <span class="nn">diffpy.srmise.pdfpeakextraction</span> <span class="kn">import</span> <span class="n">PDFPeakExtraction</span>
+
+
+<span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+
+    <span class="c1"># Initialize peak extraction</span>
+    <span class="c1"># Create peak extraction object</span>
+    <span class="n">ppe</span> <span class="o">=</span> <span class="n">PDFPeakExtraction</span><span class="p">()</span>
+
+    <span class="c1"># Load the PDF from a file</span>
+    <span class="n">ppe</span><span class="o">.</span><span class="n">loadpdf</span><span class="p">(</span><span class="s2">&quot;data/Ag_nyquist_qmax30.gr&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Obtain baseline from a saved diffpy.srmise trial.  This is not the</span>
+    <span class="c1"># initial baseline estimate from the previous example, but the baseline</span>
+    <span class="c1"># after both it and the extracted peaks have been fit to the data.</span>
+    <span class="n">ppebl</span> <span class="o">=</span> <span class="n">PDFPeakExtraction</span><span class="p">()</span>
+    <span class="n">ppebl</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;output/extract_single_peak.srmise&quot;</span><span class="p">)</span>
+    <span class="n">baseline</span> <span class="o">=</span> <span class="n">ppebl</span><span class="o">.</span><span class="n">extracted</span><span class="o">.</span><span class="n">baseline</span>
+
+    <span class="c1"># Set up extraction parameters.</span>
+    <span class="c1"># Peaks are extracted between 2 and 10 angstroms, using the baseline</span>
+    <span class="c1"># from the isolated peak example.</span>
+    <span class="n">kwds</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;rng&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">]</span>
+    <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;baseline&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">baseline</span>
+
+    <span class="c1"># Apply peak extraction parameters.</span>
+    <span class="n">ppe</span><span class="o">.</span><span class="n">setvars</span><span class="p">(</span><span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+
+    <span class="c1"># Perform peak extraction, and retain object containing a copy of the</span>
+    <span class="c1"># model and the full covariance matrix.</span>
+    <span class="n">cov</span> <span class="o">=</span> <span class="n">ppe</span><span class="o">.</span><span class="n">extract</span><span class="p">()</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">======= Accessing SrMise Results ========&quot;</span><span class="p">)</span>
+    <span class="c1"># Accessing results of extraction</span>
+    <span class="c1">#</span>
+    <span class="c1"># Model parameters are organized using a nested structure, with a list</span>
+    <span class="c1"># of peaks each of which is a list of parameters, similar to the the</span>
+    <span class="c1"># following schematic.</span>
+    <span class="c1">#     Peak</span>
+    <span class="c1">#         Position</span>
+    <span class="c1">#         Width</span>
+    <span class="c1">#         Area</span>
+    <span class="c1">#     Peak</span>
+    <span class="c1">#         Position</span>
+    <span class="c1">#         Width</span>
+    <span class="c1">#         Area*</span>
+    <span class="c1">#     ...</span>
+    <span class="c1">#     Baseline</span>
+    <span class="c1">#         Slope</span>
+    <span class="c1">#         Intercept</span>
+    <span class="c1"># By convention, the baseline is the final &quot;peak.&quot;  The ModelCovariance</span>
+    <span class="c1"># object returned by extract() can return information about any peak by</span>
+    <span class="c1"># using the appropriate tuple of indices (i,j).  That is, (i,j) denotes</span>
+    <span class="c1"># the jth parameter of the ith peak.  For example, the starred parameter</span>
+    <span class="c1"># above is the area (index = 2) of the next nearest neighbor (index = 1)</span>
+    <span class="c1"># peak. Thus, this parameter can be referenced as (1,2).  Several examples</span>
+    <span class="c1"># are presented below.</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">------ Parameter values and uncertainties ------&quot;</span><span class="p">)</span>
+    <span class="c1"># ModelCovariance.get() returns a (value, uncertainty) tuple for a given</span>
+    <span class="c1"># parameter.  These are the results for the nearest-neighbor peak.</span>
+    <span class="n">p0</span> <span class="o">=</span> <span class="n">cov</span><span class="o">.</span><span class="n">get</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="n">w0</span> <span class="o">=</span> <span class="n">cov</span><span class="o">.</span><span class="n">get</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">a0</span> <span class="o">=</span> <span class="n">cov</span><span class="o">.</span><span class="n">get</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Nearest-neighbor peak: &quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    position = </span><span class="si">%f</span><span class="s2"> +/- </span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">p0</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    width = </span><span class="si">%f</span><span class="s2"> +/- </span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">w0</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    area = </span><span class="si">%f</span><span class="s2"> +/- </span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">a0</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    Covariance(width, area) = &quot;</span><span class="p">,</span> <span class="n">cov</span><span class="o">.</span><span class="n">getcovariance</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
+
+    <span class="c1"># Baseline parameters.  By convention, baseline is final element in cov.</span>
+    <span class="p">(</span><span class="n">slope</span><span class="p">,</span> <span class="n">intercept</span><span class="p">)</span> <span class="o">=</span> <span class="n">cov</span><span class="o">.</span><span class="n">model</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">The linear baseline B(r)=</span><span class="si">%f</span><span class="s2">*r + </span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">par</span> <span class="k">for</span> <span class="n">par</span> <span class="ow">in</span> <span class="n">cov</span><span class="o">.</span><span class="n">model</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> ------ Uncertainties from a Saved File --------&quot;</span><span class="p">)</span>
+    <span class="c1"># A .srmise file does not save the full covariance matrix, so it must be</span>
+    <span class="c1"># recalculated when loading from these files.  For example, here is the</span>
+    <span class="c1"># nearest-neighbor peak in the file which we used to define the initial</span>
+    <span class="c1"># baseline.</span>
+    <span class="n">cov2</span> <span class="o">=</span> <span class="n">ModelCovariance</span><span class="p">()</span>
+    <span class="n">ppebl</span><span class="o">.</span><span class="n">extracted</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">fitbaseline</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cov</span><span class="o">=</span><span class="n">cov2</span><span class="p">,</span> <span class="n">cov_format</span><span class="o">=</span><span class="s2">&quot;default_output&quot;</span><span class="p">)</span>
+    <span class="n">p0_saved</span> <span class="o">=</span> <span class="n">cov2</span><span class="o">.</span><span class="n">get</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="n">w0_saved</span> <span class="o">=</span> <span class="n">cov2</span><span class="o">.</span><span class="n">get</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">a0_saved</span> <span class="o">=</span> <span class="n">cov2</span><span class="o">.</span><span class="n">get</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Nearest-neighbor peak:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    position = </span><span class="si">%f</span><span class="s2"> +/- </span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">p0_saved</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    width == </span><span class="si">%f</span><span class="s2"> +/- </span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">w0_saved</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    area = = </span><span class="si">%f</span><span class="s2"> +/- </span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">a0_saved</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    Covariance(width, area) = &quot;</span><span class="p">,</span> <span class="n">cov2</span><span class="o">.</span><span class="n">getcovariance</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> ---------- Alternate Parameterizations ---------&quot;</span><span class="p">)</span>
+    <span class="c1"># Different Parameterizations</span>
+    <span class="c1"># Peaks and baselines may have equivalent parameterizations that are useful</span>
+    <span class="c1"># in different situations.  For example, the types defined by the</span>
+    <span class="c1"># GaussianOverR peak function are:</span>
+    <span class="c1">#   &quot;internal&quot; - Used in diffpy.srmise calculations, explicitly enforces a</span>
+    <span class="c1">#                maximum peak width</span>
+    <span class="c1">#   &quot;pwa&quot; - The position, width (full-width at half-maximum), area.</span>
+    <span class="c1">#   &quot;mu_sigma_area&quot; - The position, width (the distribution standard</span>
+    <span class="c1">#                     deviation sigma), area.</span>
+    <span class="c1">#   &quot;default_output&quot; - Defines default format to use in most user-facing</span>
+    <span class="c1">#                      scenarios. Maps to the &quot;pwa&quot; parameterization.</span>
+    <span class="c1">#   &quot;default_input&quot; - Defines default format to use when specifying peak</span>
+    <span class="c1">#                     parameters.  Maps to the &quot;internal&quot; parameterization.</span>
+    <span class="c1"># All diffpy.srmise peak and baseline functions are required to have the</span>
+    <span class="c1"># &quot;internal&quot;, &quot;default_output&quot;, and &quot;default_input&quot; formats.  In many</span>
+    <span class="c1"># cases, such as polynomial baselines, all of these are equivalent.</span>
+    <span class="c1">#</span>
+    <span class="c1"># Suppose you want to know peak widths in terms of the standard deviation</span>
+    <span class="c1"># sigma of the Gaussian distribution.  It is then appropriate to convert</span>
+    <span class="c1"># all peaks to the &quot;mu_sigma_area&quot; format.  Valid options for the &quot;parts&quot;</span>
+    <span class="c1"># keyword are &quot;peaks&quot;, &quot;baseline&quot;, or a sequence of indices (e.g. [1,2,3]</span>
+    <span class="c1"># would transform the second, third, and fourth peaks).  If the keyword</span>
+    <span class="c1"># is omitted, the transformation is attempted for all parts of the fit.</span>
+    <span class="n">cov</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">in_format</span><span class="o">=</span><span class="s2">&quot;pwa&quot;</span><span class="p">,</span> <span class="n">out_format</span><span class="o">=</span><span class="s2">&quot;mu_sigma_area&quot;</span><span class="p">,</span> <span class="n">parts</span><span class="o">=</span><span class="s2">&quot;peaks&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Width (sigma) of nearest-neighbor peak: </span><span class="si">%f</span><span class="s2"> +/- </span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">cov</span><span class="o">.</span><span class="n">get</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)))</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> ------------ Highly Correlated Parameters ------------&quot;</span><span class="p">)</span>
+    <span class="c1"># Highly-correlated parameters can indicate difficulties constraining the</span>
+    <span class="c1"># fit.  This function lists all pairs of parameters with an absolute value</span>
+    <span class="c1"># of correlation which exceeds a given threshold.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;|Correlation| &gt; 0.9:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;par1     par2    corr(par1, par2)&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cov</span><span class="o">.</span><span class="n">correlationwarning</span><span class="p">(</span><span class="mf">0.9</span><span class="p">)))</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">-------- Estimate coordination shell occupancy ---------&quot;</span><span class="p">)</span>
+    <span class="c1"># Estimate the scale factor and its uncertainty from first peak&#39;s intensity.</span>
+    <span class="c1"># G_normalized = scale * G_observed</span>
+    <span class="c1"># dscale = scale * dG_observed/G_observed</span>
+    <span class="n">scale</span> <span class="o">=</span> <span class="mf">12.0</span> <span class="o">/</span> <span class="n">a0</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">dscale</span> <span class="o">=</span> <span class="n">scale</span> <span class="o">*</span> <span class="n">a0</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">a0</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Estimate scale factor assuming nearest-neighbor intensity = 12&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Scale factor is </span><span class="si">%f</span><span class="s2"> +/- </span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">scale</span><span class="p">,</span> <span class="n">dscale</span><span class="p">))</span>
+
+    <span class="c1"># Reference for number of atoms in coordination shells for FCC.</span>
+    <span class="c1"># http://chem-faculty.lsu.edu/watkins/MERLOT/cubic_neighbors/cubic_near_neighbors.html</span>
+    <span class="n">ideal_intensity</span> <span class="o">=</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">24</span><span class="p">]</span>
+
+    <span class="c1"># Calculated the scaled intensities and uncertainties.</span>
+    <span class="n">intensity</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">cov</span><span class="o">.</span><span class="n">model</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="p">(</span><span class="n">area</span><span class="p">,</span> <span class="n">darea</span><span class="p">)</span> <span class="o">=</span> <span class="n">cov</span><span class="o">.</span><span class="n">get</span><span class="p">((</span><span class="n">i</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+        <span class="n">area</span> <span class="o">*=</span> <span class="n">scale</span>
+        <span class="n">darea</span> <span class="o">=</span> <span class="n">area</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">dscale</span> <span class="o">/</span> <span class="n">scale</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">darea</span> <span class="o">/</span> <span class="n">area</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">intensity</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">ideal_intensity</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">area</span><span class="p">,</span> <span class="n">darea</span><span class="p">))</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Intensity&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ideal: Estimated&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">intensity</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%i</span><span class="s2">: </span><span class="si">%f</span><span class="s2"> +/- </span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">i</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Total intensity&quot;</span><span class="p">)</span>
+    <span class="c1"># It is possible to iterate over peaks directly without using indices.</span>
+    <span class="c1"># In addition, peak parameters can be accessed using string keys.  For the</span>
+    <span class="c1"># Gaussian over r all of &quot;position&quot;, &quot;width&quot;, and &quot;area&quot; are valid.</span>
+    <span class="n">total_observed_intensity</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">total_ideal_intensity</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">peak</span><span class="p">,</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">cov</span><span class="o">.</span><span class="n">model</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">ideal_intensity</span><span class="p">):</span>
+        <span class="n">total_observed_intensity</span> <span class="o">+=</span> <span class="n">scale</span> <span class="o">*</span> <span class="n">peak</span><span class="p">[</span><span class="s2">&quot;area&quot;</span><span class="p">]</span>
+        <span class="n">total_ideal_intensity</span> <span class="o">+=</span> <span class="n">ii</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ideal: Observed (using estimated scale factor)&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%i</span><span class="s2">: </span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">total_ideal_intensity</span><span class="p">,</span> <span class="n">total_observed_intensity</span><span class="p">))</span>
+
+    <span class="c1"># Save output</span>
+    <span class="n">ppe</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;output/query_results.srmise&quot;</span><span class="p">)</span>
+    <span class="n">ppe</span><span class="o">.</span><span class="n">writepwa</span><span class="p">(</span><span class="s2">&quot;output/query_results.pwa&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Evaluating a model.</span>
+    <span class="c1"># Although the ModelCovariance object is useful, the model used for fitting</span>
+    <span class="c1"># can be directly accessed through PDFPeakExtraction as well, albeit</span>
+    <span class="c1"># without uncertainties.  This is particularly helpful when evaluating a</span>
+    <span class="c1"># model since the parameters stay in the &quot;internal&quot; format used for</span>
+    <span class="c1"># calculations.  For example, here we plot the data and every second peak</span>
+    <span class="c1"># on an arbitrary grid.  Unlike with ModelCovariance, the baseline and</span>
+    <span class="c1"># peaks are kept separate.</span>
+    <span class="k">if</span> <span class="n">plot</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+        <span class="n">grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+        <span class="n">bl</span> <span class="o">=</span> <span class="n">ppe</span><span class="o">.</span><span class="n">extracted</span><span class="o">.</span><span class="n">baseline</span>
+        <span class="n">everysecondpeak</span> <span class="o">=</span> <span class="n">ppe</span><span class="o">.</span><span class="n">extracted</span><span class="o">.</span><span class="n">model</span><span class="p">[::</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ppe</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">ppe</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="s2">&quot;o&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">peak</span> <span class="ow">in</span> <span class="n">everysecondpeak</span><span class="p">:</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">bl</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span> <span class="o">+</span> <span class="n">peak</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="n">grid</span><span class="p">))</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
 </section>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="fit_initial.html" class="btn btn-neutral float-left" title="Peak fitting" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="multimodel_known_uncertainties.html" class="btn btn-neutral float-right" title="Multimodeling with known uncertainty" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

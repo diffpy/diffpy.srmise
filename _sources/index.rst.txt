@@ -23,18 +23,21 @@ https://github.com/diffpy/diffpy.srmise/graphs/contributors.
 Installation
 ============
 
-See the `README <https://github.com/diffpy/diffpy.srmise#installation>`_
+See the `README <https://github.com/diffpy/diffpy.srmise/blob/main/README.rst>`_
 file included with the distribution.
 
 =================
 Table of contents
 =================
 .. toctree::
+   :maxdepth: 1
    :titlesonly:
 
-   license
-   release
+   tutorial/index
+   extending
    Package API <api/diffpy.srmise>
+   release
+   license
 
 =======
 Indices

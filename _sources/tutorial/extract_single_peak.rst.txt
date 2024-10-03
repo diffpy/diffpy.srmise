@@ -3,7 +3,7 @@
 .. include:: sample_links.txt
 
 
-.. include:: ../../../examples/README
+.. include:: ../../examples/README.rst
    :start-after: ~Example 1~
    :end-before: ~Example 2~
 
@@ -13,4 +13,4 @@
 Script (extract_single_peak.py)
 -------------------------------
 
-.. literalinclude:: ../../../examples/extract_single_peak.py
+.. literalinclude:: ../../examples/extract_single_peak.py

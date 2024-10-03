@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tutorial &mdash; diffpy.srmise 0.1.0rc0 documentation</title>
+  <title>Tutorial &mdash; diffpy.srmise 0.1.0rc1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
 
@@ -15,12 +15,14 @@
   
         <script src="../_static/jquery.js?v=5d32c60e"></script>
         <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="../_static/documentation_options.js?v=9205c5d6"></script>
+        <script src="../_static/documentation_options.js?v=3b45b1b0"></script>
         <script src="../_static/doctools.js?v=9a2dae69"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Peak extraction of a single peak" href="extract_single_peak.html" />
+    <link rel="prev" title="diffpy.srmise documentation" href="../index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -35,7 +37,7 @@
             diffpy.srmise
           </a>
               <div class="version">
-                0.1.0rc0
+                0.1.0rc1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -45,10 +47,20 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../release.html">Release Notes</a></li>
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="extract_single_peak.html">Peak extraction of a single peak</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parameter_summary.html">Summary of SrMise parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fit_initial.html">Peak fitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="query_results.html">Querying SrMise results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multimodel_known_uncertainties.html">Multimodeling with known uncertainty</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multimodel_unknown_uncertainties.html">Multimodeling with unknown uncertainty</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../extending.html">Extending SrMise</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api/diffpy.srmise.html">Package API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 </ul>
 
         </div>
@@ -77,18 +89,107 @@
              
   <section id="tutorial">
 <span id="id5"></span><h1>Tutorial<a class="headerlink" href="#tutorial" title="Link to this heading"></a></h1>
-<section id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
+<section id="purpose">
+<h2>Purpose<a class="headerlink" href="#purpose" title="Link to this heading"></a></h2>
+<p>This tutorial is an introduction to the SrMise library and command-line tool,
+intended to expose new users and developers to the major use cases and options
+anticipated for SrMise.</p>
+<p>Generating interest in SrMise is another goal of these examples, and we hope
+you will discover exciting ways to apply its capabilities to your scientific
+goals. If you think SrMise may help you do so, please feel free to contact us
+through the DiffPy website.</p>
+<p><a class="reference external" href="http://www.diffpy.org">http://www.diffpy.org</a></p>
+</section>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>SrMise is an implementation of the <a class="reference external" href="https://dx.doi.org/10.1107/S2053273315005276">ParSCAPE algorithm</a>, which incorporates
+standard chi-square fitting within an iterative clustering framework.  The
+algorithm supposes that, in the absence of an atomic structure model, the model
+complexity (informally, the number of extracted peaks) which can be
+justifiably obtained from a PDF is primarily determined by the experimental
+uncertainties.  The Akaike Information Criterion (AIC), summarized in the
+manual, is the information-theoretic tool used to balance model complexity
+with goodness-of-fit.</p>
+<p>Three primary use cases are envisioned for SrMise:</p>
+<ol class="arabic simple">
+<li><p>Peak fitting, where user-specified peaks are fit to the experimental data.</p></li>
+<li><p>Peak extraction, where the number of peaks and their parameters are
+estimated solely from the experimental data.</p></li>
+<li><p>Multimodel selection, where multiple sets of peaks are ranked in an
+AIC-driven analysis to determine the most plausible sets to guide
+additional investigation.</p></li>
+</ol>
+<p>Productively running SrMise requires, in basic, the following elements:</p>
+<ol class="arabic simple">
+<li><p>An experimental PDF.  Note that peak extraction, though not peak fitting,
+requires that all peaks of interest be positive.  This rules out peak
+extraction using SrMise for neutron PDFs obtained from samples containing
+elements with both positive and negative scattering factors.</p></li>
+<li><p>The experimental uncertainties.  In principle these should be reported with
+the data, but in practice experimental uncertainties are frequently not
+reported, or are unreliable due to details of the data reduction process.
+In these cases the user should specify an <em>ad hoc</em> value.  In peak extraction
+an <em>ad hoc</em> uncertainty necessarily results in <em>ad hoc</em> model complexity, or,
+more precisely, a reasonable model complexity if the provided uncertainty
+is presumed correct.  (Even when the uncertainties are known, specifying an
+<em>ad hoc</em> value can be a pragmatic tool for exploring alternate models,
+especially in conjunction with multimodeling analysis.)  For both peak
+extraction and peak fitting the estimated uncertainties of peak parameters
+(i.e. location, width, intensity) are dependent on the experimental
+uncertainty.</p></li>
+<li><p>The PDF baseline.  For crystalline samples the baseline is linear and can
+be readily estimated.  For nanoparticles more effort is required as SrMise
+includes explicit support for only a few basic shapes, although the user
+can define a baseline using arbitrary polynomials or an interpolating
+function constructed from a list of arbitrary numerical values.</p></li>
+<li><p>The range over which to extract or fit peaks.  By default SrMise will use
+the entire PDF, but it is usually wise to restrict the range to the region
+of immediate interest.</p></li>
+</ol>
+<p>The examples described below, though not exhaustive, go into detail about each
+of these points.  They also cover other parameters for which good default
+values can usually be estimated directly from the data.</p>
+</section>
+<section id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading"></a></h2>
+<p>The examples are contained in the <em>doc/examples/</em> directory of the SrMise
+<a class="reference external" href="https://github.com/diffpy/diffpy.srmise/releases">source distribution</a>,
+available as both a <a href="#id6"><span class="problematic" id="id7">|zip|</span></a> and <a href="#id8"><span class="problematic" id="id9">|tar.gz|</span></a> archive.  Download one of these files
+(Windows users will generally favor the .zip, while Linux/Mac users the .tar.gz)
+to a directory of your choosing.</p>
+<p>Uncompress the archive.  If the downloaded file is <em>archivename.zip</em> or
+<em>archivename.tar.gz</em> this will create a new directory <em>archivename</em> in its
+current directory.  On Windows this can be accomplished by right-clicking
+and choosing “Extract all”.  On Linux/Mac OS X run, from the containing
+directory,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tar</span> <span class="n">xvzf</span> <span class="n">archivename</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+</pre></div>
+</div>
+<p>From a command window change to the <em>doc/examples</em> directory of the new
+folder.  For example, a Windows’ user who extracted <em>archivename.zip</em> in the
+folder <em>C:\Research</em> would type</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Research</span>\<span class="n">archivename</span>\<span class="n">doc</span>\<span class="n">examples</span>
+</pre></div>
+</div>
+<p>Every example below includes a Python script that may be run from this
+directory.  While such scripts expose the full functionality of SrMise, for
+many common tasks the command-line program <code class="docutils literal notranslate"><span class="pre">srmise</span></code> included with the package
+is both sufficient and convenient, and the tutorial uses it to introduce many
+fundamental concepts.  Its options may be examined in detail by running</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">srmise</span> <span class="o">--</span><span class="n">help</span>
+</pre></div>
+</div>
+<p>It is recommended to work through, in the order presented, at least the
+command-line portion of each example.  Users looking for more detail should find
+the copiously commented scripts helpful.</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="extract_single_peak.html">Script (extract_single_peak.py)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="parameter_summary.html">Script (parameter_summary.py)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="fit_initial.html">Script (fit_initial.py)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="query_results.html">Script (query_results.py)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="multimodel_known_uncertainties.html">Extraction Script (multimodel_known_dG1.py)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="multimodel_known_uncertainties.html#analysis-script-multimodel-known-dg2-py">Analysis Script (multimodel_known_dG2.py)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="multimodel_unknown_uncertainties.html">Extraction Script (multimodel_unknown_dG1.py)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="multimodel_unknown_uncertainties.html#analysis-script-multimodel-unknown-dg2-py">Analysis Script (multimodel_unknown_dG2.py)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extract_single_peak.html">Peak extraction of a single peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parameter_summary.html">Summary of SrMise parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fit_initial.html">Peak fitting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="query_results.html">Querying SrMise results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multimodel_known_uncertainties.html">Multimodeling with known uncertainty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multimodel_unknown_uncertainties.html">Multimodeling with unknown uncertainty</a></li>
 </ul>
 </div>
 </section>
@@ -97,7 +198,10 @@
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="diffpy.srmise documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="extract_single_peak.html" class="btn btn-neutral float-right" title="Peak extraction of a single peak" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 
