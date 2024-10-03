@@ -1,4 +1,4 @@
-.. _extending-srmise:
+.. index:: extending-srmise
 
 ===================
 Extending SrMise
@@ -47,7 +47,7 @@ To add a baseline, create a new module which defines a class inheriting from
 which need to be implemented are summarized in the source code.
 
 
-.. literalinclude:: ../../../diffpy/srmise/baselines/base.py
+.. literalinclude:: ../../src/diffpy/srmise/baselines/base.py
     :pyobject: BaselineFunction
     :end-before: __init__
 
