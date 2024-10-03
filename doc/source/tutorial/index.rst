@@ -13,7 +13,7 @@ Tutorial
 .. Replace bare list from README
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    extract_single_peak
    parameter_summary

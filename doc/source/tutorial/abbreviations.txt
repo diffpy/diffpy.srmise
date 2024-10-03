@@ -39,3 +39,4 @@
 .. |pi/Qmax| replace:: π/Q\ :sub:`max`
 
 .. Links to PDF information defined in sample_links.txt
+.. |Extending SrMise| replace:: :ref:`extending-srmise`

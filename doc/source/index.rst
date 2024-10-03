@@ -30,14 +30,14 @@ file included with the distribution.
 Table of contents
 =================
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :titlesonly:
 
-   license
-   release
-   Package API <api/diffpy.srmise>
    tutorial/index
    extending
+   Package API <api/diffpy.srmise>
+   release
+   license
 
 =======
 Indices
