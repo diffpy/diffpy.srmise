@@ -16,7 +16,7 @@
         :target: https://github.com/psf/black
 
 .. |CI| image:: https://github.com/diffpy/diffpy.srmise/actions/workflows/matrix-and-codecov-on-merge-to-main.yml/badge.svg
-        :target: https://github.com/diffpy/diffpy.srmise/actions/workflows/matrix-and-codecov-on-merge-to-main.yml/badge.svg
+        :target: https://github.com/diffpy/diffpy.srmise/actions/workflows/matrix-and-codecov-on-merge-to-main.yml
 
 .. |Codecov| image:: https://codecov.io/gh/diffpy/diffpy.srmise/branch/main/graph/badge.svg
         :target: https://codecov.io/gh/diffpy/diffpy.srmise
@@ -72,14 +72,18 @@ must be specified.
 
 For more information about the diffpy.srmise library, please consult our `online documentation <https://diffpy.github.io/diffpy.srmise>`_.
 
+
 Citation
 --------
 
-If you use diffpy.srmise in a scientific publication, we would like you to cite this package as
+If you use this program for a scientific research that leads
+to publication, we ask that you acknowledge use of the program
+by citing the following paper in your publication:
 
-        L. Granlund, Billinge, S. J. L., and P. M. Duxbury. “Algorithm for systematic peak extraction from atomic
-        pair distribution functions”. In: Acta Crystallogr. A 71.4 (2015), pp. 392–409. DOI:
-        10.1107/S2053273315005276
+   L. Granlund, S. J. L. Billinge and P. M. Duxbury,
+   `Algorithm for systematic peak extraction from atomic pair distribution functions
+   <http://dx.doi.org/10.1107/S2053273315005276>`__,
+   *Acta Crystallogr. A* **4**, 392-409 (2015).
 
 Installation
 ------------
@@ -104,11 +108,7 @@ Then, to fully install ``diffpy.srmise`` in our active environment, run ::
 
 Another option is to use ``pip`` to download and install the latest release from
 `Python Package Index <https://pypi.python.org>`_.
-To install using ``pip`` into your ``diffpy.srmise_env`` environment, we will also have to install dependencies ::
-
-        pip install -r https://raw.githubusercontent.com/diffpy/diffpy.srmise/main/requirements/run.txt
-
-and then install the package ::
+To install using ``pip`` into your ``diffpy.srmise_env`` environment, type ::
 
         pip install diffpy.srmise
 
