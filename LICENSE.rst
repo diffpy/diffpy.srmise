@@ -8,10 +8,10 @@ If you use this program to do productive scientific research that
 leads to publication, we ask that you acknowledge use of the
 program by citing the following paper in your publication:
 
-    L. Granlund, S.J.L. Billinge, P.M. Duxbury, Algorithm for
-    systematic peak extraction from atomic pair distribution
-    functions, Acta Crystallographica A 71(4), 392-409 (2015).
-    doi:10.1107/S2053273315005276
+   L. Granlund, S. J. L. Billinge and P. M. Duxbury,
+   `Algorithm for systematic peak extraction from atomic pair distribution functions
+   <http://dx.doi.org/10.1107/S2053273315005276>`__,
+   *Acta Crystallogr. A* **4**, 392-409 (2015).
 
 For more information please visit the diffpy web-page at
     http://www.diffpy.org
