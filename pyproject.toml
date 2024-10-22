@@ -7,6 +7,7 @@ name = "diffpy.srmise"
 dynamic=['version', 'dependencies']
 authors = [
   { name="Simon J.L. Billinge group", email="simon.billinge@gmail.com" },
+        {name="Luke Granlund", email="granlund@pa.msu.edu"},
 ]
 maintainers = [
   { name="Simon J.L. Billinge group", email="simon.billinge@gmail.com" },
@@ -20,6 +21,7 @@ classifiers = [
         'Environment :: Console',
         'Intended Audience :: Developers',
         'Intended Audience :: Science/Research',
+        'Intended Audience :: Education',
         'License :: OSI Approved :: BSD License',
         'Operating System :: MacOS :: MacOS X',
         'Operating System :: Microsoft :: Windows',
@@ -30,6 +32,7 @@ classifiers = [
         'Programming Language :: Python :: 3.12',
         'Topic :: Scientific/Engineering :: Physics',
         'Topic :: Scientific/Engineering :: Chemistry',
+        'Topic :: Software Development :: Libraries',
 ]
 
 [project.urls]
