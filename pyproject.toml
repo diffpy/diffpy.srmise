@@ -7,7 +7,6 @@ name = "diffpy.srmise"
 dynamic=['version', 'dependencies']
 authors = [
   { name="Simon J.L. Billinge group", email="simon.billinge@gmail.com" },
-        {name="Luke Granlund", email="granlund@pa.msu.edu"},
 ]
 maintainers = [
   { name="Simon J.L. Billinge group", email="simon.billinge@gmail.com" },
@@ -17,11 +16,10 @@ keywords = ['peak extraction fitting PDF AIC multimodeling']
 readme = "README.rst"
 requires-python = ">=3.10"
 classifiers = [
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 5 - Production/Stable',
         'Environment :: Console',
         'Intended Audience :: Developers',
         'Intended Audience :: Science/Research',
-        'Intended Audience :: Education',
         'License :: OSI Approved :: BSD License',
         'Operating System :: MacOS :: MacOS X',
         'Operating System :: Microsoft :: Windows',
@@ -32,7 +30,6 @@ classifiers = [
         'Programming Language :: Python :: 3.12',
         'Topic :: Scientific/Engineering :: Physics',
         'Topic :: Scientific/Engineering :: Chemistry',
-        'Topic :: Software Development :: Libraries',
 ]
 
 [project.urls]
@@ -48,7 +45,7 @@ dirty_template = "{tag}"
 [tool.setuptools.packages.find]
 where = ["src"]  # list of folders that contain the packages (["."] by default)
 include = ["*"]  # package names should match these glob patterns (["*"] by default)
-exclude = ["diffpy.srmise.tests*"]  # exclude packages matching these glob patterns (empty by default)
+exclude = []  # exclude packages matching these glob patterns (empty by default)
 namespaces = false  # to disable scanning PEP 420 namespaces (true by default)
 
 [tool.setuptools.dynamic]
