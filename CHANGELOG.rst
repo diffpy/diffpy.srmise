@@ -4,6 +4,17 @@ Release Notes
 
 .. current developments
 
+0.6.1
+=====
+
+**Fixed:**
+
+* Recut to group's package standard, fix installation, add GitHub release workflow
+* Update Python, matploblib API to run documentation CLI tutorials
+* support setuptools-git-versioning>=2.0
+* Configure entry point in pyproject.toml to run CLI commands
+
+
 0.6.0
 =====
 
