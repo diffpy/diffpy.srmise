@@ -11,3 +11,5 @@
 # See LICENSE.txt for license information.
 #
 ##############################################################################
+
+# __init__.py file for peaks module
