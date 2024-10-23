@@ -10,7 +10,7 @@
 .. |tar.gz| replace:: :source-release:`tar.gz`
 
 .. Image substitutions
-.. |images/extract_single_peak1.png| ge:: ../../examples/images/extract_single_peak1.png
+.. |images/extract_single_peak1.png| image:: ../../examples/images/extract_single_peak1.png
 .. |images/extract_single_peak2.png| image:: ../../examples/images/extract_single_peak2.png
 .. |images/extract_single_peak3.png| image:: ../../examples/images/extract_single_peak3.png
 .. |images/parameter_summary1.png| image:: ../../examples/images/parameter_summary1.png
