@@ -426,7 +426,7 @@ def main():
             print(err)
             print("Could not create peak function '%s'. Exiting." % options.peakfunction)
             return
-    
+
     if options.modelevaluator:
         try:
             options.modelevaluator = eval("modelevaluators." + options.modelevaluator)
@@ -434,7 +434,7 @@ def main():
             print(err)
             print("Could not find ModelEvaluator '%s'. Exiting." % options.modelevaluator)
             return
- 
+
     if options.bcrystal:
         from diffpy.srmise.baselines.polynomial import Polynomial
 
@@ -471,12 +471,12 @@ def main():
 
         bl = NanoSpherical()
         options.baseline = parsepars(bl, options.bspherical)
-        
+
         try:
-            
+
             print(options.baseline)
             options.baseline = eval("baselines." + options.baseline)
-            
+
         except Exception as err:
             print(err)
             print("Could not create baseline '%s'. Exiting." % options.baseline)

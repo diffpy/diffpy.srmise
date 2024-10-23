@@ -204,7 +204,7 @@ class PDFDataSet(PDFComponent):
         try:
             # Open the file in binary mode, read it, and decode to convert bytes to string
             with open(filename, "rb") as file:
-                file_content = file.read().decode('utf-8')
+                file_content = file.read().decode("utf-8")
             self.readStr(file_content)
         except PDFDataFormatError as err:
             basename = os.path.basename(filename)

@@ -100,10 +100,9 @@ class BaseFunction(object):
             The class (not instance) which implements caching of BaseFunction
             evaluations.
         """
-        
+
         self.parameterdict = parameterdict
         self.npars = len(self.parameterdict)
-
 
         # Checking all these things at run-time is a bit heavy-handed, but the
         # overhead is small and it may prevent considerable confusion when
