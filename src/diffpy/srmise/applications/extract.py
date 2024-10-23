@@ -473,8 +473,6 @@ def main():
         options.baseline = parsepars(bl, options.bspherical)
 
         try:
-
-            print(options.baseline)
             options.baseline = eval("baselines." + options.baseline)
 
         except Exception as err:
