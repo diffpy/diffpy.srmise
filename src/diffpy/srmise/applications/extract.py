@@ -419,52 +419,54 @@ def main():
     from diffpy.srmise.pdfpeakextraction import PDFPeakExtraction
     from diffpy.srmise.srmiseerrors import SrMiseDataFormatError, SrMiseFileError
 
-    try:
-        options.peakfunction = eval("peaks." + options.peakfunction)
-    except Exception as err:
-        print(err)
-        print("Could not create peak function '%s'. Exiting." % options.peakfunction)
-        return
+    if options.peakfunction:
+        try:
+            options.peakfunction = eval("peaks." + options.peakfunction)
+        except Exception as err:
+            print(err)
+            print("Could not create peak function '%s'. Exiting." % options.peakfunction)
+            return
 
-    try:
-        options.modelevaluator = eval("modelevaluators." + options.modelevaluator)
-    except Exception as err:
-        print(err)
-        print("Could not find ModelEvaluator '%s'. Exiting." % options.modelevaluator)
-        return
+    if options.modelevaluator:
+        try:
+            options.modelevaluator = eval("modelevaluators." + options.modelevaluator)
+        except Exception as err:
+            print(err)
+            print("Could not find ModelEvaluator '%s'. Exiting." % options.modelevaluator)
+            return
 
-    if options.bcrystal is not None:
+    if options.bcrystal:
         from diffpy.srmise.baselines.polynomial import Polynomial
 
         bl = Polynomial(degree=1)
         options.baseline = parsepars(bl, [options.bcrystal, "0c"])
         options.baseline.pars[0] = -4 * np.pi * options.baseline.pars[0]
-    elif options.bsrmise is not None:
+    elif options.bsrmise:
         # use baseline from existing file
         blext = PDFPeakExtraction()
         blext.read(options.bsrmise)
         options.baseline = blext.extracted.baseline
-    elif options.bpoly0 is not None:
+    elif options.bpoly0:
         from diffpy.srmise.baselines.polynomial import Polynomial
 
         bl = Polynomial(degree=0)
         options.baseline = parsepars(bl, [options.bpoly0])
-    elif options.bpoly1 is not None:
+    elif options.bpoly1:
         from diffpy.srmise.baselines.polynomial import Polynomial
 
         bl = Polynomial(degree=1)
         options.baseline = parsepars(bl, options.bpoly1)
-    elif options.bpoly2 is not None:
+    elif options.bpoly2:
         from diffpy.srmise.baselines.polynomial import Polynomial
 
         bl = Polynomial(degree=2)
         options.baseline = parsepars(bl, options.bpoly2)
-    elif options.bseq is not None:
+    elif options.bseq:
         from diffpy.srmise.baselines.fromsequence import FromSequence
 
         bl = FromSequence(options.bseq)
         options.baseline = bl.actualize([], "internal")
-    elif options.bspherical is not None:
+    elif options.bspherical:
         from diffpy.srmise.baselines.nanospherical import NanoSpherical
 
         bl = NanoSpherical()
@@ -472,6 +474,7 @@ def main():
 
         try:
             options.baseline = eval("baselines." + options.baseline)
+
         except Exception as err:
             print(err)
             print("Could not create baseline '%s'. Exiting." % options.baseline)
@@ -479,7 +482,7 @@ def main():
 
     filename = args[0]
 
-    if filename is not None:
+    if filename:
         ext = PDFPeakExtraction()
         try:
             ext.read(filename)
@@ -487,14 +490,14 @@ def main():
             ext.loadpdf(filename)
 
         pdict = {}
-        if options.peakfunction is not None:
+        if options.peakfunction:
             pdict["pf"] = [options.peakfunction]
-        if options.baseline is not None:
+        if options.baseline:
             pdict["baseline"] = options.baseline
-        if options.cres is not None:
+        if options.cres:
             pdict["cres"] = options.cres
         if options.dg_mode is None:
-            if options.dg is not None:
+            if options.dg:
                 options.dg_mode = "absolute"
             elif ext.dy is None:
                 options.dg_mode = "max-fraction"
@@ -510,17 +513,17 @@ def main():
             pdict["effective_dy"] = options.dg * ext.y.ptp() * np.ones(len(ext.y))
         elif options.dg_mode == "dG-fraction":
             pdict["effective_dy"] = options.dg * ext.dy
-        if options.rng is not None:
+        if options.rng:
             pdict["rng"] = list(options.rng)
-        if options.qmax is not None:
+        if options.qmax:
             pdict["qmax"] = options.qmax if options.qmax == "automatic" else float(options.qmax)
-        if options.nyquist is not None:
+        if options.nyquist:
             pdict["nyquist"] = options.nyquist
-        if options.supersample is not None:
+        if options.supersample:
             pdict["supersample"] = options.supersample
-        if options.scale is not None:
+        if options.scale:
             pdict["scale"] = options.scale
-        if options.modelevaluator is not None:
+        if options.modelevaluator:
             pdict["error_method"] = options.modelevaluator
 
         if options.liveplot:
@@ -532,15 +535,16 @@ def main():
         cov = None
         if options.performextraction:
             cov = ext.extract()
+            print(cov)
 
-        if options.savefile is not None:
+        if options.savefile:
             try:
                 ext.write(options.savefile)
             except SrMiseFileError as err:
                 print(err)
                 print("Could not save result to '%s'." % options.savefile)
 
-        if options.pwafile is not None:
+        if options.pwafile:
             try:
                 ext.writepwa(options.pwafile)
             except SrMiseFileError as err:
@@ -548,7 +552,7 @@ def main():
                 print("Could not save pwa summary to '%s'." % options.pwafile)
 
         print(ext)
-        if cov is not None:
+        if cov:
             print(cov)
 
         if options.plot:

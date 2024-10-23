@@ -45,6 +45,9 @@ template = "{tag}"
 dev_template = "{tag}"
 dirty_template = "{tag}"
 
+[project.scripts]
+srmise = "diffpy.srmise.applications.extract:main"
+
 [tool.setuptools.packages.find]
 where = ["src"]  # list of folders that contain the packages (["."] by default)
 include = ["*"]  # package names should match these glob patterns (["*"] by default)

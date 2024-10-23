@@ -504,7 +504,7 @@ def on_draw(event):
     invisiblelabel.set_visible(True)
     visiblelabel = labeldict[fig]
     bbox = invisiblelabel.get_window_extent(invisiblelabel._renderer)
-    bbox = bbox.inverse_transformed(ax_main.transAxes)
+    bbox = bbox.transformed(ax_main.transAxes.inverted())
     bbox = bbox.get_points()
     xpos = np.mean(np.transpose(bbox)[0])
 

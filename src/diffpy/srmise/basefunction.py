@@ -100,6 +100,7 @@ class BaseFunction(object):
             The class (not instance) which implements caching of BaseFunction
             evaluations.
         """
+
         self.parameterdict = parameterdict
         self.npars = len(self.parameterdict)
 
@@ -114,9 +115,13 @@ class BaseFunction(object):
             if not isinstance(p, str):
                 emsg = "Argument parameterdict's keys must be strings."
                 raise ValueError(emsg)
-        vals = self.parameterdict.values()
+
+        # Convert values to list and sort
+        vals = list(self.parameterdict.values())
         vals.sort()
-        if vals != range(self.npars):
+
+        # Check if the sorted values match the sequence from 0 to npars-1
+        if vals != list(range(self.npars)):
             emsg = (
                 "Argument parameterdict's values must uniquely specify "
                 + "the index of each parameter defined by its keys."
