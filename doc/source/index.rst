@@ -23,7 +23,7 @@ https://github.com/diffpy/diffpy.srmise/graphs/contributors.
 Installation
 ============
 
-See the `README <https://github.com/diffpy/diffpy.srmise/blob/main/README.rst>`_
+See the `README <https://github.com/diffpy/diffpy.srmise#installation>`_
 file included with the distribution.
 
 =================
