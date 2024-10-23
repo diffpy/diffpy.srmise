@@ -116,6 +116,18 @@ class BaseFunction(object):
                 emsg = "Argument parameterdict's keys must be strings."
                 raise ValueError(emsg)
 
+        # Convert values to list and sort
+        vals = list(self.parameterdict.values())
+        vals.sort()
+
+        # Check if the sorted values match the sequence from 0 to npars-1
+        if vals != list(range(self.npars)):
+            emsg = (
+                "Argument parameterdict's values must uniquely specify "
+                + "the index of each parameter defined by its keys."
+            )
+            raise ValueError(emsg)
+
         self.parformats = parformats
 
         # Check validity of default_formats
