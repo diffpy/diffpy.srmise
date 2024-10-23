@@ -12,4 +12,4 @@
 #
 ##############################################################################
 
-# __init__.py file for baselines module
+# __init__.py file for spplications module
