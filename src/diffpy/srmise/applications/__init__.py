@@ -12,4 +12,4 @@
 #
 ##############################################################################
 
-# __init__.py file for spplications module
+# __init__.py file for applications module
