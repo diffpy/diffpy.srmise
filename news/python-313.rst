@@ -1,7 +1,6 @@
 **Added:**
 
-* Python 3.13 support
-* requires-python = ">=3.11, <3.14" in pyproject.toml
+* Support for Python 3.13
 
 **Changed:**
 
@@ -13,7 +12,7 @@
 
 **Removed:**
 
-* Python 3.10 support
+* Support for Python 3.10
 
 **Fixed:**
 
