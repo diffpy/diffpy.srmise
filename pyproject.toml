@@ -15,7 +15,7 @@ maintainers = [
 description = "Peak extraction and peak fitting tool for atomic pair distribution functions."
 keywords = ['peak extraction fitting PDF AIC multimodeling']
 readme = "README.rst"
-requires-python = ">=3.10"
+requires-python = ">=3.11, <=3.13"
 classifiers = [
         'Development Status :: 3 - Alpha',
         'Environment :: Console',
