@@ -258,7 +258,7 @@ class PDFPeakExtraction(PeakExtraction):
         The effective error may be scaled if class member scale is True.
 
         The method for 'resampling' the uncertainties is interpolation, since insufficient
-        information exists in a PDFPeakExtraction object to propogate them correctly on the
+        information exists in a PDFPeakExtraction object to propagate them correctly on the
         new grid.
 
         Parameters
@@ -897,7 +897,7 @@ class PDFPeakExtraction(PeakExtraction):
         lines.append("## Extracted Peaks")
         lines.append("# Parameters are given in the natural units of the data,")
         lines.append("# where width is measured as full-width at half maximum.")
-        lines.append("# Each line is followd by a comment which gives the index")
+        lines.append("# Each line is followed by a comment which gives the index")
         lines.append("# of the corresponding Peak Function.")
         lines.append("#L position fwhm area")
         for p in self.extracted.model:

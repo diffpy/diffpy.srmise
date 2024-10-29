@@ -26,7 +26,7 @@ to those found in the Python logging package.
 'critical' -> 50
 
 Liveplotting plots the value of a model each time it is fit, showing results for
-before and after fitting.  User input is optionally required to procede after
+before and after fitting.  User input is optionally required to proceed after
 fitting.
 
 Functions

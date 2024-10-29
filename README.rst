@@ -152,7 +152,7 @@ trying to commit again.
 
 Improvements and fixes are always appreciated.
 
-Before contribuing, please read our `Code of Conduct <https://github.com/diffpy/diffpy.srmise/blob/main/CODE_OF_CONDUCT.rst>`_.
+Before contributing, please read our `Code of Conduct <https://github.com/diffpy/diffpy.srmise/blob/main/CODE_OF_CONDUCT.rst>`_.
 
 Contact
 -------

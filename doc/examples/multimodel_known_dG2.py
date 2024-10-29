@@ -114,7 +114,7 @@ def run(plot=True):
     # with respect to the actual experiment when using a Nyquist-sampled PDF
     # with experimentally determined uncertainties.
     #
-    # The present PDF satisifes these conditions, so the rankings below reflect
+    # The present PDF satisfies these conditions, so the rankings below reflect
     # an AIC-based estimate of which of the tested models the data best support.
     print("\n--------- Model Rankings for dG = %f ---------" % dG)
     print("Rank  Model  Class  Free         AIC   Prob  File")
