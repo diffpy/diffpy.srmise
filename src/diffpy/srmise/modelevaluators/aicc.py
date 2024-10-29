@@ -176,7 +176,7 @@ class AICc(ModelEvaluator):
         Parameters
         ----------
         aics : array-like
-            The squence of AIC instances
+            The sequence of AIC instances
 
         Returns
         -------
@@ -195,7 +195,7 @@ class AICc(ModelEvaluator):
         Parameters
         ----------
         aics : array-like
-            The squence of AIC instances
+            The sequence of AIC instances
 
         Returns
         -------

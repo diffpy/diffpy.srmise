@@ -442,7 +442,7 @@ class PeakExtraction(object):
             for s in res[1:]:
                 self.initial_peaks.append(Peak.factory(s, safepf))
 
-        #  Instantiating srmise metatdata
+        #  Instantiating srmise metadata
 
         # pf
         res = re.search(r"^pf=(.*)$", srmisemetadata, re.M)
@@ -1382,16 +1382,16 @@ if __name__ == "__main__":
     err = np.ones(len(r))
     evaluator = AICc()
 
-    te = PeakExtraction()
-    te.setdata(r, y, None, err)
-    te.setvars(rng=[1.51, 10.0], pf=[pf], cres=0.1, effective_dy=1.5 * err)
-    te.extract_single()
+    peak_extraction = PeakExtraction()
+    peak_extraction.setdata(r, y, None, err)
+    peak_extraction.setvars(rng=[1.51, 10.0], pf=[pf], cres=0.1, effective_dy=1.5 * err)
+    peak_extraction.extract_single()
 
     print("--- Actual Peak parameters ---")
     print(ideal_peaks)
 
     print("\n--- After extraction ---")
-    print(te)
+    print(peak_extraction)
 
-    te.plot()
+    peak_extraction.plot()
     input()

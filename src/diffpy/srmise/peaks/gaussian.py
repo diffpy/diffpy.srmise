@@ -135,7 +135,7 @@ class Gaussian(PeakFunction):
                 )
             guesspars[1] = 0.5 * (sigma_right + sigma_left) * self.sigma2fwhm
         else:
-            # Procede cautiously if min_y == max_y.  Without other information
+            # Proceed cautiously if min_y == max_y.  Without other information
             # we choose the center of the cluster as the peak center, and make
             # sure the peak has died down by the time it reaches the edge of
             # the data.
@@ -261,7 +261,7 @@ class Gaussian(PeakFunction):
         if free[2]:
             # derivative with respect to peak area
             # abs'(x)=sign(x) for real x except at 0 where it is undetermined.  Since any real peak necessarily has
-            # non-zero area and the function is paramaterized such that values of either sign represent equivalent
+            # non-zero area and the function is parameterized such that values of either sign represent equivalent
             # curves I arbitrarily choose positive sign for pars[2]==0 in order to
             # push the system back into a realistic parameter space should this improbable scenario occur.
             #   jacobian[2] = sign(pars[2])*exp_p

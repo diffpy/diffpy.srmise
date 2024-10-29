@@ -53,7 +53,7 @@ class ModelCovariance(object):
     """
 
     def __init__(self, *args, **kwds):
-        """Intialize object."""
+        """Initialize object."""
         self.cov = None  # The raw covariance matrix
         self.model = None  # ModelParts instance, so both peaks and baseline (if present)
 
@@ -430,7 +430,7 @@ class ModelCluster(object):
     """
 
     def __init__(self, model, *args, **kwds):
-        """Intialize explicitly, or from existing ModelCluster.
+        """Initialize explicitly, or from existing ModelCluster.
 
         Parameters
         ----------
@@ -978,7 +978,7 @@ class ModelCluster(object):
         # be estimating and fitting each possible peak type to the data
         # and seeing which works best, but for small clusters evaluating
         # model quality is generally unreliable, and most peak shapes will
-        # be approxiately equally good anyway.
+        # be approximately equally good anyway.
         if len(self.model) > 0:
             # throw some exception
             pass
@@ -1105,7 +1105,7 @@ class ModelCluster(object):
         # after a second peak could potentially explain its residual.
         #
         # This is a tricky point.  It is often the case while fitting that an
-        # intially good peak becomes less accurate due to greater overlap at
+        # initially good peak becomes less accurate due to greater overlap at
         # the edges of the cluster, even as its (calculated) quality improves.
         # This may make combining clusters later more difficult, and so test
         # if the degree by which the new fit is off could perhaps be adequately
@@ -1220,7 +1220,7 @@ class ModelCluster(object):
         -------
         ModelEvaluator or None
             Return ModelEvaluator instance if fit changed, otherwise None."""
-        # No reduction neccessary
+        # No reduction necessary
         if self.model.value(x) < y:
             logger.debug("reduce_to: No reduction necessary.")
             return None

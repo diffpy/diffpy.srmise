@@ -10,7 +10,7 @@
 # See LICENSE.txt for license information.
 #
 ##############################################################################
-"""Example of extracting multiple peaks and accessing results programatically.
+"""Example of extracting multiple peaks and accessing results programmatically.
 
 This example shows how to extract a range of peaks from a simple crystalline
 PDF using a crystalline baseline obtained from an existing trial.  It shows

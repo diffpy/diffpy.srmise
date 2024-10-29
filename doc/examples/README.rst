@@ -111,7 +111,7 @@ the copiously commented scripts helpful.
 * Peak extraction with initial peaks:
       extract_initial.py
 
-* Peak fitting with intial peaks:
+* Peak fitting with initial peaks:
       fit_initial.py
 
 * Querying SrMise results:
@@ -678,7 +678,7 @@ the baseline. The methods of greatest interest are as follows. ::
     # Get the correlation between two parameters
     cov.getcorrelation((i1,j1), (i2,j2))
 
-Suppose, for example, one wants to emperically estimate the number of silver
+Suppose, for example, one wants to empirically estimate the number of silver
 atoms contributing to each occupied coordination shell of the FCC structure,
 knowing that the coordination number (i.e. nearest neighbors) of an ideal FCC
 structure is exactly 12.  For a monoelemental material the intensity of a peak

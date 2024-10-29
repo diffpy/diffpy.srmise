@@ -51,7 +51,7 @@ ModelEvaluator=AIC
 ## Extracted Peaks
 # Parameters are given in the natural units of the data,
 # where width is measured as full-width at half maximum.
-# Each line is followd by a comment which gives the index
+# Each line is followed by a comment which gives the index
 # of the corresponding Peak Function.
 #L position fwhm area
 11.2506286561 0.370187490596 34.3566941925 # 2
