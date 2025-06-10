@@ -2,7 +2,6 @@ from copy import copy
 
 import numpy as np
 import pytest
-
 from diffpy.srmise.dataclusters import DataClusters
 
 

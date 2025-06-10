@@ -28,7 +28,6 @@ at the command line.
 
 import matplotlib.pyplot as plt
 import numpy as np
-
 from diffpy.srmise.modelcluster import ModelCovariance
 from diffpy.srmise.pdfpeakextraction import PDFPeakExtraction
 

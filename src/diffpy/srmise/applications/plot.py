@@ -19,11 +19,10 @@ import sys
 import matplotlib.pyplot as plt
 import mpl_toolkits.axisartist as AA
 import numpy as np
-from matplotlib.ticker import MultipleLocator
-from mpl_toolkits.axes_grid1.inset_locator import inset_axes
-
 from diffpy.srmise.pdfpeakextraction import PDFPeakExtraction, resample
 from diffpy.srmise.peakstability import PeakStability
+from matplotlib.ticker import MultipleLocator
+from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 
 # For a given figure, returns a label of interest
 labeldict = {}

@@ -16,7 +16,6 @@ import logging
 
 import numpy as np
 import scipy.interpolate as spi
-
 from diffpy.srmise.baselines.base import BaselineFunction
 
 logger = logging.getLogger("diffpy.srmise")

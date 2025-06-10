@@ -34,9 +34,8 @@ The standard reference of AIC-based multimodel selection is
     New York, NY: Springer. doi:10.1007/b97636
 """
 
-import numpy as np
-
 import diffpy.srmise.srmiselog as sml
+import numpy as np
 from diffpy.srmise.multimodelselection import MultimodelSelection
 from diffpy.srmise.pdfpeakextraction import PDFPeakExtraction
 

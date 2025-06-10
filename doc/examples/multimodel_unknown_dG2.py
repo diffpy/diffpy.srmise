@@ -38,10 +38,9 @@ The standard reference of AIC-based multimodel selection is
 [2] Burnham and Anderson. (2002). Model Selection and Multimodel Inference.
     New York, NY: Springer. doi:10.1007/b97636
 """
+import diffpy.srmise.srmiselog as sml
 import matplotlib.pyplot as plt
 import numpy as np
-
-import diffpy.srmise.srmiselog as sml
 from diffpy.srmise.applications.plot import makeplot
 from diffpy.srmise.multimodelselection import MultimodelSelection
 

@@ -24,14 +24,13 @@ from importlib.metadata import version
 
 import matplotlib.pyplot as plt
 import numpy as np
+from diffpy.srmise import srmiselog
+from diffpy.srmise.srmiseerrors import SrMiseFitError, SrMiseStaticOwnerError, SrMiseUndefinedCovarianceError
 
 # Output of scipy.optimize.leastsq for a single parameter changed in scipy 0.8.0
 # Before it returned a scalar, later it returned an array of length 1.
 from packaging.version import parse
 from scipy.optimize import leastsq
-
-from diffpy.srmise import srmiselog
-from diffpy.srmise.srmiseerrors import SrMiseFitError, SrMiseStaticOwnerError, SrMiseUndefinedCovarianceError
 
 logger = logging.getLogger("diffpy.srmise")
 __spv__ = version("scipy")

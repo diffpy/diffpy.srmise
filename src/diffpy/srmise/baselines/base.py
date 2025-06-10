@@ -15,7 +15,6 @@
 import logging
 
 import numpy as np
-
 from diffpy.srmise.basefunction import BaseFunction
 from diffpy.srmise.modelparts import ModelPart
 from diffpy.srmise.srmiseerrors import SrMiseDataFormatError
@@ -191,11 +190,10 @@ class Baseline(ModelPart):
 # simple test code
 if __name__ == "__main__":
 
-    from numpy.random import randn
-
     from diffpy.srmise.modelevaluators.aicc import AICc
     from diffpy.srmise.peaks.base import Peaks
     from diffpy.srmise.peaks.gaussianoverr import GaussianOverR
+    from numpy.random import randn
 
     res = 0.01
     r = np.arange(2, 4, res)

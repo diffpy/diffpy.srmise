@@ -24,7 +24,6 @@ import re
 import sys
 
 import numpy as np
-
 from diffpy.srmise import srmiselog
 from diffpy.srmise.baselines.base import Baseline
 from diffpy.srmise.modelparts import ModelParts
@@ -1599,10 +1598,9 @@ class ModelCluster(object):
 
 # simple test code
 if __name__ == "__main__":
-    from numpy.random import randn
-
     from diffpy.srmise.modelevaluators.aicc import AICc
     from diffpy.srmise.peaks.gaussianoverr import GaussianOverR
+    from numpy.random import randn
 
     pf = GaussianOverR(0.7)
     res = 0.01

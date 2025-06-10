@@ -20,7 +20,6 @@ ripples, or otherwise do anything beyond chi-square fitting using the specified
 grid."""
 
 import matplotlib.pyplot as plt
-
 from diffpy.srmise.applications.plot import makeplot
 from diffpy.srmise.baselines.fromsequence import FromSequence
 from diffpy.srmise.pdfpeakextraction import PDFPeakExtraction

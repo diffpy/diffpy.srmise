@@ -19,7 +19,6 @@ import sys
 
 import matplotlib.pyplot as plt
 import numpy as np
-
 from diffpy.srmise import srmiselog
 from diffpy.srmise.baselines.base import Baseline
 from diffpy.srmise.dataclusters import DataClusters
@@ -1362,10 +1361,9 @@ class PeakExtraction(object):
 # simple test code
 if __name__ == "__main__":
 
-    from numpy.random import randn
-
     from diffpy.srmise.modelevaluators.aicc import AICc
     from diffpy.srmise.peaks.gaussianoverr import GaussianOverR
+    from numpy.random import randn
 
     srmiselog.setlevel("info")
     srmiselog.liveplotting(False)

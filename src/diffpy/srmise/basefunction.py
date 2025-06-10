@@ -18,7 +18,6 @@ import re
 import sys
 
 import numpy as np
-
 from diffpy.srmise.srmiseerrors import SrMiseDataFormatError
 
 logger = logging.getLogger("diffpy.srmise")

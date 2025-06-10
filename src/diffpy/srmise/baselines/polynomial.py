@@ -15,7 +15,6 @@
 import logging
 
 import numpy as np
-
 from diffpy.srmise.baselines.base import BaselineFunction
 from diffpy.srmise.srmiseerrors import SrMiseEstimationError
 

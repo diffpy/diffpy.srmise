@@ -15,7 +15,6 @@
 import logging
 
 import numpy as np
-
 from diffpy.srmise.basefunction import BaseFunction
 from diffpy.srmise.modelparts import ModelPart, ModelParts
 from diffpy.srmise.srmiseerrors import SrMiseDataFormatError, SrMiseScalingError
@@ -295,11 +294,10 @@ class Peak(ModelPart):
 if __name__ == "__main__":
 
     import matplotlib.pyplot as plt
-    from numpy.random import randn
-
     from diffpy.srmise.modelcluster import ModelCluster
     from diffpy.srmise.modelevaluators.aicc import AICc
     from diffpy.srmise.peaks.gaussianoverr import GaussianOverR
+    from numpy.random import randn
 
     res = 0.01
     r = np.arange(2, 4, res)

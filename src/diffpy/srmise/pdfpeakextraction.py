@@ -17,7 +17,6 @@ import os.path
 import re
 
 import numpy as np
-
 from diffpy.srmise import srmiselog
 from diffpy.srmise.modelcluster import ModelCluster, ModelCovariance
 

@@ -15,7 +15,6 @@
 import logging
 
 import numpy as np
-
 from diffpy.srmise.modelevaluators.base import ModelEvaluator
 from diffpy.srmise.srmiseerrors import SrMiseModelEvaluatorError
 

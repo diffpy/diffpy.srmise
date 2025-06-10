@@ -15,7 +15,6 @@
 import logging
 
 import numpy as np
-
 from diffpy.srmise.peaks.base import PeakFunction
 from diffpy.srmise.srmiseerrors import SrMiseEstimationError, SrMiseScalingError, SrMiseTransformationError
 
@@ -482,11 +481,10 @@ class GaussianOverR(PeakFunction):
 if __name__ == "__main__":
 
     import matplotlib.pyplot as plt
-    from numpy.random import randn
-
     from diffpy.srmise.modelcluster import ModelCluster
     from diffpy.srmise.modelevaluators.aicc import AICc
     from diffpy.srmise.peaks.base import Peaks
+    from numpy.random import randn
 
     res = 0.01
     r = np.arange(2, 4, res)

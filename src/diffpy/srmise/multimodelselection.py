@@ -16,10 +16,9 @@ import logging
 
 import matplotlib.pyplot as plt
 import numpy as np
-from matplotlib import transforms
-
 from diffpy.srmise.modelcluster import ModelCluster
 from diffpy.srmise.peakstability import PeakStability
+from matplotlib import transforms
 
 logger = logging.getLogger("diffpy.srmise")
 
