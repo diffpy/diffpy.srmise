@@ -13,20 +13,20 @@
 ##############################################################################
 """Defines all custom exceptions used by diffpy.srmise.
 
-   Classes
-   -------
-   SrMiseError: Subclass of Exception, and superclass of all diffpy.srmise exceptions.
-   SrMiseDataFormatError: Error in format of diffpy.srmise data.
-   SrMiseEstimationError: Parameter estimation error.
-   SrMiseFileError: Error while reading/writing files.
-   SrMiseFitError: Error while fitting.
-   SrMiseLogError: Error while logging.
-   SrMiseModelEvaluatorError: Error while computing or comparing model quality.
-   SrMisePDFKeyError: Error in key referencing component of PDF dataset.
-   SrMiseQmaxError: Error in value of Qmax.
-   SrMiseScalingError: Error while scaling a peak function.
-   SrMiseStaticOwnerError: Error when changing ModelPart instance owner.
-   """
+Classes
+-------
+SrMiseError: Subclass of Exception, and superclass of all diffpy.srmise exceptions.
+SrMiseDataFormatError: Error in format of diffpy.srmise data.
+SrMiseEstimationError: Parameter estimation error.
+SrMiseFileError: Error while reading/writing files.
+SrMiseFitError: Error while fitting.
+SrMiseLogError: Error while logging.
+SrMiseModelEvaluatorError: Error while computing or comparing model quality.
+SrMisePDFKeyError: Error in key referencing component of PDF dataset.
+SrMiseQmaxError: Error in value of Qmax.
+SrMiseScalingError: Error while scaling a peak function.
+SrMiseStaticOwnerError: Error when changing ModelPart instance owner.
+"""
 
 
 # Superclass class for diffpy.srmise.mise

@@ -16,8 +16,7 @@
 ##############################################################################
 
 
-"""class PDFDataSet for experimental PDF data.
-"""
+"""class PDFDataSet for experimental PDF data."""
 
 
 import os.path
