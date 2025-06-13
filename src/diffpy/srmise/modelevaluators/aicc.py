@@ -45,13 +45,13 @@ class AICc(ModelEvaluator):
     """
 
     def __init__(self):
-        """ """
+        """"""
         ModelEvaluator.__init__(self, "AICc", False)
         return
 
     def evaluate(self, fit, count_fixed=False, kshift=0):
-        """Return quality of fit for given ModelCluster using AICc (Akaike's Information Criterion
-        with 2nd order correction for small sample size).
+        """Return quality of fit for given ModelCluster using AICc (Akaike's Information Criterion with 2nd order
+        correction for small sample size).
 
         Parameters
         fit: A ModelCluster
@@ -65,7 +65,8 @@ class AICc(ModelEvaluator):
         Returns
         -------
         float
-            Quality of AICc"""
+            Quality of AICc
+        """
         # Number of parameters.  By default, fixed parameters are ignored.
         k = fit.model.npars(count_fixed=count_fixed) + kshift
         if k < 0:
@@ -171,7 +172,7 @@ class AICc(ModelEvaluator):
 
     @staticmethod
     def akaikeweights(aics):
-        """Return sequence of Akaike weights for sequence of AICs
+        """Return sequence of Akaike weights for sequence of AICs.
 
         Parameters
         ----------
@@ -190,7 +191,7 @@ class AICc(ModelEvaluator):
 
     @staticmethod
     def akaikeprobs(aics):
-        """Return sequence of Akaike probabilities for sequence of AICs
+        """Return sequence of Akaike probabilities for sequence of AICs.
 
         Parameters
         ----------
@@ -200,7 +201,8 @@ class AICc(ModelEvaluator):
         Returns
         -------
         array-like
-            The sequence of Akaike probabilities"""
+            The sequence of Akaike probabilities
+        """
         aic_weights = AICc.akaikeweights(aics)
         return aic_weights / np.sum(aic_weights)
 

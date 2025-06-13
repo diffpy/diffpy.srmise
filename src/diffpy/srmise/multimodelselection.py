@@ -36,7 +36,7 @@ class MultimodelSelection(PeakStability):
     """Quick and dirty multimodel selection using AIC and its offspring."""
 
     def __init__(self):
-        """ """
+        """"""
         self.dgs = np.array([])
         self.dgs_idx = {}
 
@@ -203,7 +203,8 @@ class MultimodelSelection(PeakStability):
         duration : float
             Minimum time in seconds to complete animation. Default is 0.
 
-        Keywords passed to pyplot.plot()"""
+        Keywords passed to pyplot.plot()
+        """
         if duration > 0:
             import time
 
@@ -248,7 +249,8 @@ class MultimodelSelection(PeakStability):
         duration : float
             Minimum time in seconds to complete animation. Default is 0.
 
-        Keywords passed to pyplot.plot()"""
+        Keywords passed to pyplot.plot()
+        """
         if duration > 0:
             import time
 
@@ -461,7 +463,8 @@ class MultimodelSelection(PeakStability):
         Returns
         -------
         float
-            The dg value usable as a key nearest to dg_in."""
+            The dg value usable as a key nearest to dg_in.
+        """
         idx = (np.abs(self.dgs - dg_in)).argmin()
         return self.dgs[idx]
 
@@ -476,7 +479,8 @@ class MultimodelSelection(PeakStability):
         Returns
         -------
         array-like
-            The best classes for all models."""
+            The best classes for all models.
+        """
         if dgs is None:
             dgs = self.dgs
         best = []
@@ -518,7 +522,8 @@ class MultimodelSelection(PeakStability):
         Returns
         -------
         array-like
-            Sequence of best uncertainties for the models."""
+            Sequence of best uncertainties for the models.
+        """
         if dgs is None:
             dgs = self.dgs
         bestdgs = []
@@ -587,7 +592,8 @@ class MultimodelSelection(PeakStability):
         "fig" - The figure
         "axis" - The image axis
         "cbaxis" - The colorbar axis, if it exists.
-        "cb" - The colorbar, if it exists."""
+        "cb" - The colorbar, if it exists.
+        """
 
         from matplotlib import cm, colorbar, colors
         from matplotlib.collections import PolyCollection
@@ -911,8 +917,8 @@ class MultimodelSelection(PeakStability):
         return self.dgs[prob_idx]
 
     def maxprobdG_bymodel(self, model):
-        """Return the post-hoc dG for which the given model's Akaike probability is maximized.
-        Classes are not considered.
+        """Return the post-hoc dG for which the given model's Akaike probability is maximized. Classes are not
+        considered.
 
         Parameters
         ----------
@@ -941,14 +947,14 @@ class MultimodelSelection(PeakStability):
         Returns
         -------
         float
-            The model mapped by class which maximizes probability at given dG."""
+            The model mapped by class which maximizes probability at given dG.
+        """
         cls = self.sortedclassprobs[dG][-1]
         m = self.sortedclasses[dG][cls][-1]
         return m
 
     def maxprobmodel_bymodel(self, dG):
-        """Return the model which maximizes probability at given dG.
-        Classes are not considered.
+        """Return the model which maximizes probability at given dG. Classes are not considered.
 
         Parameters
         ----------
@@ -958,6 +964,7 @@ class MultimodelSelection(PeakStability):
         Returns
         -------
         model : array-like
-            The model which maximizes probability at given dG."""
+            The model which maximizes probability at given dG.
+        """
         # Note that if there are identical models this returns the one of greatest dg.
         return self.sortedprobs[dG][-1]

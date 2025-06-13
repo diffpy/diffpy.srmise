@@ -44,8 +44,8 @@ class GaussianOverR(PeakFunction):
     # which the function is considered 0. By default this distance is
     # equivalent to 3 standard deviations.
     def __init__(self, maxwidth, Cache=None):
-        """maxwidth defined as full width at half maximum for the
-        corresponding Gaussian, which is physically relevant."""
+        """Maxwidth defined as full width at half maximum for the corresponding Gaussian, which is physically
+        relevant."""
         parameterdict = {"position": 0, "width": 1, "area": 2}
         formats = ["internal", "pwa", "mu_sigma_area"]
         default_formats = {"default_input": "internal", "default_output": "pwa"}
@@ -221,8 +221,7 @@ class GaussianOverR(PeakFunction):
         return tpars
 
     def _jacobianraw(self, pars, r, free):
-        """
-        Compute the Jacobian of a width-limited Gaussian/r function.
+        """Compute the Jacobian of a width-limited Gaussian/r function.
 
         This method calculates the partial derivatives of a Gaussian/r function
         with respect to its parameters, considering a limiting width. The Gaussian/r's
@@ -456,7 +455,8 @@ class GaussianOverR(PeakFunction):
         Returns
         -------
         array-like
-            The sequence of position and height of the peak maximum."""
+            The sequence of position and height of the peak maximum.
+        """
         # TODO: Reconsider this behavior
         if len(pars) == 0:
             return None

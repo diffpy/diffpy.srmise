@@ -44,8 +44,8 @@ class Gaussian(PeakFunction):
     # which the function is considered 0. By default this distance is
     # equivalent to 3 standard deviations.
     def __init__(self, maxwidth, Cache=None):
-        """maxwidth defined as full width at half maximum for the
-        corresponding Gaussian, which is physically relevant."""
+        """Maxwidth defined as full width at half maximum for the corresponding Gaussian, which is physically
+        relevant."""
         parameterdict = {"position": 0, "width": 1, "area": 2}
         formats = ["internal", "pwa", "mu_sigma_area"]
         default_formats = {"default_input": "internal", "default_output": "pwa"}
@@ -172,7 +172,8 @@ class Gaussian(PeakFunction):
         Returns
         -------
         tuple
-            mu, area, and sigma that are scaled."""
+            mu, area, and sigma that are scaled.
+        """
         if scale <= 0:
             emsg = "".join(["Cannot scale by ", str(scale), "."])
             raise SrMiseScalingError(emsg)
@@ -383,6 +384,7 @@ class Gaussian(PeakFunction):
 
     def max(self, pars):
         """Return position and height of the peak maximum.
+
         Parameters
         ----------
         pars : array_like
@@ -391,7 +393,8 @@ class Gaussian(PeakFunction):
         Returns
         -------
         array_like
-            The position and height of the peak maximum."""
+            The position and height of the peak maximum.
+        """
         # TODO: Reconsider this behavior
         if len(pars) == 0:
             return None

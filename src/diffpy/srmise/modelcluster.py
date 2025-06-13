@@ -262,8 +262,8 @@ class ModelCovariance(object):
     def getvalue(self, i):
         """Return value of parameter i.
 
-        The variable may be specified as an integer, or as a two-component tuple of integers (l, m)
-        which indicate the mth parameter of modelpart l.
+        The variable may be specified as an integer, or as a two-component tuple of integers (l, m) which indicate
+        the mth parameter of modelpart l.
         """
         (l, m) = i if i in self.pmap else self.ipmap[i]
         return self.model[l][m]
@@ -426,7 +426,6 @@ class ModelCluster(object):
     value: Return value of the model plus baseline
     valuebl: Return value of the baseline
     writestr: Return string representation of self.
-
     """
 
     def __init__(self, model, *args, **kwds):
@@ -501,7 +500,8 @@ class ModelCluster(object):
     def copy(self):
         """Return copy of this ModelCluster.
 
-        Equivalent to ModelCluster(self)"""
+        Equivalent to ModelCluster(self)
+        """
         return ModelCluster(self)
 
     def addexternalpeaks(self, peaks):
@@ -1149,7 +1149,10 @@ class ModelCluster(object):
         return None
 
     def cleanfit(self):
-        """Remove poor-quality peaks in the fit.  Return number removed."""
+        """Remove poor-quality peaks in the fit.
+
+        Return number removed.
+        """
         # Find peaks located outside the cluster
         pos = np.array([p["position"] for p in self.model])
         left_idx = pos.searchsorted(self.r_cluster[0])
@@ -1219,7 +1222,8 @@ class ModelCluster(object):
         Returns
         -------
         ModelEvaluator or None
-            Return ModelEvaluator instance if fit changed, otherwise None."""
+            Return ModelEvaluator instance if fit changed, otherwise None.
+        """
         # No reduction necessary
         if self.model.value(x) < y:
             logger.debug("reduce_to: No reduction necessary.")
@@ -1427,14 +1431,12 @@ class ModelCluster(object):
     def prune(self):
         """Remove peaks until model quality no longer improves.
 
-        Peaks are removed in a greedy fashion, and the best possible model is
-        by no means guaranteed.
+        Peaks are removed in a greedy fashion, and the best possible model is by no means guaranteed.
 
-        Due to the somewhat exploratory nature of prune many non-convergent
-        fits will generally be performed, but it severely restricts the number
-        of function evaluations permitted during fitting, and so fits that do
-        not converge rapidly are abandoned.  Nevertheless, occasionally this
-        method will take an unusually long time to complete.
+        Due to the somewhat exploratory nature of prune many non-convergent fits will generally be performed, but
+        it severely restricts the number of function evaluations permitted during fitting, and so fits that do not
+        converge rapidly are abandoned.  Nevertheless, occasionally this method will take an unusually long time to
+        complete.
         """
         if len(self.model) == 0:
             return

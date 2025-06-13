@@ -14,10 +14,7 @@
 # LICENSE_PDFgui.txt for the full PDFgui license.
 #
 ##############################################################################
-
-
-"""class PDFDataSet for experimental PDF data.
-"""
+"""Class PDFDataSet for experimental PDF data."""
 
 
 import os.path
@@ -32,7 +29,7 @@ class PDFComponent(object):
     """Common base class."""
 
     def __init__(self, name):
-        """initialize the object
+        """Initialize the object.
 
         Parameter
         ---------
@@ -42,7 +39,7 @@ class PDFComponent(object):
         self.name = name
 
     def close(self, force=False):
-        """close myself
+        """Close myself.
 
         Parameter
         ---------
@@ -122,9 +119,10 @@ class PDFDataSet(PDFComponent):
         return
 
     def clear(self):
-        """reset all data members to initial empty values
+        """Reset all data members to initial empty values.
 
-        The purpose of this method is to set the PDF dataset to initial empty values."""
+        The purpose of this method is to set the PDF dataset to initial empty values.
+        """
         self.robs = []
         self.Gobs = []
         self.drobs = []
@@ -143,8 +141,8 @@ class PDFDataSet(PDFComponent):
         return
 
     def setvar(self, var, value):
-        """Assign a data member using PdfFit-style variable notation.
-        This method is typically utilized by the `applyParameters()` function.
+        """Assign a data member using PdfFit-style variable notation. This method is typically utilized by the
+        `applyParameters()` function.
 
         Parameters
         ----------
@@ -169,8 +167,7 @@ class PDFDataSet(PDFComponent):
         return
 
     def getvar(self, var):
-        """Obtain value corresponding to PdfFit dataset variable.
-        Used by findParameters().
+        """Obtain value corresponding to PdfFit dataset variable. Used by findParameters().
 
         Parameters
         ----------
@@ -192,7 +189,7 @@ class PDFDataSet(PDFComponent):
         return value
 
     def read(self, filename):
-        """load data from PDFGetX2 or PDFGetN gr file
+        """Load data from PDFGetX2 or PDFGetN gr file.
 
         filename : str
             file to read from
@@ -217,7 +214,7 @@ class PDFDataSet(PDFComponent):
         return self
 
     def readStr(self, datastring):
-        """read experimental PDF data from a string
+        """Read experimental PDF data from a string.
 
         Parameter
         ---------
@@ -364,7 +361,6 @@ class PDFDataSet(PDFComponent):
     def writeStr(self):
         """String representation of experimental PDF data.
 
-
         Returns
         -------
         str
@@ -411,7 +407,7 @@ class PDFDataSet(PDFComponent):
         return datastring
 
     def copy(self, other=None):
-        """copy self to other. if other is None, create new instance
+        """Copy self to other. if other is None, create new instance.
 
         Parameters
         ----------

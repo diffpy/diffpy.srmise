@@ -29,7 +29,8 @@ class PeakStability:
     """Utility to test robustness of peaks.
 
     results: [error scalar, model, bl, dr]
-    ppe: a PDFPeakExtraction instance"""
+    ppe: a PDFPeakExtraction instance
+    """
 
     def __init__(self):
         self.results = []
@@ -106,7 +107,10 @@ class PeakStability:
         plt.draw()
 
     def plot(self, **kwds):
-        """Plot the current model.  Keywords passed to pyplot.plot()"""
+        """Plot the current model.
+
+        Keywords passed to pyplot.plot()
+        """
         plt.clf()
         plt.plot(*self.ppe.extracted.plottable(), **kwds)
         q = self.ppe.extracted.quality()
@@ -187,7 +191,8 @@ class PeakStability:
             The sequence of uncertainties to run at.
         savecovs : bool
             boolean to determine to save covariance matrix. Default is False.
-            If savecovs is True, return the covariance matrix for each final fit."""
+            If savecovs is True, return the covariance matrix for each final fit.
+        """
 
         self.results = []
         covs = []

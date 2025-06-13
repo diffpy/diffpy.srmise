@@ -76,7 +76,7 @@ class BaseFunction(object):
         base=None,
         Cache=None,
     ):
-        """Set parameterdict defined by subclass
+        """Set parameterdict defined by subclass.
 
         Parameters
         ----------
@@ -159,32 +159,50 @@ class BaseFunction(object):
     # "Virtual" class methods ####
 
     def actualize(self, *args, **kwds):
-        """Create ModelPart instance of self with given parameters.  ("Virtual" method)"""
+        """Create ModelPart instance of self with given parameters.
+
+        ("Virtual" method)
+        """
         emsg = "actualize() must be implemented in a BaseFunction subclass."
         raise NotImplementedError(emsg)
 
     def estimate_parameters(self, *args, **kwds):
-        """Estimate BaseFunction parameters from supplied data. ("Virtual" method)"""
+        """Estimate BaseFunction parameters from supplied data.
+
+        ("Virtual" method)
+        """
         emsg = "estimate_parameters() must be implemented in a BaseFunction subclass."
         raise NotImplementedError(emsg)
 
     def _jacobianraw(self, *args, **kwds):
-        """Calculate the jacobian. ("Virtual" method)"""
+        """Calculate the jacobian.
+
+        ("Virtual" method)
+        """
         emsg = "_jacobianraw() must be implemented in a BaseFunction subclass."
         raise NotImplementedError(emsg)
 
     def _transform_derivativesraw(self, *args, **kwds):
-        """Convert BaseFunction parameters to another form. ("Virtual" method)"""
+        """Convert BaseFunction parameters to another form.
+
+        ("Virtual" method)
+        """
         emsg = "transform_parameters() must be implemented in a BaseFunction subclass."
         raise NotImplementedError(emsg)
 
     def _transform_parametersraw(self, *args, **kwds):
-        """Convert BaseFunction parameters to another form. ("Virtual" method)"""
+        """Convert BaseFunction parameters to another form.
+
+        ("Virtual" method)
+        """
         emsg = "transform_parameters() must be implemented in a BaseFunction subclass."
         raise NotImplementedError(emsg)
 
     def _valueraw(self, *args, **kwds):
-        """Calculate value of function. ("Virtual" method)"""
+        """Calculate value of function.
+
+        ("Virtual" method)
+        """
         emsg = "_valueraw must() be implemented in a BaseFunction subclass."
         raise NotImplementedError(emsg)
 
@@ -373,7 +391,7 @@ class BaseFunction(object):
         return
 
     def getmodule(self):
-        """Return 'diffpy.srmise.basefunction'"""
+        """Return 'diffpy.srmise.basefunction'."""
         return "diffpy.srmise.basefunction"
 
     def writestr(self, baselist):
@@ -480,7 +498,8 @@ class BaseFunction(object):
         is guaranteed to be safe for saving/reinstantiating peak functions.
 
         Parameters
-        fs: List of BaseFunction instances."""
+        fs: List of BaseFunction instances.
+        """
         fsafe = []
         for f in fs:
             BaseFunction.safefunction(f, fsafe)

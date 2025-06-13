@@ -26,17 +26,12 @@ logger = logging.getLogger("diffpy.srmise")
 class Arbitrary(BaselineFunction):
     """Methods for evaluating a baseline from an arbitrary function.
 
-    Supports baseline calculations with arbitrary functions.  These functions,
-    if implemented, must have the following signatures and return values:
-    valuef(pars, x) ==> numpy.array of length x if x is a sequence
-                  ==> number if x is a number
-    jacobianf(pars, x, free) ==> list, each element a numpy.array of length x if
-                                x is a sequence or None if value of free for
-                                that parameter is False.
-                            ==> list, each element a number if x is a number
-                                or None if value of free for that parameter is
-                                False
-    estimatef(x, y) ==> numpy.array of length npars
+    Supports baseline calculations with arbitrary functions.  These functions, if implemented, must have the
+    following signatures and return values: valuef(pars, x) ==> numpy.array of length x if x is a sequence
+    ==> number if x is a number jacobianf(pars, x, free) ==> list, each element a numpy.array of length x if
+    x is a sequence or None if value of free for                             that parameter is False.
+    ==> list, each element a number if x is a number                             or None if value of free for that
+    parameter is                             False estimatef(x, y) ==> numpy.array of length npars
     """
 
     def __init__(self, npars, valuef, jacobianf=None, estimatef=None, Cache=None):
@@ -117,7 +112,8 @@ class Arbitrary(BaselineFunction):
         The numpy array of parameters in the default internal format.
 
         we raise NotImplementedError if no estimation routine is defined, and
-        SrMiseEstimationError if parameters cannot be estimated for any other."""
+        SrMiseEstimationError if parameters cannot be estimated for any other.
+        """
         if self.estimatef is None:
             emsg = "No estimation routine provided to Arbitrary."
             raise NotImplementedError(emsg)

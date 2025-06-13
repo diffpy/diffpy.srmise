@@ -70,7 +70,8 @@ class PeakExtraction(object):
 
         Parameters
         newvars : array-like
-            Sequence of strings that represent additional extraction parameters."""
+            Sequence of strings that represent additional extraction parameters.
+        """
         self.clear()
         self.extractvars = dict.fromkeys(
             (
@@ -94,7 +95,8 @@ class PeakExtraction(object):
     def clear(self):
         """Clear all members.
 
-        The purpose of the method is to ensure the object is in initialized state."""
+        The purpose of the method is to ensure the object is in initialized state.
+        """
         self.x = None
         self.y = None
         self.dx = None
@@ -299,7 +301,7 @@ class PeakExtraction(object):
             plt.plot(*mcluster.plottable(kwds))
 
     def read(self, filename):
-        """load PeakExtraction object from file
+        """Load PeakExtraction object from file.
 
         Parameters
         ----------
@@ -808,7 +810,8 @@ class PeakExtraction(object):
         specified by error_method.
 
         Parameters
-        recursion_depth: (1) Tracks recursion with extract_single."""
+        recursion_depth: (1) Tracks recursion with extract_single.
+        """
         self.clearcalc()
         tracer = srmiselog.tracer
         tracer.pushc()
@@ -1319,8 +1322,10 @@ class PeakExtraction(object):
             return cov
 
     def fit_single(self):
-        """Fit peaks in initial_peaks with baseline. Return ModelCovariance
-        instance summarizing results."""
+        """Fit peaks in initial_peaks with baseline.
+
+        Return ModelCovariance instance summarizing results.
+        """
 
         self.clearcalc()
 

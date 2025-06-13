@@ -53,7 +53,7 @@ class DataClusters:
     """
 
     def __init__(self, x, y, res):
-        """Constructor
+        """Constructor.
 
         Parameters
         ----------
@@ -102,8 +102,7 @@ class DataClusters:
         )
 
     def _clear(self):
-        """
-        Clear all data and reset the cluster object to a transient initial state.
+        """Clear all data and reset the cluster object to a transient initial state.
 
         The purpose of this method is to provide a clean state before creating new clustering operations.
         The object is updated in-place and no new instance is returned.
@@ -175,8 +174,8 @@ class DataClusters:
     def __next__(self):
         """Cluster point with largest y-coordinate left, returning self.
 
-        next() always adds at least one additional point to the existing
-        cluster, or raises an exception if all points have been clustered.
+        next() always adds at least one additional point to the existing cluster, or raises an exception if all
+        points have been clustered.
         """
         if self.status == self.INIT:
             raise Exception("Cannot cluster next point while status is INIT.")
@@ -465,7 +464,10 @@ class DataClusters:
         return
 
     def animate(self):
-        """Animate clustering.  Restores state when complete."""
+        """Animate clustering.
+
+        Restores state when complete.
+        """
         clusters = self.clusters
         current_idx = self.current_idx
         lastcluster_idx = self.lastcluster_idx

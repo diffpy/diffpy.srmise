@@ -71,7 +71,7 @@ class BaselineFunction(BaseFunction):
         base=None,
         Cache=None,
     ):
-        """Set parameterdict defined by subclass
+        """Set parameterdict defined by subclass.
 
         parameterdict : dict
             The dictionary mapping string keys to their index in a
@@ -91,7 +91,8 @@ class BaselineFunction(BaseFunction):
             additional functionality.
         Cache : class
             The class (not instance) which implements caching of BaseFunction
-            evaluations."""
+            evaluations.
+        """
         BaseFunction.__init__(self, parameterdict, parformats, default_formats, metadict, base, Cache)
 
     # "Virtual" class methods ####

@@ -267,7 +267,7 @@ class NanoSpherical(BaselineFunction):
         return -s * r * (1 - (3.0 / 4.0) * rdivR + (1.0 / 16.0) * rdivR**3)
 
     def _getdomain(self, pars, r):
-        """Return slice object for which r > 0 and r < twice the radius
+        """Return slice object for which r > 0 and r < twice the radius.
 
         Parameters
         ----------

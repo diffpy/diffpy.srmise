@@ -70,7 +70,7 @@ class PeakFunction(BaseFunction):
         base=None,
         Cache=None,
     ):
-        """Set parameterdict defined by subclass
+        """Set parameterdict defined by subclass.
 
         parameterdict: A dictionary mapping string keys to their index in a
                        sequence of parameters for this PeakFunction subclass.
@@ -85,7 +85,8 @@ class PeakFunction(BaseFunction):
         base: A basefunction subclass instance which this one decorates with
               additional functionality.
         Cache: A class (not instance) which implements caching of BaseFunction
-               evaluations."""
+               evaluations.
+        """
         if "position" not in parameterdict:
             emsg = "Argument parameterdict missing required key 'position'."
             raise ValueError(emsg)

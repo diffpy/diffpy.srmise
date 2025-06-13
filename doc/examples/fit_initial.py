@@ -12,12 +12,11 @@
 ##############################################################################
 """Example of peak fitting C60 PDF (unnormalized) with unreliable uncertainties.
 
-Peak fitting in SrMise means fitting a model of initial peaks, which may be
-specified manually or estimated with a clustering-based convenience function,
-just as with specifying initial peaks for peak extraction.  Unlike peak
-extraction, it does not attempt to add or remove peaks, apply termination
-ripples, or otherwise do anything beyond chi-square fitting using the specified
-grid."""
+Peak fitting in SrMise means fitting a model of initial peaks, which may be specified manually or estimated with a
+clustering-based convenience function, just as with specifying initial peaks for peak extraction.  Unlike peak
+extraction, it does not attempt to add or remove peaks, apply termination ripples, or otherwise do anything beyond
+chi-square fitting using the specified grid.
+"""
 
 import matplotlib.pyplot as plt
 

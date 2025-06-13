@@ -46,7 +46,7 @@ class AIC(ModelEvaluator):
     """
 
     def __init__(self):
-        """ """
+        """"""
         ModelEvaluator.__init__(self, "AIC", False)
         return
 
@@ -66,7 +66,8 @@ class AIC(ModelEvaluator):
         Returns
         -------
         quality : float
-            The quality of fit for given ModelCluster."""
+            The quality of fit for given ModelCluster.
+        """
         # Number of parameters.  By default, fixed parameters are ignored.
         k = fit.model.npars(count_fixed=count_fixed) + kshift
         if k < 0:
@@ -124,8 +125,8 @@ class AIC(ModelEvaluator):
         return (2 * k) * fudgefactor
 
     def growth_justified(self, fit, k_prime):
-        """Returns whether adding k_prime parameters to the given model (ModelCluster) is justified
-        given the current quality of the fit.
+        """Returns whether adding k_prime parameters to the given model (ModelCluster) is justified given the
+        current quality of the fit.
 
         The assumption is that adding k_prime parameters will
         result in "effectively 0" chiSquared cost, and so adding it is justified if the cost of adding
@@ -170,7 +171,7 @@ class AIC(ModelEvaluator):
 
     @staticmethod
     def akaikeweights(aics):
-        """Return sequence of Akaike weights for sequence of AICs
+        """Return sequence of Akaike weights for sequence of AICs.
 
         Parameters
         ----------
@@ -189,7 +190,7 @@ class AIC(ModelEvaluator):
 
     @staticmethod
     def akaikeprobs(aics):
-        """Return sequence of Akaike probabilities for sequence of AICs
+        """Return sequence of Akaike probabilities for sequence of AICs.
 
         Parameters
         ----------
@@ -199,7 +200,8 @@ class AIC(ModelEvaluator):
         Returns
         -------
         array-like
-            The sequence of Akaike probabilities"""
+            The sequence of Akaike probabilities
+        """
         aic_weights = AIC.akaikeweights(aics)
         return aic_weights / np.sum(aic_weights)
 
