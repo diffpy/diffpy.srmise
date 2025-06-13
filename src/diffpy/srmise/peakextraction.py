@@ -70,7 +70,8 @@ class PeakExtraction(object):
 
         Parameters
         newvars : array-like
-            Sequence of strings that represent additional extraction parameters."""
+            Sequence of strings that represent additional extraction parameters.
+        """
         self.clear()
         self.extractvars = dict.fromkeys(
             (
@@ -94,7 +95,9 @@ class PeakExtraction(object):
     def clear(self):
         """Clear all members.
 
-        The purpose of the method is to ensure the object is in initialized state."""
+        The purpose of the method is to ensure the object is in
+        initialized state.
+        """
         self.x = None
         self.y = None
         self.dx = None
@@ -263,7 +266,8 @@ class PeakExtraction(object):
         return "\n".join(out) + "\n"
 
     def plot(self, **kwds):
-        """Convenience function to plot data and extracted peaks with matplotlib.
+        """Convenience function to plot data and extracted peaks with
+        matplotlib.
 
         Uses initial peaks instead if no peaks have been extracted.
 
@@ -299,7 +303,7 @@ class PeakExtraction(object):
             plt.plot(*mcluster.plottable(kwds))
 
     def read(self, filename):
-        """load PeakExtraction object from file
+        """Load PeakExtraction object from file.
 
         Parameters
         ----------
@@ -785,7 +789,8 @@ class PeakExtraction(object):
             return None
 
     def add_peaks(self, peaks):
-        """Add peaks to extracted peaks, or initial_peaks if no extracted peaks exist.
+        """Add peaks to extracted peaks, or initial_peaks if no extracted peaks
+        exist.
 
         Parameters
         ----------
@@ -801,14 +806,16 @@ class PeakExtraction(object):
             self.initial_peaks.sort(key="position")
 
     def extract_single(self, recursion_depth=1):
-        """Find ModelCluster with peaks extracted from data. Return ModelCovariance instance at top level.
+        """Find ModelCluster with peaks extracted from data. Return
+        ModelCovariance instance at top level.
 
         Every extracted peak is one of the peak functions supplied. All
         comparisons of different peak models are performed with the class
         specified by error_method.
 
         Parameters
-        recursion_depth: (1) Tracks recursion with extract_single."""
+        recursion_depth: (1) Tracks recursion with extract_single.
+        """
         self.clearcalc()
         tracer = srmiselog.tracer
         tracer.pushc()
@@ -1319,8 +1326,10 @@ class PeakExtraction(object):
             return cov
 
     def fit_single(self):
-        """Fit peaks in initial_peaks with baseline. Return ModelCovariance
-        instance summarizing results."""
+        """Fit peaks in initial_peaks with baseline.
+
+        Return ModelCovariance instance summarizing results.
+        """
 
         self.clearcalc()
 

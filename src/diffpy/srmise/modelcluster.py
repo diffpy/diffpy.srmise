@@ -40,7 +40,8 @@ logger = logging.getLogger("diffpy.srmise")
 
 
 class ModelCovariance(object):
-    """Helper class preserves uncertainty info (full covariance matrix) for a fit model.
+    """Helper class preserves uncertainty info (full covariance matrix) for a
+    fit model.
 
     This object preserves a light-weight "frozen" version of a model which can be used
     to interrogate the model about the uncertainties of its parameters.
@@ -137,7 +138,8 @@ class ModelCovariance(object):
                     rawi += 1
 
     def transform(self, in_format, out_format, **kwds):
-        """Transform parameters and covariance matrix under specified change of variables.
+        """Transform parameters and covariance matrix under specified change of
+        variables.
 
         By default this change applies to all parameters of the model.  If the specified transformation
         is invalid for a given ModelPart the original parameterization is maintained for that part.
@@ -226,7 +228,8 @@ class ModelCovariance(object):
         return
 
     def getcorrelation(self, i, j):
-        """Return the correlation between variables i and j, Corr_ij=Cov_ij/(sigma_i sigma_j)
+        """Return the correlation between variables i and j,
+        Corr_ij=Cov_ij/(sigma_i sigma_j)
 
         The variables may be specified as integers, or as a two-component tuple of integers (l, m)
         which indicate the mth parameter in peak l.
@@ -262,8 +265,9 @@ class ModelCovariance(object):
     def getvalue(self, i):
         """Return value of parameter i.
 
-        The variable may be specified as an integer, or as a two-component tuple of integers (l, m)
-        which indicate the mth parameter of modelpart l.
+        The variable may be specified as an integer, or as a two-
+        component tuple of integers (l, m) which indicate the mth
+        parameter of modelpart l.
         """
         (l, m) = i if i in self.pmap else self.ipmap[i]
         return self.model[l][m]
@@ -334,7 +338,8 @@ class ModelCovariance(object):
         return (self.getvalue(i), self.getuncertainty(i))
 
     def correlationwarning(self, threshold=0.8):
-        """Report distinct variables with magnitude of correlation greater than threshold.
+        """Report distinct variables with magnitude of correlation greater than
+        threshold.
 
         Returns a list of tuples (i, j, c), where i and j are tuples indicating
         the modelpart and parameter indices of the correlated variables, and
@@ -426,7 +431,6 @@ class ModelCluster(object):
     value: Return value of the model plus baseline
     valuebl: Return value of the baseline
     writestr: Return string representation of self.
-
     """
 
     def __init__(self, model, *args, **kwds):
@@ -501,7 +505,8 @@ class ModelCluster(object):
     def copy(self):
         """Return copy of this ModelCluster.
 
-        Equivalent to ModelCluster(self)"""
+        Equivalent to ModelCluster(self)
+        """
         return ModelCluster(self)
 
     def addexternalpeaks(self, peaks):
@@ -964,7 +969,8 @@ class ModelCluster(object):
         self.replacepeaks([], slice(idx, idx + 1))
 
     def estimatepeak(self):
-        """Attempt to add single peak to empty cluster.  Return True if successful.
+        """Attempt to add single peak to empty cluster.  Return True if
+        successful.
 
         Returns
         -------
@@ -1149,7 +1155,10 @@ class ModelCluster(object):
         return None
 
     def cleanfit(self):
-        """Remove poor-quality peaks in the fit.  Return number removed."""
+        """Remove poor-quality peaks in the fit.
+
+        Return number removed.
+        """
         # Find peaks located outside the cluster
         pos = np.array([p["position"] for p in self.model])
         left_idx = pos.searchsorted(self.r_cluster[0])
@@ -1219,7 +1228,8 @@ class ModelCluster(object):
         Returns
         -------
         ModelEvaluator or None
-            Return ModelEvaluator instance if fit changed, otherwise None."""
+            Return ModelEvaluator instance if fit changed, otherwise None.
+        """
         # No reduction necessary
         if self.model.value(x) < y:
             logger.debug("reduce_to: No reduction necessary.")
@@ -1295,7 +1305,8 @@ class ModelCluster(object):
         return self.y_cluster - self.value()
 
     def quality(self, evaluator=None, **kwds):
-        """Return ModelEvaluator instance containing calculated quality of the model.
+        """Return ModelEvaluator instance containing calculated quality of the
+        model.
 
         ModelEvaluator objects may be compared as though they were numerical
         quantities.  Its raw value is given by the 'stat' member.  For more
@@ -1323,7 +1334,8 @@ class ModelCluster(object):
         return evaluator_inst
 
     def plottable(self, joined=False):
-        """Return sequence suitable for plotting cluster model+baseline with matplotlib.
+        """Return sequence suitable for plotting cluster model+baseline with
+        matplotlib.
 
         Parameters
         ----------
@@ -1346,7 +1358,8 @@ class ModelCluster(object):
             return toreturn
 
     def plottable_residual(self):
-        """Return sequence suitable for plotting cluster residual with matplotlib.
+        """Return sequence suitable for plotting cluster residual with
+        matplotlib.
 
         Returns
         -------
@@ -1427,14 +1440,15 @@ class ModelCluster(object):
     def prune(self):
         """Remove peaks until model quality no longer improves.
 
-        Peaks are removed in a greedy fashion, and the best possible model is
-        by no means guaranteed.
+        Peaks are removed in a greedy fashion, and the best possible
+        model is by no means guaranteed.
 
-        Due to the somewhat exploratory nature of prune many non-convergent
-        fits will generally be performed, but it severely restricts the number
-        of function evaluations permitted during fitting, and so fits that do
-        not converge rapidly are abandoned.  Nevertheless, occasionally this
-        method will take an unusually long time to complete.
+        Due to the somewhat exploratory nature of prune many non-
+        convergent fits will generally be performed, but it severely
+        restricts the number of function evaluations permitted during
+        fitting, and so fits that do not converge rapidly are abandoned.
+        Nevertheless, occasionally this method will take an unusually
+        long time to complete.
         """
         if len(self.model) == 0:
             return

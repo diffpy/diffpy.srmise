@@ -11,7 +11,8 @@
 # See LICENSE.txt for license information.
 #
 ##############################################################################
-"""Defines BaseFunction, the base class for mathematical functions in srmise."""
+"""Defines BaseFunction, the base class for mathematical functions in
+srmise."""
 
 import logging
 import re
@@ -76,7 +77,7 @@ class BaseFunction(object):
         base=None,
         Cache=None,
     ):
-        """Set parameterdict defined by subclass
+        """Set parameterdict defined by subclass.
 
         Parameters
         ----------
@@ -159,32 +160,50 @@ class BaseFunction(object):
     # "Virtual" class methods ####
 
     def actualize(self, *args, **kwds):
-        """Create ModelPart instance of self with given parameters.  ("Virtual" method)"""
+        """Create ModelPart instance of self with given parameters.
+
+        ("Virtual" method)
+        """
         emsg = "actualize() must be implemented in a BaseFunction subclass."
         raise NotImplementedError(emsg)
 
     def estimate_parameters(self, *args, **kwds):
-        """Estimate BaseFunction parameters from supplied data. ("Virtual" method)"""
+        """Estimate BaseFunction parameters from supplied data.
+
+        ("Virtual" method)
+        """
         emsg = "estimate_parameters() must be implemented in a BaseFunction subclass."
         raise NotImplementedError(emsg)
 
     def _jacobianraw(self, *args, **kwds):
-        """Calculate the jacobian. ("Virtual" method)"""
+        """Calculate the jacobian.
+
+        ("Virtual" method)
+        """
         emsg = "_jacobianraw() must be implemented in a BaseFunction subclass."
         raise NotImplementedError(emsg)
 
     def _transform_derivativesraw(self, *args, **kwds):
-        """Convert BaseFunction parameters to another form. ("Virtual" method)"""
+        """Convert BaseFunction parameters to another form.
+
+        ("Virtual" method)
+        """
         emsg = "transform_parameters() must be implemented in a BaseFunction subclass."
         raise NotImplementedError(emsg)
 
     def _transform_parametersraw(self, *args, **kwds):
-        """Convert BaseFunction parameters to another form. ("Virtual" method)"""
+        """Convert BaseFunction parameters to another form.
+
+        ("Virtual" method)
+        """
         emsg = "transform_parameters() must be implemented in a BaseFunction subclass."
         raise NotImplementedError(emsg)
 
     def _valueraw(self, *args, **kwds):
-        """Calculate value of function. ("Virtual" method)"""
+        """Calculate value of function.
+
+        ("Virtual" method)
+        """
         emsg = "_valueraw must() be implemented in a BaseFunction subclass."
         raise NotImplementedError(emsg)
 
@@ -225,7 +244,8 @@ class BaseFunction(object):
             return self._jacobianraw(p.pars, r, p.free)
 
     def transform_derivatives(self, pars, in_format=None, out_format=None):
-        """Return gradient matrix for pars converted from in_format to out_format.
+        """Return gradient matrix for pars converted from in_format to
+        out_format.
 
         Parameters
         ----------
@@ -266,7 +286,8 @@ class BaseFunction(object):
         return self._transform_derivativesraw(pars, in_format=in_format, out_format=out_format)
 
     def transform_parameters(self, pars, in_format=None, out_format=None):
-        """Return new sequence with pars converted from in_format to out_format.
+        """Return new sequence with pars converted from in_format to
+        out_format.
 
         Also restores parameters to a preferred range if it permits multiple
         values that correspond to the same physical result.
@@ -345,7 +366,8 @@ class BaseFunction(object):
             return self._valueraw(p.pars, r)
 
     def pgradient(self, p, format):
-        """Return gradient matrix of parameterization in specified format wrt "internal" format at p.
+        """Return gradient matrix of parameterization in specified format wrt
+        "internal" format at p.
 
         Consider the "internal" parameterization given by (i0, i1, ..., in).
         Each parameter in a different format, say (o0, o1, ..., om), is a
@@ -373,7 +395,7 @@ class BaseFunction(object):
         return
 
     def getmodule(self):
-        """Return 'diffpy.srmise.basefunction'"""
+        """Return 'diffpy.srmise.basefunction'."""
         return "diffpy.srmise.basefunction"
 
     def writestr(self, baselist):
@@ -473,14 +495,16 @@ class BaseFunction(object):
 
     @staticmethod
     def safefunctionlist(fs):
-        """Return list of BaseFunction instances where any dependencies occur earlier in list.
+        """Return list of BaseFunction instances where any dependencies occur
+        earlier in list.
 
         Any functions with hidden dependent functions (i.e. those not in fs)
         are included in the returned list.  This list provides an order that
         is guaranteed to be safe for saving/reinstantiating peak functions.
 
         Parameters
-        fs: List of BaseFunction instances."""
+        fs: List of BaseFunction instances.
+        """
         fsafe = []
         for f in fs:
             BaseFunction.safefunction(f, fsafe)
@@ -488,7 +512,8 @@ class BaseFunction(object):
 
     @staticmethod
     def safefunction(f, fsafe):
-        """Append BaseFunction instance f to fsafe, but adding dependent functions first.
+        """Append BaseFunction instance f to fsafe, but adding dependent
+        functions first.
 
         Does not handle circular dependencies.
 

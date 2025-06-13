@@ -22,7 +22,8 @@ logger = logging.getLogger("diffpy.srmise")
 
 
 class NanoSpherical(BaselineFunction):
-    """Methods for evaluation of baseline of spherical nanoparticle of uniform density.
+    """Methods for evaluation of baseline of spherical nanoparticle of uniform
+    density.
 
     Allowed formats are
     internal: [scale, radius]
@@ -212,7 +213,8 @@ class NanoSpherical(BaselineFunction):
         return temp
 
     def _valueraw(self, pars, r):
-        """Return value of spherical baseline for the given parameters and r values.
+        """Return value of spherical baseline for the given parameters and r
+        values.
 
         Outside the interval [0, radius] the baseline is 0.
 
@@ -245,7 +247,8 @@ class NanoSpherical(BaselineFunction):
             return out
 
     def _valueraw2(self, pars, r):
-        """Return value of spherical baseline without bounds checking for given parameters and r values.
+        """Return value of spherical baseline without bounds checking for given
+        parameters and r values.
 
         Parameters
         ----------
@@ -267,7 +270,7 @@ class NanoSpherical(BaselineFunction):
         return -s * r * (1 - (3.0 / 4.0) * rdivR + (1.0 / 16.0) * rdivR**3)
 
     def _getdomain(self, pars, r):
-        """Return slice object for which r > 0 and r < twice the radius
+        """Return slice object for which r > 0 and r < twice the radius.
 
         Parameters
         ----------

@@ -11,7 +11,7 @@
 # See LICENSE.txt for license information.
 #
 ##############################################################################
-"""plot extracted peaks and comparison to ideal distances (if given)"""
+"""Plot extracted peaks and comparison to ideal distances (if given)"""
 
 import optparse
 import sys
@@ -175,7 +175,7 @@ def labelallsubplots():
 
 
 def makeplot(ppe_or_stability, ip=None, **kwds):
-    """Plot stuff"""
+    """Plot stuff."""
     if isinstance(ppe_or_stability, PeakStability):
         stability = ppe_or_stability
         ppe = stability.ppe
