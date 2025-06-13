@@ -45,13 +45,13 @@ class AICc(ModelEvaluator):
     """
 
     def __init__(self):
-        """ """
+        """"""
         ModelEvaluator.__init__(self, "AICc", False)
         return
 
     def evaluate(self, fit, count_fixed=False, kshift=0):
-        """Return quality of fit for given ModelCluster using AICc (Akaike's Information Criterion
-        with 2nd order correction for small sample size).
+        """Return quality of fit for given ModelCluster using AICc (Akaike's
+        Information Criterion with 2nd order correction for small sample size).
 
         Parameters
         fit: A ModelCluster
@@ -65,7 +65,8 @@ class AICc(ModelEvaluator):
         Returns
         -------
         float
-            Quality of AICc"""
+            Quality of AICc
+        """
         # Number of parameters.  By default, fixed parameters are ignored.
         k = fit.model.npars(count_fixed=count_fixed) + kshift
         if k < 0:
@@ -87,7 +88,8 @@ class AICc(ModelEvaluator):
         return self.stat
 
     def minpoints(self, npars):
-        """Calculates the minimum number of points required to make an estimate of a model's quality.
+        """Calculates the minimum number of points required to make an estimate
+        of a model's quality.
 
         Parameters
         ----------
@@ -105,7 +107,8 @@ class AICc(ModelEvaluator):
         return npars + 2
 
     def parpenalty(self, k, n):
-        """Returns the cost for adding k parameters to the current model cluster.
+        """Returns the cost for adding k parameters to the current model
+        cluster.
 
         Parameters
         ----------
@@ -128,7 +131,8 @@ class AICc(ModelEvaluator):
         return (2 * k + float(2 * k * (k + 1)) / (n - k - 1)) * fudgefactor
 
     def growth_justified(self, fit, k_prime):
-        """Is adding k_prime parameters to ModelCluster justified given the current quality of the fit.
+        """Is adding k_prime parameters to ModelCluster justified given the
+        current quality of the fit.
 
         The assumption is that adding k_prime parameters will result in "effectively 0" chiSquared cost,
         and so adding it is justified if the cost of adding these parameters is less than the current
@@ -171,7 +175,7 @@ class AICc(ModelEvaluator):
 
     @staticmethod
     def akaikeweights(aics):
-        """Return sequence of Akaike weights for sequence of AICs
+        """Return sequence of Akaike weights for sequence of AICs.
 
         Parameters
         ----------
@@ -190,7 +194,7 @@ class AICc(ModelEvaluator):
 
     @staticmethod
     def akaikeprobs(aics):
-        """Return sequence of Akaike probabilities for sequence of AICs
+        """Return sequence of Akaike probabilities for sequence of AICs.
 
         Parameters
         ----------
@@ -200,7 +204,8 @@ class AICc(ModelEvaluator):
         Returns
         -------
         array-like
-            The sequence of Akaike probabilities"""
+            The sequence of Akaike probabilities
+        """
         aic_weights = AICc.akaikeweights(aics)
         return aic_weights / np.sum(aic_weights)
 

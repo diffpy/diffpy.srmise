@@ -12,8 +12,8 @@
 # See LICENSE.rst for license information.
 #
 ##############################################################################
-
-"""Peak extraction and peak fitting tool for atomic pair distribution functions."""
+"""Peak extraction and peak fitting tool for atomic pair distribution
+functions."""
 
 # package version
 from diffpy.srmise.version import __version__

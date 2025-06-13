@@ -36,8 +36,8 @@ logger = logging.getLogger("diffpy.srmise")
 
 
 class PDFPeakExtraction(PeakExtraction):
-    """PDFPeakExtraction extends the PeakExtraction class to specialize in extracting
-    peaks from PDF (Probability Density Function) data.
+    """PDFPeakExtraction extends the PeakExtraction class to specialize in
+    extracting peaks from PDF (Probability Density Function) data.
 
     Parameters
     ----------
@@ -77,7 +77,6 @@ class PDFPeakExtraction(PeakExtraction):
         ----------
         pdf: PDFDataSet instance or str
             The PDFDataSet instance or a PDF file name.
-
         """
         self.clear()
         if isinstance(pdf, PDFDataSet):
@@ -98,7 +97,8 @@ class PDFPeakExtraction(PeakExtraction):
         x : array-like
             The x-coordinates of the data.
         y : array-like
-            The y-coordinates of the data."""
+            The y-coordinates of the data.
+        """
         PeakExtraction.setdata(self, x, y, dx, dy)
         try:
             self.qmax_fromdata = find_qmax(self.x, self.y)[0]
@@ -108,7 +108,9 @@ class PDFPeakExtraction(PeakExtraction):
     def clear(self):
         """Clear all members.
 
-        The purpose of the method is to ensure the object is in a clean state."""
+        The purpose of the method is to ensure the object is in a clean
+        state.
+        """
         # TODO: Clear additional members
         self.filename = None
         self.nyquist = None
@@ -190,7 +192,8 @@ class PDFPeakExtraction(PeakExtraction):
         Parameters
         ----------
         *args : argparse.Namespace
-            Arguments passed to PeakExtraction.setdata()."""
+            Arguments passed to PeakExtraction.setdata().
+        """
         nargs = list(args)
 
         # qmax preference: reported, then fromdata, then 0.
@@ -250,7 +253,8 @@ class PDFPeakExtraction(PeakExtraction):
         PeakExtraction.defaultvars(self, *nargs)
 
     def resampledata(self, dr, **kwds):
-        """Return (x, y, error in x, effective error in y) resampled by interval dr.
+        """Return (x, y, error in x, effective error in y) resampled by
+        interval dr.
 
         Uses values of self.x, self.y, self.dx, self.effective_dy.  The range is
         constrained by self.rng.
@@ -276,7 +280,8 @@ class PDFPeakExtraction(PeakExtraction):
         Returns
         -------
         tuple of ndarray
-            A tuple containing the resampled (x, y, error in x, effective error in y)."""
+            A tuple containing the resampled (x, y, error in x, effective error in y).
+        """
         self.defaultvars()  # Find correct range if necessary.
         eps = kwds.get("eps", 10**-6)
 
@@ -318,7 +323,8 @@ class PDFPeakExtraction(PeakExtraction):
         Returns
         -------
         float
-            The uncertainties scaled."""
+            The uncertainties scaled.
+        """
         if self.qmax > 0 and self.nyquist and self.scale:
             dr_nyquist = np.pi / self.qmax
             return np.max([np.sqrt(dr_nyquist / dr), 1.0])
@@ -326,7 +332,8 @@ class PDFPeakExtraction(PeakExtraction):
             return 1.0
 
     def extract(self, **kwds):
-        """Extract peaks from the PDF. Returns ModelCovariance instance summarizing results.
+        """Extract peaks from the PDF. Returns ModelCovariance instance
+        summarizing results.
 
         Parameters
         ----------
@@ -540,7 +547,8 @@ class PDFPeakExtraction(PeakExtraction):
         return cov
 
     def fit(self, **kwds):
-        """Fit peaks in the PDF. Returns ModelCovariance instance summarizing results.
+        """Fit peaks in the PDF. Returns ModelCovariance instance summarizing
+        results.
 
         Parameters
         ----------
@@ -1047,7 +1055,8 @@ def stdratio(data):
     -------
     array-like
         an array of length floor(len(data)/2)-1.  The ith element is
-        equivalent to std(data[:i+2])/std(data[i+2:2i+4])."""
+        equivalent to std(data[:i+2])/std(data[i+2:2i+4]).
+    """
 
     limit = int(np.floor(len(data) / 2))
     std_left = np.zeros(limit)
