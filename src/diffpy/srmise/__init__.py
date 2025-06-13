@@ -15,7 +15,7 @@
 """Peak extraction and peak fitting tool for atomic pair distribution functions."""
 
 # package version
-from diffpy.srmise.version import __version__  
+from diffpy.srmise.version import __version__
 
 # silence the pyflakes syntax checker
 assert __version__ or True
