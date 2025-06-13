@@ -1,22 +1,7 @@
 BSD 3-Clause License
 
-Copyright 2014-2015, Board of Trustees of Michigan State University
-          2016-2024, The Trustees of Columbia University in the City of New York.
+Copyright (c) 2025, The Trustees of Columbia University in the City of New York.
 All rights reserved.
-
-If you use this program to do productive scientific research that
-leads to publication, we ask that you acknowledge use of the
-program by citing the following paper in your publication:
-
-   L. Granlund, S. J. L. Billinge and P. M. Duxbury,
-   `Algorithm for systematic peak extraction from atomic pair distribution functions
-   <http://dx.doi.org/10.1107/S2053273315005276>`__,
-   *Acta Crystallogr. A* **4**, 392-409 (2015).
-
-For more information please visit the diffpy web-page at
-    http://www.diffpy.org
-or email Luke Granlund at luke.r.granlund@gmail.com, or Prof. Simon
-Billinge at sb2896@columbia.edu.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:

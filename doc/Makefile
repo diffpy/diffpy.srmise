@@ -6,7 +6,7 @@ SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
 PAPER         =
 BUILDDIR      = build
-BASENAME      = $(subst .,,$(subst $() $(),,diffpy.srmise))
+BASENAME      = $(subst .,,$(subst $() $(),,diffpy-srmise))
 
 # User-friendly check for sphinx-build
 ifeq ($(shell which $(SPHINXBUILD) >/dev/null 2>&1; echo $$?), 1)

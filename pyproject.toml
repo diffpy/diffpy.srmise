@@ -3,25 +3,23 @@ requires = ["setuptools>=62.0", "setuptools-git-versioning>=2.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "diffpy.srmise"
+name = "diffpy-srmise"
 dynamic=['version', 'dependencies']
 authors = [
-  { name="Simon J.L. Billinge group", email="simon.billinge@gmail.com" },
-        {name="Luke Granlund", email="granlund@pa.msu.edu"},
+  { name="Simon Billinge", email="sb2896@columbia.edu" },
 ]
 maintainers = [
-  { name="Simon J.L. Billinge group", email="simon.billinge@gmail.com" },
+  { name="Simon Billinge", email="sb2896@columbia.edu" },
 ]
 description = "Peak extraction and peak fitting tool for atomic pair distribution functions."
-keywords = ['peak extraction fitting PDF AIC multimodeling']
+keywords = ['peak extraction', 'ftitting', 'PDF', 'AIC', 'multimodeling']
 readme = "README.rst"
 requires-python = ">=3.11, <3.14"
 classifiers = [
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 5 - Production/Stable',
         'Environment :: Console',
         'Intended Audience :: Developers',
         'Intended Audience :: Science/Research',
-        'Intended Audience :: Education',
         'License :: OSI Approved :: BSD License',
         'Operating System :: MacOS :: MacOS X',
         'Operating System :: Microsoft :: Windows',
@@ -32,21 +30,17 @@ classifiers = [
         'Programming Language :: Python :: 3.13',
         'Topic :: Scientific/Engineering :: Physics',
         'Topic :: Scientific/Engineering :: Chemistry',
-        'Topic :: Software Development :: Libraries',
 ]
 
 [project.urls]
-Homepage = "https://github.com/diffpy/diffpy.srmise/"
-Issues = "https://github.com/diffpy/diffpy.srmise/issues/"
+Homepage = "https://github.com/diffpy/diffpy-srmise/"
+Issues = "https://github.com/diffpy/diffpy-srmise/issues/"
 
 [tool.setuptools-git-versioning]
 enabled = true
 template = "{tag}"
 dev_template = "{tag}"
 dirty_template = "{tag}"
-
-[project.scripts]
-srmise = "diffpy.srmise.applications.extract:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]  # list of folders that contain the packages (["."] by default)

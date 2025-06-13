@@ -1,11 +1,10 @@
 Authors
 =======
 
-Luke Granlund
-Billinge Group and community contributors.
+Simon Billinge, Billinge Group members
 
 Contributors
 ------------
 
 For a list of contributors, visit
-https://github.com/diffpy/diffpy.srmise/graphs/contributors
+https://github.com/diffpy/diffpy-srmise/graphs/contributors
