@@ -1,6 +1,0 @@
-name: diffpy.srmise
-channels:
-  - conda-forge
-dependencies:
-  - python=3
-  - pip
