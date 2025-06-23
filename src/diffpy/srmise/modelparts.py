@@ -569,7 +569,8 @@ class ModelPart(object):
         Returns
         -------
         pars : array-like
-            The compressed parameters of the model part."""
+            The compressed parameters of the model part.
+        """
         return self.pars[self.free]
 
     def jacobian(self, r, range=None):
@@ -591,12 +592,14 @@ class ModelPart(object):
         return self._owner.jacobian(self, r, range)
 
     def owner(self):
-        """Return the BaseFunction subclass instance which owns this part.
+        """Return the BaseFunction subclass instance which owns this
+        part.
 
         Returns
         -------
         BaseFunction subclass
-            The BaseFunction subclass which owns this part."""
+            The BaseFunction subclass which owns this part.
+        """
         return self._owner
 
     def update(self, freepars):
@@ -727,7 +730,8 @@ class ModelPart(object):
         Returns
         -------
         int
-            The number of parameters in all parts."""
+            The number of parameters in all parts.
+        """
         if count_fixed:
             return self._owner.npars
         else:
@@ -738,7 +742,7 @@ class ModelPart(object):
         return str(self._owner.transform_parameters(self.pars, in_format="internal", out_format="default_output"))
 
     def __eq__(self, other):
-        """ """
+        """"""
         if hasattr(other, "_owner"):
             return (
                 (self._owner is other._owner)
@@ -750,7 +754,7 @@ class ModelPart(object):
             return False
 
     def __ne__(self, other):
-        """ """
+        """"""
         return not self == other
 
     def writestr(self, ownerlist):

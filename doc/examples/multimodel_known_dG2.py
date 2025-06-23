@@ -10,7 +10,8 @@
 # See LICENSE.txt for license information.
 #
 ##############################################################################
-"""AIC-driven multimodel analysis of crystalline PDF with known uncertainties.
+"""AIC-driven multimodel analysis of crystalline PDF with known
+uncertainties.
 
 The multimodel approach generates many models of varying complexity by assuming
 a range of experimental uncertainties are physically plausible.  This example

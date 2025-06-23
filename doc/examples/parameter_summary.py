@@ -25,7 +25,8 @@ qmax (maximum momentum transfer Q)
 nyquist (whether to use Nyquist sampling)
 supersample (minimum amount to oversample during initial stages)
 cres (clustering resolution)
-initial_peaks (peaks already assumed to exist during extraction)"""
+initial_peaks (peaks already assumed to exist during extraction)
+"""
 
 import matplotlib.pyplot as plt
 
