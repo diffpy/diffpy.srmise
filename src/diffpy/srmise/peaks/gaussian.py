@@ -23,7 +23,8 @@ logger = logging.getLogger("diffpy.srmise")
 
 
 class Gaussian(PeakFunction):
-    """Methods for evaluation and parameter estimation of width-limited Gaussian.
+    """Methods for evaluation and parameter estimation of width-limited
+    Gaussian.
 
     Allowed formats are
     internal: [position, parameterized width-squared, area]
@@ -44,7 +45,7 @@ class Gaussian(PeakFunction):
     # which the function is considered 0. By default this distance is
     # equivalent to 3 standard deviations.
     def __init__(self, maxwidth, Cache=None):
-        """maxwidth defined as full width at half maximum for the
+        """Maxwidth defined as full width at half maximum for the
         corresponding Gaussian, which is physically relevant."""
         parameterdict = {"position": 0, "width": 1, "area": 2}
         formats = ["internal", "pwa", "mu_sigma_area"]
@@ -172,7 +173,8 @@ class Gaussian(PeakFunction):
         Returns
         -------
         tuple
-            mu, area, and sigma that are scaled."""
+            mu, area, and sigma that are scaled.
+        """
         if scale <= 0:
             emsg = "".join(["Cannot scale by ", str(scale), "."])
             raise SrMiseScalingError(emsg)
@@ -346,7 +348,8 @@ class Gaussian(PeakFunction):
         return temp
 
     def _valueraw(self, pars, r):
-        """Compute the value of a width-limited Gaussian for the specified parameters at given radial distances.
+        """Compute the value of a width-limited Gaussian for the
+        specified parameters at given radial distances.
 
         This function calculates the value of a Gaussian distribution, where its effective width is constrained and
         related to the maxwidth. As `pars[1]` approaches infinity,
@@ -383,6 +386,7 @@ class Gaussian(PeakFunction):
 
     def max(self, pars):
         """Return position and height of the peak maximum.
+
         Parameters
         ----------
         pars : array_like
@@ -391,7 +395,8 @@ class Gaussian(PeakFunction):
         Returns
         -------
         array_like
-            The position and height of the peak maximum."""
+            The position and height of the peak maximum.
+        """
         # TODO: Reconsider this behavior
         if len(pars) == 0:
             return None

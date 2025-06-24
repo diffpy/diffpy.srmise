@@ -67,6 +67,9 @@ skip = "*.cif,*.dat"
 recursive = true
 wrap-summaries = 72
 wrap-descriptions = 72
+exclude = [
+  "src/diffpy/srmise/baselines/arbitrary.py"
+]
 
 [tool.black]
 line-length = 115

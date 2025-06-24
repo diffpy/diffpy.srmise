@@ -24,7 +24,8 @@ logger = logging.getLogger("diffpy.srmise")
 
 
 class BaselineFunction(BaseFunction):
-    """Base class for functions which represent some data's baseline term.
+    """Base class for functions which represent some data's baseline
+    term.
 
     Class members
     -------------
@@ -71,7 +72,7 @@ class BaselineFunction(BaseFunction):
         base=None,
         Cache=None,
     ):
-        """Set parameterdict defined by subclass
+        """Set parameterdict defined by subclass.
 
         parameterdict : dict
             The dictionary mapping string keys to their index in a
@@ -91,7 +92,8 @@ class BaselineFunction(BaseFunction):
             additional functionality.
         Cache : class
             The class (not instance) which implements caching of BaseFunction
-            evaluations."""
+            evaluations.
+        """
         BaseFunction.__init__(self, parameterdict, parformats, default_formats, metadict, base, Cache)
 
     # "Virtual" class methods ####
@@ -117,10 +119,12 @@ class BaselineFunction(BaseFunction):
 
 
 class Baseline(ModelPart):
-    """Represents a baseline associated with a BaselineFunction subclass."""
+    """Represents a baseline associated with a BaselineFunction
+    subclass."""
 
     def __init__(self, owner, pars, free=None, removable=False, static_owner=False):
-        """Initialize the BaselineComponent instance with specified configurations.
+        """Initialize the BaselineComponent instance with specified
+        configurations.
 
             Parameters
             ----------

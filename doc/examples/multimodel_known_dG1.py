@@ -10,8 +10,8 @@
 # See LICENSE.txt for license information.
 #
 ##############################################################################
-"""Extract multiple models from crystalline PDF with known uncertainties for
-use in later AIC-driven multimodeling analysis.
+"""Extract multiple models from crystalline PDF with known uncertainties
+for use in later AIC-driven multimodeling analysis.
 
 The multimodel approach generates many models of varying complexity by assuming
 a range of experimental uncertainties are physically plausible.  This example

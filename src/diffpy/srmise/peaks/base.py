@@ -70,7 +70,7 @@ class PeakFunction(BaseFunction):
         base=None,
         Cache=None,
     ):
-        """Set parameterdict defined by subclass
+        """Set parameterdict defined by subclass.
 
         parameterdict: A dictionary mapping string keys to their index in a
                        sequence of parameters for this PeakFunction subclass.
@@ -85,7 +85,8 @@ class PeakFunction(BaseFunction):
         base: A basefunction subclass instance which this one decorates with
               additional functionality.
         Cache: A class (not instance) which implements caching of BaseFunction
-               evaluations."""
+               evaluations.
+        """
         if "position" not in parameterdict:
             emsg = "Argument parameterdict missing required key 'position'."
             raise ValueError(emsg)
@@ -125,7 +126,8 @@ class Peaks(ModelParts):
         ModelParts.__init__(self, *args, **kwds)
 
     def argsort(self, key="position"):
-        """Return sequence of indices which sort peaks in order specified by key."""
+        """Return sequence of indices which sort peaks in order
+        specified by key."""
         keypars = np.array([p[key] for p in self])
         # In normal use the peaks will already be sorted, so check for it.
         sorted = True
@@ -139,7 +141,8 @@ class Peaks(ModelParts):
             return range(len(keypars))
 
     def match_at(self, x, y):
-        """Alter peaks so their sum at x is y, preserving each peak's maximum.
+        """Alter peaks so their sum at x is y, preserving each peak's
+        maximum.
 
         Each peak is scaled equally.  Peaks with fixed parameters, a maximum
         very close to x, or other issues may prevent optimal results.  If the
@@ -201,7 +204,8 @@ class Peaks(ModelParts):
 
 
 class Peak(ModelPart):
-    """Represents a single peak associated with a PeakFunction subclass."""
+    """Represents a single peak associated with a PeakFunction
+    subclass."""
 
     def __init__(self, owner, pars, free=None, removable=True, static_owner=False):
         """Set instance members.

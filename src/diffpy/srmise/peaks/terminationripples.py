@@ -23,10 +23,12 @@ logger = logging.getLogger("diffpy.srmise")
 
 
 class TerminationRipples(PeakFunction):
-    """Methods for evaluation and parameter estimation of a peak function with termination ripples."""
+    """Methods for evaluation and parameter estimation of a peak
+    function with termination ripples."""
 
     def __init__(self, base, qmax, extension=4.0, supersample=5.0, Cache=None):
-        """Peak function constructor which adds termination ripples to existing function.
+        """Peak function constructor which adds termination ripples to
+        existing function.
 
         Unlike other peak functions, TerminationRipples can only be evaluated
         over a uniform grid, or at a single value using an ad hoc uniform grid
@@ -46,7 +48,8 @@ class TerminationRipples(PeakFunction):
             cannot be determined while extending calculations. Default is 5.0.
         Cache : class
             The class (not instance) which implements caching of PeakFunction
-               evaluations."""
+               evaluations.
+        """
         parameterdict = base.parameterdict
         formats = base.parformats
         default_formats = base.default_formats
@@ -89,7 +92,8 @@ class TerminationRipples(PeakFunction):
 
     # TODO: Can this be implemented sanely for termination ripples?
     def scale_at(self, pars, x, scale):
-        """Change parameters so value(x)->scale*value(x) for the base function.
+        """Change parameters so value(x)->scale*value(x) for the base
+        function.
 
         Does not change position or height of peak's maxima.  Raises
         SrMiseScalingError if the parameters cannot be scaled.
@@ -131,7 +135,8 @@ class TerminationRipples(PeakFunction):
         return self.base._jacobianraw(pars, r, free)
 
     def _transform_derivativesraw(self, pars, in_format, out_format):
-        """Return gradient matrix for the pars converted from in_format to out_format.
+        """Return gradient matrix for the pars converted from in_format
+        to out_format.
 
         Parameters
         ----------
@@ -169,7 +174,8 @@ class TerminationRipples(PeakFunction):
         return self.base._transform_parametersraw(pars, in_format, out_format)
 
     def _valueraw(self, pars, r):
-        """Return value of base peak function for the given parameters and r values.
+        """Return value of base peak function for the given parameters
+        and r values.
 
         pars : array-like
             The sequence of parameters for a single peak
@@ -179,7 +185,8 @@ class TerminationRipples(PeakFunction):
         Returns
         -------
         float
-            The value of base peak function for the given parameters and r."""
+            The value of base peak function for the given parameters and r.
+        """
         return self.base._valueraw(pars, r)
 
     # Overridden PeakFunction functions ####
@@ -205,7 +212,8 @@ class TerminationRipples(PeakFunction):
         Returns
         -------
         jac : array-like
-            The Jacobian of base function with termination ripples."""
+            The Jacobian of base function with termination ripples.
+        """
         if self is not peak._owner:
             raise ValueError(
                 "Argument 'peak' must be evaluated by the "
@@ -244,7 +252,8 @@ class TerminationRipples(PeakFunction):
             return jac
 
     def value(self, peak, r, rng=None):
-        """Calculate (rippled) value of peak, possibly restricted by range.
+        """Calculate (rippled) value of peak, possibly restricted by
+        range.
 
         This function overrides its counterpart in PeakFunction in order
         to minimize the impact of edge-effects from introducing termination
@@ -361,7 +370,8 @@ class TerminationRipples(PeakFunction):
         Returns
         -------
         tuple
-            The extended r, slice giving original range."""
+            The extended r, slice giving original range.
+        """
         ext = self.extension * 2 * np.pi / self.qmax
         left_ext = np.arange(r[0] - dr, max(0.0, r[0] - ext - dr), -dr)[::-1]
         right_ext = np.arange(r[-1] + dr, r[-1] + ext + dr, dr)
