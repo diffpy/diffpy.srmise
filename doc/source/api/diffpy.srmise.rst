@@ -20,7 +20,7 @@ Subpackages
     diffpy.srmise.modelevaluators
     diffpy.srmise.applications
     diffpy.srmise.baselines
-   
+
 Submodules
 ----------
 
