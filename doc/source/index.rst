@@ -41,9 +41,11 @@ Acknowledgements
 Table of contents
 =================
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
+   :titlesonly:
 
-   getting-started
+   tutorial/index
+   extending
    Package API <api/diffpy.srmise>
    release
    license
