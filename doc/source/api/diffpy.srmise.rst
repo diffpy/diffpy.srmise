@@ -1,7 +1,9 @@
 :tocdepth: -1
 
-diffpy.srmise package
-=====================
+|title|
+=======
+
+.. |title| replace:: diffpy.srmise package
 
 .. automodule:: diffpy.srmise
     :members:
