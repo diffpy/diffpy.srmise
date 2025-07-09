@@ -82,7 +82,7 @@ directory, ::
 
     tar xvzf archivename.tar.gz
 
-From a command window change to the *doc/examples* directory of the new
+From a command window change to the *docs/examples* directory of the new
 folder.  For example, a Windows' user who extracted *archivename.zip* in the
 folder *C:\\Research* would type ::
 

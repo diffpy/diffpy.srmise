@@ -6,7 +6,7 @@ diffpy.srmise version 0.5.2
 ##### PDF Peak Extraction Summary
 # The information below is not sufficient to replicate extraction.
 ## PDF metadata
-filename=/home/luke/Workspaces/MSU_Research/diffpy.srmise/doc/examples/data/Ag_nyquist_qmax30.gr
+filename=/home/luke/Workspaces/MSU_Research/diffpy.srmise/docs/examples/data/Ag_nyquist_qmax30.gr
 nyquist=True
 qmax=30.0
 qmax_reportedbypdf=30.0

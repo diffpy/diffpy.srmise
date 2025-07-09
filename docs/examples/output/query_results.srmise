@@ -38,7 +38,7 @@ cres=0.10472
 ModelEvaluator=AIC
 Range=[2.0, 10.0]
 # Metadata
-filename='/home/luke/Workspaces/MSU_Research/diffpy.srmise/doc/examples/data/Ag_nyquist_qmax30.gr'
+filename='/home/luke/Workspaces/MSU_Research/diffpy.srmise/docs/examples/data/Ag_nyquist_qmax30.gr'
 nyquist=True
 qmax=30.0
 qmax_reportedbypdf=30.0

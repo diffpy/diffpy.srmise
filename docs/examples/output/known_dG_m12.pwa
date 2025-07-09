@@ -5,14 +5,14 @@ diffpy.srmise version 0.5.2
 # Multimodeling Summary
 # ---------------------
 # Evaluated at dG: 0.414460564103
-# Model: 1 (of 15)
-# Class: 1 (of 4, tol=0.2)
-# Akaike probability: 0.103441
-# Rank: 4
+# Model: 12 (of 15)
+# Class: 3 (of 4, tol=0.2)
+# Akaike probability: 0.322723
+# Rank: 2
 ##### PDF Peak Extraction Summary
 # The information below is not sufficient to replicate extraction.
 ## PDF metadata
-filename=/home/luke/Workspaces/MSU_Research/diffpy.srmise/doc/examples/data/Ag_nyquist_qmax30.gr
+filename=/home/luke/Workspaces/MSU_Research/diffpy.srmise/docs/examples/data/Ag_nyquist_qmax30.gr
 nyquist=True
 qmax=30.0
 qmax_reportedbypdf=30.0
@@ -23,11 +23,11 @@ supersample=4.0
 ## Peak extraction metadata
 Range=[10.9, 15]
 cres=0.10472
-effective_dy=0.227953310256 (mean)
+effective_dy=0.455906620513 (mean)
 
 ## Model Quality
-# Quality reported by ModelEvaluator: 61.6202075266
-# Free parameters in extracted peaks: 27
+# Quality reported by ModelEvaluator: 51.9417513491
+# Free parameters in extracted peaks: 21
 # Free parameters in baseline: 2
 # Length of data in final fit: 40
 ModelEvaluator=AIC
@@ -40,7 +40,7 @@ ModelEvaluator=AIC
 # Parameters of baseline, followed by comment which
 # gives the index of corresponding Baseline Function.
 # a_1 a_0
--0.510418401742 0.00840743355082 # 0
+-0.496000505209 0.00938437875474 # 0
 
 ## Peak Functions
 # Index Type
@@ -54,12 +54,10 @@ ModelEvaluator=AIC
 # Each line is followed by a comment which gives the index
 # of the corresponding Peak Function.
 #L position fwhm area
-11.2529285169 0.364905691879 35.069510576 # 2
-11.6049995958 0.242603175181 5.75251157226 # 2
-11.9810995228 0.395837076343 41.2543174499 # 2
-12.301949991 0.23763791237 9.95499038734 # 2
-12.6464816828 0.421778331973 59.2512366853 # 2
-13.3021821206 0.560737418698 55.9130337232 # 2
-13.9270960895 0.462233109053 47.0245789698 # 2
-14.5135618376 0.382520817816 61.9638372907 # 2
-15.2395954065 0.673266802865 163.664297749 # 2
+11.2573520325 0.373991203999 34.6040498151 # 2
+12.0087151394 0.566599746057 54.4028330737 # 2
+12.6511637826 0.451133520536 60.4517207938 # 2
+13.3046624137 0.512055342072 49.875933375 # 2
+13.9194024649 0.476336586991 47.6570175965 # 2
+14.5143782484 0.376556097123 59.8635311432 # 2
+15.2397459182 0.673630329652 160.521742315 # 2

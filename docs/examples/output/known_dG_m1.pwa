@@ -5,14 +5,14 @@ diffpy.srmise version 0.5.2
 # Multimodeling Summary
 # ---------------------
 # Evaluated at dG: 0.414460564103
-# Model: 8 (of 15)
-# Class: 2 (of 4, tol=0.2)
-# Akaike probability: 0.457822
-# Rank: 1
+# Model: 1 (of 15)
+# Class: 1 (of 4, tol=0.2)
+# Akaike probability: 0.103441
+# Rank: 4
 ##### PDF Peak Extraction Summary
 # The information below is not sufficient to replicate extraction.
 ## PDF metadata
-filename=/home/luke/Workspaces/MSU_Research/diffpy.srmise/doc/examples/data/Ag_nyquist_qmax30.gr
+filename=/home/luke/Workspaces/MSU_Research/diffpy.srmise/docs/examples/data/Ag_nyquist_qmax30.gr
 nyquist=True
 qmax=30.0
 qmax_reportedbypdf=30.0
@@ -23,11 +23,11 @@ supersample=4.0
 ## Peak extraction metadata
 Range=[10.9, 15]
 cres=0.10472
-effective_dy=0.373014507692 (mean)
+effective_dy=0.227953310256 (mean)
 
 ## Model Quality
-# Quality reported by ModelEvaluator: 54.5804317222
-# Free parameters in extracted peaks: 24
+# Quality reported by ModelEvaluator: 61.6202075266
+# Free parameters in extracted peaks: 27
 # Free parameters in baseline: 2
 # Length of data in final fit: 40
 ModelEvaluator=AIC
@@ -54,11 +54,12 @@ ModelEvaluator=AIC
 # Each line is followed by a comment which gives the index
 # of the corresponding Peak Function.
 #L position fwhm area
-11.2506286561 0.370187490596 34.3566941925 # 2
-11.9567809353 0.178069824317 4.11976261759 # 2
-12.0484452287 0.699999913404 59.8073862592 # 2
-12.663000713 0.41644345755 53.4693315884 # 2
-13.3038885037 0.552815380886 55.2238045805 # 2
-13.9261201547 0.462771154733 47.2081766576 # 2
-14.5137553558 0.382974377398 62.1392302623 # 2
-15.2319313936 0.664623912597 159.251769113 # 2
+11.2529285169 0.364905691879 35.069510576 # 2
+11.6049995958 0.242603175181 5.75251157226 # 2
+11.9810995228 0.395837076343 41.2543174499 # 2
+12.301949991 0.23763791237 9.95499038734 # 2
+12.6464816828 0.421778331973 59.2512366853 # 2
+13.3021821206 0.560737418698 55.9130337232 # 2
+13.9270960895 0.462233109053 47.0245789698 # 2
+14.5135618376 0.382520817816 61.9638372907 # 2
+15.2395954065 0.673266802865 163.664297749 # 2
