@@ -4,15 +4,15 @@ diffpy.srmise version 0.5.2
 ##### User comments
 # Multimodeling Summary
 # ---------------------
-# Model: 7 (of 20)
-# Class: 7 (of 16, tol=0.2)
-# Best model from dG: 4477.33973684-4477.33973684
-# Evaluated at dG: 4477.33973684
-# Akaike probability: 0.388316
+# Model: 11 (of 20)
+# Class: 9 (of 16, tol=0.2)
+# Best model from dG: 5029.34052632-7237.34368421
+# Evaluated at dG: 6133.34210526
+# Akaike probability: 0.362269
 ##### PDF Peak Extraction Summary
 # The information below is not sufficient to replicate extraction.
 ## PDF metadata
-filename=/home/luke/Workspaces/MSU_Research/diffpy.srmise/doc/examples/data/C60_fine_qmax21.gr
+filename=/home/luke/Workspaces/MSU_Research/diffpy.srmise/docs/examples/data/C60_fine_qmax21.gr
 nyquist=True
 qmax=21.299999
 qmax_reportedbypdf=21.299999
@@ -23,11 +23,11 @@ supersample=4.0
 ## Peak extraction metadata
 Range=[1.0, 7.25]
 cres=0.05
-effective_dy=5029.34052632 (mean)
+effective_dy=7237.34368421 (mean)
 
 ## Model Quality
-# Quality reported by ModelEvaluator: 89.4691119999
-# Free parameters in extracted peaks: 39
+# Quality reported by ModelEvaluator: 80.413046708
+# Free parameters in extracted peaks: 36
 # Free parameters in baseline: 0
 # Length of data in final fit: 43
 ModelEvaluator=AIC
@@ -53,16 +53,15 @@ ModelEvaluator=AIC
 # Each line is followed by a comment which gives the index
 # of the corresponding Peak Function.
 #L position fwhm area
-1.4417380998 0.13653359706 36320.7534683 # 2
-2.43832278506 0.201210428425 75273.2073159 # 2
-2.84403923881 0.0597138256269 21317.223983 # 2
-3.61488016498 0.206498036173 74008.8052026 # 2
-4.11183883704 0.214845040662 58207.1245709 # 2
-4.54307340829 0.183393357796 75941.8390331 # 2
-4.83396514156 0.159909717143 30208.592012 # 2
-5.17265976331 0.0845551668723 25179.0215468 # 2
-5.43502189273 0.180502070066 83966.9341473 # 2
-5.75526585575 0.239468243089 70127.0241405 # 2
-6.10980020014 0.256814025441 94280.9867174 # 2
-6.63813649205 0.305053576514 122154.236481 # 2
-6.99526082592 0.285611055153 58328.1689735 # 2
+1.44110805058 0.137450008306 36477.2666515 # 2
+2.43887229171 0.195375706477 74722.6346958 # 2
+2.84266159236 0.10102665968 21739.2819061 # 2
+3.6140562684 0.202979160101 73582.1420293 # 2
+4.11535010128 0.217818225027 58770.0737487 # 2
+4.51872343739 0.126087630167 57308.6848864 # 2
+4.76102603658 0.291669997662 47741.4117156 # 2
+5.44816921805 0.41259645499 140398.425808 # 2
+5.80163929845 0.0425183879908 37368.6545143 # 2
+6.10169007051 0.247368613732 95492.0131064 # 2
+6.64595783725 0.329450567793 130926.782835 # 2
+7.01229569315 0.245582344604 50506.6779435 # 2

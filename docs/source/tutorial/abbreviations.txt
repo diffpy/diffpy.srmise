@@ -1,6 +1,6 @@
 .. Abbreviations and definitions for SrMise tutorial.
 
-.. The README file in the doc/examples directory of the SrMise source
+.. The README file in the docs/examples directory of the SrMise source
    distribution should be readable without generating the full Sphinx docs.
    To do this, the amount of markup is kept to a bare minimum, and the markup
    that does appear shouldn't get in the way of understanding.

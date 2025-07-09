@@ -6,7 +6,7 @@ diffpy.srmise version 0.5.2
 ##### PDF Peak Extraction Summary
 # The information below is not sufficient to replicate extraction.
 ## PDF metadata
-filename=/home/luke/Workspaces/MSU_Research/diffpy.srmise/doc/examples/data/TiO2_fine_qmax26.gr
+filename=/home/luke/Workspaces/MSU_Research/diffpy.srmise/docs/examples/data/TiO2_fine_qmax26.gr
 nyquist=True
 qmax=26.0
 qmax_reportedbypdf=26.0

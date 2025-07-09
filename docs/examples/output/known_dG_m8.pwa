@@ -5,14 +5,14 @@ diffpy.srmise version 0.5.2
 # Multimodeling Summary
 # ---------------------
 # Evaluated at dG: 0.414460564103
-# Model: 0 (of 15)
-# Class: 0 (of 4, tol=0.2)
-# Akaike probability: 0.116014
-# Rank: 3
+# Model: 8 (of 15)
+# Class: 2 (of 4, tol=0.2)
+# Akaike probability: 0.457822
+# Rank: 1
 ##### PDF Peak Extraction Summary
 # The information below is not sufficient to replicate extraction.
 ## PDF metadata
-filename=/home/luke/Workspaces/MSU_Research/diffpy.srmise/doc/examples/data/Ag_nyquist_qmax30.gr
+filename=/home/luke/Workspaces/MSU_Research/diffpy.srmise/docs/examples/data/Ag_nyquist_qmax30.gr
 nyquist=True
 qmax=30.0
 qmax_reportedbypdf=30.0
@@ -23,11 +23,11 @@ supersample=4.0
 ## Peak extraction metadata
 Range=[10.9, 15]
 cres=0.10472
-effective_dy=0.207230282051 (mean)
+effective_dy=0.373014507692 (mean)
 
 ## Model Quality
-# Quality reported by ModelEvaluator: 62.302748451
-# Free parameters in extracted peaks: 27
+# Quality reported by ModelEvaluator: 54.5804317222
+# Free parameters in extracted peaks: 24
 # Free parameters in baseline: 2
 # Length of data in final fit: 40
 ModelEvaluator=AIC
@@ -54,12 +54,11 @@ ModelEvaluator=AIC
 # Each line is followed by a comment which gives the index
 # of the corresponding Peak Function.
 #L position fwhm area
-11.2310491383 0.29009226516 19.2512559254 # 2
-11.4396028801 0.699999999983 27.0749215956 # 2
-11.9917737278 0.362929903251 35.1440957376 # 2
-12.2970626245 0.246439663133 11.2573010498 # 2
-12.6468606943 0.420659409723 59.0581484285 # 2
-13.3022057364 0.561794132185 56.019285676 # 2
-13.9271227928 0.461410605827 46.9264650576 # 2
-14.5144826305 0.383957447583 62.6172758881 # 2
-15.2120923348 0.640989083839 148.197881104 # 2
+11.2506286561 0.370187490596 34.3566941925 # 2
+11.9567809353 0.178069824317 4.11976261759 # 2
+12.0484452287 0.699999913404 59.8073862592 # 2
+12.663000713 0.41644345755 53.4693315884 # 2
+13.3038885037 0.552815380886 55.2238045805 # 2
+13.9261201547 0.462771154733 47.2081766576 # 2
+14.5137553558 0.382974377398 62.1392302623 # 2
+15.2319313936 0.664623912597 159.251769113 # 2
