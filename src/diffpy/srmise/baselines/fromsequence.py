@@ -23,14 +23,18 @@ logger = logging.getLogger("diffpy.srmise")
 
 
 class FromSequence(BaselineFunction):
-    """Methods for evaluation of a baseline from discrete data via interpolation.
+    """Methods for evaluation of a baseline from discrete data via
+    interpolation.
 
-    FromSequence uses cubic spline interpolation (no smoothing) on discrete
-    points to approximate the baseline at arbitrary points within the
-    interpolation domain.  This baseline function permits no free parameters."""
+    FromSequence uses cubic spline interpolation (no smoothing) on
+    discrete points to approximate the baseline at arbitrary points
+    within the interpolation domain.  This baseline function permits no
+    free parameters.
+    """
 
     def __init__(self, *args, **kwds):
-        """Initialize a baseline object based on input sequences `x` and `y`.
+        """Initialize a baseline object based on input sequences `x` and
+        `y`.
 
         This class provides two ways to initialize: by directly providing the sequences or by
         specifying a file that contains the sequences.
@@ -181,7 +185,8 @@ class FromSequence(BaselineFunction):
         return temp
 
     def _valueraw(self, pars, r):
-        """Return value of polynomial for the given parameters and r values.
+        """Return value of polynomial for the given parameters and r
+        values.
 
         Parameters
         ----------
@@ -233,7 +238,7 @@ class FromSequence(BaselineFunction):
         return "[%s]" % ", ".join([repr(v) for v in var])
 
     def readxy(self, filename):
-        """ """
+        """"""
         from diffpy.srmise.srmiseerrors import SrMiseDataFormatError
 
         # TODO: Make this safer

@@ -11,7 +11,8 @@
 # See LICENSE.txt for license information.
 #
 ##############################################################################
-"""Defines class to partition sequences representing the x and y axis into peak-like clusters."""
+"""Defines class to partition sequences representing the x and y axis
+into peak-like clusters."""
 
 import logging
 
@@ -53,7 +54,7 @@ class DataClusters:
     """
 
     def __init__(self, x, y, res):
-        """Constructor
+        """Constructor.
 
         Parameters
         ----------
@@ -102,8 +103,8 @@ class DataClusters:
         )
 
     def _clear(self):
-        """
-        Clear all data and reset the cluster object to a transient initial state.
+        """Clear all data and reset the cluster object to a transient
+        initial state.
 
         The purpose of this method is to provide a clean state before creating new clustering operations.
         The object is updated in-place and no new instance is returned.
@@ -176,7 +177,8 @@ class DataClusters:
         """Cluster point with largest y-coordinate left, returning self.
 
         next() always adds at least one additional point to the existing
-        cluster, or raises an exception if all points have been clustered.
+        cluster, or raises an exception if all points have been
+        clustered.
         """
         if self.status == self.INIT:
             raise Exception("Cannot cluster next point while status is INIT.")
@@ -257,7 +259,8 @@ class DataClusters:
                 return self.find_nearest_cluster(idx - 1)
 
     def find_nearest_cluster(self, idx):
-        """Return [cluster index, distance] for cluster nearest to x[idx].
+        """Return [cluster index, distance] for cluster nearest to
+        x[idx].
 
         The distance is positive/negative if the point is right/left of the
         nearest cluster.  If the point is within an existing cluster then
@@ -332,7 +335,8 @@ class DataClusters:
         return self.clusters[cluster_idx, 0] == low and self.clusters[cluster_idx, 1] == high
 
     def combine_clusters(self, combine):
-        """Combine clusters specified by each subarray of cluster indices.
+        """Combine clusters specified by each subarray of cluster
+        indices.
 
         Clusters to combine must be contiguous, increasing, and have no
         unclustered points between them.
@@ -386,7 +390,8 @@ class DataClusters:
         self.clusters = np.delete(self.clusters, todelete, 0)
 
     def find_adjacent_clusters(self):
-        """Return all cluster indices with no unclustered points between them.
+        """Return all cluster indices with no unclustered points between
+        them.
 
         Return array([[leftmost_idx1,...,rightmost_idx1],...]) such that there
         are no unclustered points between each element in subarray of clusters
@@ -465,7 +470,10 @@ class DataClusters:
         return
 
     def animate(self):
-        """Animate clustering.  Restores state when complete."""
+        """Animate clustering.
+
+        Restores state when complete.
+        """
         clusters = self.clusters
         current_idx = self.current_idx
         lastcluster_idx = self.lastcluster_idx

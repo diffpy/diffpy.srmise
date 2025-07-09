@@ -95,7 +95,8 @@ def setfilelevel(level):
     """Set level of file logger.
 
     Parameters
-    level: The logging level."""
+    level: The logging level.
+    """
     global fh
     if fh is not None:
         level = LEVELS.get(level, level)
@@ -111,7 +112,8 @@ def setlevel(level):
     """Set level of default (stdout) logger.
 
     Parameters
-    level: The logging level."""
+    level: The logging level.
+    """
     global ch
     level = LEVELS.get(level, level)
     ch.setLevel(level)
@@ -127,7 +129,8 @@ def liveplotting(lp, w=False):
 
     Parameters
     lp: Use live plotting (True) or not (False).
-    w: (False) Whether to wait for user after plotting."""
+    w: (False) Whether to wait for user after plotting.
+    """
     global liveplots
     global wait
     if lp is True or lp is False:
@@ -172,8 +175,8 @@ class TracePeaks(object):
     def emit(self, *args, **kwds):
         """Write current trace to file.
 
-        Parameters
-        Any number of ModelCluster instances"""
+        Parameters Any number of ModelCluster instances
+        """
         if not eval(self.filter):
             return
         else:
@@ -236,7 +239,8 @@ class TracePeaks(object):
         "clusters" - List of cluster regions [[r0,r1],[r2,r3],...]
         "counter" - The count when object was created
         "mc" - A ModelCluster instance
-        "recursion" - The recursion level of mc"""
+        "recursion" - The recursion level of mc
+        """
         try:
             return self.readstr(open(filename, "rb").read())
         except SrMiseDataFormatError as err:
@@ -258,7 +262,8 @@ class TracePeaks(object):
         "clusters" - List of cluster regions [[r0,r1],[r2,r3],...]
         "counter" - The count when object was created
         "mc" - A ModelCluster instance
-        "recursion" - The recursion level of mc"""
+        "recursion" - The recursion level of mc
+        """
 
         # find where the ModelCluster section starts
         res = re.search(r"^#+ ModelCluster\s*(?:#.*\s+)*", datastring, re.M)
