@@ -52,9 +52,20 @@ class Polynomial(BaselineFunction):
         for d in range(self.degree + 1):
             parameterdict["a_" + str(d)] = self.degree - d
         formats = ["internal"]
-        default_formats = {"default_input": "internal", "default_output": "internal"}
+        default_formats = {
+            "default_input": "internal",
+            "default_output": "internal",
+        }
         metadict = {"degree": (degree, repr)}
-        BaselineFunction.__init__(self, parameterdict, formats, default_formats, metadict, None, Cache)
+        BaselineFunction.__init__(
+            self,
+            parameterdict,
+            formats,
+            default_formats,
+            metadict,
+            None,
+            Cache,
+        )
 
     # Methods required by BaselineFunction ####
 

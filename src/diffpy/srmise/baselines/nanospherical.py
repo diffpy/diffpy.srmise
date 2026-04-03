@@ -51,9 +51,20 @@ class NanoSpherical(BaselineFunction):
         # Define parameterdict
         parameterdict = {"scale": 0, "radius": 1}
         formats = ["internal"]
-        default_formats = {"default_input": "internal", "default_output": "internal"}
+        default_formats = {
+            "default_input": "internal",
+            "default_output": "internal",
+        }
         metadict = {}
-        BaselineFunction.__init__(self, parameterdict, formats, default_formats, metadict, None, Cache)
+        BaselineFunction.__init__(
+            self,
+            parameterdict,
+            formats,
+            default_formats,
+            metadict,
+            None,
+            Cache,
+        )
 
     # Methods required by BaselineFunction ####
 

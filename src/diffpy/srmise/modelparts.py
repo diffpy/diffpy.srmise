@@ -654,7 +654,13 @@ class ModelPart(object):
         ModelPart
             A deep copy of this ModelPart.
         """
-        return type(self).__call__(self._owner, self.pars, self.free, self.removable, self.static_owner)
+        return type(self).__call__(
+            self._owner,
+            self.pars,
+            self.free,
+            self.removable,
+            self.static_owner,
+        )
 
     def __getitem__(self, key_or_idx):
         """Return parameter of peak corresponding with key_or_idx.

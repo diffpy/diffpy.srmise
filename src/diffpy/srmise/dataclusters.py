@@ -219,7 +219,12 @@ class DataClusters:
             else:
                 # insert right of nearest cluster
                 self.lastcluster_idx = nearest_cluster[0] + 1
-            self.clusters = np.insert(self.clusters, int(self.lastcluster_idx), [test_idx, test_idx], 0)
+            self.clusters = np.insert(
+                self.clusters,
+                int(self.lastcluster_idx),
+                [test_idx, test_idx],
+                0,
+            )
         return self
 
     def makeclusters(self):
@@ -515,7 +520,25 @@ class DataClusters:
 # simple test code
 if __name__ == "__main__":
 
-    x = np.array([-2.0, -1.5, -1.0, -0.5, 0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0])
+    x = np.array(
+        [
+            -2.0,
+            -1.5,
+            -1.0,
+            -0.5,
+            0.0,
+            0.5,
+            1.0,
+            1.5,
+            2.0,
+            2.5,
+            3.0,
+            3.5,
+            4.0,
+            4.5,
+            5.0,
+        ]
+    )
     y = np.array(
         [
             0.0183156,

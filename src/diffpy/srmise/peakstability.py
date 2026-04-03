@@ -146,7 +146,14 @@ class PeakStability:
             self.ppe.setvars(quiet=True, effective_dy=result[0] * np.ones(len(self.ppe.x)))
             (r, y, dr, dy) = self.ppe.resampledata(result[3])
             self.ppe.extracted = ModelCluster(
-                result[1], result[2], r, y, dy, None, self.ppe.error_method, self.ppe.pf
+                result[1],
+                result[2],
+                r,
+                y,
+                dy,
+                None,
+                self.ppe.error_method,
+                self.ppe.pf,
             )
         else:
             self.ppe.clearcalc()

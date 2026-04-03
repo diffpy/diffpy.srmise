@@ -8,7 +8,7 @@
         :target: https://diffpy.github.io/diffpy.srmise
         :height: 100px
 
-|PyPi| |Forge| |PythonVersion| |PR|
+|PyPI| |Forge| |PythonVersion| |PR|
 
 |CI| |Codecov| |Black| |Tracking|
 
@@ -25,8 +25,9 @@
         :target: https://anaconda.org/conda-forge/diffpy.srmise
 
 .. |PR| image:: https://img.shields.io/badge/PR-Welcome-29ab47ff
+        :target: https://github.com/diffpy/diffpy.srmise/pulls
 
-.. |PyPi| image:: https://img.shields.io/pypi/v/diffpy.srmise
+.. |PyPI| image:: https://img.shields.io/pypi/v/diffpy.srmise
         :target: https://pypi.org/project/diffpy.srmise/
 
 .. |PythonVersion| image:: https://img.shields.io/pypi/pyversions/diffpy.srmise
@@ -35,54 +36,18 @@
 .. |Tracking| image:: https://img.shields.io/badge/issue_tracking-github-blue
         :target: https://github.com/diffpy/diffpy.srmise/issues
 
-Implementation of the ParSCAPE algorithm for peak extraction from atomic pair distribution functions (PDFs)
+Peak extraction and peak fitting tool for atomic pair distribution functions.
 
-SrMise is an implementation of the `ParSCAPE algorithm
-<https://dx.doi.org/10.1107/S2053273315005276>`_ for peak extraction from
-atomic pair distribution functions (PDFs).  It is designed to function even
-when *a priori* knowledge of the physical sample is limited, utilizing the
-Akaike Information Criterion (AIC) to estimate whether peaks are
-statistically justified relative to alternate models.  Three basic use cases
-are anticipated for SrMise.  The first is peak fitting a user-supplied
-collections of peaks.  The second is peak extraction from a PDF with no (or
-only partial) user-supplied peaks.  The third is an AIC-driven multimodeling
-analysis where the output of multiple SrMise trials are ranked.
-
-The framework for peak extraction defines peak-like clusters within the data,
-extracts a single peak within each cluster, and iteratively combines nearby
-clusters while performing a recursive search on the residual to identify
-occluded peaks.  Eventually this results in a single global cluster
-containing many peaks fit over all the data.  Over- and underfitting are
-discouraged by use of the AIC when adding or, during a pruning step, removing
-peaks.  Termination effects, which can lead to physically spurious peaks in
-the PDF, are incorporated in the mathematical peak model and the pruning step
-attempts to remove peaks which are fit better as termination ripples due to
-another peak.
-
-Where possible, SrMise provides physically reasonable default values
-for extraction parameters.  However, the PDF baseline should be estimated by
-the user before extraction, or by performing provisional peak extraction with
-varying baseline parameters.  The package defines a linear (crystalline)
-baseline, arbitrary polynomial baseline, a spherical nanoparticle baseline,
-and an arbitrary baseline interpolated from a list of user-supplied values.
-In addition, PDFs with accurate experimentally-determined uncertainties are
-necessary to provide the most reliable results, but historically such PDFs
-are rare.  In the absence of accurate uncertainties an *ad hoc* uncertainty
-must be specified.
+* LONGER DESCRIPTION HERE
 
 For more information about the diffpy.srmise library, please consult our `online documentation <https://diffpy.github.io/diffpy.srmise>`_.
 
 Citation
 --------
 
-If you use this program for a scientific research that leads
-to publication, we ask that you acknowledge use of the program
-by citing the following paper in your publication:
+If you use diffpy.srmise in a scientific publication, we would like you to cite this package as
 
-   L. Granlund, S. J. L. Billinge and P. M. Duxbury,
-   `Algorithm for systematic peak extraction from atomic pair distribution functions
-   <http://dx.doi.org/10.1107/S2053273315005276>`__,
-   *Acta Crystallogr. A* **4**, 392-409 (2015).
+        diffpy.srmise Package, https://github.com/diffpy/diffpy.srmise
 
 Installation
 ------------
@@ -101,10 +66,6 @@ The following creates and activates a new environment named ``diffpy.srmise_env`
         conda create -n diffpy.srmise_env diffpy.srmise
         conda activate diffpy.srmise_env
 
-To confirm that the installation was successful, type ::
-
-        python -c "import diffpy.srmise; print(diffpy.srmise.__version__)"
-
 The output should print the latest version displayed on the badges above.
 
 If the above does not work, you can use ``pip`` to download and install the latest release from
@@ -119,6 +80,19 @@ and run the following ::
 
         pip install .
 
+This package also provides command-line utilities. To check the software has been installed correctly, type ::
+
+        diffpy.srmise --version
+
+You can also type the following command to verify the installation. ::
+
+        python -c "import diffpy.srmise; print(diffpy.srmise.__version__)"
+
+
+To view the basic usage and available commands, type ::
+
+        diffpy.srmise -h
+
 Getting Started
 ---------------
 
@@ -127,9 +101,7 @@ You may consult our `online documentation <https://diffpy.github.io/diffpy.srmis
 Support and Contribute
 ----------------------
 
-`Diffpy user group <https://groups.google.com/g/diffpy-users>`_ is the discussion forum for general questions and discussions about the use of diffpy.srmise. Please join the diffpy.srmise users community by joining the Google group. The diffpy.srmise project welcomes your expertise and enthusiasm!
-
-If you see a bug or want to request a feature, please `report it as an issue <https://github.com/diffpy/diffpy.srmise/issues>`_ and/or `submit a fix as a PR <https://github.com/diffpy/diffpy.srmise/pulls>`_. You can also post it to the `Diffpy user group <https://groups.google.com/g/diffpy-users>`_.
+If you see a bug or want to request a feature, please `report it as an issue <https://github.com/diffpy/diffpy.srmise/issues>`_ and/or `submit a fix as a PR <https://github.com/diffpy/diffpy.srmise/pulls>`_.
 
 Feel free to fork the project and contribute. To install diffpy.srmise
 in a development mode, with its sources being directly used by Python
@@ -152,9 +124,14 @@ trying to commit again.
 
 Improvements and fixes are always appreciated.
 
-Before contributing, please read our `Code of Conduct <https://github.com/diffpy/diffpy.srmise/blob/main/CODE_OF_CONDUCT.rst>`_.
+Before contributing, please read our `Code of Conduct <https://github.com/diffpy/diffpy.srmise/blob/main/CODE-OF-CONDUCT.rst>`_.
 
 Contact
 -------
 
-For more information on diffpy.srmise please visit the project `web-page <https://diffpy.github.io/>`_ or email Prof. Simon Billinge at sb2896@columbia.edu.
+For more information on diffpy.srmise please visit the project `web-page <https://diffpy.github.io/>`_ or email the maintainers ``Simon Billinge(sbillinge@ucsb.edu)``.
+
+Acknowledgements
+----------------
+
+``diffpy.srmise`` is built and maintained with `scikit-package <https://scikit-package.github.io/scikit-package/>`_.

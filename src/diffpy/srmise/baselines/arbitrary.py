@@ -71,7 +71,10 @@ class Arbitrary(BaselineFunction):
         for d in range(testnpars + 1):
             parameterdict["a_" + str(d)] = d
         formats = ["internal"]
-        default_formats = {"default_input": "internal", "default_output": "internal"}
+        default_formats = {
+            "default_input": "internal",
+            "default_output": "internal",
+        }
 
         # Check that the provided functions are at least callable
         if valuef is None or callable(valuef):
@@ -98,7 +101,15 @@ class Arbitrary(BaselineFunction):
             "jacobianf": (jacobianf, repr),
             "estimatef": (estimatef, repr),
         }
-        BaselineFunction.__init__(self, parameterdict, formats, default_formats, metadict, None, Cache)
+        BaselineFunction.__init__(
+            self,
+            parameterdict,
+            formats,
+            default_formats,
+            metadict,
+            None,
+            Cache,
+        )
 
     # Methods required by BaselineFunction ####
 

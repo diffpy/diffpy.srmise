@@ -479,7 +479,12 @@ if __name__ == "__main__":
         print(k, "=", v)
     print("== robs Gobs drobs dGobs ==")
     for i in range(len(dataset.robs)):
-        print(dataset.robs[i], dataset.Gobs[i], dataset.drobs[i], dataset.dGobs[i])
+        print(
+            dataset.robs[i],
+            dataset.Gobs[i],
+            dataset.drobs[i],
+            dataset.dGobs[i],
+        )
     print("== writeStr() ==")
     print(dataset.writeStr())
     print("== datasetcopy.writeStr() ==")

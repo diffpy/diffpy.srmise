@@ -90,14 +90,25 @@ class FromSequence(BaselineFunction):
             raise ValueError(emsg)
         parameterdict = {}
         formats = ["internal"]
-        default_formats = {"default_input": "internal", "default_output": "internal"}
+        default_formats = {
+            "default_input": "internal",
+            "default_output": "internal",
+        }
         self.spline = spi.InterpolatedUnivariateSpline(x, y)
         self.minx = x[0]
         self.maxx = x[-1]
         metadict = {}
         metadict["x"] = (x, self.xyrepr)
         metadict["y"] = (y, self.xyrepr)
-        BaselineFunction.__init__(self, parameterdict, formats, default_formats, metadict, None, Cache=None)
+        BaselineFunction.__init__(
+            self,
+            parameterdict,
+            formats,
+            default_formats,
+            metadict,
+            None,
+            Cache=None,
+        )
 
     # Methods required by BaselineFunction ####
 

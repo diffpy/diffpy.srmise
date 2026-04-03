@@ -193,7 +193,16 @@ def makeplot(ppe_or_stability, ip=None, **kwds):
         x = ppe.x[rangeslice]
         y = ppe.y[rangeslice]
         dy = ppe.effective_dy[rangeslice]
-        mcluster = ModelCluster(ppe.initial_peaks, ppe.baseline, x, y, dy, None, ppe.error_method, ppe.pf)
+        mcluster = ModelCluster(
+            ppe.initial_peaks,
+            ppe.baseline,
+            x,
+            y,
+            dy,
+            None,
+            ppe.error_method,
+            ppe.pf,
+        )
         ext = mcluster
     else:
         ext = ppe.extracted
@@ -252,7 +261,13 @@ def makeplot(ppe_or_stability, ip=None, **kwds):
     # Define the various data which will be plotted
     r = ext.r_cluster
     dr = (r[-1] - r[0]) / len(r)
-    rexpand = np.concatenate((np.arange(r[0] - dr, xlo, -dr)[::-1], r, np.arange(r[-1] + dr, xhi + dr, dr)))
+    rexpand = np.concatenate(
+        (
+            np.arange(r[0] - dr, xlo, -dr)[::-1],
+            r,
+            np.arange(r[-1] + dr, xhi + dr, dr),
+        )
+    )
     rfine = np.arange(r[0], r[-1], 0.1 * dr)
     gr_obs = np.array(resample(ppe.x, ppe.y, rexpand)) * scale
     # gr_fit = resample(r, ext.value(), rfine)
@@ -475,7 +490,15 @@ def makeplot(ppe_or_stability, ip=None, **kwds):
             plt.axes(ax_cmp)
             ylo2, yhi2 = ax_cmp.get_ylim()
             ypos = yhi2 / 2.0
-            plt.text(xpos, ypos, dgstr, va="center", ha="center", size=8, color="green")
+            plt.text(
+                xpos,
+                ypos,
+                dgstr,
+                va="center",
+                ha="center",
+                size=8,
+                color="green",
+            )
         else:
             # Text only in main plot region
             # Must change axes
@@ -584,9 +607,18 @@ def main():
         type="int",
         help="Plot given model from set.  Ignored if srmise_file is not a PeakStability file.",
     )
-    parser.add_option("--show", action="store_true", help="execute pylab.show() blocking call")
+    parser.add_option(
+        "--show",
+        action="store_true",
+        help="execute pylab.show() blocking call",
+    )
     parser.add_option("-o", "--output", type="string", help="save plot to the specified file")
-    parser.add_option("--format", type="string", default="eps", help="output format for plot saving")
+    parser.add_option(
+        "--format",
+        type="string",
+        default="eps",
+        help="output format for plot saving",
+    )
     parser.allow_interspersed_args = True
     opts, args = parser.parse_args(sys.argv[1:])
 

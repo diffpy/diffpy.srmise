@@ -288,7 +288,13 @@ def main():
         "--dg-mode",
         dest="dg_mode",
         type="choice",
-        choices=["absolute", "data", "max-fraction", "ptp-fraction", "dG-fraction"],
+        choices=[
+            "absolute",
+            "data",
+            "max-fraction",
+            "ptp-fraction",
+            "dG-fraction",
+        ],
         help="Define how values passed to '--dg' are treated. "
         "Possible values are: \n"
         "'absolute' - The actual uncertainty in the PDF.\n"
@@ -338,7 +344,13 @@ def main():
         metavar="FILE",
         help="Save result of extraction to FILE (.srmise " "format).",
     )
-    group.add_option("--plot", "-p", action="store_true", dest="plot", help="Plot extracted peaks.")
+    group.add_option(
+        "--plot",
+        "-p",
+        action="store_true",
+        dest="plot",
+        help="Plot extracted peaks.",
+    )
     group.add_option(
         "--liveplot",
         "-l",
@@ -601,7 +613,13 @@ class IndentedHelpFormatterWithNL(IndentedHelpFormatter):
         # the above is still the same
         bits = text.split("\n")
         formatted_bits = [
-            textwrap.fill(bit, text_width, initial_indent=indent, subsequent_indent=indent) for bit in bits
+            textwrap.fill(
+                bit,
+                text_width,
+                initial_indent=indent,
+                subsequent_indent=indent,
+            )
+            for bit in bits
         ]
         result = "\n".join(formatted_bits) + "\n"
         return result
