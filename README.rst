@@ -8,15 +8,15 @@
         :target: https://diffpy.github.io/diffpy.srmise
         :height: 100px
 
-|PyPi| |Forge| |PythonVersion| |PR|
+|PyPI| |Forge| |PythonVersion| |PR|
 
 |CI| |Codecov| |Black| |Tracking|
 
 .. |Black| image:: https://img.shields.io/badge/code_style-black-black
         :target: https://github.com/psf/black
 
-.. |CI| image:: https://github.com/diffpy/diffpy.srmise/actions/workflows/matrix-and-codecov-on-merge-to-main.yml/badge.svg
-        :target: https://github.com/diffpy/diffpy.srmise/actions/workflows/matrix-and-codecov-on-merge-to-main.yml
+.. |CI| image:: https://github.com/diffpy/diffpy.srmise/actions/workflows/matrix-and-codecov.yml/badge.svg
+        :target: https://github.com/diffpy/diffpy.srmise/actions/workflows/matrix-and-codecov.yml
 
 .. |Codecov| image:: https://codecov.io/gh/diffpy/diffpy.srmise/branch/main/graph/badge.svg
         :target: https://codecov.io/gh/diffpy/diffpy.srmise
@@ -25,8 +25,9 @@
         :target: https://anaconda.org/conda-forge/diffpy.srmise
 
 .. |PR| image:: https://img.shields.io/badge/PR-Welcome-29ab47ff
+        :target: https://github.com/diffpy/diffpy.srmise/pulls
 
-.. |PyPi| image:: https://img.shields.io/pypi/v/diffpy.srmise
+.. |PyPI| image:: https://img.shields.io/pypi/v/diffpy.srmise
         :target: https://pypi.org/project/diffpy.srmise/
 
 .. |PythonVersion| image:: https://img.shields.io/pypi/pyversions/diffpy.srmise
@@ -101,10 +102,6 @@ The following creates and activates a new environment named ``diffpy.srmise_env`
         conda create -n diffpy.srmise_env diffpy.srmise
         conda activate diffpy.srmise_env
 
-To confirm that the installation was successful, type ::
-
-        python -c "import diffpy.srmise; print(diffpy.srmise.__version__)"
-
 The output should print the latest version displayed on the badges above.
 
 If the above does not work, you can use ``pip`` to download and install the latest release from
@@ -119,6 +116,19 @@ and run the following ::
 
         pip install .
 
+This package also provides command-line utilities. To check the software has been installed correctly, type ::
+
+        diffpy.srmise --version
+
+You can also type the following command to verify the installation. ::
+
+        python -c "import diffpy.srmise; print(diffpy.srmise.__version__)"
+
+
+To view the basic usage and available commands, type ::
+
+        diffpy.srmise -h
+
 Getting Started
 ---------------
 
@@ -127,9 +137,7 @@ You may consult our `online documentation <https://diffpy.github.io/diffpy.srmis
 Support and Contribute
 ----------------------
 
-`Diffpy user group <https://groups.google.com/g/diffpy-users>`_ is the discussion forum for general questions and discussions about the use of diffpy.srmise. Please join the diffpy.srmise users community by joining the Google group. The diffpy.srmise project welcomes your expertise and enthusiasm!
-
-If you see a bug or want to request a feature, please `report it as an issue <https://github.com/diffpy/diffpy.srmise/issues>`_ and/or `submit a fix as a PR <https://github.com/diffpy/diffpy.srmise/pulls>`_. You can also post it to the `Diffpy user group <https://groups.google.com/g/diffpy-users>`_.
+If you see a bug or want to request a feature, please `report it as an issue <https://github.com/diffpy/diffpy.srmise/issues>`_ and/or `submit a fix as a PR <https://github.com/diffpy/diffpy.srmise/pulls>`_.
 
 Feel free to fork the project and contribute. To install diffpy.srmise
 in a development mode, with its sources being directly used by Python
@@ -152,9 +160,14 @@ trying to commit again.
 
 Improvements and fixes are always appreciated.
 
-Before contributing, please read our `Code of Conduct <https://github.com/diffpy/diffpy.srmise/blob/main/CODE_OF_CONDUCT.rst>`_.
+Before contributing, please read our `Code of Conduct <https://github.com/diffpy/diffpy.srmise/blob/main/CODE-OF-CONDUCT.rst>`_.
 
 Contact
 -------
 
-For more information on diffpy.srmise please visit the project `web-page <https://diffpy.github.io/>`_ or email Prof. Simon Billinge at sb2896@columbia.edu.
+For more information on diffpy.srmise please visit the project `web-page <https://diffpy.github.io/>`_ or email the maintainers ``Simon Billinge(sbillinge@ucsb.edu)``.
+
+Acknowledgements
+----------------
+
+``diffpy.srmise`` is built and maintained with `scikit-package <https://scikit-package.github.io/scikit-package/>`_.

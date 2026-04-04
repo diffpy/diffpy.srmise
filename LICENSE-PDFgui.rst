@@ -2,6 +2,7 @@ BSD 3-Clause License
 
 Copyright 2006-2007, Board of Trustees of Michigan State University
           2008-2024, The Trustees of Columbia University in the City of New York.
+          2026-present, The Contributors to the diffpy.pdfgui project.
 All rights reserved.
 
 SrMise incorporates source code from diffpy.pdfgui in the file

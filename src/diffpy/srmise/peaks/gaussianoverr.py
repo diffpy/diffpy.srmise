@@ -49,10 +49,21 @@ class GaussianOverR(PeakFunction):
         corresponding Gaussian, which is physically relevant."""
         parameterdict = {"position": 0, "width": 1, "area": 2}
         formats = ["internal", "pwa", "mu_sigma_area"]
-        default_formats = {"default_input": "internal", "default_output": "pwa"}
+        default_formats = {
+            "default_input": "internal",
+            "default_output": "pwa",
+        }
         metadict = {}
         metadict["maxwidth"] = (maxwidth, repr)
-        PeakFunction.__init__(self, parameterdict, formats, default_formats, metadict, None, Cache)
+        PeakFunction.__init__(
+            self,
+            parameterdict,
+            formats,
+            default_formats,
+            metadict,
+            None,
+            Cache,
+        )
 
         if maxwidth <= 0:
             emsg = "'maxwidth' must be greater than 0."
@@ -123,7 +134,17 @@ class GaussianOverR(PeakFunction):
             else:
                 sigma_left = np.sqrt(
                     -0.5
-                    * np.mean(np.abs(np.array([use_r[0] - guesspars[0], use_r[-1] - guesspars[0]]))) ** 2
+                    * np.mean(
+                        np.abs(
+                            np.array(
+                                [
+                                    use_r[0] - guesspars[0],
+                                    use_r[-1] - guesspars[0],
+                                ]
+                            )
+                        )
+                    )
+                    ** 2
                     / np.log(min_y / max_y)
                 )
             if use_y[-1] < max_y:
@@ -131,7 +152,17 @@ class GaussianOverR(PeakFunction):
             else:
                 sigma_right = np.sqrt(
                     -0.5
-                    * np.mean(np.abs(np.array([use_r[0] - guesspars[0], use_r[-1] - guesspars[0]]))) ** 2
+                    * np.mean(
+                        np.abs(
+                            np.array(
+                                [
+                                    use_r[0] - guesspars[0],
+                                    use_r[-1] - guesspars[0],
+                                ]
+                            )
+                        )
+                    )
+                    ** 2
                     / np.log(min_y / max_y)
                 )
             guesspars[1] = 0.5 * (sigma_right + sigma_left) * self.sigma2fwhm

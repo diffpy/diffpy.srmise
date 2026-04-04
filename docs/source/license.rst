@@ -13,6 +13,8 @@ Copyright 2014-2015, Board of Trustees of Michigan State University
 
 Copyright 2016-2025, The Trustees of Columbia University in the City of New York.
 
+Copyright (c) 2026-present, The Contributors to the diffpy.srmise project.
+
 All rights reserved.
 
 If you use this program to do productive scientific research that
@@ -39,9 +41,9 @@ modification, are permitted provided that the following conditions are met:
    this list of conditions and the following disclaimer in the documentation
    and/or other materials provided with the distribution.
 
-3. Neither the name of the copyright holder nor the names of its contributors
-   may be used to endorse or promote products derived from this software
-   without specific prior written permission.
+3. Neither the name of the copyright holder nor the names of its
+   contributors may be used to endorse or promote products derived from
+   this software without specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE

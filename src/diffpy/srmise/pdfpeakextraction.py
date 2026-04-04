@@ -520,7 +520,16 @@ class PDFPeakExtraction(PeakExtraction):
                         break
 
             else:
-                ext = ModelCluster(ext.model, bl, r1, y1, y_error1, None, self.error_method, self.pf)
+                ext = ModelCluster(
+                    ext.model,
+                    bl,
+                    r1,
+                    y1,
+                    y_error1,
+                    None,
+                    self.error_method,
+                    self.pf,
+                )
                 ext.prune()
 
             logger.info("Model after resampling and termination ripples:\n%s", ext)

@@ -90,7 +90,15 @@ class PeakFunction(BaseFunction):
         if "position" not in parameterdict:
             emsg = "Argument parameterdict missing required key 'position'."
             raise ValueError(emsg)
-        BaseFunction.__init__(self, parameterdict, parformats, default_formats, metadict, base, Cache)
+        BaseFunction.__init__(
+            self,
+            parameterdict,
+            parformats,
+            default_formats,
+            metadict,
+            base,
+            Cache,
+        )
 
     # # "Virtual" class methods ####
 

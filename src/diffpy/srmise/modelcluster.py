@@ -396,7 +396,10 @@ class ModelCovariance(object):
         if self.model is None or self.cov is None:
             return "Model and/or Covariance matrix undefined."
         k = i if i in self.ipmap else self.pmap[i]
-        return "%.5e (%.5e)" % (self.getvalue(k), np.sqrt(self.getcovariance(k, k)))
+        return "%.5e (%.5e)" % (
+            self.getvalue(k),
+            np.sqrt(self.getcovariance(k, k)),
+        )
 
 
 # End of class ModelCovariance
@@ -685,7 +688,10 @@ class ModelCluster(object):
         # Instantiating baseline functions
         if readblf:
             blfbaselist = []
-            res = re.split(r"(?m)^#+ BaselineFunction \d+\s*(?:#.*\s+)*", baselinefunctions)
+            res = re.split(
+                r"(?m)^#+ BaselineFunction \d+\s*(?:#.*\s+)*",
+                baselinefunctions,
+            )
             for s in res[1:]:
                 blfbaselist.append(BaseFunction.factory(s, blfbaselist))
 
@@ -1076,7 +1082,10 @@ class ModelCluster(object):
                 cov_format,
             )
         except SrMiseFitError as e:
-            logger.debug("Error while fitting cluster: %s\nReverting to original model.", e)
+            logger.debug(
+                "Error while fitting cluster: %s\nReverting to original model.",
+                e,
+            )
             self.model = orig_model
             self.baseline = orig_baseline
             return None
@@ -1350,7 +1359,12 @@ class ModelCluster(object):
             A sequence of plottable objects.
         """
         if joined:
-            return [self.r_cluster, self.y_cluster, self.r_cluster, self.value()]
+            return [
+                self.r_cluster,
+                self.y_cluster,
+                self.r_cluster,
+                self.value(),
+            ]
         else:
             toreturn = [self.r_cluster, self.y_cluster]
             bl = self.valuebl()
@@ -1424,7 +1438,12 @@ class ModelCluster(object):
         # TODO: Do I need this? If test_model contains peaks
         # by reference, the fit peaks will change as well.
         self.fit()
-        msg = ["Best model after fit is:", "%s", "w/ quality: %s", "================="]
+        msg = [
+            "Best model after fit is:",
+            "%s",
+            "w/ quality: %s",
+            "=================",
+        ]
         logger.debug("\n".join(msg), self.model, best_qual.stat)
 
         return
@@ -1483,7 +1502,12 @@ class ModelCluster(object):
         best_model = self.model.copy()
         best_qual = self.quality()
 
-        msg = ["====Pruning fits:====", "Original model:", "%s", "w/ quality: %s"]
+        msg = [
+            "====Pruning fits:====",
+            "Original model:",
+            "%s",
+            "w/ quality: %s",
+        ]
         logger.info("\n".join(msg), best_model, best_qual.stat)
 
         # Main prune loop ####
@@ -1518,7 +1542,11 @@ class ModelCluster(object):
                     check_models[i].extend(best_model[i + 1 : hi].copy())
                     prune_mc.model = check_models[i]
 
-                    msg = ["len(check_models): %s", "len(best_model): %s", "i: %s"]
+                    msg = [
+                        "len(check_models): %s",
+                        "len(best_model): %s",
+                        "i: %s",
+                    ]
                     logger.debug("\n".join(msg), len(check_models), len(best_model), i)
 
                     addpars = best_model.npars() - check_models[i].npars() - best_model[i].npars(count_fixed=False)
@@ -1526,7 +1554,10 @@ class ModelCluster(object):
                     # Remove contribution of (effectively) fixed peaks
                     y = np.array(y_nobl)
                     if lo > 0:
-                        logger.debug("len(sum): %s", len(np.sum(best_modely[:lo], axis=0)))
+                        logger.debug(
+                            "len(sum): %s",
+                            len(np.sum(best_modely[:lo], axis=0)),
+                        )
                         y -= np.sum(best_modely[:lo], axis=0)
                     if hi < len(best_modely):
                         y -= np.sum(best_modely[hi:], axis=0)
@@ -1563,7 +1594,12 @@ class ModelCluster(object):
                 "check_qual: %s",
                 "sorted check_qual: %s",
             ]
-            logger.debug("\n".join(msg), best_qual.stat, [c.stat for c in check_qual], arg)
+            logger.debug(
+                "\n".join(msg),
+                best_qual.stat,
+                [c.stat for c in check_qual],
+                arg,
+            )
 
             arg = arg[-1]
             newbest_qual = check_qual[arg]

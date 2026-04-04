@@ -760,7 +760,11 @@ class PeakExtraction(object):
             dy = self.effective_dy[rangeslice]
 
         if x < x1[0] or x > x1[-1]:
-            emsg = "Argument x=%s outside allowed range (%s, %s)." % (x, x1[0], x1[-1])
+            emsg = "Argument x=%s outside allowed range (%s, %s)." % (
+                x,
+                x1[0],
+                x1[-1],
+            )
             raise ValueError(emsg)
 
         # Object performing clustering on data. Note that DataClusters
@@ -848,7 +852,18 @@ class PeakExtraction(object):
         y = self.y[rangeslice] - ip.value(x)
 
         # List of ModelClusters containing extracted peaks.
-        mclusters = [ModelCluster(None, bl, x, y, dy, dclusters.cut(0), self.error_method, self.pf)]
+        mclusters = [
+            ModelCluster(
+                None,
+                bl,
+                x,
+                y,
+                dy,
+                dclusters.cut(0),
+                self.error_method,
+                self.pf,
+            )
+        ]
 
         # The minimum number of points required to make a valid fit, as
         # determined by the peak functions and error method used.  This is a
@@ -982,7 +997,12 @@ class PeakExtraction(object):
                     right_data = min(len(x), x.searchsorted(peak_pos[pivot + 1]) + 1)
                     near_peaks = np.append(near_peaks, pivot)
 
-                other_peaks = np.concatenate([np.arange(0, pivot - 1), np.arange(pivot + 1, len(peak_pos))])
+                other_peaks = np.concatenate(
+                    [
+                        np.arange(0, pivot - 1),
+                        np.arange(pivot + 1, len(peak_pos)),
+                    ]
+                )
 
                 # Go from indices to lists of peaks.
                 near_peaks = Peaks([full_cluster.model[i] for i in near_peaks])
@@ -1064,7 +1084,11 @@ class PeakExtraction(object):
                     "%s",
                     "---End of combining clusters---",
                 ]
-                logger.debug("\n".join(msg), mclusters[step.lastcluster_idx], full_cluster)
+                logger.debug(
+                    "\n".join(msg),
+                    mclusters[step.lastcluster_idx],
+                    full_cluster,
+                )
 
                 mclusters[step.lastcluster_idx] = full_cluster
             #  End update cluster fits ###
@@ -1126,7 +1150,12 @@ class PeakExtraction(object):
                     right_data = min(len(x), x.searchsorted(peak_pos[pivot + 1]) + 1)
                     near_peaks = np.append(near_peaks, pivot)
 
-                other_peaks = np.concatenate([np.arange(0, pivot - 1), np.arange(pivot + 1, len(peak_pos))])
+                other_peaks = np.concatenate(
+                    [
+                        np.arange(0, pivot - 1),
+                        np.arange(pivot + 1, len(peak_pos)),
+                    ]
+                )
 
                 # Go from indices to lists of peaks.
                 near_peaks = Peaks([new_cluster.model[i] for i in near_peaks])
@@ -1286,7 +1315,12 @@ class PeakExtraction(object):
                     "---End of combining clusters---",
                 ]
 
-                logger.debug("\n".join(msg), mclusters[idx - 1], mclusters[idx], new_cluster)
+                logger.debug(
+                    "\n".join(msg),
+                    mclusters[idx - 1],
+                    mclusters[idx],
+                    new_cluster,
+                )
 
                 mclusters[idx - 1] = new_cluster
                 del mclusters[idx]
@@ -1358,7 +1392,12 @@ class PeakExtraction(object):
 
         # Fit model with baseline and calculate covariance matrix
         cov = ModelCovariance()
-        ext.fit(fitbaseline=True, estimate=False, cov=cov, cov_format="default_output")
+        ext.fit(
+            fitbaseline=True,
+            estimate=False,
+            cov=cov,
+            cov_format="default_output",
+        )
 
         # Update calculated instance variables
         self.extraction_type = "fit_single"

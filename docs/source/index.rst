@@ -4,7 +4,7 @@
 
 .. |title| replace:: diffpy.srmise documentation
 
-``diffpy.srmise`` - Peak extraction and peak fitting tool for atomic pair distribution functions
+``diffpy.srmise`` - Peak extraction and peak fitting tool for atomic pair distribution functions.
 
 | Software version |release|
 | Last updated |today|.
@@ -21,7 +21,7 @@ To get started, please visit the :ref:`Getting started <getting-started>` page.
 Authors
 =======
 
-``diffpy.srmise`` is developed by Simon Billinge, Billinge Group members. The maintainer for this project is Simon Billinge. For a detailed list of contributors see
+``diffpy.srmise`` is developed by Simon Billinge, Billinge Group members. This project is maintained by Simon Billinge. For a detailed list of contributors see
 https://github.com/diffpy/diffpy.srmise/graphs/contributors.
 
 ============
@@ -41,8 +41,7 @@ Acknowledgements
 Table of contents
 =================
 .. toctree::
-   :maxdepth: 1
-   :titlesonly:
+   :maxdepth: 2
 
    tutorial/index
    extending

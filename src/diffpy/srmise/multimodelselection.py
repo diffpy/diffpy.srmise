@@ -105,7 +105,16 @@ class MultimodelSelection(PeakStability):
             # modelevaluators subpackage are in need of a rewrite, and so it would be
             # best to do them all at once.
             dg0 = self.dgs[0]
-            mc = ModelCluster(result[1], result[2], r, y, dg0 * np.ones(len(r)), None, em, self.ppe.pf)
+            mc = ModelCluster(
+                result[1],
+                result[2],
+                r,
+                y,
+                dg0 * np.ones(len(r)),
+                None,
+                em,
+                self.ppe.pf,
+            )
             em0 = mc.quality()
 
             for dg in self.dgs:
@@ -265,7 +274,11 @@ class MultimodelSelection(PeakStability):
         arrow_left = len(self.classes) - 1
         arrow_right = arrow_left + 0.05 * arrow_left
         (line,) = plt.plot(range(len(self.classes)), self.classprobs[self.dgs[0]])
-        (dot,) = plt.plot(self.dgs[best_idx], self.classprobs[self.dgs[0]][bestclass_idx], "ro")
+        (dot,) = plt.plot(
+            self.dgs[best_idx],
+            self.classprobs[self.dgs[0]][bestclass_idx],
+            "ro",
+        )
         plt.axvline(arrow_left, color="k")
         ax2 = ax1.twinx()
         ax2.set_ylim(self.dgs[0], self.dgs[-1])
@@ -628,7 +641,10 @@ class MultimodelSelection(PeakStability):
 
             maxys = np.max(ys)
             if maxys >= probfilter[0] and maxys <= probfilter[1]:
-                p0, p1 = ((xs[0], 0), (xs[-1], 0))  # points to close the vertices
+                p0, p1 = (
+                    (xs[0], 0),
+                    (xs[-1], 0),
+                )  # points to close the vertices
                 verts.append(np.concatenate([[p0], zip(xs, ys), [p1], [p0]]))
                 zlabels.append(i)
 
@@ -717,7 +733,15 @@ class MultimodelSelection(PeakStability):
             cbaxis = fig.add_axes(rect)
 
             # Remove all colorbar.make_axes keywords except orientation
-            kwds = eatkwds("fraction", "pad", "shrink", "aspect", "anchor", "panchor", **kwds)
+            kwds = eatkwds(
+                "fraction",
+                "pad",
+                "shrink",
+                "aspect",
+                "anchor",
+                "panchor",
+                **kwds,
+            )
         else:
             kwds.setdefault("shrink", 0.75)
 

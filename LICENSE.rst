@@ -2,6 +2,7 @@ BSD 3-Clause License
 
 Copyright 2014-2015, Board of Trustees of Michigan State University
           2016-2024, The Trustees of Columbia University in the City of New York.
+          2026-present, The Contributors to the diffpy.srmise project.
 All rights reserved.
 
 If you use this program to do productive scientific research that
