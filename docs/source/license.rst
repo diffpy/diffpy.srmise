@@ -11,7 +11,9 @@ BSD 3-Clause License
 
 Copyright 2014-2015, Board of Trustees of Michigan State University
 
-Copyright 2016-2026, The Trustees of Columbia University in the City of New York.
+Copyright 2016-2025, The Trustees of Columbia University in the City of New York.
+
+Copyright (c) 2026-present, The Contributors to the diffpy.srmise project.
 
 All rights reserved.
 
