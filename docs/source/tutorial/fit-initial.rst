@@ -1,6 +1,6 @@
 .. include:: abbreviations.txt
 
-.. include:: sample_links.txt
+.. include:: sample-links.txt
 
 
 .. include:: ../../examples/README.rst
@@ -13,4 +13,4 @@
 Script (fit_initial.py)
 ---------------------------
 
-.. literalinclude:: ../../examples/fit_initial.py
+.. literalinclude:: ../../examples/fit-initial.py

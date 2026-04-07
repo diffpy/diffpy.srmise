@@ -15,12 +15,12 @@ Tutorial
 .. toctree::
    :maxdepth: 1
 
-   extract_single_peak
-   parameter_summary
-   fit_initial
-   query_results
-   multimodel_known_uncertainties
-   multimodel_unknown_uncertainties
+   extract-single-peak
+   parameter-summary
+   fit-initial
+   query-results
+   multimodel-known-uncertainties
+   multimodel-unknown-uncertainties
 
 
 .. Now add information about the samples

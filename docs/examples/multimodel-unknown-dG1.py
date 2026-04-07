@@ -52,7 +52,7 @@ def run(plot=True):
 
     # Initialize peak extraction
     ppe = PDFPeakExtraction()
-    ppe.loadpdf("data/C60_fine_qmax21.gr")
+    ppe.loadpdf("data/C60-fine-qmax21.gr")
 
     # Set up extraction parameters
     # The FromSequence baseline interpolates (r, G(r)) values read from a
@@ -87,8 +87,8 @@ def run(plot=True):
     # on a Nyquist-sampled grid using each of the dg values used to generate
     # the models in the first place.
     dr = np.pi / ppe.qmax
-    ms.save("output/unknown_dG_models.dat")
-    ms.makeaics(dgs, dr, filename="output/unknown_dG_aics.dat")
+    ms.save("output/unknown-dG-models.dat")
+    ms.makeaics(dgs, dr, filename="output/unknown-dG-aics.dat")
 
 
 if __name__ == "__main__":

@@ -52,7 +52,7 @@ def run(plot=True):
 
     # Initialize peak extraction from saved trial
     ppe = PDFPeakExtraction()
-    ppe.read("output/query_results.srmise")
+    ppe.read("output/query-results.srmise")
     ppe.clearcalc()
 
     # Set up extraction parameters
@@ -78,13 +78,13 @@ def run(plot=True):
     ms.run(dgs)
 
     # Save results
-    # The file known_dG_models.dat saves the models generated above.  The file
-    # known_dG_aics.dat saves the value of the AIC of each model when evaluated
+    # The file known-dG-models.dat saves the models generated above.  The file
+    # known-dG-aics.dat saves the value of the AIC of each model when evaluated
     # on a Nyquist-sampled grid using each of the dg values used to generate
     # the models in the first place.
     dr = np.pi / ppe.qmax
-    ms.save("output/known_dG_models.dat")
-    ms.makeaics(dgs, dr, filename="output/known_dG_aics.dat")
+    ms.save("output/known-dG-models.dat")
+    ms.makeaics(dgs, dr, filename="output/known-dG-aics.dat")
 
 
 if __name__ == "__main__":
