@@ -20,10 +20,10 @@ transforming between different peak parameterizations.  Finally, it shows how
 to evaluate the model on an arbitrary grid.
 
 The peaks extracted by this script are equivalent to those obtained running
-srmise data/Ag_nyquist_qmax30.gr --range 2. 10. \
-    --bsrmise output/extract_single_peak.srmise \
-    --save output/query_results.srmise \
-    --pwa output/query_results.pwa --plot
+srmise data/Ag-nyquist-qmax30.gr --range 2. 10. \
+    --bsrmise output/extract-single-peak.srmise \
+    --save output/query-results.srmise \
+    --pwa output/query-results.pwa --plot
 at the command line.
 """
 
@@ -41,13 +41,13 @@ def run(plot=True):
     ppe = PDFPeakExtraction()
 
     # Load the PDF from a file
-    ppe.loadpdf("data/Ag_nyquist_qmax30.gr")
+    ppe.loadpdf("data/Ag-nyquist-qmax30.gr")
 
     # Obtain baseline from a saved diffpy.srmise trial.  This is not the
     # initial baseline estimate from the previous example, but the baseline
     # after both it and the extracted peaks have been fit to the data.
     ppebl = PDFPeakExtraction()
-    ppebl.read("output/extract_single_peak.srmise")
+    ppebl.read("output/extract-single-peak.srmise")
     baseline = ppebl.extracted.baseline
 
     # Set up extraction parameters.
@@ -196,8 +196,8 @@ def run(plot=True):
     print("%i: %f" % (total_ideal_intensity, total_observed_intensity))
 
     # Save output
-    ppe.write("output/query_results.srmise")
-    ppe.writepwa("output/query_results.pwa")
+    ppe.write("output/query-results.srmise")
+    ppe.writepwa("output/query-results.pwa")
 
     # Evaluating a model.
     # Although the ModelCovariance object is useful, the model used for fitting

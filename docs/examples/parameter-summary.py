@@ -43,7 +43,7 @@ def run(plot=True):
     ppe = PDFPeakExtraction()
 
     # Load the PDF from a file
-    ppe.loadpdf("data/TiO2_fine_qmax26.gr")
+    ppe.loadpdf("data/TiO2-fine-qmax26.gr")
 
     # Set up extraction parameters.
     # In this section we'll examine the major extraction parameters in detail.
@@ -220,8 +220,8 @@ def run(plot=True):
     # half-maximum), and area of of extracted peaks.  The reported values
     # are for Gaussians in the radial distribution function (RDF) corresponding
     # to this PDF.
-    ppe.write("output/parameter_summary.srmise")
-    ppe.writepwa("output/parameter_summary.pwa")
+    ppe.write("output/parameter-summary.srmise")
+    ppe.writepwa("output/parameter-summary.pwa")
 
     # Plot results.
     # Display plot of extracted peak.  It is also possible to plot an existing

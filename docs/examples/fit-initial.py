@@ -34,7 +34,7 @@ def run(plot=True):
 
     # Initialize peak extraction
     ppe = PDFPeakExtraction()
-    ppe.loadpdf("data/C60_fine_qmax21.gr")
+    ppe.loadpdf("data/C60-fine-qmax21.gr")
 
     # Set up interpolated baseline.
     # The FromSequence baseline creates an interpolated baseline from provided
@@ -98,8 +98,8 @@ def run(plot=True):
     ppe.fit()
 
     # Save results
-    ppe.write("output/fit_initial.srmise")
-    ppe.writepwa("output/fit_initial.pwa")
+    ppe.write("output/fit-initial.srmise")
+    ppe.writepwa("output/fit-initial.pwa")
 
     if plot:
         plt.figure()

@@ -1,6 +1,6 @@
 .. include:: abbreviations.txt
 
-.. include:: sample_links.txt
+.. include:: sample-links.txt
 
 
 .. include:: ../../examples/README.rst
@@ -8,9 +8,9 @@
    :end-before: ~Example 5~
 
 
-.. _query_results.py:
+.. _query-results.py:
 
 Script (query_results.py)
 -------------------------
 
-.. literalinclude:: ../../examples/query_results.py
+.. literalinclude:: ../../examples/query-results.py

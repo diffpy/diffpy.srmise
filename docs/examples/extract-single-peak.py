@@ -19,9 +19,9 @@ for diffpy.srmise, and covers initializing diffpy.srmise, defining extraction
 parameters, running peak extraction, and saving the results.
 
 This script is equivalent to running
-srmise data/Ag_nyquist_qmax30.gr --range 2. 3.5 \
-    --baseline "Polynomial(degree=1)" --save output/extract_single_peak.srmise \
-    --pwa output/extract_single_peak.pwa --plot
+srmise data/Ag-nyquist-qmax30.gr --range 2. 3.5 \
+    --baseline "Polynomial(degree=1)" --save output/extract-single-peak.srmise \
+    --pwa output/extract-single-peak.pwa --plot
 at the command line.
 """
 
@@ -39,7 +39,7 @@ def run(plot=True):
     ppe = PDFPeakExtraction()
 
     # Load the PDF from a file
-    ppe.loadpdf("data/Ag_nyquist_qmax30.gr")
+    ppe.loadpdf("data/Ag-nyquist-qmax30.gr")
 
     # Set up extraction parameters.
     # For convenience, we add all parameters to a dictionary before passing them
@@ -74,8 +74,8 @@ def run(plot=True):
     # half-maximum), and area of extracted peaks.  The reported values
     # are for Gaussians in the radial distribution function (RDF) corresponding
     # to this PDF.
-    ppe.write("output/extract_single_peak.srmise")
-    ppe.writepwa("output/extract_single_peak.pwa")
+    ppe.write("output/extract-single-peak.srmise")
+    ppe.writepwa("output/extract-single-peak.pwa")
 
     # Plot results.
     # Display plot of extracted peak. It is also possible to plot an existing

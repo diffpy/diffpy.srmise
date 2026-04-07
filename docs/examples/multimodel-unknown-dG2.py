@@ -10,17 +10,23 @@
 # See LICENSE.txt for license information.
 #
 ##############################################################################
-"""AIC-driven multimodel analysis of crystalline PDF with known
+"""AIC-driven multimodel analysis of nanoparticle PDF with unknown
 uncertainties.
 
 The multimodel approach generates many models of varying complexity by assuming
 a range of experimental uncertainties are physically plausible.  This example
-shows how to analyze multiple models obtained (in the previous script) from a
-crystalline silver PDF with experimentally determined uncertainties.  This
-involves calculating the Akaike probabilities, which are a measure of the
-likelihood that a given model is the best model (in the sense of
-Kullback-Leibler divergence) relative to all the other ones in the same
-comparison.
+shows how to analyze multiple models obtained from a C60 nanoparticle PDF with
+unreliable uncertainties.  The Akaike Information Criterion (AIC) can be used to
+see which models are relatively more likely to describe the experimental data.
+For complex PDFs, especially, there are many sets of peaks which are physically
+distinct yet appear to fit the experimental data similarly well.  Here we
+calculate the Akaike probabilities, which are a measure of the likelihood that a
+given model is the best model (in the sense of Kullback-Leibler information
+divergence) relative to all the other ones in the same comparison.  This
+analysis reflects ignorance of the experimental uncertainties by evaluating
+the Akaike probabilities for a range of assumed uncertainties, returning models
+which are selected as best at least once.  This is a weaker analysis than
+possible when the uncertainties are known.
 
 NOTE: The multimodeling API used here is expected to change drastically in a
 future version of diffpy.srmise.
@@ -39,21 +45,30 @@ import diffpy.srmise.srmiselog as sml
 from diffpy.srmise.applications.plot import makeplot
 from diffpy.srmise.multimodelselection import MultimodelSelection
 
-# distances from ideal Ag (refined to PDF)
+# distances from ideal (unrefined) C60
 dcif = np.array(
     [
-        11.2394,
-        11.608,
-        11.9652,
-        12.3121,
-        12.6495,
-        12.9781,
-        13.2986,
-        13.6116,
-        13.9175,
-        14.2168,
-        14.51,
-        14.7973,
+        1.44,
+        2.329968944,
+        2.494153163,
+        2.88,
+        3.595985339,
+        3.704477734,
+        4.132591264,
+        4.520339129,
+        4.659937888,
+        4.877358006,
+        5.209968944,
+        5.405310018,
+        5.522583786,
+        5.818426502,
+        6.099937888,
+        6.164518388,
+        6.529777754,
+        6.686673127,
+        6.745638756,
+        6.989906831,
+        7.136693738,
     ]
 )
 
@@ -65,8 +80,8 @@ def run(plot=True):
 
     # Create multimodeling object and load diffpy.srmise results from file.
     ms = MultimodelSelection()
-    ms.load("output/known_dG_models.dat")
-    ms.loadaics("output/known_dG_aics.dat")
+    ms.load("output/unknown-dG-models.dat")
+    ms.loadaics("output/unknown-dG-aics.dat")
 
     # Use Nyquist sampling
     # Standard AIC analysis assumes the data have independent uncertainties.
@@ -100,14 +115,6 @@ def run(plot=True):
     print("Range of dgs: %f-%f" % (ms.dgs[0], ms.dgs[-1]))
     print("Nyquist-sampled data points: %i" % len(r))
 
-    # Get dG usable as key in analysis.
-    # The Akaike probabilities were calculated for many assumed values of the
-    # experimental uncertainty dG, and each of these assumed dG is used as a
-    # key when obtaining the corresponding results.  Numerical precision can
-    # make recalculating the exact value difficult, so the dg_key method returns
-    # the key closest to its argument.
-    dG = ms.dg_key(np.mean(ms.ppe.dy))
-
     # Find "best" models.
     # In short, models with greatest Akaike probability.  Akaike probabilities
     # can only be validly compared if they were calculated for identical data,
@@ -115,13 +122,29 @@ def run(plot=True):
     # with respect to the actual experiment when using a Nyquist-sampled PDF
     # with experimentally determined uncertainties.
     #
-    # The present PDF satisfies these conditions, so the rankings below reflect
-    # an AIC-based estimate of which of the tested models the data best support.
-    print("\n--------- Model Rankings for dG = %f ---------" % dG)
-    print("Rank  Model  Class  Free         AIC   Prob  File")
-    for i in range(len(ms.classes)):
+    # In the present case the PDF uncertainties are not reliable, and so the
+    # analysis cannot be performed by specifying the experimental uncertainty
+    # dG.  Instead, perform a weaker analysis, calculating the Akaike
+    # probabilities for a range of assumed dG, and identifying classes which
+    # have greatest probability at least once.  The classes identified in this
+    # way have no particular information-theoretic relationship, but if the
+    # actual experimental uncertainty is in the interval tested, the best
+    # class at the experimental uncertainty is among them.
 
-        # Generate information about best model in ith best class.
+    # Get classes which are best for one or more dG, and the specific dG in that
+    # interval at which they attain greatest Akaike probability.
+    best_classes = np.unique([ms.get_class(dG) for dG in ms.dgs])
+    best_dGs = []
+    for cls in best_classes:
+        cls_probs = [ms.get_prob(dG) if ms.get_class(dG) == cls else 0 for dG in ms.dgs]
+        dG = ms.dgs[np.argmax(cls_probs)]
+        best_dGs.append(dG)
+
+    print("\n--------- Best models for at least one dG ---------" % dG)
+    print("   Best dG  Model  Class  Free       AIC     Prob  File")
+    for dG in best_dGs:
+
+        # Generate information about best model.
         # The get(dG, *args, **kwds) method returns a tuple of values
         # corresponding to string arguments for the best model in best class at
         # given dG. When the corder keyword is given it returns the model from
@@ -131,26 +154,26 @@ def run(plot=True):
         # "nfree" -> number of free parameters in corresponding model
         # "aic" -> The AIC for this model given uncertainty dG
         # "prob" -> The AIC probability given uncertainty dG
-        # These all have dedicated getter functions.  For example, the model
-        # index can also be obtained using get_model(dG, corder=i)
-        (model, cls, nfree, aic, prob) = ms.get(dG, "model", "class", "nfree", "aic", "prob", corder=i)
+        # These all have dedicated getter functions.
+        (model, cls, nfree, aic, prob) = ms.get(dG, "model", "class", "nfree", "aic", "prob")
 
-        filename_base = "output/known_dG_m" + str(model)
+        filename_base = "output/unknown_dG_m" + str(model)
 
         # print(info for this model
         print(
-            "%4i  %5i  %5i  %4i  %10.4e %6.3f  %s" % (i + 1, model, cls, nfree, aic, prob, filename_base + ".pwa")
+            "%10.4e  %5i  %5i  %4i  %10.4e %6.3f  %s" % (dG, model, cls, nfree, aic, prob, filename_base + ".pwa")
         )
 
         # A message added as a comment to saved .pwa file.
+        best_from = [dg for dg in ms.dgs if ms.get_class(dg) == cls]
         msg = [
             "Multimodeling Summary",
             "---------------------",
-            "Evaluated at dG: %s" % dG,
             "Model: %i (of %i)" % (model, num_models),
             "Class: %i (of %i, tol=%s)" % (cls, num_classes, tolerance),
+            "Best model from dG: %s-%s" % (best_from[0], best_from[-1]),
+            "Evaluated at dG: %s" % dG,
             "Akaike probability: %g" % prob,
-            "Rank: %i" % (i + 1),
         ]
         msg = "\n".join(msg)
 
@@ -164,7 +187,7 @@ def run(plot=True):
         if plot:
             plt.figure()
             makeplot(ms.ppe, dcif)
-            plt.title("Model %i/Class %i (Rank %i, AIC prob=%f)" % (model, cls, i + 1, prob))
+            plt.title("Model %i/Class %i (Best dG=%f, AIC prob=%f)" % (model, cls, dG, prob))
             # Uncomment line below to save figures.
             # plt.savefig(filename_base + ".png", format="png")
 
@@ -172,15 +195,14 @@ def run(plot=True):
     # This plot shows the Akaike probabilities of all classes as a function
     # of assumed uncertainty dG.  This gives a rough sense of how the models
     # selected by an AIC-based analysis would vary if the experimental
-    # uncertainties contributing to the observed G(r) were different.  The
-    # Akaike probabilities calculated for the actual experimental uncertainty
-    # are highlighted.
+    # uncertainties contributing to the observed G(r) were different.  Models
+    # are highlighted at the various dG values found above.
     if plot:
         plt.figure()
-        ms.plot3dclassprobs(probfilter=[0.0, 1.0], highlight=[dG])
+        ms.plot3dclassprobs(probfilter=[0.1, 1.0], highlight=best_dGs)
         plt.tight_layout()
         # Uncomment line below to save figure.
-        # plt.savefig("output/known_dG_probs.png", format="png", bbox_inches="tight")
+        # plt.savefig("output/unknown_dG_probs.png", format="png", bbox_inches="tight")
 
     if plot:
         plt.show()
