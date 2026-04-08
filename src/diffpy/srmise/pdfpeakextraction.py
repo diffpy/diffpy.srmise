@@ -888,9 +888,9 @@ class PDFPeakExtraction(PeakExtraction):
             # Generate parameter labels from the baseline function's parameterdict
             blf = self.extracted.baseline.owner()
             if blf.npars > 0:
-                parlbl = blf.parameterdict.keys()
-                paridx = np.array(blf.parameterdict.values()).argsort()
-                lines.append("# " + " ".join([str(parlbl[i]) for i in paridx]))
+                parlbl = list(blf.parameterdict.keys())
+                paridx = np.array(list(blf.parameterdict.values())).argsort()
+                lines.append("# " + " ".join(str(parlbl[i]) for i in paridx))
                 blpars = " ".join([str(p) for p in self.extracted.baseline.pars])
             else:
                 blpars = "(no parameters)"

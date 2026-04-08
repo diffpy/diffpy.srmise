@@ -221,7 +221,7 @@ class DataClusters:
                 self.lastcluster_idx = nearest_cluster[0] + 1
             self.clusters = np.insert(
                 self.clusters,
-                int(self.lastcluster_idx),
+                self.lastcluster_idx,
                 [test_idx, test_idx],
                 0,
             )
@@ -304,8 +304,8 @@ class DataClusters:
         # Calculate which of the two nearest clusters is closer
         distances = np.array(
             [
-                self.x[idx] - self.x[self.clusters[int(near_idx) - 1, 1]],
-                self.x[idx] - self.x[self.clusters[int(near_idx), 0]],
+                self.x[idx] - self.x[self.clusters[near_idx - 1, 1]],
+                self.x[idx] - self.x[self.clusters[near_idx, 0]],
             ]
         )
         if distances[0] < np.abs(distances[1]):
