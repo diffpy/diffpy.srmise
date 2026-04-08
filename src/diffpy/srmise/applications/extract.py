@@ -483,12 +483,12 @@ def main():
 
         bl = NanoSpherical()
         options.baseline = parsepars(bl, options.bspherical)
-    try:
-        options.baseline = eval("baselines." + options.baseline)
-    except Exception as err:
-        print(err)
-        print("Could not create baseline '%s'. Exiting." % options.baseline)
-        return
+        try:
+            options.baseline = eval("baselines." + options.baseline)
+        except Exception as err:
+            print(err)
+            print("Could not create baseline '%s'. Exiting." % options.baseline)
+            return
 
     filename = args[0]
 
