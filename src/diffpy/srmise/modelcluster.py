@@ -1174,7 +1174,7 @@ class ModelCluster(object):
         pos = np.array([p["position"] for p in self.model])
         left_idx = pos.searchsorted(self.r_cluster[0])
         right_idx = pos.searchsorted(self.r_cluster[-1])
-        outside_idx = range(0, left_idx)
+        outside_idx = list(range(0, left_idx))
         outside_idx.extend(range(right_idx, len(self.model)))
         # inside_idx = range(left_idx, right_idx)
 
@@ -1538,8 +1538,8 @@ class ModelCluster(object):
                     # Create model with ith peak removed, and distant peaks effectively fixed
                     lo = max(i - peak_range, 0)
                     hi = min(i + peak_range + 1, len(best_model))
-                    check_models[i] = best_model[lo:i].copy()
-                    check_models[i].extend(best_model[i + 1 : hi].copy())
+                    check_models[i] = type(best_model)(best_model[lo:i]).copy()
+                    check_models[i].extend(type(best_model)(best_model[i + 1: hi]).copy())
                     prune_mc.model = check_models[i]
 
                     msg = [

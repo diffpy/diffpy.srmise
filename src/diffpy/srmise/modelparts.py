@@ -430,8 +430,9 @@ class ModelParts(list):
         if isinstance(index, tuple) and len(index) == 2:
             start, end = index
             return self.__class__(super().__getitem__(slice(start, end)))
-        else:
-            return super().__getitem__(index)
+        if isinstance(index, slice):
+            return self.__class__(super().__getitem__(index))
+        return super().__getitem__(index)
 
     def transform(self, in_format="internal", out_format="internal"):
         """Transforms format of parameters in this modelpart.

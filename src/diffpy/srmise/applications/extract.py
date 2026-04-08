@@ -18,6 +18,63 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
+def _resolve_cli_expression(expression, namespace):
+    """Resolve a CLI expression against an explicit namespace.
+
+    Parameters
+    ----------
+    expression : str
+        The user-supplied CLI expression.
+    namespace : dict
+        The explicit namespace allowed during evaluation.
+
+    Returns
+    -------
+    object
+        The resolved class or instance.
+    """
+    return eval(expression, {"__builtins__": {}}, namespace)
+
+
+def _baseline_namespace():
+    """Return the baseline classes supported by the CLI."""
+    from diffpy.srmise.baselines.arbitrary import Arbitrary
+    from diffpy.srmise.baselines.fromsequence import FromSequence
+    from diffpy.srmise.baselines.nanospherical import NanoSpherical
+    from diffpy.srmise.baselines.polynomial import Polynomial
+
+    return {
+        "Arbitrary": Arbitrary,
+        "FromSequence": FromSequence,
+        "NanoSpherical": NanoSpherical,
+        "Polynomial": Polynomial,
+    }
+
+
+def _peakfunction_namespace():
+    """Return the peak-function classes supported by the CLI."""
+    from diffpy.srmise.peaks.gaussian import Gaussian
+    from diffpy.srmise.peaks.gaussianoverr import GaussianOverR
+    from diffpy.srmise.peaks.terminationripples import TerminationRipples
+
+    return {
+        "Gaussian": Gaussian,
+        "GaussianOverR": GaussianOverR,
+        "TerminationRipples": TerminationRipples,
+    }
+
+
+def _modelevaluator_namespace():
+    """Return the model evaluators supported by the CLI."""
+    from diffpy.srmise.modelevaluators.aic import AIC
+    from diffpy.srmise.modelevaluators.aicc import AICc
+
+    return {
+        "AIC": AIC,
+        "AICc": AICc,
+    }
+
+
 def main():
     """Default SrMise entry-point."""
 
@@ -433,7 +490,10 @@ def main():
 
     if options.peakfunction:
         try:
-            options.peakfunction = eval("peaks." + options.peakfunction)
+            options.peakfunction = _resolve_cli_expression(
+                options.peakfunction,
+                _peakfunction_namespace(),
+            )
         except Exception as err:
             print(err)
             print("Could not create peak function '%s'. Exiting." % options.peakfunction)
@@ -441,7 +501,10 @@ def main():
 
     if options.modelevaluator:
         try:
-            options.modelevaluator = eval("modelevaluators." + options.modelevaluator)
+            options.modelevaluator = _resolve_cli_expression(
+                options.modelevaluator,
+                _modelevaluator_namespace(),
+            )
         except Exception as err:
             print(err)
             print("Could not find ModelEvaluator '%s'. Exiting." % options.modelevaluator)
@@ -483,10 +546,12 @@ def main():
 
         bl = NanoSpherical()
         options.baseline = parsepars(bl, options.bspherical)
-
+    elif options.baseline:
         try:
-            options.baseline = eval("baselines." + options.baseline)
-
+            options.baseline = _resolve_cli_expression(
+                options.baseline,
+                _baseline_namespace(),
+            )
         except Exception as err:
             print(err)
             print("Could not create baseline '%s'. Exiting." % options.baseline)

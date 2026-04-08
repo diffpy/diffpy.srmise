@@ -106,7 +106,7 @@ class AIC(ModelEvaluator):
 
         return 1
 
-    def parpenalty(self, k):
+    def parpenalty(self, k, n=None):
         """Returns the cost for adding k parameters to the current model
         cluster.
 

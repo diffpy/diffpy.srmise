@@ -316,7 +316,7 @@ class TerminationRipples(PeakFunction):
             # issues is difficult to determine without detailed knowledge
             # of the underlying function.
             dr = (r[-1] - r[0]) / (len(r) - 1)
-            segments = np.ceil(dr / dr_super)
+            segments = int(np.ceil(dr / dr_super))
             dr_segmented = dr / segments
 
             rpart = r[rng]
