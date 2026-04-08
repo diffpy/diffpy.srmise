@@ -206,19 +206,19 @@ class DataClusters:
 
         if np.abs(nearest_cluster[1]) <= self.res:
             # Add to an existing cluster
-            self.lastcluster_idx = int(nearest_cluster[0])
-            if test_idx < self.clusters[int(nearest_cluster[0]), 0]:
-                self.clusters[int(nearest_cluster[0]), 0] = test_idx
+            self.lastcluster_idx = nearest_cluster[0]
+            if test_idx < self.clusters[nearest_cluster[0], 0]:
+                self.clusters[nearest_cluster[0], 0] = test_idx
             else:
-                self.clusters[int(nearest_cluster[0]), 1] = test_idx
+                self.clusters[nearest_cluster[0], 1] = test_idx
         else:
             # Make a new cluster
             if nearest_cluster[1] < 0:
                 # Insert left of nearest cluster
-                self.lastcluster_idx = int(nearest_cluster[0])
+                self.lastcluster_idx = nearest_cluster[0]
             else:
                 # insert right of nearest cluster
-                self.lastcluster_idx = int(nearest_cluster[0]) + 1
+                self.lastcluster_idx = nearest_cluster[0] + 1
             self.clusters = np.insert(
                 self.clusters,
                 int(self.lastcluster_idx),
@@ -289,7 +289,7 @@ class DataClusters:
             return None
 
         flat_idx = clusters_flat.searchsorted(idx)
-        near_idx = flat_idx / 2
+        near_idx = flat_idx // 2
 
         if flat_idx == len(clusters_flat):
             # test_idx is right of the last cluster

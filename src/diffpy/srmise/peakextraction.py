@@ -905,7 +905,7 @@ class PeakExtraction(object):
                 )
             else:
                 # Update an existing cluster
-                mclusters[int(step.lastcluster_idx)].change_slice(step.cut(step.lastcluster_idx))
+                mclusters[step.lastcluster_idx].change_slice(step.cut(step.lastcluster_idx))
 
             # Find newly adjacent clusters
             adjacent = step.find_adjacent_clusters().ravel()
