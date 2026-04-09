@@ -18,6 +18,21 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
+def _baseline_namespace():
+    """Return the baseline classes supported by the CLI."""
+    from diffpy.srmise.baselines.arbitrary import Arbitrary
+    from diffpy.srmise.baselines.fromsequence import FromSequence
+    from diffpy.srmise.baselines.nanospherical import NanoSpherical
+    from diffpy.srmise.baselines.polynomial import Polynomial
+
+    return {
+        "Arbitrary": Arbitrary,
+        "FromSequence": FromSequence,
+        "NanoSpherical": NanoSpherical,
+        "Polynomial": Polynomial,
+    }
+
+
 def main():
     """Default SrMise entry-point."""
 
@@ -483,12 +498,16 @@ def main():
 
         bl = NanoSpherical()
         options.baseline = parsepars(bl, options.bspherical)
-        try:
-            options.baseline = eval("baselines." + options.baseline)
-        except Exception as err:
-            print(err)
-            print("Could not create baseline '%s'. Exiting." % options.baseline)
-            return
+    try:
+        options.baseline = eval(
+            options.baseline,
+            {"__builtins__": {}},
+            _baseline_namespace(),
+        )
+    except Exception as err:
+        print(err)
+        print("Could not create baseline '%s'. Exiting." % options.baseline)
+        return
 
     filename = args[0]
 

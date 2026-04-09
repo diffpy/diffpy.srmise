@@ -416,12 +416,12 @@ if __name__ == "__main__":
 
     guesspars = [[2.7, 0.15, 5], [3.7, 0.3, 5]]
     guess_peaks = Peaks([pf2.actualize(p, "pwa") for p in guesspars])
-    cluster = ModelCluster(guess_peaks, r, y_ripple, err, None, AICc, [pf2])
+    cluster = ModelCluster(guess_peaks, None, r, y_ripple, err, None, AICc, [pf2])
 
     qual1 = cluster.quality()
     print(qual1.stat)
     cluster.fit()
-    yfit = cluster.calc()
+    yfit = cluster.valuebl()
     qual2 = cluster.quality()
     print(qual2.stat)
 
