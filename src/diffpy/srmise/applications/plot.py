@@ -25,6 +25,7 @@ from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 
 from diffpy.srmise.pdfpeakextraction import PDFPeakExtraction, resample
 from diffpy.srmise.peakstability import PeakStability
+
 plt.style.use(all_styles["bg-style"])
 # For a given figure, returns a label of interest
 labeldict = {}
