@@ -144,7 +144,7 @@ First, plot the data without performing peak extraction.  The first argument
 must be either a PDF (as here) or a .srmise file (described later) saved by
 SrMise. ::
 
-    srmise data/Ag_nyquist_qmax30.gr --no-extract --plot
+    srmise docs/examples/data/Ag-nyquist-qmax30.gr --no-extract --plot
 
 This should result in an image very similar to the one below.  The top shows the
 experimental data in blue.  The bottom shows the difference curve, which is
@@ -160,7 +160,7 @@ performing peak extraction from around 2 Å to 3.5 Å will be sufficient.  To
 restrict peak extraction to this interval use the ``--range`` option, which
 accepts a pair of values. ::
 
-    srmise data/Ag_nyquist_qmax30.gr --no-extract --plot --range 2 3.5
+    srmise docs/examples/data/Ag-nyquist-qmax30.gr --no-extract --plot --range 2 3.5
 
 The PDF baseline of a crystal is linear, and a reasonable crystal baseline can
 often be automatically estimated.  To estimate baseline parameters
@@ -170,7 +170,7 @@ baseline for which SrMise provides automatic estimation. Since the results of
 peak extraction are conditioned on the baseline parameters, it is a good idea to
 see whether they are reasonable. ::
 
-    srmise data/Ag_nyquist_qmax30.gr --no-extract --plot --range 2 3.5
+    srmise docs/examples/data/Ag-nyquist-qmax30.gr --no-extract --plot --range 2 3.5
         --baseline "Polynomial(degree=1)"
 
 |images/extract_single_peak2.png|
@@ -179,7 +179,7 @@ The estimated baseline looks reasonable, so it's time to perform peak extraction
 By default ``srmise`` performs extraction when run, so simply remove the
 ``--no-extract`` option. ::
 
-    srmise data/Ag_nyquist_qmax30.gr --plot --range 2 3.5
+    srmise docs/examples/data/Ag-nyquist-qmax30.gr --plot --range 2 3.5
         --baseline "Polynomial(degree=1)"
 
 |images/extract_single_peak3.png|
@@ -206,7 +206,7 @@ options.
 The script gives results identical to the commands above, and also saves both a
 .srmise and .pwa file in the *output* directory.  Verify this by running it. ::
 
-    python extract_single_peak.py
+    python extract-single-peak.py
 
 
 .. ~Example 2~ ..
@@ -236,7 +236,7 @@ which sets SrMise parameters as part of the following pattern: ::
 
 Run and plot the results of this example with ::
 
-    python parameter_summary.py
+    python parameter-summary.py
 
 |images/parameter_summary1.png|
 
@@ -296,7 +296,7 @@ follows: ::
 
 Run the following command to view this baseline. ::
 
-    srmise data/TiO2_fine_qmax26.gr --bpoly1 -0.65 0c --range 0 10
+    srmise data/TiO2-fine-qmax26.gr --bpoly1 -0.65 0c --range 0 10
         --no-extract --plot
 
 |images/parameter_summary2.png|
@@ -634,14 +634,14 @@ First, visually check that the baseline obtained in the earlier silver example
 (set using the ``--bsrmise filename.srmise`` option) is reasonable over a
 larger range. ::
 
-    srmise data/Ag_nyquist_qmax30.gr --no-extract --plot --range 2 10
+    srmise docs/examples/data/Ag-nyquist-qmax30.gr --no-extract --plot --range 2 10
         --bsrmise output/query_results.srmise
 
 |images/query_results1.png|
 
 Next, run ::
 
-    python query_results.py
+    python query-results.py
 
 to perform peak extraction, the example analysis, and obtain the two plots
 below.
@@ -764,8 +764,8 @@ Details of the multimodeling procedure are discussed in the comments of the
 extraction and analysis scripts.  Run these, noting that the extraction script
 may take several minutes to complete. ::
 
-    python multimodel_known_dG1.py
-    python multimodel_known_dG2.py
+    python multimodel-known-dG1.py
+    python multimodel-known-dG2.py
 
 .. ~Example 6~ ..
 
@@ -808,8 +808,8 @@ Details of the multimodeling procedure are discussed in the comments of the
 extraction and analysis scripts.  Run these, noting that the extraction script
 may take several minutes to complete. ::
 
-    python multimodel_unknown_dG1.py
-    python multimodel_unknown_dG2.py
+    python multimodel-unknown-dG1.py
+    python multimodel-unknown-dG2.py
 
 .. ~PDF Info~ ..
 
