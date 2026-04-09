@@ -421,7 +421,7 @@ if __name__ == "__main__":
     qual1 = cluster.quality()
     print(qual1.stat)
     cluster.fit()
-    yfit = cluster.valuebl()
+    yfit = cluster.value()
     qual2 = cluster.quality()
     print(qual2.stat)
 
