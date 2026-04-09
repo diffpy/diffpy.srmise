@@ -451,7 +451,15 @@ def main():
             options.peakfunction = eval("peaks." + options.peakfunction)
         except Exception as err:
             print(err)
-            print("Could not create peak function '%s'. Exiting." % options.peakfunction)
+            print(
+                f"Could not create peak function {options.peakfunction}. Exiting. "
+                f"Make sure you create peak function properly and put a pair of quote "
+                f"for the peakfunction object. "
+                f"eg: "
+                "GaussianOverR(0.7)"
+                "TerminationRipples(pf1, 20.0)"
+                ""
+            )
             return
 
     if options.modelevaluator:
@@ -459,7 +467,15 @@ def main():
             options.modelevaluator = eval("modelevaluators." + options.modelevaluator)
         except Exception as err:
             print(err)
-            print("Could not find ModelEvaluator '%s'. Exiting." % options.modelevaluator)
+            print(
+                f"Could not find ModelEvaluator {options.modelevaluator}. Exiting."
+                f"Make sure you create ModelEvaluator properly and put a pair of quote "
+                f"for the modeevaluator object. "
+                f"eg: "
+                "AIC"
+                "AICc"
+                ""
+            )
             return
 
     if options.bcrystal:
@@ -507,7 +523,14 @@ def main():
             )
         except Exception as err:
             print(err)
-            print("Could not create baseline '%s'. Exiting." % options.baseline)
+            print(
+                f"Could not create baseline {options.baseline}. Exiting."
+                f"Make sure you create baseline properly and put a pair of quote for the baseline."
+                f"eg: "
+                "Polynomial(degree=1)"
+                "NanoSpherical()"
+                ""
+            )
             return
 
     filename = args[0]
