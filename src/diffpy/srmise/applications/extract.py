@@ -498,16 +498,17 @@ def main():
 
         bl = NanoSpherical()
         options.baseline = parsepars(bl, options.bspherical)
-    try:
-        options.baseline = eval(
-            options.baseline,
-            {"__builtins__": {}},
-            _baseline_namespace(),
-        )
-    except Exception as err:
-        print(err)
-        print("Could not create baseline '%s'. Exiting." % options.baseline)
-        return
+    elif options.baseline is not None:
+        try:
+            options.baseline = eval(
+                options.baseline,
+                {"__builtins__": {}},
+                _baseline_namespace(),
+            )
+        except Exception as err:
+            print(err)
+            print("Could not create baseline '%s'. Exiting." % options.baseline)
+            return
 
     filename = args[0]
 
