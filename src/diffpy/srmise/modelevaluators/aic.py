@@ -85,7 +85,7 @@ class AIC(ModelEvaluator):
         if self.chisq is None:
             self.chisq = self.chi_squared(fit.value(), fit.y_cluster, fit.error_cluster)
 
-        self.stat = self.chisq + self.parpenalty(k, n)
+        self.stat = self.chisq + self.parpenalty(k)
 
         return self.stat
 
@@ -169,7 +169,7 @@ class AIC(ModelEvaluator):
             logger.warning("AIC.growth_justified(): too few data to evaluate quality reliably.")
             n = self.minpoints(k_actual)
 
-        penalty = self.parpenalty(k_test, n) - self.parpenalty(k_actual, n)
+        penalty = self.parpenalty(k_test) - self.parpenalty(k_actual)
 
         return penalty < self.chisq
 

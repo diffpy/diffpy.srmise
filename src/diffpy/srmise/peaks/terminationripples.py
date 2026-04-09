@@ -316,7 +316,7 @@ class TerminationRipples(PeakFunction):
             # issues is difficult to determine without detailed knowledge
             # of the underlying function.
             dr = (r[-1] - r[0]) / (len(r) - 1)
-            segments = np.ceil(dr / dr_super)
+            segments = int(np.ceil(dr / dr_super))
             dr_segmented = dr / segments
 
             rpart = r[rng]
@@ -416,12 +416,12 @@ if __name__ == "__main__":
 
     guesspars = [[2.7, 0.15, 5], [3.7, 0.3, 5]]
     guess_peaks = Peaks([pf2.actualize(p, "pwa") for p in guesspars])
-    cluster = ModelCluster(guess_peaks, r, y_ripple, err, None, AICc, [pf2])
+    cluster = ModelCluster(guess_peaks, None, r, y_ripple, err, None, AICc, [pf2])
 
     qual1 = cluster.quality()
     print(qual1.stat)
     cluster.fit()
-    yfit = cluster.calc()
+    yfit = cluster.value()
     qual2 = cluster.quality()
     print(qual2.stat)
 

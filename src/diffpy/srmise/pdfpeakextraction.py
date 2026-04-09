@@ -247,7 +247,7 @@ class PDFPeakExtraction(PeakExtraction):
 
         # Enable "dg" as alias for "effective_dy"
         if "dg" in args and "effective_dy" not in args:
-            nargs.add("effective_dy")
+            nargs.append("effective_dy")
 
         # Set other defaults
         PeakExtraction.defaultvars(self, *nargs)
@@ -888,9 +888,9 @@ class PDFPeakExtraction(PeakExtraction):
             # Generate parameter labels from the baseline function's parameterdict
             blf = self.extracted.baseline.owner()
             if blf.npars > 0:
-                parlbl = blf.parameterdict.keys()
-                paridx = np.array(blf.parameterdict.values()).argsort()
-                lines.append("# " + " ".join([str(parlbl[i]) for i in paridx]))
+                parlbl = list(blf.parameterdict.keys())
+                paridx = np.array(list(blf.parameterdict.values())).argsort()
+                lines.append("# " + " ".join(str(parlbl[i]) for i in paridx))
                 blpars = " ".join([str(p) for p in self.extracted.baseline.pars])
             else:
                 blpars = "(no parameters)"
@@ -1000,7 +1000,7 @@ def find_qmax(r, y, showgraphs=False):
     new_y = resample(r, y, new_r)
     new_dr = (new_r[-1] - r[0]) / (len(new_r) - 1)
 
-    yfft = np.imag(np.fft.fft(new_y))[: len(new_y) / 2]
+    yfft = np.imag(np.fft.fft(new_y))[: len(new_y) // 2]
 
     d_ratio = stdratio(yfft)
 

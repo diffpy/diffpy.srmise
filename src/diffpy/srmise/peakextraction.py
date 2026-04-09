@@ -969,7 +969,7 @@ class PeakExtraction(object):
                 # near_peaks: array containing the indices of two nearest peaks on either side of border_x
                 # other_peaks: all the other peaks in full_cluster
                 # left_data, right_data: indices defining the extent of the "interpeak range" for x, etc.
-                near_peaks = np.array([], dtype=np.int)
+                near_peaks = np.array([], dtype=np.int64)
 
                 # interpeak range goes from peak to peak of next nearest peaks, although their contributions
                 # to the data are still removed.
@@ -1122,7 +1122,7 @@ class PeakExtraction(object):
                 # near_peaks: array containing the indices of two nearest peaks on either side of border_x
                 # other_peaks: all the other peaks in new_cluster
                 # left_data, right_data: indices defining the extent of the "interpeak range" for x, etc.
-                near_peaks = np.array([], dtype=np.int)
+                near_peaks = np.array([], dtype=np.int64)
 
                 # interpeak range goes from peak to peak of next nearest peaks, although their contributions
                 # to the data are still removed.

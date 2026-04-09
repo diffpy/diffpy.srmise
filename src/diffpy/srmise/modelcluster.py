@@ -1174,7 +1174,7 @@ class ModelCluster(object):
         pos = np.array([p["position"] for p in self.model])
         left_idx = pos.searchsorted(self.r_cluster[0])
         right_idx = pos.searchsorted(self.r_cluster[-1])
-        outside_idx = range(0, left_idx)
+        outside_idx = list(range(0, left_idx))
         outside_idx.extend(range(right_idx, len(self.model)))
         # inside_idx = range(left_idx, right_idx)
 

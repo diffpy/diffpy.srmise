@@ -76,7 +76,7 @@ class ModelEvaluator:
         assert self.method == other.method  # Comparison between same types required
         assert self.stat is not None and other.stat is not None  # The statistic must already be calculated
 
-        if self.higher_is_better is not None:
+        if self.higher_is_better:
             return self.stat < other.stat
         else:
             return other.stat < self.stat
@@ -87,7 +87,7 @@ class ModelEvaluator:
         assert self.method == other.method  # Comparison between same types required
         assert self.stat is not None and other.stat is not None  # The statistic must already be calculated
 
-        if self.higher_is_better is not None:
+        if self.higher_is_better:
             return self.stat <= other.stat
         else:
             return other.stat <= self.stat
@@ -114,7 +114,7 @@ class ModelEvaluator:
         assert self.method == other.method  # Comparison between same types required
         assert self.stat is not None and other.stat is not None  # The statistic must already be calculated
 
-        if self.higher_is_better is not None:
+        if self.higher_is_better:
             return self.stat > other.stat
         else:
             return other.stat > self.stat
@@ -125,7 +125,7 @@ class ModelEvaluator:
         assert self.method == other.method  # Comparison between same types required
         assert self.stat is not None and other.stat is not None  # The statistic must already be calculated
 
-        if self.higher_is_better is not None:
+        if self.higher_is_better:
             return self.stat >= other.stat
         else:
             return other.stat >= self.stat
