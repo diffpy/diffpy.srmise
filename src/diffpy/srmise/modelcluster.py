@@ -1539,7 +1539,7 @@ class ModelCluster(object):
                     lo = max(i - peak_range, 0)
                     hi = min(i + peak_range + 1, len(best_model))
                     check_models[i] = best_model[lo:i].copy()
-                    check_models[i].extend(best_model[i + 1: hi].copy())
+                    check_models[i].extend(best_model[i + 1 : hi].copy())
                     prune_mc.model = check_models[i]
 
                     msg = [
