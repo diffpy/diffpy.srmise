@@ -79,6 +79,7 @@ def addfilelog(filename, level=defaultlevel, format=defaultformat):
     """Log output from diffpy.srmise in specified file.
 
     Parameters
+    ----------
     filename: Name of file to receiving output
     level: The logging level
     format: A string defining format of output messages conforming to logging package.
@@ -95,6 +96,7 @@ def setfilelevel(level):
     """Set level of file logger.
 
     Parameters
+    ----------
     level: The logging level.
     """
     global fh
@@ -112,6 +114,7 @@ def setlevel(level):
     """Set level of default (stdout) logger.
 
     Parameters
+    ----------
     level: The logging level.
     """
     global ch
@@ -128,6 +131,7 @@ def liveplotting(lp, w=False):
     as extraction progresses.
 
     Parameters
+    ----------
     lp: Use live plotting (True) or not (False).
     w: (False) Whether to wait for user after plotting.
     """
@@ -233,6 +237,7 @@ class TracePeaks(object):
         """Read tracer ModelCluster from file.
 
         Parameters
+        ----------
         filename - file from which to read
 
         Returns dictionary with keys
@@ -256,6 +261,7 @@ class TracePeaks(object):
         """Read tracer ModelCluster from string.
 
         Parameters
+        ----------
         datastring - The string representation of a trace
 
         Returns dictionary with keys
@@ -264,7 +270,6 @@ class TracePeaks(object):
         "mc" - A ModelCluster instance
         "recursion" - The recursion level of mc
         """
-
         # find where the ModelCluster section starts
         res = re.search(r"^#+ ModelCluster\s*(?:#.*\s+)*", datastring, re.M)
         if res:

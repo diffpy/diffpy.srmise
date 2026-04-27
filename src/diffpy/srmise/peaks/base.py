@@ -135,7 +135,8 @@ class Peaks(ModelParts):
 
     def argsort(self, key="position"):
         """Return sequence of indices which sort peaks in order
-        specified by key."""
+        specified by key.
+        """
         keypars = np.array([p[key] for p in self])
         # In normal use the peaks will already be sorted, so check for it.
         sorted = True
@@ -156,7 +157,8 @@ class Peaks(ModelParts):
         very close to x, or other issues may prevent optimal results.  If the
         peaks cannot be scaled at all they are left unchanged.
 
-        Parameters:
+        Parameters
+        ----------
         x: (float) Position at which to match.
         y: (float) Height to match.
 
@@ -213,7 +215,8 @@ class Peaks(ModelParts):
 
 class Peak(ModelPart):
     """Represents a single peak associated with a PeakFunction
-    subclass."""
+    subclass.
+    """
 
     def __init__(self, owner, pars, free=None, removable=True, static_owner=False):
         """Set instance members.
@@ -241,6 +244,7 @@ class Peak(ModelPart):
         the peak is not adjusted.
 
         Parameters
+        ----------
         x: (float) Position of the border
         scale: (float > 0) Amount by which to scale.
 
@@ -270,11 +274,11 @@ class Peak(ModelPart):
     def factory(peakstr, ownerlist):
         """Instantiate a Peak from a string.
 
-        Parameters:
+        Parameters
+        ----------
         peakstr: string representing peak
         ownerlist: List of BaseFunctions that owner is in
         """
-
         data = peakstr.strip().splitlines()
 
         # dictionary of parameters

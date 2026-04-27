@@ -34,7 +34,7 @@ class SrMiseError(Exception):
     """Superclass of all diffpy.srmise exceptions."""
 
     def __init__(self, info):
-        """initialize.
+        """Initialize.
 
         info: description string
         """
@@ -55,7 +55,7 @@ class SrMiseDataFormatError(SrMiseError):
     """
 
     def __init__(self, info):
-        """initialize.
+        """Initialize.
 
         info -- description string
         """
@@ -69,7 +69,7 @@ class SrMiseEstimationError(SrMiseError):
     """
 
     def __init__(self, info):
-        """initialize.
+        """Initialize.
 
         info -- description string
         """
@@ -83,7 +83,7 @@ class SrMiseFileError(SrMiseError):
     """
 
     def __init__(self, info):
-        """initialize.
+        """Initialize.
 
         info -- description string
         """
@@ -97,7 +97,7 @@ class SrMiseFitError(SrMiseError):
     """
 
     def __init__(self, info):
-        """initialize.
+        """Initialize.
 
         info -- description string
         """
@@ -111,7 +111,7 @@ class SrMiseLogError(SrMiseError):
     """
 
     def __init__(self, info):
-        """initialize.
+        """Initialize.
 
         info -- description string
         """
@@ -125,7 +125,7 @@ class SrMiseModelEvaluatorError(SrMiseError):
     """
 
     def __init__(self, info):
-        """initialize.
+        """Initialize.
 
         info -- description string
         """
@@ -139,7 +139,7 @@ class SrMiseQmaxError(SrMiseError):
     """
 
     def __init__(self, info):
-        """initialize.
+        """Initialize.
 
         info -- description string
         """
@@ -153,7 +153,7 @@ class SrMiseScalingError(SrMiseError):
     """
 
     def __init__(self, info):
-        """initialize.
+        """Initialize.
 
         info -- description string
         """
@@ -167,7 +167,7 @@ class SrMiseStaticOwnerError(SrMiseError):
     """
 
     def __init__(self, info):
-        """initialize.
+        """Initialize.
 
         info -- description string
         """
@@ -181,7 +181,7 @@ class SrMiseTransformationError(SrMiseError):
     """
 
     def __init__(self, info):
-        """initialize.
+        """Initialize.
 
         info -- description string
         """
@@ -195,7 +195,7 @@ class SrMiseUndefinedCovarianceError(SrMiseError):
     """
 
     def __init__(self, info):
-        """initialize.
+        """Initialize.
 
         info -- description string
         """
@@ -209,7 +209,7 @@ class SrMisePDFKeyError(SrMiseError):
     """
 
     def __init__(self, info):
-        """initialize.
+        """Initialize.
 
         info -- description string
         """

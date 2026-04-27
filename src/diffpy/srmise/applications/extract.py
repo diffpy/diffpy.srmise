@@ -35,7 +35,6 @@ def _baseline_namespace():
 
 def main():
     """Default SrMise entry-point."""
-
     usage = (
         "usage: %prog pdf_file [options]\n"
         "pdf_file is a file containing a PDF (accepts several "
@@ -624,7 +623,8 @@ def parsepars(mp, parseq):
     a float with the character 'c' appended.  If 'c' is appended,
     that parameter will be fixed.
 
-    Parameters:
+    Parameters
+    ----------
     mp - A ModelPart instance
     parseq - A sequence of string
     """

@@ -12,7 +12,8 @@
 #
 ##############################################################################
 """Defines class to partition sequences representing the x and y axis
-into peak-like clusters."""
+into peak-like clusters.
+"""
 
 import logging
 
@@ -434,6 +435,7 @@ class DataClusters:
         """Return slice(s) for data given cluster index (or indices).
 
         Parameters
+        ----------
         idx - Cluster index (or sequence of indices).
         """
         data_ids = self.clusters[idx]

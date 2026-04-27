@@ -225,6 +225,7 @@ class PDFDataSet(PDFComponent):
             string of raw data
 
         Returns
+        -------
         self
         """
         self.clear()

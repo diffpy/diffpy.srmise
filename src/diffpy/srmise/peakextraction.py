@@ -69,6 +69,7 @@ class PeakExtraction(object):
         """Initialize PeakExtraction object.
 
         Parameters
+        ----------
         newvars : array-like
             Sequence of strings that represent additional extraction parameters.
         """
@@ -718,7 +719,8 @@ class PeakExtraction(object):
 
     def getrangeslice(self):
         """Convert the ranges in terms of x-coordinates to a slice
-        object."""
+        object.
+        """
         low_idx = 0
         while self.x[low_idx] < max(self.x[0], self.rng[0]):
             low_idx += 1
@@ -820,6 +822,7 @@ class PeakExtraction(object):
         specified by error_method.
 
         Parameters
+        ----------
         recursion_depth: (1) Tracks recursion with extract_single.
         """
         self.clearcalc()
@@ -1366,7 +1369,6 @@ class PeakExtraction(object):
 
         Return ModelCovariance instance summarizing results.
         """
-
         self.clearcalc()
 
         # Make sure all required extraction variables have some value
