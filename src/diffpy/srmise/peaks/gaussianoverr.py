@@ -46,7 +46,8 @@ class GaussianOverR(PeakFunction):
     # equivalent to 3 standard deviations.
     def __init__(self, maxwidth, Cache=None):
         """Maxwidth defined as full width at half maximum for the
-        corresponding Gaussian, which is physically relevant."""
+        corresponding Gaussian, which is physically relevant.
+        """
         parameterdict = {"position": 0, "width": 1, "area": 2}
         formats = ["internal", "pwa", "mu_sigma_area"]
         default_formats = {
@@ -274,6 +275,7 @@ class GaussianOverR(PeakFunction):
             Determines which derivatives need to be computed. A `True` value indicates that the derivative
             with respect to the corresponding parameter in `pars` should be calculated;
             `False` indicates no evaluation is needed.
+
         Returns
         -------
         jacobian : ndarray
@@ -320,6 +322,7 @@ class GaussianOverR(PeakFunction):
         to out_format.
 
         Parameters
+        ----------
         pars: Sequence of parameters
         in_format: A format defined for this class
         out_format: A format defined for this class
@@ -462,6 +465,7 @@ class GaussianOverR(PeakFunction):
             - pars[2]: Multiplicative constant 'a', equivalent to the peak area of the Gaussian when integrated.
         r : array_like or float
             Radial distances or a single value at which the Gaussian is to be evaluated.
+
         Returns
         -------
         float

@@ -128,14 +128,15 @@ class BaselineFunction(BaseFunction):
 
 class Baseline(ModelPart):
     """Represents a baseline associated with a BaselineFunction
-    subclass."""
+    subclass.
+    """
 
     def __init__(self, owner, pars, free=None, removable=False, static_owner=False):
         """Initialize the BaselineComponent instance with specified
         configurations.
 
-            Parameters
-            ----------
+        Parameters
+        ----------
             owner : BaselineFunction subclass instance
                 The owner object which is an instance of a subclass of BaselineFunction.
             pars : array-like
@@ -151,8 +152,8 @@ class Baseline(ModelPart):
                 Determines if the owner of the baseline can be altered using the
         `       changeowner()` method. Defaults to False.
 
-            Notes
-            -----
+        Notes
+        -----
             - The `free` and `removable` parameters are independent; a baseline can be marked
             as removable even if some of its parameters are fixed (`free` is False). In such
             cases, the baseline may be removed during peak extraction, but the fixed
@@ -171,7 +172,6 @@ class Baseline(ModelPart):
         ownerlist : array-like
             The list of BaseFunctions that owner is in
         """
-
         data = baselinestr.strip().splitlines()
 
         # dictionary of parameters

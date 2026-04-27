@@ -200,7 +200,6 @@ class PeakStability:
             boolean to determine to save covariance matrix. Default is False.
             If savecovs is True, return the covariance matrix for each final fit.
         """
-
         self.results = []
         covs = []
         for i, e in enumerate(err):

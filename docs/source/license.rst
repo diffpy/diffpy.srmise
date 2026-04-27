@@ -29,7 +29,7 @@ program by citing the following paper in your publication:
 For more information please visit the diffpy web-page at
     http://www.diffpy.org
 or email Luke Granlund at luke.r.granlund@gmail.com, or Prof. Simon
-Billinge at sb2896@columbia.edu.
+Billinge at sbillinge@ucsb.edu.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:

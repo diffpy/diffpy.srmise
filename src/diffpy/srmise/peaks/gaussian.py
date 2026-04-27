@@ -46,7 +46,8 @@ class Gaussian(PeakFunction):
     # equivalent to 3 standard deviations.
     def __init__(self, maxwidth, Cache=None):
         """Maxwidth defined as full width at half maximum for the
-        corresponding Gaussian, which is physically relevant."""
+        corresponding Gaussian, which is physically relevant.
+        """
         parameterdict = {"position": 0, "width": 1, "area": 2}
         formats = ["internal", "pwa", "mu_sigma_area"]
         default_formats = {
