@@ -22,7 +22,7 @@ functionality common to all SrMise baseline and peak functions, which are
 separately implemented in the ``diffpy.srmise.baselines`` and
 ``diffpy.srmise.peaks`` subpackages.  Specific baseline and peak functions
 inherit from the ``BaselineFunction`` and ``PeakFunction`` classes in those
-subpackges, as shown below.
+subpackages, as shown below.
 
 * .. py:class:: BaseFunction
 

@@ -5,16 +5,19 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>diffpy.srmise.applications.extract &mdash; diffpy.srmise 0.7.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=7ab3649f" />
+  <title>diffpy.srmise.applications.extract &mdash; diffpy.srmise 0.8.0rc0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
 
   
       <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../../_static/documentation_options.js?v=b9678aa1"></script>
-      <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../../_static/documentation_options.js?v=e93019a4"></script>
+      <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../_static/copybutton.js?v=cca77546"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" /> 
@@ -43,7 +46,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../tutorial/index.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../extending.html">Extending SrMise</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../api/diffpy.srmise.html">Package API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../release.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../release.html">Release notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../license.html">License</a></li>
 </ul>
 
@@ -85,25 +88,39 @@
 <span class="c1">#</span>
 <span class="c1">##############################################################################</span>
 
-<span class="kn">import</span> <span class="nn">textwrap</span>
-<span class="kn">from</span> <span class="nn">optparse</span> <span class="kn">import</span> <span class="n">IndentedHelpFormatter</span><span class="p">,</span> <span class="n">OptionGroup</span><span class="p">,</span> <span class="n">OptionParser</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">textwrap</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">optparse</span><span class="w"> </span><span class="kn">import</span> <span class="n">IndentedHelpFormatter</span><span class="p">,</span> <span class="n">OptionGroup</span><span class="p">,</span> <span class="n">OptionParser</span>
 
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_baseline_namespace</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the baseline classes supported by the CLI.&quot;&quot;&quot;</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.srmise.baselines.arbitrary</span><span class="w"> </span><span class="kn">import</span> <span class="n">Arbitrary</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.srmise.baselines.fromsequence</span><span class="w"> </span><span class="kn">import</span> <span class="n">FromSequence</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.srmise.baselines.nanospherical</span><span class="w"> </span><span class="kn">import</span> <span class="n">NanoSpherical</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.srmise.baselines.polynomial</span><span class="w"> </span><span class="kn">import</span> <span class="n">Polynomial</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;Arbitrary&quot;</span><span class="p">:</span> <span class="n">Arbitrary</span><span class="p">,</span>
+        <span class="s2">&quot;FromSequence&quot;</span><span class="p">:</span> <span class="n">FromSequence</span><span class="p">,</span>
+        <span class="s2">&quot;NanoSpherical&quot;</span><span class="p">:</span> <span class="n">NanoSpherical</span><span class="p">,</span>
+        <span class="s2">&quot;Polynomial&quot;</span><span class="p">:</span> <span class="n">Polynomial</span><span class="p">,</span>
+    <span class="p">}</span>
 
 
 <div class="viewcode-block" id="main">
 <a class="viewcode-back" href="../../../../api/diffpy.srmise.applications.html#diffpy.srmise.applications.extract.main">[docs]</a>
-<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Default SrMise entry-point.&quot;&quot;&quot;</span>
-
     <span class="n">usage</span> <span class="o">=</span> <span class="p">(</span>
         <span class="s2">&quot;usage: %prog pdf_file [options]</span><span class="se">\n</span><span class="s2">&quot;</span>
         <span class="s2">&quot;pdf_file is a file containing a PDF (accepts several &quot;</span>
         <span class="s2">&quot;common formats), or a .srmise file.&quot;</span>
     <span class="p">)</span>
 
-    <span class="kn">from</span> <span class="nn">diffpy.srmise</span> <span class="kn">import</span> <span class="n">__version__</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.srmise</span><span class="w"> </span><span class="kn">import</span> <span class="n">__version__</span>
 
     <span class="n">version</span> <span class="o">=</span> <span class="s2">&quot;diffpy.srmise &quot;</span> <span class="o">+</span> <span class="n">__version__</span>
 
@@ -364,7 +381,13 @@
         <span class="s2">&quot;--dg-mode&quot;</span><span class="p">,</span>
         <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;dg_mode&quot;</span><span class="p">,</span>
         <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;choice&quot;</span><span class="p">,</span>
-        <span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;absolute&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">,</span> <span class="s2">&quot;max-fraction&quot;</span><span class="p">,</span> <span class="s2">&quot;ptp-fraction&quot;</span><span class="p">,</span> <span class="s2">&quot;dG-fraction&quot;</span><span class="p">],</span>
+        <span class="n">choices</span><span class="o">=</span><span class="p">[</span>
+            <span class="s2">&quot;absolute&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;data&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;max-fraction&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;ptp-fraction&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;dG-fraction&quot;</span><span class="p">,</span>
+        <span class="p">],</span>
         <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Define how values passed to &#39;--dg&#39; are treated. &quot;</span>
         <span class="s2">&quot;Possible values are: </span><span class="se">\n</span><span class="s2">&quot;</span>
         <span class="s2">&quot;&#39;absolute&#39; - The actual uncertainty in the PDF.</span><span class="se">\n</span><span class="s2">&quot;</span>
@@ -414,7 +437,13 @@
         <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;FILE&quot;</span><span class="p">,</span>
         <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Save result of extraction to FILE (.srmise &quot;</span> <span class="s2">&quot;format).&quot;</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="n">group</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span><span class="s2">&quot;--plot&quot;</span><span class="p">,</span> <span class="s2">&quot;-p&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;plot&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Plot extracted peaks.&quot;</span><span class="p">)</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span>
+        <span class="s2">&quot;--plot&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;-p&quot;</span><span class="p">,</span>
+        <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span>
+        <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;plot&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Plot extracted peaks.&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
     <span class="n">group</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span>
         <span class="s2">&quot;--liveplot&quot;</span><span class="p">,</span>
         <span class="s2">&quot;-l&quot;</span><span class="p">,</span>
@@ -488,19 +517,27 @@
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
         <span class="n">parser</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Exactly one argument required. </span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">usage</span><span class="p">)</span>
 
-    <span class="kn">from</span> <span class="nn">diffpy.srmise</span> <span class="kn">import</span> <span class="n">srmiselog</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.srmise</span><span class="w"> </span><span class="kn">import</span> <span class="n">srmiselog</span>
 
     <span class="n">srmiselog</span><span class="o">.</span><span class="n">setlevel</span><span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">verbosity</span><span class="p">)</span>
 
-    <span class="kn">from</span> <span class="nn">diffpy.srmise.pdfpeakextraction</span> <span class="kn">import</span> <span class="n">PDFPeakExtraction</span>
-    <span class="kn">from</span> <span class="nn">diffpy.srmise.srmiseerrors</span> <span class="kn">import</span> <span class="n">SrMiseDataFormatError</span><span class="p">,</span> <span class="n">SrMiseFileError</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.srmise.pdfpeakextraction</span><span class="w"> </span><span class="kn">import</span> <span class="n">PDFPeakExtraction</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.srmise.srmiseerrors</span><span class="w"> </span><span class="kn">import</span> <span class="n">SrMiseDataFormatError</span><span class="p">,</span> <span class="n">SrMiseFileError</span>
 
     <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">peakfunction</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">options</span><span class="o">.</span><span class="n">peakfunction</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="s2">&quot;peaks.&quot;</span> <span class="o">+</span> <span class="n">options</span><span class="o">.</span><span class="n">peakfunction</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Could not create peak function &#39;</span><span class="si">%s</span><span class="s2">&#39;. Exiting.&quot;</span> <span class="o">%</span> <span class="n">options</span><span class="o">.</span><span class="n">peakfunction</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Could not create peak function </span><span class="si">{</span><span class="n">options</span><span class="o">.</span><span class="n">peakfunction</span><span class="si">}</span><span class="s2">. Exiting. &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;Make sure you create peak function properly and put a pair of quote &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;for the peakfunction object. &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;eg: &quot;</span>
+                <span class="s2">&quot;GaussianOverR(0.7)&quot;</span>
+                <span class="s2">&quot;TerminationRipples(pf1, 20.0)&quot;</span>
+                <span class="s2">&quot;&quot;</span>
+            <span class="p">)</span>
             <span class="k">return</span>
 
     <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">modelevaluator</span><span class="p">:</span>
@@ -508,11 +545,19 @@
             <span class="n">options</span><span class="o">.</span><span class="n">modelevaluator</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="s2">&quot;modelevaluators.&quot;</span> <span class="o">+</span> <span class="n">options</span><span class="o">.</span><span class="n">modelevaluator</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Could not find ModelEvaluator &#39;</span><span class="si">%s</span><span class="s2">&#39;. Exiting.&quot;</span> <span class="o">%</span> <span class="n">options</span><span class="o">.</span><span class="n">modelevaluator</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Could not find ModelEvaluator </span><span class="si">{</span><span class="n">options</span><span class="o">.</span><span class="n">modelevaluator</span><span class="si">}</span><span class="s2">. Exiting.&quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;Make sure you create ModelEvaluator properly and put a pair of quote &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;for the modeevaluator object. &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;eg: &quot;</span>
+                <span class="s2">&quot;AIC&quot;</span>
+                <span class="s2">&quot;AICc&quot;</span>
+                <span class="s2">&quot;&quot;</span>
+            <span class="p">)</span>
             <span class="k">return</span>
 
     <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">bcrystal</span><span class="p">:</span>
-        <span class="kn">from</span> <span class="nn">diffpy.srmise.baselines.polynomial</span> <span class="kn">import</span> <span class="n">Polynomial</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.srmise.baselines.polynomial</span><span class="w"> </span><span class="kn">import</span> <span class="n">Polynomial</span>
 
         <span class="n">bl</span> <span class="o">=</span> <span class="n">Polynomial</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
         <span class="n">options</span><span class="o">.</span><span class="n">baseline</span> <span class="o">=</span> <span class="n">parsepars</span><span class="p">(</span><span class="n">bl</span><span class="p">,</span> <span class="p">[</span><span class="n">options</span><span class="o">.</span><span class="n">bcrystal</span><span class="p">,</span> <span class="s2">&quot;0c&quot;</span><span class="p">])</span>
@@ -523,37 +568,47 @@
         <span class="n">blext</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">bsrmise</span><span class="p">)</span>
         <span class="n">options</span><span class="o">.</span><span class="n">baseline</span> <span class="o">=</span> <span class="n">blext</span><span class="o">.</span><span class="n">extracted</span><span class="o">.</span><span class="n">baseline</span>
     <span class="k">elif</span> <span class="n">options</span><span class="o">.</span><span class="n">bpoly0</span><span class="p">:</span>
-        <span class="kn">from</span> <span class="nn">diffpy.srmise.baselines.polynomial</span> <span class="kn">import</span> <span class="n">Polynomial</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.srmise.baselines.polynomial</span><span class="w"> </span><span class="kn">import</span> <span class="n">Polynomial</span>
 
         <span class="n">bl</span> <span class="o">=</span> <span class="n">Polynomial</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
         <span class="n">options</span><span class="o">.</span><span class="n">baseline</span> <span class="o">=</span> <span class="n">parsepars</span><span class="p">(</span><span class="n">bl</span><span class="p">,</span> <span class="p">[</span><span class="n">options</span><span class="o">.</span><span class="n">bpoly0</span><span class="p">])</span>
     <span class="k">elif</span> <span class="n">options</span><span class="o">.</span><span class="n">bpoly1</span><span class="p">:</span>
-        <span class="kn">from</span> <span class="nn">diffpy.srmise.baselines.polynomial</span> <span class="kn">import</span> <span class="n">Polynomial</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.srmise.baselines.polynomial</span><span class="w"> </span><span class="kn">import</span> <span class="n">Polynomial</span>
 
         <span class="n">bl</span> <span class="o">=</span> <span class="n">Polynomial</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
         <span class="n">options</span><span class="o">.</span><span class="n">baseline</span> <span class="o">=</span> <span class="n">parsepars</span><span class="p">(</span><span class="n">bl</span><span class="p">,</span> <span class="n">options</span><span class="o">.</span><span class="n">bpoly1</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">options</span><span class="o">.</span><span class="n">bpoly2</span><span class="p">:</span>
-        <span class="kn">from</span> <span class="nn">diffpy.srmise.baselines.polynomial</span> <span class="kn">import</span> <span class="n">Polynomial</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.srmise.baselines.polynomial</span><span class="w"> </span><span class="kn">import</span> <span class="n">Polynomial</span>
 
         <span class="n">bl</span> <span class="o">=</span> <span class="n">Polynomial</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
         <span class="n">options</span><span class="o">.</span><span class="n">baseline</span> <span class="o">=</span> <span class="n">parsepars</span><span class="p">(</span><span class="n">bl</span><span class="p">,</span> <span class="n">options</span><span class="o">.</span><span class="n">bpoly2</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">options</span><span class="o">.</span><span class="n">bseq</span><span class="p">:</span>
-        <span class="kn">from</span> <span class="nn">diffpy.srmise.baselines.fromsequence</span> <span class="kn">import</span> <span class="n">FromSequence</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.srmise.baselines.fromsequence</span><span class="w"> </span><span class="kn">import</span> <span class="n">FromSequence</span>
 
         <span class="n">bl</span> <span class="o">=</span> <span class="n">FromSequence</span><span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">bseq</span><span class="p">)</span>
         <span class="n">options</span><span class="o">.</span><span class="n">baseline</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">actualize</span><span class="p">([],</span> <span class="s2">&quot;internal&quot;</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">options</span><span class="o">.</span><span class="n">bspherical</span><span class="p">:</span>
-        <span class="kn">from</span> <span class="nn">diffpy.srmise.baselines.nanospherical</span> <span class="kn">import</span> <span class="n">NanoSpherical</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.srmise.baselines.nanospherical</span><span class="w"> </span><span class="kn">import</span> <span class="n">NanoSpherical</span>
 
         <span class="n">bl</span> <span class="o">=</span> <span class="n">NanoSpherical</span><span class="p">()</span>
         <span class="n">options</span><span class="o">.</span><span class="n">baseline</span> <span class="o">=</span> <span class="n">parsepars</span><span class="p">(</span><span class="n">bl</span><span class="p">,</span> <span class="n">options</span><span class="o">.</span><span class="n">bspherical</span><span class="p">)</span>
-
+    <span class="k">elif</span> <span class="n">options</span><span class="o">.</span><span class="n">baseline</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">options</span><span class="o">.</span><span class="n">baseline</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="s2">&quot;baselines.&quot;</span> <span class="o">+</span> <span class="n">options</span><span class="o">.</span><span class="n">baseline</span><span class="p">)</span>
-
+            <span class="n">options</span><span class="o">.</span><span class="n">baseline</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span>
+                <span class="n">options</span><span class="o">.</span><span class="n">baseline</span><span class="p">,</span>
+                <span class="p">{</span><span class="s2">&quot;__builtins__&quot;</span><span class="p">:</span> <span class="p">{}},</span>
+                <span class="n">_baseline_namespace</span><span class="p">(),</span>
+            <span class="p">)</span>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Could not create baseline &#39;</span><span class="si">%s</span><span class="s2">&#39;. Exiting.&quot;</span> <span class="o">%</span> <span class="n">options</span><span class="o">.</span><span class="n">baseline</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Could not create baseline </span><span class="si">{</span><span class="n">options</span><span class="o">.</span><span class="n">baseline</span><span class="si">}</span><span class="s2">. Exiting.&quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;Make sure you create baseline properly and put a pair of quote for the baseline.&quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;eg: &quot;</span>
+                <span class="s2">&quot;Polynomial(degree=1)&quot;</span>
+                <span class="s2">&quot;NanoSpherical()&quot;</span>
+                <span class="s2">&quot;&quot;</span>
+            <span class="p">)</span>
             <span class="k">return</span>
 
     <span class="n">filename</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -603,7 +658,7 @@
             <span class="n">pdict</span><span class="p">[</span><span class="s2">&quot;error_method&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">modelevaluator</span>
 
         <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">liveplot</span><span class="p">:</span>
-            <span class="kn">from</span> <span class="nn">diffpy.srmise</span> <span class="kn">import</span> <span class="n">srmiselog</span>
+            <span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.srmise</span><span class="w"> </span><span class="kn">import</span> <span class="n">srmiselog</span>
 
             <span class="n">srmiselog</span><span class="o">.</span><span class="n">liveplotting</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">options</span><span class="o">.</span><span class="n">wait</span><span class="p">)</span>
 
@@ -632,7 +687,7 @@
             <span class="nb">print</span><span class="p">(</span><span class="n">cov</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">plot</span><span class="p">:</span>
-            <span class="kn">from</span> <span class="nn">diffpy.srmise.applications.plot</span> <span class="kn">import</span> <span class="n">makeplot</span>
+            <span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.srmise.applications.plot</span><span class="w"> </span><span class="kn">import</span> <span class="n">makeplot</span>
 
             <span class="n">makeplot</span><span class="p">(</span><span class="n">ext</span><span class="p">)</span>
             <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -643,14 +698,15 @@
 
 <div class="viewcode-block" id="parsepars">
 <a class="viewcode-back" href="../../../../api/diffpy.srmise.applications.html#diffpy.srmise.applications.extract.parsepars">[docs]</a>
-<span class="k">def</span> <span class="nf">parsepars</span><span class="p">(</span><span class="n">mp</span><span class="p">,</span> <span class="n">parseq</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">parsepars</span><span class="p">(</span><span class="n">mp</span><span class="p">,</span> <span class="n">parseq</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return actualized model from sequence of strings.</span>
 
 <span class="sd">    Each item in parseq must be interpretable as a float, or as</span>
 <span class="sd">    a float with the character &#39;c&#39; appended.  If &#39;c&#39; is appended,</span>
 <span class="sd">    that parameter will be fixed.</span>
 
-<span class="sd">    Parameters:</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
 <span class="sd">    mp - A ModelPart instance</span>
 <span class="sd">    parseq - A sequence of string</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -674,8 +730,8 @@
 
 <div class="viewcode-block" id="IndentedHelpFormatterWithNL">
 <a class="viewcode-back" href="../../../../api/diffpy.srmise.applications.html#diffpy.srmise.applications.extract.IndentedHelpFormatterWithNL">[docs]</a>
-<span class="k">class</span> <span class="nc">IndentedHelpFormatterWithNL</span><span class="p">(</span><span class="n">IndentedHelpFormatter</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">_format_text</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">IndentedHelpFormatterWithNL</span><span class="p">(</span><span class="n">IndentedHelpFormatter</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_format_text</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">text</span><span class="p">:</span>
             <span class="k">return</span> <span class="s2">&quot;&quot;</span>
         <span class="n">text_width</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_indent</span>
@@ -683,14 +739,20 @@
         <span class="c1"># the above is still the same</span>
         <span class="n">bits</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="n">formatted_bits</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="n">textwrap</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">bit</span><span class="p">,</span> <span class="n">text_width</span><span class="p">,</span> <span class="n">initial_indent</span><span class="o">=</span><span class="n">indent</span><span class="p">,</span> <span class="n">subsequent_indent</span><span class="o">=</span><span class="n">indent</span><span class="p">)</span> <span class="k">for</span> <span class="n">bit</span> <span class="ow">in</span> <span class="n">bits</span>
+            <span class="n">textwrap</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span>
+                <span class="n">bit</span><span class="p">,</span>
+                <span class="n">text_width</span><span class="p">,</span>
+                <span class="n">initial_indent</span><span class="o">=</span><span class="n">indent</span><span class="p">,</span>
+                <span class="n">subsequent_indent</span><span class="o">=</span><span class="n">indent</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="k">for</span> <span class="n">bit</span> <span class="ow">in</span> <span class="n">bits</span>
         <span class="p">]</span>
         <span class="n">result</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">formatted_bits</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
         <span class="k">return</span> <span class="n">result</span>
 
 <div class="viewcode-block" id="IndentedHelpFormatterWithNL.format_option">
 <a class="viewcode-back" href="../../../../api/diffpy.srmise.applications.html#diffpy.srmise.applications.extract.IndentedHelpFormatterWithNL.format_option">[docs]</a>
-    <span class="k">def</span> <span class="nf">format_option</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">option</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">format_option</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">option</span><span class="p">):</span>
         <span class="c1"># The help for each option consists of two parts:</span>
         <span class="c1">#   * the opt strings and metavars</span>
         <span class="c1">#   eg. (&quot;-x&quot;, or &quot;-fFILENAME, --file=FILENAME&quot;)</span>
@@ -744,7 +806,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, The Trustees of Columbia University in the City of New York.</p>
+    <p>&#169; Copyright 2026, The Trustees of Columbia University in the City of New York.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

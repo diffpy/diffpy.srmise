@@ -6,20 +6,23 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>diffpy.srmise.baselines package &mdash; diffpy.srmise 0.7.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=7ab3649f" />
+  <title>diffpy.srmise.baselines package &mdash; diffpy.srmise 0.8.0rc0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=b9678aa1"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/documentation_options.js?v=e93019a4"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=cca77546"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Release Notes" href="../release.html" />
+    <link rel="next" title="Release notes" href="../release.html" />
     <link rel="prev" title="diffpy.srmise.applications package" href="diffpy.srmise.applications.html" /> 
 </head>
 
@@ -46,13 +49,20 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../extending.html">Extending SrMise</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="diffpy.srmise.html">Package API</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="diffpy.srmise.peaks.html">diffpy.srmise.peaks package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="diffpy.srmise.modelevaluators.html">diffpy.srmise.modelevaluators package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="diffpy.srmise.applications.html">diffpy.srmise.applications package</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">diffpy.srmise.baselines package</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="diffpy.srmise.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="diffpy.srmise.peaks.html">diffpy.srmise.peaks package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="diffpy.srmise.modelevaluators.html">diffpy.srmise.modelevaluators package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="diffpy.srmise.applications.html">diffpy.srmise.applications package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">diffpy.srmise.baselines package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../release.html">Release Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="diffpy.srmise.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../release.html">Release notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 </ul>
 
@@ -73,7 +83,7 @@
           <li class="breadcrumb-item"><a href="diffpy.srmise.html">diffpy.srmise package</a></li>
       <li class="breadcrumb-item active">diffpy.srmise.baselines package</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/api/diffpy.srmise.baselines.rst.txt" rel="nofollow"> View page source</a>
+              <a href="https://github.com/diffpy/diffpy.srmise/blob/main/docs/source/api/diffpy.srmise.baselines.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -89,9 +99,10 @@
 <span id="diffpy-srmise-baselines-nanospherical-module"></span><h3>diffpy.srmise.baselines.nanospherical module<a class="headerlink" href="#module-diffpy.srmise.baselines.nanospherical" title="Link to this heading"></a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="diffpy.srmise.baselines.nanospherical.NanoSpherical">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.baselines.nanospherical.</span></span><span class="sig-name descname"><span class="pre">NanoSpherical</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/baselines/nanospherical.html#NanoSpherical"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.baselines.nanospherical.NanoSpherical" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.baselines.nanospherical.</span></span><span class="sig-name descname"><span class="pre">NanoSpherical</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/baselines/nanospherical.html#NanoSpherical"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.baselines.nanospherical.NanoSpherical" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#diffpy.srmise.baselines.base.BaselineFunction" title="diffpy.srmise.baselines.base.BaselineFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaselineFunction</span></code></a></p>
-<p>Methods for evaluation of baseline of spherical nanoparticle of uniform density.</p>
+<p>Methods for evaluation of baseline of spherical nanoparticle of
+uniform density.</p>
 <p>Allowed formats are
 internal: [scale, radius]</p>
 <p>Given nanoparticle radius R, the baseline is -scale*r*(1-(3r)/(4R)+(r^3)/(16*R^3)) in the
@@ -104,7 +115,7 @@ Guinier et al. (1955). Small-angle Scattering from X-rays. New York: John Wiley 
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.baselines.nanospherical.NanoSpherical.getmodule">
 <span class="sig-name descname"><span class="pre">getmodule</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/baselines/nanospherical.html#NanoSpherical.getmodule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.baselines.nanospherical.NanoSpherical.getmodule" title="Link to this definition"></a></dt>
-<dd><p>Return ‘diffpy.srmise.basefunction’</p>
+<dd><p>Return ‘diffpy.srmise.basefunction’.</p>
 </dd></dl>
 
 </dd></dl>
@@ -114,28 +125,20 @@ Guinier et al. (1955). Small-angle Scattering from X-rays. New York: John Wiley 
 <span id="diffpy-srmise-baselines-arbitrary-module"></span><h3>diffpy.srmise.baselines.arbitrary module<a class="headerlink" href="#module-diffpy.srmise.baselines.arbitrary" title="Link to this heading"></a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="diffpy.srmise.baselines.arbitrary.Arbitrary">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.baselines.arbitrary.</span></span><span class="sig-name descname"><span class="pre">Arbitrary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">npars</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">valuef</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jacobianf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimatef</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/baselines/arbitrary.html#Arbitrary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.baselines.arbitrary.Arbitrary" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.baselines.arbitrary.</span></span><span class="sig-name descname"><span class="pre">Arbitrary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">npars</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">valuef</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jacobianf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">estimatef</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/baselines/arbitrary.html#Arbitrary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.baselines.arbitrary.Arbitrary" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#diffpy.srmise.baselines.base.BaselineFunction" title="diffpy.srmise.baselines.base.BaselineFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaselineFunction</span></code></a></p>
 <p>Methods for evaluating a baseline from an arbitrary function.</p>
-<p>Supports baseline calculations with arbitrary functions.  These functions,
-if implemented, must have the following signatures and return values:
-valuef(pars, x) ==&gt; numpy.array of length x if x is a sequence</p>
-<blockquote>
-<div><p>==&gt; number if x is a number</p>
-</div></blockquote>
-<dl>
-<dt>jacobianf(pars, x, free) ==&gt; list, each element a numpy.array of length x if</dt><dd><blockquote>
-<div><p>x is a sequence or None if value of free for
-that parameter is False.</p>
-</div></blockquote>
-<dl class="simple">
-<dt>==&gt; list, each element a number if x is a number</dt><dd><p>or None if value of free for that parameter is
-False</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<p>estimatef(x, y) ==&gt; numpy.array of length npars</p>
+<p>Supports baseline calculations with arbitrary functions.  These
+functions, if implemented, must have the following signatures and
+return values: valuef(pars, x)          ==&gt; numpy.array of length x
+if x is a sequence                          ==&gt; number if x is a
+number jacobianf(pars, x, free) ==&gt; list, each element a numpy.array
+of length x if                             x is a sequence or None
+if value of free for                             that parameter is
+False.                          ==&gt; list, each element a number if x
+is a number                             or None if value of free for
+that parameter is                             False estimatef(x, y)
+==&gt; numpy.array of length npars</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.baselines.arbitrary.Arbitrary.estimate_parameters">
 <span class="sig-name descname"><span class="pre">estimate_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/baselines/arbitrary.html#Arbitrary.estimate_parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.baselines.arbitrary.Arbitrary.estimate_parameters" title="Link to this definition"></a></dt>
@@ -161,7 +164,7 @@ False</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.baselines.arbitrary.Arbitrary.getmodule">
 <span class="sig-name descname"><span class="pre">getmodule</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/baselines/arbitrary.html#Arbitrary.getmodule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.baselines.arbitrary.Arbitrary.getmodule" title="Link to this definition"></a></dt>
-<dd><p>Return ‘diffpy.srmise.basefunction’</p>
+<dd><p>Return ‘diffpy.srmise.basefunction’.</p>
 </dd></dl>
 
 </dd></dl>
@@ -171,12 +174,14 @@ False</p>
 <span id="diffpy-srmise-baselines-fromsequence-module"></span><h3>diffpy.srmise.baselines.fromsequence module<a class="headerlink" href="#module-diffpy.srmise.baselines.fromsequence" title="Link to this heading"></a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="diffpy.srmise.baselines.fromsequence.FromSequence">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.baselines.fromsequence.</span></span><span class="sig-name descname"><span class="pre">FromSequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/baselines/fromsequence.html#FromSequence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.baselines.fromsequence.FromSequence" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.baselines.fromsequence.</span></span><span class="sig-name descname"><span class="pre">FromSequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/baselines/fromsequence.html#FromSequence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.baselines.fromsequence.FromSequence" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#diffpy.srmise.baselines.base.BaselineFunction" title="diffpy.srmise.baselines.base.BaselineFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaselineFunction</span></code></a></p>
-<p>Methods for evaluation of a baseline from discrete data via interpolation.</p>
-<p>FromSequence uses cubic spline interpolation (no smoothing) on discrete
-points to approximate the baseline at arbitrary points within the
-interpolation domain.  This baseline function permits no free parameters.</p>
+<p>Methods for evaluation of a baseline from discrete data via
+interpolation.</p>
+<p>FromSequence uses cubic spline interpolation (no smoothing) on
+discrete points to approximate the baseline at arbitrary points
+within the interpolation domain.  This baseline function permits no
+free parameters.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.baselines.fromsequence.FromSequence.estimate_parameters">
 <span class="sig-name descname"><span class="pre">estimate_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/baselines/fromsequence.html#FromSequence.estimate_parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.baselines.fromsequence.FromSequence.estimate_parameters" title="Link to this definition"></a></dt>
@@ -202,7 +207,7 @@ to estimate.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.baselines.fromsequence.FromSequence.getmodule">
 <span class="sig-name descname"><span class="pre">getmodule</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/baselines/fromsequence.html#FromSequence.getmodule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.baselines.fromsequence.FromSequence.getmodule" title="Link to this definition"></a></dt>
-<dd><p>Return ‘diffpy.srmise.basefunction’</p>
+<dd><p>Return ‘diffpy.srmise.basefunction’.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -234,9 +239,10 @@ to estimate.</p>
 <span id="diffpy-srmise-baselines-polynomial-module"></span><h3>diffpy.srmise.baselines.polynomial module<a class="headerlink" href="#module-diffpy.srmise.baselines.polynomial" title="Link to this heading"></a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="diffpy.srmise.baselines.polynomial.Polynomial">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.baselines.polynomial.</span></span><span class="sig-name descname"><span class="pre">Polynomial</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">degree</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/baselines/polynomial.html#Polynomial"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.baselines.polynomial.Polynomial" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.baselines.polynomial.</span></span><span class="sig-name descname"><span class="pre">Polynomial</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">degree</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/baselines/polynomial.html#Polynomial"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.baselines.polynomial.Polynomial" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#diffpy.srmise.baselines.base.BaselineFunction" title="diffpy.srmise.baselines.base.BaselineFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaselineFunction</span></code></a></p>
-<p>Methods for evaluation and parameter estimation of a polynomial baseline.</p>
+<p>Methods for evaluation and parameter estimation of a polynomial
+baseline.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.baselines.polynomial.Polynomial.estimate_parameters">
 <span class="sig-name descname"><span class="pre">estimate_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/baselines/polynomial.html#Polynomial.estimate_parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.baselines.polynomial.Polynomial.estimate_parameters" title="Link to this definition"></a></dt>
@@ -266,7 +272,7 @@ any other reason.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.baselines.polynomial.Polynomial.getmodule">
 <span class="sig-name descname"><span class="pre">getmodule</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/baselines/polynomial.html#Polynomial.getmodule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.baselines.polynomial.Polynomial.getmodule" title="Link to this definition"></a></dt>
-<dd><p>Return ‘diffpy.srmise.basefunction’</p>
+<dd><p>Return ‘diffpy.srmise.basefunction’.</p>
 </dd></dl>
 
 </dd></dl>
@@ -276,12 +282,13 @@ any other reason.</p>
 <span id="diffpy-srmise-baselines-base-module"></span><h3>diffpy.srmise.baselines.base module<a class="headerlink" href="#module-diffpy.srmise.baselines.base" title="Link to this heading"></a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="diffpy.srmise.baselines.base.Baseline">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.baselines.base.</span></span><span class="sig-name descname"><span class="pre">Baseline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">owner</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pars</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">free</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">removable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">static_owner</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/baselines/base.html#Baseline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.baselines.base.Baseline" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.baselines.base.</span></span><span class="sig-name descname"><span class="pre">Baseline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">owner</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pars</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">free</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">removable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">static_owner</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/baselines/base.html#Baseline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.baselines.base.Baseline" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="diffpy.srmise.html#diffpy.srmise.modelparts.ModelPart" title="diffpy.srmise.modelparts.ModelPart"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModelPart</span></code></a></p>
-<p>Represents a baseline associated with a BaselineFunction subclass.</p>
+<p>Represents a baseline associated with a BaselineFunction
+subclass.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.baselines.base.Baseline.factory">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">factory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">baselinestr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ownerlist</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/baselines/base.html#Baseline.factory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.baselines.base.Baseline.factory" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">factory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">baselinestr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ownerlist</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/baselines/base.html#Baseline.factory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.baselines.base.Baseline.factory" title="Link to this definition"></a></dt>
 <dd><p>Instantiate a Peak from a string.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -297,9 +304,10 @@ any other reason.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="diffpy.srmise.baselines.base.BaselineFunction">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.baselines.base.</span></span><span class="sig-name descname"><span class="pre">BaselineFunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameterdict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parformats</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_formats</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/baselines/base.html#BaselineFunction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.baselines.base.BaselineFunction" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.baselines.base.</span></span><span class="sig-name descname"><span class="pre">BaselineFunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameterdict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parformats</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_formats</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/baselines/base.html#BaselineFunction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.baselines.base.BaselineFunction" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="diffpy.srmise.html#diffpy.srmise.basefunction.BaseFunction" title="diffpy.srmise.basefunction.BaseFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseFunction</span></code></a></p>
-<p>Base class for functions which represent some data’s baseline term.</p>
+<p>Base class for functions which represent some data’s baseline
+term.</p>
 <section id="class-members">
 <h4>Class members<a class="headerlink" href="#class-members" title="Link to this heading"></a></h4>
 <dl class="simple">
@@ -339,13 +347,14 @@ transform_parameters()</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.baselines.base.BaselineFunction.actualize">
 <span class="sig-name descname"><span class="pre">actualize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">in_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'default_input'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">free</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">removable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">static_owner</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/baselines/base.html#BaselineFunction.actualize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.baselines.base.BaselineFunction.actualize" title="Link to this definition"></a></dt>
-<dd><p>Create ModelPart instance of self with given parameters.  (“Virtual” method)</p>
+<dd><p>Create ModelPart instance of self with given parameters.</p>
+<p>(“Virtual” method)</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.baselines.base.BaselineFunction.getmodule">
 <span class="sig-name descname"><span class="pre">getmodule</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/baselines/base.html#BaselineFunction.getmodule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.baselines.base.BaselineFunction.getmodule" title="Link to this definition"></a></dt>
-<dd><p>Return ‘diffpy.srmise.basefunction’</p>
+<dd><p>Return ‘diffpy.srmise.basefunction’.</p>
 </dd></dl>
 
 </section>
@@ -360,13 +369,13 @@ transform_parameters()</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="diffpy.srmise.applications.html" class="btn btn-neutral float-left" title="diffpy.srmise.applications package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../release.html" class="btn btn-neutral float-right" title="Release Notes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../release.html" class="btn btn-neutral float-right" title="Release notes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, The Trustees of Columbia University in the City of New York.</p>
+    <p>&#169; Copyright 2026, The Trustees of Columbia University in the City of New York.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

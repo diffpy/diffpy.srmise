@@ -5,16 +5,19 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>diffpy.srmise.basefunction &mdash; diffpy.srmise 0.7.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=7ab3649f" />
+  <title>diffpy.srmise.basefunction &mdash; diffpy.srmise 0.8.0rc0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=b9678aa1"></script>
-      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/documentation_options.js?v=e93019a4"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=cca77546"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -43,7 +46,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../extending.html">Extending SrMise</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../api/diffpy.srmise.html">Package API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../release.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../release.html">Release notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
 </ul>
 
@@ -85,26 +88,29 @@
 <span class="c1"># See LICENSE.txt for license information.</span>
 <span class="c1">#</span>
 <span class="c1">##############################################################################</span>
-<span class="sd">&quot;&quot;&quot;Defines BaseFunction, the base class for mathematical functions in srmise.&quot;&quot;&quot;</span>
+<span class="sd">&quot;&quot;&quot;Defines BaseFunction, the base class for mathematical functions in</span>
+<span class="sd">srmise.</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="kn">from</span> <span class="nn">diffpy.srmise.srmiseerrors</span> <span class="kn">import</span> <span class="n">SrMiseDataFormatError</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.srmise.srmiseerrors</span><span class="w"> </span><span class="kn">import</span> <span class="n">SrMiseDataFormatError</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;diffpy.srmise&quot;</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="BaseFunction">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.basefunction.BaseFunction">[docs]</a>
-<span class="k">class</span> <span class="nc">BaseFunction</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Base class for mathematical functions which model numeric sequences.</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">BaseFunction</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Base class for mathematical functions which model numeric</span>
+<span class="sd">    sequences.</span>
 
 <span class="sd">    Attributes</span>
-<span class="sd">    -------------</span>
+<span class="sd">    ----------</span>
 <span class="sd">    parameterdict : dict</span>
 <span class="sd">        The dictionary mapping string keys to their index in the</span>
 <span class="sd">        sequence of parameters.  These keys apply only to the</span>
@@ -143,7 +149,7 @@
 <span class="sd">    transform_parameters()</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">parameterdict</span><span class="p">,</span>
         <span class="n">parformats</span><span class="p">,</span>
@@ -152,7 +158,7 @@
         <span class="n">base</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">Cache</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set parameterdict defined by subclass</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set parameterdict defined by subclass.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -176,7 +182,6 @@
 <span class="sd">            The class (not instance) which implements caching of BaseFunction</span>
 <span class="sd">            evaluations.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-
         <span class="bp">self</span><span class="o">.</span><span class="n">parameterdict</span> <span class="o">=</span> <span class="n">parameterdict</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">npars</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parameterdict</span><span class="p">)</span>
 
@@ -236,45 +241,63 @@
 
 <div class="viewcode-block" id="BaseFunction.actualize">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.basefunction.BaseFunction.actualize">[docs]</a>
-    <span class="k">def</span> <span class="nf">actualize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create ModelPart instance of self with given parameters.  (&quot;Virtual&quot; method)&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">actualize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create ModelPart instance of self with given parameters.</span>
+
+<span class="sd">        (&quot;Virtual&quot; method)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">emsg</span> <span class="o">=</span> <span class="s2">&quot;actualize() must be implemented in a BaseFunction subclass.&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="n">emsg</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="BaseFunction.estimate_parameters">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.basefunction.BaseFunction.estimate_parameters">[docs]</a>
-    <span class="k">def</span> <span class="nf">estimate_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Estimate BaseFunction parameters from supplied data. (&quot;Virtual&quot; method)&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">estimate_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Estimate BaseFunction parameters from supplied data.</span>
+
+<span class="sd">        (&quot;Virtual&quot; method)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">emsg</span> <span class="o">=</span> <span class="s2">&quot;estimate_parameters() must be implemented in a BaseFunction subclass.&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="n">emsg</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="BaseFunction._jacobianraw">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.basefunction.BaseFunction._jacobianraw">[docs]</a>
-    <span class="k">def</span> <span class="nf">_jacobianraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate the jacobian. (&quot;Virtual&quot; method)&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_jacobianraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate the jacobian.</span>
+
+<span class="sd">        (&quot;Virtual&quot; method)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">emsg</span> <span class="o">=</span> <span class="s2">&quot;_jacobianraw() must be implemented in a BaseFunction subclass.&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="n">emsg</span><span class="p">)</span></div>
 
 
-    <span class="k">def</span> <span class="nf">_transform_derivativesraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert BaseFunction parameters to another form. (&quot;Virtual&quot; method)&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_transform_derivativesraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert BaseFunction parameters to another form.</span>
+
+<span class="sd">        (&quot;Virtual&quot; method)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">emsg</span> <span class="o">=</span> <span class="s2">&quot;transform_parameters() must be implemented in a BaseFunction subclass.&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="n">emsg</span><span class="p">)</span>
 
 <div class="viewcode-block" id="BaseFunction._transform_parametersraw">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.basefunction.BaseFunction._transform_parametersraw">[docs]</a>
-    <span class="k">def</span> <span class="nf">_transform_parametersraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert BaseFunction parameters to another form. (&quot;Virtual&quot; method)&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_transform_parametersraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert BaseFunction parameters to another form.</span>
+
+<span class="sd">        (&quot;Virtual&quot; method)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">emsg</span> <span class="o">=</span> <span class="s2">&quot;transform_parameters() must be implemented in a BaseFunction subclass.&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="n">emsg</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="BaseFunction._valueraw">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.basefunction.BaseFunction._valueraw">[docs]</a>
-    <span class="k">def</span> <span class="nf">_valueraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate value of function. (&quot;Virtual&quot; method)&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_valueraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate value of function.</span>
+
+<span class="sd">        (&quot;Virtual&quot; method)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">emsg</span> <span class="o">=</span> <span class="s2">&quot;_valueraw must() be implemented in a BaseFunction subclass.&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="n">emsg</span><span class="p">)</span></div>
 
@@ -283,7 +306,7 @@
 
 <div class="viewcode-block" id="BaseFunction.jacobian">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.basefunction.BaseFunction.jacobian">[docs]</a>
-    <span class="k">def</span> <span class="nf">jacobian</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">rng</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">jacobian</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">rng</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate jacobian of p, possibly restricted by range.</span>
 
 <span class="sd">        Parameters</span>
@@ -320,8 +343,9 @@
 
 <div class="viewcode-block" id="BaseFunction.transform_derivatives">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.basefunction.BaseFunction.transform_derivatives">[docs]</a>
-    <span class="k">def</span> <span class="nf">transform_derivatives</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pars</span><span class="p">,</span> <span class="n">in_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">out_format</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return gradient matrix for pars converted from in_format to out_format.</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">transform_derivatives</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pars</span><span class="p">,</span> <span class="n">in_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">out_format</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return gradient matrix for pars converted from in_format to</span>
+<span class="sd">        out_format.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -364,8 +388,9 @@
 
 <div class="viewcode-block" id="BaseFunction.transform_parameters">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.basefunction.BaseFunction.transform_parameters">[docs]</a>
-    <span class="k">def</span> <span class="nf">transform_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pars</span><span class="p">,</span> <span class="n">in_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">out_format</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return new sequence with pars converted from in_format to out_format.</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">transform_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pars</span><span class="p">,</span> <span class="n">in_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">out_format</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return new sequence with pars converted from in_format to</span>
+<span class="sd">        out_format.</span>
 
 <span class="sd">        Also restores parameters to a preferred range if it permits multiple</span>
 <span class="sd">        values that correspond to the same physical result.</span>
@@ -411,8 +436,9 @@
 
 <div class="viewcode-block" id="BaseFunction.value">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.basefunction.BaseFunction.value">[docs]</a>
-    <span class="k">def</span> <span class="nf">value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">rng</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate value of ModelPart over r, possibly restricted by range.</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">rng</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate value of ModelPart over r, possibly restricted by</span>
+<span class="sd">        range.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -449,8 +475,9 @@
 
 <div class="viewcode-block" id="BaseFunction.pgradient">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.basefunction.BaseFunction.pgradient">[docs]</a>
-    <span class="k">def</span> <span class="nf">pgradient</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="nb">format</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return gradient matrix of parameterization in specified format wrt &quot;internal&quot; format at p.</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">pgradient</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="nb">format</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return gradient matrix of parameterization in specified</span>
+<span class="sd">        format wrt &quot;internal&quot; format at p.</span>
 
 <span class="sd">        Consider the &quot;internal&quot; parameterization given by (i0, i1, ..., in).</span>
 <span class="sd">        Each parameter in a different format, say (o0, o1, ..., om), is a</span>
@@ -480,14 +507,14 @@
 
 <div class="viewcode-block" id="BaseFunction.getmodule">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.basefunction.BaseFunction.getmodule">[docs]</a>
-    <span class="k">def</span> <span class="nf">getmodule</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return &#39;diffpy.srmise.basefunction&#39;&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">getmodule</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return &#39;diffpy.srmise.basefunction&#39;.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="s2">&quot;diffpy.srmise.basefunction&quot;</span></div>
 
 
 <div class="viewcode-block" id="BaseFunction.writestr">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.basefunction.BaseFunction.writestr">[docs]</a>
-    <span class="k">def</span> <span class="nf">writestr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">baselist</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">writestr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">baselist</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return string representation of self.</span>
 
 <span class="sd">        References to other BaseFunction instances are replaced by their index</span>
@@ -524,7 +551,7 @@
 <div class="viewcode-block" id="BaseFunction.factory">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.basefunction.BaseFunction.factory">[docs]</a>
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">factory</span><span class="p">(</span><span class="n">functionstr</span><span class="p">,</span> <span class="n">baselist</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">factory</span><span class="p">(</span><span class="n">functionstr</span><span class="p">,</span> <span class="n">baselist</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Instantiate a BaseFunction (or any subclass) from a string.</span>
 
 <span class="sd">        References to other BaseFunction instances in functionstr use the corresponding</span>
@@ -538,6 +565,7 @@
 <span class="sd">            The list of BaseFunction (or subclass) instances.</span>
 
 <span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">        Basefunction instance</span>
 <span class="sd">            The BaseFunction instance based on the parameter strings</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -589,15 +617,18 @@
 <div class="viewcode-block" id="BaseFunction.safefunctionlist">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.basefunction.BaseFunction.safefunctionlist">[docs]</a>
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">safefunctionlist</span><span class="p">(</span><span class="n">fs</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return list of BaseFunction instances where any dependencies occur earlier in list.</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">safefunctionlist</span><span class="p">(</span><span class="n">fs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return list of BaseFunction instances where any dependencies</span>
+<span class="sd">        occur earlier in list.</span>
 
 <span class="sd">        Any functions with hidden dependent functions (i.e. those not in fs)</span>
 <span class="sd">        are included in the returned list.  This list provides an order that</span>
 <span class="sd">        is guaranteed to be safe for saving/reinstantiating peak functions.</span>
 
 <span class="sd">        Parameters</span>
-<span class="sd">        fs: List of BaseFunction instances.&quot;&quot;&quot;</span>
+<span class="sd">        ----------</span>
+<span class="sd">        fs: List of BaseFunction instances.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">fsafe</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">fs</span><span class="p">:</span>
             <span class="n">BaseFunction</span><span class="o">.</span><span class="n">safefunction</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">fsafe</span><span class="p">)</span>
@@ -607,8 +638,9 @@
 <div class="viewcode-block" id="BaseFunction.safefunction">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.basefunction.BaseFunction.safefunction">[docs]</a>
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">safefunction</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">fsafe</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Append BaseFunction instance f to fsafe, but adding dependent functions first.</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">safefunction</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">fsafe</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Append BaseFunction instance f to fsafe, but adding dependent</span>
+<span class="sd">        functions first.</span>
 
 <span class="sd">        Does not handle circular dependencies.</span>
 
@@ -637,8 +669,8 @@
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
 
-    <span class="kn">from</span> <span class="nn">diffpy.srmise.peaks.gaussianoverr</span> <span class="kn">import</span> <span class="n">GaussianOverR</span>
-    <span class="kn">from</span> <span class="nn">diffpy.srmise.peaks.terminationripples</span> <span class="kn">import</span> <span class="n">TerminationRipples</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.srmise.peaks.gaussianoverr</span><span class="w"> </span><span class="kn">import</span> <span class="n">GaussianOverR</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.srmise.peaks.terminationripples</span><span class="w"> </span><span class="kn">import</span> <span class="n">TerminationRipples</span>
 
     <span class="n">p</span> <span class="o">=</span> <span class="n">GaussianOverR</span><span class="p">(</span><span class="mf">0.8</span><span class="p">)</span>
     <span class="n">outstr</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">writestr</span><span class="p">([])</span>
@@ -660,7 +692,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, The Trustees of Columbia University in the City of New York.</p>
+    <p>&#169; Copyright 2026, The Trustees of Columbia University in the City of New York.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

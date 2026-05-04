@@ -1,6 +1,6 @@
 .. include:: abbreviations.txt
 
-.. include:: sample_links.txt
+.. include:: sample-links.txt
 
 
 .. include:: ../../examples/README.rst
@@ -8,9 +8,9 @@
    :end-before: ~Example 3~
 
 
-.. _parameter_summary.py:
+.. _parameter-summary.py:
 
-Script (parameter_summary.py)
+Script (parameter-summary.py)
 -----------------------------
 
-.. literalinclude:: ../../examples/parameter_summary.py
+.. literalinclude:: ../../examples/parameter-summary.py

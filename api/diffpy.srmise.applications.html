@@ -6,16 +6,19 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>diffpy.srmise.applications package &mdash; diffpy.srmise 0.7.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=7ab3649f" />
+  <title>diffpy.srmise.applications package &mdash; diffpy.srmise 0.8.0rc0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=b9678aa1"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/documentation_options.js?v=e93019a4"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=cca77546"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -46,13 +49,20 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../extending.html">Extending SrMise</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="diffpy.srmise.html">Package API</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="diffpy.srmise.peaks.html">diffpy.srmise.peaks package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="diffpy.srmise.modelevaluators.html">diffpy.srmise.modelevaluators package</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">diffpy.srmise.applications package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="diffpy.srmise.baselines.html">diffpy.srmise.baselines package</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="diffpy.srmise.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="diffpy.srmise.peaks.html">diffpy.srmise.peaks package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="diffpy.srmise.modelevaluators.html">diffpy.srmise.modelevaluators package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">diffpy.srmise.applications package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../release.html">Release Notes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="diffpy.srmise.baselines.html">diffpy.srmise.baselines package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="diffpy.srmise.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../release.html">Release notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 </ul>
 
@@ -73,7 +83,7 @@
           <li class="breadcrumb-item"><a href="diffpy.srmise.html">diffpy.srmise package</a></li>
       <li class="breadcrumb-item active">diffpy.srmise.applications package</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/api/diffpy.srmise.applications.rst.txt" rel="nofollow"> View page source</a>
+              <a href="https://github.com/diffpy/diffpy.srmise/blob/main/docs/source/api/diffpy.srmise.applications.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -87,7 +97,7 @@
 <h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
 <section id="module-diffpy.srmise.applications.plot">
 <span id="diffpy-srmise-applications-plot-module"></span><h3>diffpy.srmise.applications.plot module<a class="headerlink" href="#module-diffpy.srmise.applications.plot" title="Link to this heading"></a></h3>
-<p>plot extracted peaks and comparison to ideal distances (if given)</p>
+<p>Plot extracted peaks and comparison to ideal distances (if given)</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="diffpy.srmise.applications.plot.comparepositions">
 <span class="sig-prename descclassname"><span class="pre">diffpy.srmise.applications.plot.</span></span><span class="sig-name descname"><span class="pre">comparepositions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ppe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/applications/plot.html#comparepositions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.applications.plot.comparepositions" title="Link to this definition"></a></dt>
@@ -116,7 +126,7 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="diffpy.srmise.applications.plot.makeplot">
 <span class="sig-prename descclassname"><span class="pre">diffpy.srmise.applications.plot.</span></span><span class="sig-name descname"><span class="pre">makeplot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ppe_or_stability</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/applications/plot.html#makeplot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.applications.plot.makeplot" title="Link to this definition"></a></dt>
-<dd><p>Plot stuff</p>
+<dd><p>Plot stuff.</p>
 </dd></dl>
 
 <dl class="py function">
@@ -127,7 +137,8 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="diffpy.srmise.applications.plot.readcompare">
 <span class="sig-prename descclassname"><span class="pre">diffpy.srmise.applications.plot.</span></span><span class="sig-name descname"><span class="pre">readcompare</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/applications/plot.html#readcompare"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.applications.plot.readcompare" title="Link to this definition"></a></dt>
-<dd><p>Returns a list of distances read from filename, otherwise None.</p>
+<dd><p>Returns a list of distances read from filename, otherwise
+None.</p>
 </dd></dl>
 
 <dl class="py function">
@@ -140,7 +151,7 @@
 <span id="diffpy-srmise-applications-extract-module"></span><h3>diffpy.srmise.applications.extract module<a class="headerlink" href="#module-diffpy.srmise.applications.extract" title="Link to this heading"></a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="diffpy.srmise.applications.extract.IndentedHelpFormatterWithNL">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.applications.extract.</span></span><span class="sig-name descname"><span class="pre">IndentedHelpFormatterWithNL</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">indent_increment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_help_position</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">24</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">short_first</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/applications/extract.html#IndentedHelpFormatterWithNL"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.applications.extract.IndentedHelpFormatterWithNL" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.applications.extract.</span></span><span class="sig-name descname"><span class="pre">IndentedHelpFormatterWithNL</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">indent_increment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_help_position</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">24</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">short_first</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/applications/extract.html#IndentedHelpFormatterWithNL"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.applications.extract.IndentedHelpFormatterWithNL" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">IndentedHelpFormatter</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.applications.extract.IndentedHelpFormatterWithNL.format_option">
@@ -162,9 +173,14 @@
 <p>Each item in parseq must be interpretable as a float, or as
 a float with the character ‘c’ appended.  If ‘c’ is appended,
 that parameter will be fixed.</p>
-<p>Parameters:
-mp - A ModelPart instance
-parseq - A sequence of string</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>instance</strong> (<em>mp - A ModelPart</em>)</p></li>
+<li><p><strong>string</strong> (<em>parseq - A sequence of</em>)</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 </section>
@@ -182,7 +198,7 @@ parseq - A sequence of string</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, The Trustees of Columbia University in the City of New York.</p>
+    <p>&#169; Copyright 2026, The Trustees of Columbia University in the City of New York.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

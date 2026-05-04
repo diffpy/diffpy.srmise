@@ -5,16 +5,19 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>diffpy.srmise.dataclusters &mdash; diffpy.srmise 0.7.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=7ab3649f" />
+  <title>diffpy.srmise.dataclusters &mdash; diffpy.srmise 0.8.0rc0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=b9678aa1"></script>
-      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/documentation_options.js?v=e93019a4"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=cca77546"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -43,7 +46,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../extending.html">Extending SrMise</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../api/diffpy.srmise.html">Package API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../release.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../release.html">Release notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
 </ul>
 
@@ -85,19 +88,21 @@
 <span class="c1"># See LICENSE.txt for license information.</span>
 <span class="c1">#</span>
 <span class="c1">##############################################################################</span>
-<span class="sd">&quot;&quot;&quot;Defines class to partition sequences representing the x and y axis into peak-like clusters.&quot;&quot;&quot;</span>
+<span class="sd">&quot;&quot;&quot;Defines class to partition sequences representing the x and y axis</span>
+<span class="sd">into peak-like clusters.</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
 
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;diffpy.srmise&quot;</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="DataClusters">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.dataclusters.DataClusters">[docs]</a>
-<span class="k">class</span> <span class="nc">DataClusters</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">DataClusters</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Find clusters corresponding to peaks in the PDF (y-array)</span>
 
 <span class="sd">    DataClusters determines which points in inter-atomic distane, r,</span>
@@ -128,8 +133,8 @@
 <span class="sd">      The index of data_order currently considered</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">res</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Constructor</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">res</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Constructor.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -155,10 +160,10 @@
     <span class="c1"># This iterator operates not over found clusters, but over the process of</span>
     <span class="c1"># clustering.  This behavior could cause confusion and should perhaps be</span>
     <span class="c1"># altered.</span>
-    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span>
 
-    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">DataClusters</span><span class="p">):</span>
             <span class="k">return</span> <span class="kc">False</span>
         <span class="k">return</span> <span class="p">(</span>
@@ -177,9 +182,9 @@
             <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">DONE</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">DONE</span>
         <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_clear</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Clear all data and reset the cluster object to a transient initial state.</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_clear</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Clear all data and reset the cluster object to a transient</span>
+<span class="sd">        initial state.</span>
 
 <span class="sd">        The purpose of this method is to provide a clean state before creating new clustering operations.</span>
 <span class="sd">        The object is updated in-place and no new instance is returned.</span>
@@ -201,7 +206,7 @@
 
 <div class="viewcode-block" id="DataClusters.reset_clusters">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.dataclusters.DataClusters.reset_clusters">[docs]</a>
-    <span class="k">def</span> <span class="nf">reset_clusters</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">reset_clusters</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Reset all progress on clustering.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">clusters</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="bp">self</span><span class="o">.</span><span class="n">data_order</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_order</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]])</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">current_idx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_order</span><span class="o">.</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span>
@@ -213,7 +218,7 @@
         <span class="k">return</span></div>
 
 
-    <span class="k">def</span> <span class="nf">_setdata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">res</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_setdata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">res</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Assign data members for x- and y-coordinates, and resolution.</span>
 
 <span class="sd">        Parameters</span>
@@ -251,11 +256,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">lastcluster_idx</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">return</span>
 
-    <span class="k">def</span> <span class="fm">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Cluster point with largest y-coordinate left, returning self.</span>
 
 <span class="sd">        next() always adds at least one additional point to the existing</span>
-<span class="sd">        cluster, or raises an exception if all points have been clustered.</span>
+<span class="sd">        cluster, or raises an exception if all points have been</span>
+<span class="sd">        clustered.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">INIT</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Cannot cluster next point while status is INIT.&quot;</span><span class="p">)</span>
@@ -296,12 +302,17 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="c1"># insert right of nearest cluster</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">lastcluster_idx</span> <span class="o">=</span> <span class="n">nearest_cluster</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">clusters</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">clusters</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lastcluster_idx</span><span class="p">),</span> <span class="p">[</span><span class="n">test_idx</span><span class="p">,</span> <span class="n">test_idx</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">clusters</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">clusters</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">lastcluster_idx</span><span class="p">,</span>
+                <span class="p">[</span><span class="n">test_idx</span><span class="p">,</span> <span class="n">test_idx</span><span class="p">],</span>
+                <span class="mi">0</span><span class="p">,</span>
+            <span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span>
 
 <div class="viewcode-block" id="DataClusters.makeclusters">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.dataclusters.DataClusters.makeclusters">[docs]</a>
-    <span class="k">def</span> <span class="nf">makeclusters</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">makeclusters</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Cluster all remaining data.&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
             <span class="k">pass</span>
@@ -310,7 +321,7 @@
 
 <div class="viewcode-block" id="DataClusters.find_nearest_cluster2">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.dataclusters.DataClusters.find_nearest_cluster2">[docs]</a>
-    <span class="k">def</span> <span class="nf">find_nearest_cluster2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">find_nearest_cluster2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return [cluster index, distance] for cluster nearest to x.</span>
 
 <span class="sd">        Parameters</span>
@@ -343,8 +354,9 @@
 
 <div class="viewcode-block" id="DataClusters.find_nearest_cluster">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.dataclusters.DataClusters.find_nearest_cluster">[docs]</a>
-    <span class="k">def</span> <span class="nf">find_nearest_cluster</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return [cluster index, distance] for cluster nearest to x[idx].</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">find_nearest_cluster</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return [cluster index, distance] for cluster nearest to</span>
+<span class="sd">        x[idx].</span>
 
 <span class="sd">        The distance is positive/negative if the point is right/left of the</span>
 <span class="sd">        nearest cluster.  If the point is within an existing cluster then</span>
@@ -368,7 +380,7 @@
             <span class="k">return</span> <span class="kc">None</span>
 
         <span class="n">flat_idx</span> <span class="o">=</span> <span class="n">clusters_flat</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
-        <span class="n">near_idx</span> <span class="o">=</span> <span class="n">flat_idx</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="n">near_idx</span> <span class="o">=</span> <span class="n">flat_idx</span> <span class="o">//</span> <span class="mi">2</span>
 
         <span class="k">if</span> <span class="n">flat_idx</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">clusters_flat</span><span class="p">):</span>
             <span class="c1"># test_idx is right of the last cluster</span>
@@ -383,8 +395,8 @@
         <span class="c1"># Calculate which of the two nearest clusters is closer</span>
         <span class="n">distances</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
             <span class="p">[</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">clusters</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">near_idx</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">clusters</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">near_idx</span><span class="p">),</span> <span class="mi">0</span><span class="p">]],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">clusters</span><span class="p">[</span><span class="n">near_idx</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">clusters</span><span class="p">[</span><span class="n">near_idx</span><span class="p">,</span> <span class="mi">0</span><span class="p">]],</span>
             <span class="p">]</span>
         <span class="p">)</span>
         <span class="k">if</span> <span class="n">distances</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">distances</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
@@ -395,7 +407,7 @@
 
 <div class="viewcode-block" id="DataClusters.cluster_is_full">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.dataclusters.DataClusters.cluster_is_full">[docs]</a>
-    <span class="k">def</span> <span class="nf">cluster_is_full</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cluster_idx</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">cluster_is_full</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cluster_idx</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return whether the given cluster can grow.</span>
 
 <span class="sd">        A cluster is full if no unclustered points remain adjacent to its</span>
@@ -424,8 +436,9 @@
 
 <div class="viewcode-block" id="DataClusters.combine_clusters">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.dataclusters.DataClusters.combine_clusters">[docs]</a>
-    <span class="k">def</span> <span class="nf">combine_clusters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">combine</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Combine clusters specified by each subarray of cluster indices.</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">combine_clusters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">combine</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Combine clusters specified by each subarray of cluster</span>
+<span class="sd">        indices.</span>
 
 <span class="sd">        Clusters to combine must be contiguous, increasing, and have no</span>
 <span class="sd">        unclustered points between them.</span>
@@ -481,8 +494,9 @@
 
 <div class="viewcode-block" id="DataClusters.find_adjacent_clusters">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.dataclusters.DataClusters.find_adjacent_clusters">[docs]</a>
-    <span class="k">def</span> <span class="nf">find_adjacent_clusters</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return all cluster indices with no unclustered points between them.</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">find_adjacent_clusters</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return all cluster indices with no unclustered points between</span>
+<span class="sd">        them.</span>
 
 <span class="sd">        Return array([[leftmost_idx1,...,rightmost_idx1],...]) such that there</span>
 <span class="sd">        are no unclustered points between each element in subarray of clusters</span>
@@ -519,10 +533,11 @@
 
 <div class="viewcode-block" id="DataClusters.cut">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.dataclusters.DataClusters.cut">[docs]</a>
-    <span class="k">def</span> <span class="nf">cut</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">cut</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return slice(s) for data given cluster index (or indices).</span>
 
 <span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
 <span class="sd">        idx - Cluster index (or sequence of indices).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">data_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">clusters</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
@@ -536,7 +551,7 @@
 
 <div class="viewcode-block" id="DataClusters.cluster_boundaries">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.dataclusters.DataClusters.cluster_boundaries">[docs]</a>
-    <span class="k">def</span> <span class="nf">cluster_boundaries</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">cluster_boundaries</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return sequence with (x,y) of all cluster boundaries.&quot;&quot;&quot;</span>
         <span class="n">boundaries</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">cluster</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">clusters</span><span class="p">:</span>
@@ -551,7 +566,7 @@
 
 <div class="viewcode-block" id="DataClusters.plot">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.dataclusters.DataClusters.plot">[docs]</a>
-    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Plot the data with vertical lines at the cluster divisions.</span>
 
 <span class="sd">        args and kwds passed to matplotlib.plot()</span>
@@ -572,8 +587,11 @@
 
 <div class="viewcode-block" id="DataClusters.animate">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.dataclusters.DataClusters.animate">[docs]</a>
-    <span class="k">def</span> <span class="nf">animate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Animate clustering.  Restores state when complete.&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">animate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Animate clustering.</span>
+
+<span class="sd">        Restores state when complete.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">clusters</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">clusters</span>
         <span class="n">current_idx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_idx</span>
         <span class="n">lastcluster_idx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lastcluster_idx</span>
@@ -617,7 +635,25 @@
 <span class="c1"># simple test code</span>
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
 
-    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">2.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">])</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="o">-</span><span class="mf">2.0</span><span class="p">,</span>
+            <span class="o">-</span><span class="mf">1.5</span><span class="p">,</span>
+            <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span>
+            <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span>
+            <span class="mf">0.0</span><span class="p">,</span>
+            <span class="mf">0.5</span><span class="p">,</span>
+            <span class="mf">1.0</span><span class="p">,</span>
+            <span class="mf">1.5</span><span class="p">,</span>
+            <span class="mf">2.0</span><span class="p">,</span>
+            <span class="mf">2.5</span><span class="p">,</span>
+            <span class="mf">3.0</span><span class="p">,</span>
+            <span class="mf">3.5</span><span class="p">,</span>
+            <span class="mf">4.0</span><span class="p">,</span>
+            <span class="mf">4.5</span><span class="p">,</span>
+            <span class="mf">5.0</span><span class="p">,</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
         <span class="p">[</span>
             <span class="mf">0.0183156</span><span class="p">,</span>
@@ -656,7 +692,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, The Trustees of Columbia University in the City of New York.</p>
+    <p>&#169; Copyright 2026, The Trustees of Columbia University in the City of New York.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

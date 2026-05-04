@@ -5,16 +5,19 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>diffpy.srmise.modelparts &mdash; diffpy.srmise 0.7.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=7ab3649f" />
+  <title>diffpy.srmise.modelparts &mdash; diffpy.srmise 0.8.0rc0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=b9678aa1"></script>
-      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/documentation_options.js?v=e93019a4"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=cca77546"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -43,7 +46,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../extending.html">Extending SrMise</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../api/diffpy.srmise.html">Package API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../release.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../release.html">Release notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
 </ul>
 
@@ -93,19 +96,19 @@
 <span class="sd">ModelParts: Collection (list) of ModelPart instances.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">from</span> <span class="nn">importlib.metadata</span> <span class="kn">import</span> <span class="n">version</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">importlib.metadata</span><span class="w"> </span><span class="kn">import</span> <span class="n">version</span>
 
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="c1"># Output of scipy.optimize.leastsq for a single parameter changed in scipy 0.8.0</span>
 <span class="c1"># Before it returned a scalar, later it returned an array of length 1.</span>
-<span class="kn">from</span> <span class="nn">packaging.version</span> <span class="kn">import</span> <span class="n">parse</span>
-<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">leastsq</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">packaging.version</span><span class="w"> </span><span class="kn">import</span> <span class="n">parse</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">leastsq</span>
 
-<span class="kn">from</span> <span class="nn">diffpy.srmise</span> <span class="kn">import</span> <span class="n">srmiselog</span>
-<span class="kn">from</span> <span class="nn">diffpy.srmise.srmiseerrors</span> <span class="kn">import</span> <span class="n">SrMiseFitError</span><span class="p">,</span> <span class="n">SrMiseStaticOwnerError</span><span class="p">,</span> <span class="n">SrMiseUndefinedCovarianceError</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.srmise</span><span class="w"> </span><span class="kn">import</span> <span class="n">srmiselog</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.srmise.srmiseerrors</span><span class="w"> </span><span class="kn">import</span> <span class="n">SrMiseFitError</span><span class="p">,</span> <span class="n">SrMiseStaticOwnerError</span><span class="p">,</span> <span class="n">SrMiseUndefinedCovarianceError</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;diffpy.srmise&quot;</span><span class="p">)</span>
 <span class="n">__spv__</span> <span class="o">=</span> <span class="n">version</span><span class="p">(</span><span class="s2">&quot;scipy&quot;</span><span class="p">)</span>
@@ -114,7 +117,7 @@
 
 <div class="viewcode-block" id="ModelParts">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.modelparts.ModelParts">[docs]</a>
-<span class="k">class</span> <span class="nc">ModelParts</span><span class="p">(</span><span class="nb">list</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ModelParts</span><span class="p">(</span><span class="nb">list</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A collection of ModelPart instances.</span>
 
 <span class="sd">    Methods</span>
@@ -130,12 +133,12 @@
 <span class="sd">    unpack_freepars: Return sequence containing value of all free parameters</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
         <span class="nb">list</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
 
 <div class="viewcode-block" id="ModelParts.fit">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.modelparts.ModelParts.fit">[docs]</a>
-    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fit</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">r</span><span class="p">,</span>
         <span class="n">y</span><span class="p">,</span>
@@ -234,7 +237,7 @@
         <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
             <span class="c1"># Sadly, KeyboardInterrupt, etc. is reraised as minpack.error</span>
             <span class="c1"># Not much I can do about that, though.</span>
-            <span class="kn">import</span> <span class="nn">traceback</span>
+            <span class="kn">import</span><span class="w"> </span><span class="nn">traceback</span>
 
             <span class="n">emsg</span> <span class="o">=</span> <span class="p">(</span>
                 <span class="s2">&quot;Unexpected error in modelparts.fit().  Original exception:</span><span class="se">\n</span><span class="s2">&quot;</span>
@@ -315,7 +318,7 @@
 
 <div class="viewcode-block" id="ModelParts.npars">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.modelparts.ModelParts.npars">[docs]</a>
-    <span class="k">def</span> <span class="nf">npars</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">count_fixed</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">npars</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">count_fixed</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return total number of parameters in all parts.</span>
 
 <span class="sd">        Parameters</span>
@@ -337,7 +340,7 @@
 
 <div class="viewcode-block" id="ModelParts.pack_freepars">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.modelparts.ModelParts.pack_freepars">[docs]</a>
-    <span class="k">def</span> <span class="nf">pack_freepars</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">freepars</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">pack_freepars</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">freepars</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Update parameters with values from sequence of freepars.</span>
 
 <span class="sd">        Parameters</span>
@@ -359,7 +362,7 @@
 
 <div class="viewcode-block" id="ModelParts.residual">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.modelparts.ModelParts.residual">[docs]</a>
-    <span class="k">def</span> <span class="nf">residual</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">freepars</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">y_expected</span><span class="p">,</span> <span class="n">y_error</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">residual</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">freepars</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">y_expected</span><span class="p">,</span> <span class="n">y_error</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate residual of all parameters.</span>
 
 <span class="sd">        Parameters</span>
@@ -393,10 +396,11 @@
 
 <div class="viewcode-block" id="ModelParts.residual_jacobian">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.modelparts.ModelParts.residual_jacobian">[docs]</a>
-    <span class="k">def</span> <span class="nf">residual_jacobian</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">freepars</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">y_expected</span><span class="p">,</span> <span class="n">y_error</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">residual_jacobian</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">freepars</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">y_expected</span><span class="p">,</span> <span class="n">y_error</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate the Jacobian of freepars.</span>
 
 <span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
 <span class="sd">        freepars : array-like</span>
 <span class="sd">            The sequence of free parameters</span>
 <span class="sd">        r : array-like</span>
@@ -436,7 +440,7 @@
 
 <div class="viewcode-block" id="ModelParts.value">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.modelparts.ModelParts.value">[docs]</a>
-    <span class="k">def</span> <span class="nf">value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate total value of all parts over range.</span>
 
 <span class="sd">        Parameters</span>
@@ -460,7 +464,7 @@
 
 <div class="viewcode-block" id="ModelParts.unpack_freepars">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.modelparts.ModelParts.unpack_freepars">[docs]</a>
-    <span class="k">def</span> <span class="nf">unpack_freepars</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">unpack_freepars</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return array of all free parameters.&quot;&quot;&quot;</span>
         <span class="c1"># To check: ravel() sometimes returns a reference and othertimes a copy.</span>
         <span class="c1">#          Do I need to use flatten() instead?</span>
@@ -469,7 +473,7 @@
 
 <div class="viewcode-block" id="ModelParts.covariance">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.modelparts.ModelParts.covariance">[docs]</a>
-    <span class="k">def</span> <span class="nf">covariance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;internal&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">covariance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;internal&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return estimated covariance matrix of the model.</span>
 
 <span class="sd">        The covariance matrix may be given in terms of any parameterization</span>
@@ -510,7 +514,7 @@
 
 <div class="viewcode-block" id="ModelParts.copy">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.modelparts.ModelParts.copy">[docs]</a>
-    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return deep copy of this ModelParts.</span>
 
 <span class="sd">        The original and the copy are completely independent, except each</span>
@@ -524,24 +528,26 @@
         <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__call__</span><span class="p">([</span><span class="n">p</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">])</span></div>
 
 
-    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return string representation of this ModelParts.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">])</span>
 
-    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Extends list.__getitem__&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">index</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
             <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="n">index</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">(</span><span class="nb">slice</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)))</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="nb">slice</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">(</span><span class="n">index</span><span class="p">))</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
 
 <div class="viewcode-block" id="ModelParts.transform">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.modelparts.ModelParts.transform">[docs]</a>
-    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_format</span><span class="o">=</span><span class="s2">&quot;internal&quot;</span><span class="p">,</span> <span class="n">out_format</span><span class="o">=</span><span class="s2">&quot;internal&quot;</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_format</span><span class="o">=</span><span class="s2">&quot;internal&quot;</span><span class="p">,</span> <span class="n">out_format</span><span class="o">=</span><span class="s2">&quot;internal&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Transforms format of parameters in this modelpart.</span>
 
 <span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
 <span class="sd">        in_format : str</span>
 <span class="sd">            The format the parameters are already in.</span>
 <span class="sd">        out_format : str</span>
@@ -564,11 +570,11 @@
 
 <div class="viewcode-block" id="ModelPart">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.modelparts.ModelPart">[docs]</a>
-<span class="k">class</span> <span class="nc">ModelPart</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ModelPart</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents a single part (instance of some function) of a model.</span>
 
 <span class="sd">    Attributes</span>
-<span class="sd">    -------</span>
+<span class="sd">    ----------</span>
 <span class="sd">    pars : array-like</span>
 <span class="sd">        The array containing the parameters of this model part</span>
 <span class="sd">    free : array-like</span>
@@ -606,10 +612,11 @@
 <span class="sd">        Generate and return a string representation of the model part.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">owner</span><span class="p">,</span> <span class="n">pars</span><span class="p">,</span> <span class="n">free</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">removable</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">static_owner</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">owner</span><span class="p">,</span> <span class="n">pars</span><span class="p">,</span> <span class="n">free</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">removable</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">static_owner</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Constructor for instance members.</span>
 
 <span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
 <span class="sd">        owner : BaseFunction subclass</span>
 <span class="sd">            The instance of a BaseFunction subclass</span>
 <span class="sd">        pars : array-like</span>
@@ -650,7 +657,7 @@
 
 <div class="viewcode-block" id="ModelPart.changeowner">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.modelparts.ModelPart.changeowner">[docs]</a>
-    <span class="k">def</span> <span class="nf">changeowner</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">owner</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">changeowner</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">owner</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Change the owner of this part.</span>
 
 <span class="sd">        Does not change the parameters associated with this model part. Raises</span>
@@ -677,19 +684,20 @@
 
 <div class="viewcode-block" id="ModelPart.compress">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.modelparts.ModelPart.compress">[docs]</a>
-    <span class="k">def</span> <span class="nf">compress</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compress</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return part parameters with non-free values removed.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        pars : array-like</span>
-<span class="sd">            The compressed parameters of the model part.&quot;&quot;&quot;</span>
+<span class="sd">            The compressed parameters of the model part.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pars</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">free</span><span class="p">]</span></div>
 
 
 <div class="viewcode-block" id="ModelPart.jacobian">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.modelparts.ModelPart.jacobian">[docs]</a>
-    <span class="k">def</span> <span class="nf">jacobian</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">jacobian</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return jacobian of this part over r.</span>
 
 <span class="sd">        Parameters</span>
@@ -710,19 +718,21 @@
 
 <div class="viewcode-block" id="ModelPart.owner">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.modelparts.ModelPart.owner">[docs]</a>
-    <span class="k">def</span> <span class="nf">owner</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the BaseFunction subclass instance which owns this part.</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">owner</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the BaseFunction subclass instance which owns this</span>
+<span class="sd">        part.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        BaseFunction subclass</span>
-<span class="sd">            The BaseFunction subclass which owns this part.&quot;&quot;&quot;</span>
+<span class="sd">            The BaseFunction subclass which owns this part.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_owner</span></div>
 
 
 <div class="viewcode-block" id="ModelPart.update">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.modelparts.ModelPart.update">[docs]</a>
-    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">freepars</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">freepars</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Sequentially update free parameters from freepars.</span>
 
 <span class="sd">        Parameters</span>
@@ -748,7 +758,7 @@
 
 <div class="viewcode-block" id="ModelPart.value">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.modelparts.ModelPart.value">[docs]</a>
-    <span class="k">def</span> <span class="nf">value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return value of peak over r.</span>
 
 <span class="sd">        Parameters</span>
@@ -769,7 +779,7 @@
 
 <div class="viewcode-block" id="ModelPart.copy">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.modelparts.ModelPart.copy">[docs]</a>
-    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a deep copy of this ModelPart.</span>
 
 <span class="sd">        The original and the copy are completely independent, except they both</span>
@@ -780,10 +790,16 @@
 <span class="sd">        ModelPart</span>
 <span class="sd">            A deep copy of this ModelPart.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_owner</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pars</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">free</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">removable</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_owner</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__call__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_owner</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">pars</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">free</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">removable</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">static_owner</span><span class="p">,</span>
+        <span class="p">)</span></div>
 
 
-    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key_or_idx</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key_or_idx</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return parameter of peak corresponding with key_or_idx.</span>
 
 <span class="sd">        Parameters</span>
@@ -804,7 +820,7 @@
 
 <div class="viewcode-block" id="ModelPart.getfree">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.modelparts.ModelPart.getfree">[docs]</a>
-    <span class="k">def</span> <span class="nf">getfree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key_or_idx</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">getfree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key_or_idx</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return value of free corresponding with key_or_idx.</span>
 
 <span class="sd">        Parameters</span>
@@ -826,7 +842,7 @@
 
 <div class="viewcode-block" id="ModelPart.setfree">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.modelparts.ModelPart.setfree">[docs]</a>
-    <span class="k">def</span> <span class="nf">setfree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key_or_idx</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setfree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key_or_idx</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set value of free corresponding with key_or_idx.</span>
 
 <span class="sd">        Parameters</span>
@@ -847,13 +863,13 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">free</span><span class="p">[</span><span class="n">key_or_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span></div>
 
 
-    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return number of parameters, including any fixed ones.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_owner</span><span class="o">.</span><span class="n">npars</span>
 
 <div class="viewcode-block" id="ModelPart.npars">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.modelparts.ModelPart.npars">[docs]</a>
-    <span class="k">def</span> <span class="nf">npars</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">count_fixed</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">npars</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">count_fixed</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return total number of parameters in all parts.</span>
 
 <span class="sd">        Parameters</span>
@@ -865,19 +881,20 @@
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        int</span>
-<span class="sd">            The number of parameters in all parts.&quot;&quot;&quot;</span>
+<span class="sd">            The number of parameters in all parts.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">count_fixed</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_owner</span><span class="o">.</span><span class="n">npars</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">free</span><span class="p">)</span></div>
 
 
-    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return string representation of ModelPart parameters.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_owner</span><span class="o">.</span><span class="n">transform_parameters</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pars</span><span class="p">,</span> <span class="n">in_format</span><span class="o">=</span><span class="s2">&quot;internal&quot;</span><span class="p">,</span> <span class="n">out_format</span><span class="o">=</span><span class="s2">&quot;default_output&quot;</span><span class="p">))</span>
 
-    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="s2">&quot;_owner&quot;</span><span class="p">):</span>
             <span class="k">return</span> <span class="p">(</span>
                 <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_owner</span> <span class="ow">is</span> <span class="n">other</span><span class="o">.</span><span class="n">_owner</span><span class="p">)</span>
@@ -888,13 +905,13 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">False</span>
 
-    <span class="k">def</span> <span class="fm">__ne__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__ne__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span> <span class="o">==</span> <span class="n">other</span>
 
 <div class="viewcode-block" id="ModelPart.writestr">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.modelparts.ModelPart.writestr">[docs]</a>
-    <span class="k">def</span> <span class="nf">writestr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ownerlist</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">writestr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ownerlist</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return string representation of ModelPart.</span>
 
 <span class="sd">        The value of owner is determined by its index in ownerlist.</span>
@@ -940,7 +957,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, The Trustees of Columbia University in the City of New York.</p>
+    <p>&#169; Copyright 2026, The Trustees of Columbia University in the City of New York.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

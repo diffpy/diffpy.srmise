@@ -5,16 +5,19 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>diffpy.srmise.modelevaluators.aicc &mdash; diffpy.srmise 0.7.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=7ab3649f" />
+  <title>diffpy.srmise.modelevaluators.aicc &mdash; diffpy.srmise 0.8.0rc0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
 
   
       <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../../_static/documentation_options.js?v=b9678aa1"></script>
-      <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../../_static/documentation_options.js?v=e93019a4"></script>
+      <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../_static/copybutton.js?v=cca77546"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" /> 
@@ -43,7 +46,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../tutorial/index.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../extending.html">Extending SrMise</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../api/diffpy.srmise.html">Package API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../release.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../release.html">Release notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../license.html">License</a></li>
 </ul>
 
@@ -86,19 +89,19 @@
 <span class="c1">#</span>
 <span class="c1">##############################################################################</span>
 
-<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="kn">from</span> <span class="nn">diffpy.srmise.modelevaluators.base</span> <span class="kn">import</span> <span class="n">ModelEvaluator</span>
-<span class="kn">from</span> <span class="nn">diffpy.srmise.srmiseerrors</span> <span class="kn">import</span> <span class="n">SrMiseModelEvaluatorError</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.srmise.modelevaluators.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModelEvaluator</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.srmise.srmiseerrors</span><span class="w"> </span><span class="kn">import</span> <span class="n">SrMiseModelEvaluatorError</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;diffpy.srmise&quot;</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="AICc">
 <a class="viewcode-back" href="../../../../api/diffpy.srmise.modelevaluators.html#diffpy.srmise.modelevaluators.aicc.AICc">[docs]</a>
-<span class="k">class</span> <span class="nc">AICc</span><span class="p">(</span><span class="n">ModelEvaluator</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">AICc</span><span class="p">(</span><span class="n">ModelEvaluator</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Evaluate and compare models with the AICc statistic.</span>
 
 <span class="sd">    Akaike&#39;s Information Criterion w/ 2nd order correction for small sample</span>
@@ -120,18 +123,20 @@
 <span class="sd">    2002.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;&quot;&quot;&quot;</span>
         <span class="n">ModelEvaluator</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;AICc&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
         <span class="k">return</span>
 
 <div class="viewcode-block" id="AICc.evaluate">
 <a class="viewcode-back" href="../../../../api/diffpy.srmise.modelevaluators.html#diffpy.srmise.modelevaluators.aicc.AICc.evaluate">[docs]</a>
-    <span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fit</span><span class="p">,</span> <span class="n">count_fixed</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">kshift</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return quality of fit for given ModelCluster using AICc (Akaike&#39;s Information Criterion</span>
-<span class="sd">        with 2nd order correction for small sample size).</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fit</span><span class="p">,</span> <span class="n">count_fixed</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">kshift</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return quality of fit for given ModelCluster using AICc</span>
+<span class="sd">        (Akaike&#39;s Information Criterion with 2nd order correction for</span>
+<span class="sd">        small sample size).</span>
 
 <span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
 <span class="sd">        fit: A ModelCluster</span>
 <span class="sd">            The ModelCluster to evaluate.</span>
 <span class="sd">        count_fixed : bool</span>
@@ -143,7 +148,8 @@
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        float</span>
-<span class="sd">            Quality of AICc&quot;&quot;&quot;</span>
+<span class="sd">            Quality of AICc</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Number of parameters.  By default, fixed parameters are ignored.</span>
         <span class="n">k</span> <span class="o">=</span> <span class="n">fit</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">npars</span><span class="p">(</span><span class="n">count_fixed</span><span class="o">=</span><span class="n">count_fixed</span><span class="p">)</span> <span class="o">+</span> <span class="n">kshift</span>
         <span class="k">if</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
@@ -167,8 +173,9 @@
 
 <div class="viewcode-block" id="AICc.minpoints">
 <a class="viewcode-back" href="../../../../api/diffpy.srmise.modelevaluators.html#diffpy.srmise.modelevaluators.aicc.AICc.minpoints">[docs]</a>
-    <span class="k">def</span> <span class="nf">minpoints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">npars</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculates the minimum number of points required to make an estimate of a model&#39;s quality.</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">minpoints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">npars</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculates the minimum number of points required to make an</span>
+<span class="sd">        estimate of a model&#39;s quality.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -180,7 +187,6 @@
 <span class="sd">        int</span>
 <span class="sd">            The minimum number of points required to make an estimate of a model&#39;s quality.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-
         <span class="c1"># From the denominator of AICc, it is clear that the first positive finite contribution to</span>
         <span class="c1"># parameter cost is at n&gt;=k+2</span>
         <span class="k">return</span> <span class="n">npars</span> <span class="o">+</span> <span class="mi">2</span></div>
@@ -188,8 +194,9 @@
 
 <div class="viewcode-block" id="AICc.parpenalty">
 <a class="viewcode-back" href="../../../../api/diffpy.srmise.modelevaluators.html#diffpy.srmise.modelevaluators.aicc.AICc.parpenalty">[docs]</a>
-    <span class="k">def</span> <span class="nf">parpenalty</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the cost for adding k parameters to the current model cluster.</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">parpenalty</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the cost for adding k parameters to the current model</span>
+<span class="sd">        cluster.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -204,7 +211,6 @@
 <span class="sd">        float</span>
 <span class="sd">            The cost for adding k parameters to the current model cluster.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-
         <span class="c1"># Weight the penalty for additional parameters.</span>
         <span class="c1"># If this isn&#39;t 1 there had better be a good reason.</span>
         <span class="n">fudgefactor</span> <span class="o">=</span> <span class="mf">1.0</span>
@@ -214,8 +220,9 @@
 
 <div class="viewcode-block" id="AICc.growth_justified">
 <a class="viewcode-back" href="../../../../api/diffpy.srmise.modelevaluators.html#diffpy.srmise.modelevaluators.aicc.AICc.growth_justified">[docs]</a>
-    <span class="k">def</span> <span class="nf">growth_justified</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fit</span><span class="p">,</span> <span class="n">k_prime</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Is adding k_prime parameters to ModelCluster justified given the current quality of the fit.</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">growth_justified</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fit</span><span class="p">,</span> <span class="n">k_prime</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Is adding k_prime parameters to ModelCluster justified given</span>
+<span class="sd">        the current quality of the fit.</span>
 
 <span class="sd">        The assumption is that adding k_prime parameters will result in &quot;effectively 0&quot; chiSquared cost,</span>
 <span class="sd">        and so adding it is justified if the cost of adding these parameters is less than the current</span>
@@ -234,7 +241,6 @@
 <span class="sd">        bool</span>
 <span class="sd">            Whether the current model cluster is justified or not.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">chisq</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">chisq</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">chi_squared</span><span class="p">(</span><span class="n">fit</span><span class="o">.</span><span class="n">value</span><span class="p">(),</span> <span class="n">fit</span><span class="o">.</span><span class="n">y_cluster</span><span class="p">,</span> <span class="n">fit</span><span class="o">.</span><span class="n">error_cluster</span><span class="p">)</span>
 
@@ -260,20 +266,19 @@
 <div class="viewcode-block" id="AICc.akaikeweights">
 <a class="viewcode-back" href="../../../../api/diffpy.srmise.modelevaluators.html#diffpy.srmise.modelevaluators.aicc.AICc.akaikeweights">[docs]</a>
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">akaikeweights</span><span class="p">(</span><span class="n">aics</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return sequence of Akaike weights for sequence of AICs</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">akaikeweights</span><span class="p">(</span><span class="n">aics</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return sequence of Akaike weights for sequence of AICs.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        aics : array-like</span>
-<span class="sd">            The squence of AIC instances</span>
+<span class="sd">            The sequence of AIC instances</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        array-like</span>
 <span class="sd">            The sequence of Akaike weights</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-
         <span class="n">aic_stats</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">aic</span><span class="o">.</span><span class="n">stat</span> <span class="k">for</span> <span class="n">aic</span> <span class="ow">in</span> <span class="n">aics</span><span class="p">])</span>
         <span class="n">aic_min</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">aic_stats</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">aic_stats</span> <span class="o">-</span> <span class="n">aic_min</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span></div>
@@ -282,18 +287,19 @@
 <div class="viewcode-block" id="AICc.akaikeprobs">
 <a class="viewcode-back" href="../../../../api/diffpy.srmise.modelevaluators.html#diffpy.srmise.modelevaluators.aicc.AICc.akaikeprobs">[docs]</a>
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">akaikeprobs</span><span class="p">(</span><span class="n">aics</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return sequence of Akaike probabilities for sequence of AICs</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">akaikeprobs</span><span class="p">(</span><span class="n">aics</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return sequence of Akaike probabilities for sequence of AICs.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        aics : array-like</span>
-<span class="sd">            The squence of AIC instances</span>
+<span class="sd">            The sequence of AIC instances</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        array-like</span>
-<span class="sd">            The sequence of Akaike probabilities&quot;&quot;&quot;</span>
+<span class="sd">            The sequence of Akaike probabilities</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">aic_weights</span> <span class="o">=</span> <span class="n">AICc</span><span class="o">.</span><span class="n">akaikeweights</span><span class="p">(</span><span class="n">aics</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">aic_weights</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">aic_weights</span><span class="p">)</span></div>
 </div>
@@ -322,7 +328,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, The Trustees of Columbia University in the City of New York.</p>
+    <p>&#169; Copyright 2026, The Trustees of Columbia University in the City of New York.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

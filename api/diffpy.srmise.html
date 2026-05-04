@@ -6,16 +6,19 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>diffpy.srmise package &mdash; diffpy.srmise 0.7.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=7ab3649f" />
+  <title>diffpy.srmise package &mdash; diffpy.srmise 0.8.0rc0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=b9678aa1"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/documentation_options.js?v=e93019a4"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=cca77546"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -46,13 +49,92 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../extending.html">Extending SrMise</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Package API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="diffpy.srmise.peaks.html">diffpy.srmise.peaks package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="diffpy.srmise.modelevaluators.html">diffpy.srmise.modelevaluators package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="diffpy.srmise.applications.html">diffpy.srmise.applications package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="diffpy.srmise.baselines.html">diffpy.srmise.baselines package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="diffpy.srmise.peaks.html">diffpy.srmise.peaks package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="diffpy.srmise.modelevaluators.html">diffpy.srmise.modelevaluators package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="diffpy.srmise.applications.html">diffpy.srmise.applications package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="diffpy.srmise.baselines.html">diffpy.srmise.baselines package</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../release.html">Release Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-diffpy.srmise.multimodelselection">diffpy.srmise.multimodelselection module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#diffpy.srmise.multimodelselection.MultimodelSelection"><code class="docutils literal notranslate"><span class="pre">MultimodelSelection</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#diffpy.srmise.multimodelselection.eatkwds"><code class="docutils literal notranslate"><span class="pre">eatkwds()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-diffpy.srmise.srmiselog">diffpy.srmise.srmiselog module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#functions">Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#diffpy.srmise.srmiselog.TracePeaks"><code class="docutils literal notranslate"><span class="pre">TracePeaks</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#diffpy.srmise.srmiselog.addfilelog"><code class="docutils literal notranslate"><span class="pre">addfilelog()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#diffpy.srmise.srmiselog.liveplotting"><code class="docutils literal notranslate"><span class="pre">liveplotting()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#diffpy.srmise.srmiselog.setfilelevel"><code class="docutils literal notranslate"><span class="pre">setfilelevel()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#diffpy.srmise.srmiselog.setlevel"><code class="docutils literal notranslate"><span class="pre">setlevel()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#diffpy.srmise.srmiselog.settracer"><code class="docutils literal notranslate"><span class="pre">settracer()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-diffpy.srmise.modelparts">diffpy.srmise.modelparts module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#classes">Classes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#diffpy.srmise.modelparts.ModelPart"><code class="docutils literal notranslate"><span class="pre">ModelPart</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#diffpy.srmise.modelparts.ModelParts"><code class="docutils literal notranslate"><span class="pre">ModelParts</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-diffpy.srmise.peakstability">diffpy.srmise.peakstability module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#diffpy.srmise.peakstability.PeakStability"><code class="docutils literal notranslate"><span class="pre">PeakStability</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-diffpy.srmise.basefunction">diffpy.srmise.basefunction module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#diffpy.srmise.basefunction.BaseFunction"><code class="docutils literal notranslate"><span class="pre">BaseFunction</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-diffpy.srmise.pdfpeakextraction">diffpy.srmise.pdfpeakextraction module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#diffpy.srmise.pdfpeakextraction.PDFPeakExtraction"><code class="docutils literal notranslate"><span class="pre">PDFPeakExtraction</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#diffpy.srmise.pdfpeakextraction.find_qmax"><code class="docutils literal notranslate"><span class="pre">find_qmax()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#diffpy.srmise.pdfpeakextraction.resample"><code class="docutils literal notranslate"><span class="pre">resample()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#diffpy.srmise.pdfpeakextraction.stdratio"><code class="docutils literal notranslate"><span class="pre">stdratio()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-diffpy.srmise.modelcluster">diffpy.srmise.modelcluster module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id17">Classes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#diffpy.srmise.modelcluster.ModelCluster"><code class="docutils literal notranslate"><span class="pre">ModelCluster</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#diffpy.srmise.modelcluster.ModelCovariance"><code class="docutils literal notranslate"><span class="pre">ModelCovariance</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-diffpy.srmise.dataclusters">diffpy.srmise.dataclusters module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#diffpy.srmise.dataclusters.DataClusters"><code class="docutils literal notranslate"><span class="pre">DataClusters</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-diffpy.srmise.srmiseerrors">diffpy.srmise.srmiseerrors module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id20">Classes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#diffpy.srmise.srmiseerrors.SrMiseDataFormatError"><code class="docutils literal notranslate"><span class="pre">SrMiseDataFormatError</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#diffpy.srmise.srmiseerrors.SrMiseError"><code class="docutils literal notranslate"><span class="pre">SrMiseError</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#diffpy.srmise.srmiseerrors.SrMiseEstimationError"><code class="docutils literal notranslate"><span class="pre">SrMiseEstimationError</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#diffpy.srmise.srmiseerrors.SrMiseFileError"><code class="docutils literal notranslate"><span class="pre">SrMiseFileError</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#diffpy.srmise.srmiseerrors.SrMiseFitError"><code class="docutils literal notranslate"><span class="pre">SrMiseFitError</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#diffpy.srmise.srmiseerrors.SrMiseLogError"><code class="docutils literal notranslate"><span class="pre">SrMiseLogError</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#diffpy.srmise.srmiseerrors.SrMiseModelEvaluatorError"><code class="docutils literal notranslate"><span class="pre">SrMiseModelEvaluatorError</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#diffpy.srmise.srmiseerrors.SrMisePDFKeyError"><code class="docutils literal notranslate"><span class="pre">SrMisePDFKeyError</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#diffpy.srmise.srmiseerrors.SrMiseQmaxError"><code class="docutils literal notranslate"><span class="pre">SrMiseQmaxError</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#diffpy.srmise.srmiseerrors.SrMiseScalingError"><code class="docutils literal notranslate"><span class="pre">SrMiseScalingError</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#diffpy.srmise.srmiseerrors.SrMiseStaticOwnerError"><code class="docutils literal notranslate"><span class="pre">SrMiseStaticOwnerError</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#diffpy.srmise.srmiseerrors.SrMiseTransformationError"><code class="docutils literal notranslate"><span class="pre">SrMiseTransformationError</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#diffpy.srmise.srmiseerrors.SrMiseUndefinedCovarianceError"><code class="docutils literal notranslate"><span class="pre">SrMiseUndefinedCovarianceError</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-diffpy.srmise.peakextraction">diffpy.srmise.peakextraction module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#diffpy.srmise.peakextraction.PeakExtraction"><code class="docutils literal notranslate"><span class="pre">PeakExtraction</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-diffpy.srmise.pdfdataset">diffpy.srmise.pdfdataset module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#diffpy.srmise.pdfdataset.PDFComponent"><code class="docutils literal notranslate"><span class="pre">PDFComponent</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#diffpy.srmise.pdfdataset.PDFDataFormatError"><code class="docutils literal notranslate"><span class="pre">PDFDataFormatError</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#diffpy.srmise.pdfdataset.PDFDataSet"><code class="docutils literal notranslate"><span class="pre">PDFDataSet</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../release.html">Release notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 </ul>
 
@@ -72,7 +154,7 @@
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">diffpy.srmise package</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/api/diffpy.srmise.rst.txt" rel="nofollow"> View page source</a>
+              <a href="https://github.com/diffpy/diffpy.srmise/blob/main/docs/source/api/diffpy.srmise.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -80,9 +162,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-diffpy.srmise">
-<span id="diffpy-srmise-package"></span><h1>diffpy.srmise package<a class="headerlink" href="#module-diffpy.srmise" title="Link to this heading"></a></h1>
-<p>Peak extraction and peak fitting tool for atomic pair distribution functions.</p>
+  <section id="title">
+<h1>diffpy.srmise package<a class="headerlink" href="#title" title="Link to this heading"></a></h1>
+<p id="module-diffpy.srmise">Peak extraction and peak fitting tool for atomic pair distribution
+functions.</p>
 <section id="subpackages">
 <h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading"></a></h2>
 <div class="toctree-wrapper compound">
@@ -100,9 +183,10 @@
 <span id="diffpy-srmise-multimodelselection-module"></span><h3>diffpy.srmise.multimodelselection module<a class="headerlink" href="#module-diffpy.srmise.multimodelselection" title="Link to this heading"></a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="diffpy.srmise.multimodelselection.MultimodelSelection">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.multimodelselection.</span></span><span class="sig-name descname"><span class="pre">MultimodelSelection</span></span><a class="reference internal" href="../_modules/diffpy/srmise/multimodelselection.html#MultimodelSelection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.multimodelselection.MultimodelSelection" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.multimodelselection.</span></span><span class="sig-name descname"><span class="pre">MultimodelSelection</span></span><a class="reference internal" href="../_modules/diffpy/srmise/multimodelselection.html#MultimodelSelection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.multimodelselection.MultimodelSelection" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#diffpy.srmise.peakstability.PeakStability" title="diffpy.srmise.peakstability.PeakStability"><code class="xref py py-class docutils literal notranslate"><span class="pre">PeakStability</span></code></a></p>
-<p>Quick and dirty multimodel selection using AIC and its offspring.</p>
+<p>Quick and dirty multimodel selection using AIC and its
+offspring.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.multimodelselection.MultimodelSelection.animate_classprobs">
 <span class="sig-name descname"><span class="pre">animate_classprobs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/multimodelselection.html#MultimodelSelection.animate_classprobs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.multimodelselection.MultimodelSelection.animate_classprobs" title="Link to this definition"></a></dt>
@@ -232,7 +316,8 @@ difference between the squared values to the squared values of the peak
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.multimodelselection.MultimodelSelection.get">
 <span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dG</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/multimodelselection.html#MultimodelSelection.get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.multimodelselection.MultimodelSelection.get" title="Link to this definition"></a></dt>
-<dd><p>Return tuple of values corresponding to string arguments for best model of best class at given dG.</p>
+<dd><p>Return tuple of values corresponding to string arguments for
+best model of best class at given dG.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -259,7 +344,8 @@ difference between the squared values to the squared values of the peak
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.multimodelselection.MultimodelSelection.get_aic">
 <span class="sig-name descname"><span class="pre">get_aic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dG</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/multimodelselection.html#MultimodelSelection.get_aic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.multimodelselection.MultimodelSelection.get_aic" title="Link to this definition"></a></dt>
-<dd><p>Return number of free parameters of best model of best class at given dG.</p>
+<dd><p>Return number of free parameters of best model of best class
+at given dG.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -331,7 +417,8 @@ difference between the squared values to the squared values of the peak
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.multimodelselection.MultimodelSelection.get_nfree">
 <span class="sig-name descname"><span class="pre">get_nfree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dG</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/multimodelselection.html#MultimodelSelection.get_nfree"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.multimodelselection.MultimodelSelection.get_nfree" title="Link to this definition"></a></dt>
-<dd><p>Return number of free parameters of best model of best class at given dG.</p>
+<dd><p>Return number of free parameters of best model of best class
+at given dG.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -356,7 +443,8 @@ difference between the squared values to the squared values of the peak
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.multimodelselection.MultimodelSelection.get_prob">
 <span class="sig-name descname"><span class="pre">get_prob</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dG</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/multimodelselection.html#MultimodelSelection.get_prob"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.multimodelselection.MultimodelSelection.get_prob" title="Link to this definition"></a></dt>
-<dd><p>Return Akaike probability of best model of best class at given dG.</p>
+<dd><p>Return Akaike probability of best model of best class at
+given dG.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -450,13 +538,15 @@ nominal value.</p></li>
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.multimodelselection.MultimodelSelection.makesortedprobs">
 <span class="sig-name descname"><span class="pre">makesortedprobs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/multimodelselection.html#MultimodelSelection.makesortedprobs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.multimodelselection.MultimodelSelection.makesortedprobs" title="Link to this definition"></a></dt>
-<dd><p>Make probabilities for the sequence of AICs in a sorted order.</p>
+<dd><p>Make probabilities for the sequence of AICs in a sorted
+order.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.multimodelselection.MultimodelSelection.maxprobdG_byclass">
 <span class="sig-name descname"><span class="pre">maxprobdG_byclass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/multimodelselection.html#MultimodelSelection.maxprobdG_byclass"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.multimodelselection.MultimodelSelection.maxprobdG_byclass" title="Link to this definition"></a></dt>
-<dd><p>Return the post-hoc dG for which the given model’s Akaike probability is maximized.</p>
+<dd><p>Return the post-hoc dG for which the given model’s Akaike
+probability is maximized.</p>
 <p>Each model is mapped to its class’ best member.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -474,8 +564,8 @@ nominal value.</p></li>
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.multimodelselection.MultimodelSelection.maxprobdG_bymodel">
 <span class="sig-name descname"><span class="pre">maxprobdG_bymodel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/multimodelselection.html#MultimodelSelection.maxprobdG_bymodel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.multimodelselection.MultimodelSelection.maxprobdG_bymodel" title="Link to this definition"></a></dt>
-<dd><p>Return the post-hoc dG for which the given model’s Akaike probability is maximized.
-Classes are not considered.</p>
+<dd><p>Return the post-hoc dG for which the given model’s Akaike
+probability is maximized. Classes are not considered.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>model</strong> (<em>array-like</em>) – The model to get the post-hoc dG.</p>
@@ -528,7 +618,8 @@ Classes are not considered.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.multimodelselection.MultimodelSelection.modelbestdgs">
 <span class="sig-name descname"><span class="pre">modelbestdgs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dgs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/multimodelselection.html#MultimodelSelection.modelbestdgs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.multimodelselection.MultimodelSelection.modelbestdgs" title="Link to this definition"></a></dt>
-<dd><p>Return uncertainties where given model has greatest Akaike probability.</p>
+<dd><p>Return uncertainties where given model has greatest Akaike
+probability.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -618,7 +709,7 @@ to those found in the Python logging package.</p>
 ‘error’ -&gt; 40
 ‘critical’ -&gt; 50</p>
 <p>Liveplotting plots the value of a model each time it is fit, showing results for
-before and after fitting.  User input is optionally required to procede after
+before and after fitting.  User input is optionally required to proceed after
 fitting.</p>
 <section id="functions">
 <h4>Functions<a class="headerlink" href="#functions" title="Link to this heading"></a></h4>
@@ -630,20 +721,19 @@ gettracer: Get a TracePeaks instance for tracing peak extraction.</p>
 </section>
 <dl class="py class">
 <dt class="sig sig-object py" id="diffpy.srmise.srmiselog.TracePeaks">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.srmiselog.</span></span><span class="sig-name descname"><span class="pre">TracePeaks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/srmiselog.html#TracePeaks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.srmiselog.TracePeaks" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.srmiselog.</span></span><span class="sig-name descname"><span class="pre">TracePeaks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/srmiselog.html#TracePeaks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.srmiselog.TracePeaks" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Output trace information during peak extraction.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.srmiselog.TracePeaks.emit">
 <span class="sig-name descname"><span class="pre">emit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/srmiselog.html#TracePeaks.emit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.srmiselog.TracePeaks.emit" title="Link to this definition"></a></dt>
 <dd><p>Write current trace to file.</p>
-<p>Parameters
-Any number of ModelCluster instances</p>
+<p>Parameters Any number of ModelCluster instances</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="diffpy.srmise.srmiselog.TracePeaks.filter">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">filter</span></span><a class="headerlink" href="#diffpy.srmise.srmiselog.TracePeaks.filter" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">filter</span></span><a class="headerlink" href="#diffpy.srmise.srmiselog.TracePeaks.filter" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -687,26 +777,44 @@ model - Use specified model (Peaks instance) instead of those in args.</p>
 <dt class="sig sig-object py" id="diffpy.srmise.srmiselog.TracePeaks.read">
 <span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/srmiselog.html#TracePeaks.read"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.srmiselog.TracePeaks.read" title="Link to this definition"></a></dt>
 <dd><p>Read tracer ModelCluster from file.</p>
-<p>Parameters
-filename - file from which to read</p>
-<p>Returns dictionary with keys
-“clusters” - List of cluster regions [[r0,r1],[r2,r3],…]
-“counter” - The count when object was created
-“mc” - A ModelCluster instance
-“recursion” - The recursion level of mc</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>read</strong> (<em>filename - file from which to</em>)</p></li>
+<li><p><strong>keys</strong> (<em>Returns dictionary with</em>)</p></li>
+<li><p><strong>[</strong><strong>[</strong><strong>r0</strong> (<em>&quot;clusters&quot; - List</em><em> of </em><em>cluster regions</em>)</p></li>
+<li><p><strong>r1</strong><strong>]</strong></p></li>
+<li><p><strong>[</strong><strong>r2</strong></p></li>
+<li><p><strong>r3</strong><strong>]</strong></p></li>
+<li><p><strong>...</strong><strong>]</strong></p></li>
+<li><p><strong>created</strong> (<em>&quot;counter&quot; - The count when object was</em>)</p></li>
+<li><p><strong>instance</strong> (<em>&quot;mc&quot; - A ModelCluster</em>)</p></li>
+<li><p><strong>mc</strong> (<em>&quot;recursion&quot; - The recursion level of</em>)</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.srmiselog.TracePeaks.readstr">
 <span class="sig-name descname"><span class="pre">readstr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datastring</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/srmiselog.html#TracePeaks.readstr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.srmiselog.TracePeaks.readstr" title="Link to this definition"></a></dt>
 <dd><p>Read tracer ModelCluster from string.</p>
-<p>Parameters
-datastring - The string representation of a trace</p>
-<p>Returns dictionary with keys
-“clusters” - List of cluster regions [[r0,r1],[r2,r3],…]
-“counter” - The count when object was created
-“mc” - A ModelCluster instance
-“recursion” - The recursion level of mc</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>trace</strong> (<em>datastring - The string representation</em><em> of </em><em>a</em>)</p></li>
+<li><p><strong>keys</strong> (<em>Returns dictionary with</em>)</p></li>
+<li><p><strong>[</strong><strong>[</strong><strong>r0</strong> (<em>&quot;clusters&quot; - List</em><em> of </em><em>cluster regions</em>)</p></li>
+<li><p><strong>r1</strong><strong>]</strong></p></li>
+<li><p><strong>[</strong><strong>r2</strong></p></li>
+<li><p><strong>r3</strong><strong>]</strong></p></li>
+<li><p><strong>...</strong><strong>]</strong></p></li>
+<li><p><strong>created</strong> (<em>&quot;counter&quot; - The count when object was</em>)</p></li>
+<li><p><strong>instance</strong> (<em>&quot;mc&quot; - A ModelCluster</em>)</p></li>
+<li><p><strong>mc</strong> (<em>&quot;recursion&quot; - The recursion level of</em>)</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -737,10 +845,15 @@ datastring - The string representation of a trace</p>
 <dt class="sig sig-object py" id="diffpy.srmise.srmiselog.addfilelog">
 <span class="sig-prename descclassname"><span class="pre">diffpy.srmise.srmiselog.</span></span><span class="sig-name descname"><span class="pre">addfilelog</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'%(message)s'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/srmiselog.html#addfilelog"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.srmiselog.addfilelog" title="Link to this definition"></a></dt>
 <dd><p>Log output from diffpy.srmise in specified file.</p>
-<p>Parameters
-filename: Name of file to receiving output
-level: The logging level
-format: A string defining format of output messages conforming to logging package.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>Name</em><em> of </em><em>file to receiving output</em>)</p></li>
+<li><p><strong>level</strong> (<em>The logging level</em>)</p></li>
+<li><p><strong>format</strong> (<em>A string defining format</em><em> of </em><em>output messages conforming to logging package.</em>)</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -749,25 +862,36 @@ format: A string defining format of output messages conforming to logging packag
 <dd><p>Set whether or not to use live plotting.</p>
 <p>When using liveplotting, a plot will be shown and updated
 as extraction progresses.</p>
-<p>Parameters
-lp: Use live plotting (True) or not (False).
-w: (False) Whether to wait for user after plotting.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lp</strong> (<em>Use live plotting</em><em> (</em><em>True</em><em>) or </em><em>not</em><em> (</em><em>False</em><em>)</em><em>.</em>)</p></li>
+<li><p><strong>w</strong> (<em>(</em><em>False</em><em>) </em><em>Whether to wait for user after plotting.</em>)</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="diffpy.srmise.srmiselog.setfilelevel">
 <span class="sig-prename descclassname"><span class="pre">diffpy.srmise.srmiselog.</span></span><span class="sig-name descname"><span class="pre">setfilelevel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/srmiselog.html#setfilelevel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.srmiselog.setfilelevel" title="Link to this definition"></a></dt>
 <dd><p>Set level of file logger.</p>
-<p>Parameters
-level: The logging level.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>level</strong> (<em>The logging level.</em>)</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="diffpy.srmise.srmiselog.setlevel">
 <span class="sig-prename descclassname"><span class="pre">diffpy.srmise.srmiselog.</span></span><span class="sig-name descname"><span class="pre">setlevel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/srmiselog.html#setlevel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.srmiselog.setlevel" title="Link to this definition"></a></dt>
 <dd><p>Set level of default (stdout) logger.</p>
-<p>Parameters
-level: The logging level.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>level</strong> (<em>The logging level.</em>)</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -786,7 +910,7 @@ ModelParts: Collection (list) of ModelPart instances.</p>
 </section>
 <dl class="py class">
 <dt class="sig sig-object py" id="diffpy.srmise.modelparts.ModelPart">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.modelparts.</span></span><span class="sig-name descname"><span class="pre">ModelPart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">owner</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pars</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">free</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">removable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">static_owner</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/modelparts.html#ModelPart"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.modelparts.ModelPart" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.modelparts.</span></span><span class="sig-name descname"><span class="pre">ModelPart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">owner</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pars</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">free</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">removable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">static_owner</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/modelparts.html#ModelPart"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.modelparts.ModelPart" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Represents a single part (instance of some function) of a model.</p>
 <dl class="py attribute">
@@ -1008,7 +1132,8 @@ included in the count.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="id6">
 <span class="sig-name descname"><span class="pre">owner</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/modelparts.html#ModelPart.owner"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id6" title="Link to this definition"></a></dt>
-<dd><p>Return the BaseFunction subclass instance which owns this part.</p>
+<dd><p>Return the BaseFunction subclass instance which owns this
+part.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The BaseFunction subclass which owns this part.</p>
@@ -1098,7 +1223,7 @@ All the data by default.</p></li>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="diffpy.srmise.modelparts.ModelParts">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.modelparts.</span></span><span class="sig-name descname"><span class="pre">ModelParts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/modelparts.html#ModelParts"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.modelparts.ModelParts" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.modelparts.</span></span><span class="sig-name descname"><span class="pre">ModelParts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/modelparts.html#ModelParts"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.modelparts.ModelParts" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></p>
 <p>A collection of ModelPart instances.</p>
 <dl class="py method">
@@ -1274,28 +1399,22 @@ All the data by default.</p></li>
 <dt class="sig sig-object py" id="diffpy.srmise.modelparts.ModelParts.residual_jacobian">
 <span class="sig-name descname"><span class="pre">residual_jacobian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">freepars</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_expected</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_error</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/modelparts.html#ModelParts.residual_jacobian"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.modelparts.ModelParts.residual_jacobian" title="Link to this definition"></a></dt>
 <dd><p>Calculate the Jacobian of freepars.</p>
-<p>Parameters
-freepars : array-like</p>
-<blockquote>
-<div><p>The sequence of free parameters</p>
-</div></blockquote>
-<dl class="simple">
-<dt>r<span class="classifier">array-like</span></dt><dd><p>The input domain</p>
-</dd>
-<dt>y_expected<span class="classifier">array-like</span></dt><dd><p>The sequence of expected values</p>
-</dd>
-<dt>y_error<span class="classifier">array-like</span></dt><dd><p>The sequence of uncertainties in y-variable</p>
-</dd>
-<dt>range<span class="classifier">slice object</span></dt><dd><p>The slice object specifying region of r and y over which to fit.
-All the data by default.</p>
-</dd>
-</dl>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The Jacobian of all parameters.</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>freepars</strong> (<em>array-like</em>) – The sequence of free parameters</p></li>
+<li><p><strong>r</strong> (<em>array-like</em>) – The input domain</p></li>
+<li><p><strong>y_expected</strong> (<em>array-like</em>) – The sequence of expected values</p></li>
+<li><p><strong>y_error</strong> (<em>array-like</em>) – The sequence of uncertainties in y-variable</p></li>
+<li><p><strong>range</strong> (<em>slice object</em>) – The slice object specifying region of r and y over which to fit.
+All the data by default.</p></li>
+</ul>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>ndarray</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The Jacobian of all parameters.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ndarray</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1304,13 +1423,12 @@ All the data by default.</p>
 <dt class="sig sig-object py" id="diffpy.srmise.modelparts.ModelParts.transform">
 <span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">in_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'internal'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'internal'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/modelparts.html#ModelParts.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.modelparts.ModelParts.transform" title="Link to this definition"></a></dt>
 <dd><p>Transforms format of parameters in this modelpart.</p>
-<p>Parameters
-in_format : str</p>
-<blockquote>
-<div><p>The format the parameters are already in.</p>
-</div></blockquote>
-<dl class="simple">
-<dt>out_format<span class="classifier">str</span></dt><dd><p>The format the parameters are transformed to.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>in_format</strong> (<em>str</em>) – The format the parameters are already in.</p></li>
+<li><p><strong>out_format</strong> (<em>str</em>) – The format the parameters are transformed to.</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -1349,7 +1467,7 @@ All the data by default.</p></li>
 <span id="diffpy-srmise-peakstability-module"></span><h3>diffpy.srmise.peakstability module<a class="headerlink" href="#module-diffpy.srmise.peakstability" title="Link to this heading"></a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="diffpy.srmise.peakstability.PeakStability">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.peakstability.</span></span><span class="sig-name descname"><span class="pre">PeakStability</span></span><a class="reference internal" href="../_modules/diffpy/srmise/peakstability.html#PeakStability"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.peakstability.PeakStability" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.peakstability.</span></span><span class="sig-name descname"><span class="pre">PeakStability</span></span><a class="reference internal" href="../_modules/diffpy/srmise/peakstability.html#PeakStability"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.peakstability.PeakStability" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Utility to test robustness of peaks.</p>
 <p>results: [error scalar, model, bl, dr]
@@ -1379,7 +1497,8 @@ ppe: a PDFPeakExtraction instance</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.peakstability.PeakStability.plot">
 <span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/peakstability.html#PeakStability.plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.peakstability.PeakStability.plot" title="Link to this definition"></a></dt>
-<dd><p>Plot the current model.  Keywords passed to pyplot.plot()</p>
+<dd><p>Plot the current model.</p>
+<p>Keywords passed to pyplot.plot()</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1431,12 +1550,14 @@ If savecovs is True, return the covariance matrix for each final fit.</p></li>
 </section>
 <section id="module-diffpy.srmise.basefunction">
 <span id="diffpy-srmise-basefunction-module"></span><h3>diffpy.srmise.basefunction module<a class="headerlink" href="#module-diffpy.srmise.basefunction" title="Link to this heading"></a></h3>
-<p>Defines BaseFunction, the base class for mathematical functions in srmise.</p>
+<p>Defines BaseFunction, the base class for mathematical functions in
+srmise.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="diffpy.srmise.basefunction.BaseFunction">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.basefunction.</span></span><span class="sig-name descname"><span class="pre">BaseFunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameterdict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parformats</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_formats</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/basefunction.html#BaseFunction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.basefunction.BaseFunction" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.basefunction.</span></span><span class="sig-name descname"><span class="pre">BaseFunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameterdict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parformats</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_formats</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/basefunction.html#BaseFunction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.basefunction.BaseFunction" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Base class for mathematical functions which model numeric sequences.</p>
+<p>Base class for mathematical functions which model numeric
+sequences.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="diffpy.srmise.basefunction.BaseFunction.parameterdict">
 <span class="sig-name descname"><span class="pre">parameterdict</span></span><a class="headerlink" href="#diffpy.srmise.basefunction.BaseFunction.parameterdict" title="Link to this definition"></a></dt>
@@ -1577,18 +1698,20 @@ additional functionality.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="id11">
 <span class="sig-name descname"><span class="pre">actualize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/basefunction.html#BaseFunction.actualize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id11" title="Link to this definition"></a></dt>
-<dd><p>Create ModelPart instance of self with given parameters.  (“Virtual” method)</p>
+<dd><p>Create ModelPart instance of self with given parameters.</p>
+<p>(“Virtual” method)</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="id12">
 <span class="sig-name descname"><span class="pre">estimate_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/basefunction.html#BaseFunction.estimate_parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id12" title="Link to this definition"></a></dt>
-<dd><p>Estimate BaseFunction parameters from supplied data. (“Virtual” method)</p>
+<dd><p>Estimate BaseFunction parameters from supplied data.</p>
+<p>(“Virtual” method)</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.basefunction.BaseFunction.factory">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">factory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">functionstr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">baselist</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/basefunction.html#BaseFunction.factory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.basefunction.BaseFunction.factory" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">factory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">functionstr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">baselist</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/basefunction.html#BaseFunction.factory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.basefunction.BaseFunction.factory" title="Link to this definition"></a></dt>
 <dd><p>Instantiate a BaseFunction (or any subclass) from a string.</p>
 <p>References to other BaseFunction instances in functionstr use the corresponding
 index of that instance in baselist.</p>
@@ -1597,9 +1720,13 @@ index of that instance in baselist.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>functionstr</strong> (<em>str</em>) – The string representation of the BaseFunction instance</p></li>
 <li><p><strong>baselist</strong> (<em>array-like</em>) – The list of BaseFunction (or subclass) instances.</p></li>
-<li><p><strong>Returns</strong></p></li>
-<li><p><strong>instance</strong> (<em>Basefunction</em>) – The BaseFunction instance based on the parameter strings</p></li>
 </ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The BaseFunction instance based on the parameter strings</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Basefunction instance</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1607,7 +1734,7 @@ index of that instance in baselist.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.basefunction.BaseFunction.getmodule">
 <span class="sig-name descname"><span class="pre">getmodule</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/basefunction.html#BaseFunction.getmodule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.basefunction.BaseFunction.getmodule" title="Link to this definition"></a></dt>
-<dd><p>Return ‘diffpy.srmise.basefunction’</p>
+<dd><p>Return ‘diffpy.srmise.basefunction’.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1631,7 +1758,8 @@ previously calculated values instead.</p></li>
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.basefunction.BaseFunction.pgradient">
 <span class="sig-name descname"><span class="pre">pgradient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/basefunction.html#BaseFunction.pgradient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.basefunction.BaseFunction.pgradient" title="Link to this definition"></a></dt>
-<dd><p>Return gradient matrix of parameterization in specified format wrt “internal” format at p.</p>
+<dd><p>Return gradient matrix of parameterization in specified
+format wrt “internal” format at p.</p>
 <p>Consider the “internal” parameterization given by (i0, i1, …, in).
 Each parameter in a different format, say (o0, o1, …, om), is a
 function of the internal parameters.</p>
@@ -1661,8 +1789,9 @@ function of the internal parameters.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.basefunction.BaseFunction.safefunction">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">safefunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fsafe</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/basefunction.html#BaseFunction.safefunction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.basefunction.BaseFunction.safefunction" title="Link to this definition"></a></dt>
-<dd><p>Append BaseFunction instance f to fsafe, but adding dependent functions first.</p>
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">safefunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fsafe</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/basefunction.html#BaseFunction.safefunction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.basefunction.BaseFunction.safefunction" title="Link to this definition"></a></dt>
+<dd><p>Append BaseFunction instance f to fsafe, but adding dependent
+functions first.</p>
 <p>Does not handle circular dependencies.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1679,19 +1808,24 @@ function of the internal parameters.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.basefunction.BaseFunction.safefunctionlist">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">safefunctionlist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/basefunction.html#BaseFunction.safefunctionlist"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.basefunction.BaseFunction.safefunctionlist" title="Link to this definition"></a></dt>
-<dd><p>Return list of BaseFunction instances where any dependencies occur earlier in list.</p>
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">safefunctionlist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/basefunction.html#BaseFunction.safefunctionlist"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.basefunction.BaseFunction.safefunctionlist" title="Link to this definition"></a></dt>
+<dd><p>Return list of BaseFunction instances where any dependencies
+occur earlier in list.</p>
 <p>Any functions with hidden dependent functions (i.e. those not in fs)
 are included in the returned list.  This list provides an order that
 is guaranteed to be safe for saving/reinstantiating peak functions.</p>
-<p>Parameters
-fs: List of BaseFunction instances.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>fs</strong> (<em>List</em><em> of </em><em>BaseFunction instances.</em>)</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="id14">
 <span class="sig-name descname"><span class="pre">transform_derivatives</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">in_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/basefunction.html#BaseFunction.transform_derivatives"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id14" title="Link to this definition"></a></dt>
-<dd><p>Return gradient matrix for pars converted from in_format to out_format.</p>
+<dd><p>Return gradient matrix for pars converted from in_format to
+out_format.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -1712,7 +1846,8 @@ fs: List of BaseFunction instances.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="id15">
 <span class="sig-name descname"><span class="pre">transform_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">in_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/basefunction.html#BaseFunction.transform_parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id15" title="Link to this definition"></a></dt>
-<dd><p>Return new sequence with pars converted from in_format to out_format.</p>
+<dd><p>Return new sequence with pars converted from in_format to
+out_format.</p>
 <p>Also restores parameters to a preferred range if it permits multiple
 values that correspond to the same physical result.</p>
 <dl class="field-list simple">
@@ -1735,7 +1870,8 @@ values that correspond to the same physical result.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="id16">
 <span class="sig-name descname"><span class="pre">value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rng</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/basefunction.html#BaseFunction.value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id16" title="Link to this definition"></a></dt>
-<dd><p>Calculate value of ModelPart over r, possibly restricted by range.</p>
+<dd><p>Calculate value of ModelPart over r, possibly restricted by
+range.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -1779,10 +1915,10 @@ in baselist.</p>
 <span id="diffpy-srmise-pdfpeakextraction-module"></span><h3>diffpy.srmise.pdfpeakextraction module<a class="headerlink" href="#module-diffpy.srmise.pdfpeakextraction" title="Link to this heading"></a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="diffpy.srmise.pdfpeakextraction.PDFPeakExtraction">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.pdfpeakextraction.</span></span><span class="sig-name descname"><span class="pre">PDFPeakExtraction</span></span><a class="reference internal" href="../_modules/diffpy/srmise/pdfpeakextraction.html#PDFPeakExtraction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.pdfpeakextraction.PDFPeakExtraction" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.pdfpeakextraction.</span></span><span class="sig-name descname"><span class="pre">PDFPeakExtraction</span></span><a class="reference internal" href="../_modules/diffpy/srmise/pdfpeakextraction.html#PDFPeakExtraction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.pdfpeakextraction.PDFPeakExtraction" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#diffpy.srmise.peakextraction.PeakExtraction" title="diffpy.srmise.peakextraction.PeakExtraction"><code class="xref py py-class docutils literal notranslate"><span class="pre">PeakExtraction</span></code></a></p>
-<p>PDFPeakExtraction extends the PeakExtraction class to specialize in extracting
-peaks from PDF (Probability Density Function) data.</p>
+<p>PDFPeakExtraction extends the PeakExtraction class to specialize
+in extracting peaks from PDF (Probability Density Function) data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -1807,7 +1943,8 @@ Nyquist rate before initiating peak extraction. Defaults to 1.</p></li>
 <dt class="sig sig-object py" id="diffpy.srmise.pdfpeakextraction.PDFPeakExtraction.clear">
 <span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/pdfpeakextraction.html#PDFPeakExtraction.clear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.pdfpeakextraction.PDFPeakExtraction.clear" title="Link to this definition"></a></dt>
 <dd><p>Clear all members.</p>
-<p>The purpose of the method is to ensure the object is in a clean state.</p>
+<p>The purpose of the method is to ensure the object is in a clean
+state.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1843,7 +1980,8 @@ is enabled, and scale is True.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.pdfpeakextraction.PDFPeakExtraction.extract">
 <span class="sig-name descname"><span class="pre">extract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/pdfpeakextraction.html#PDFPeakExtraction.extract"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.pdfpeakextraction.PDFPeakExtraction.extract" title="Link to this definition"></a></dt>
-<dd><p>Extract peaks from the PDF. Returns ModelCovariance instance summarizing results.</p>
+<dd><p>Extract peaks from the PDF. Returns ModelCovariance instance
+summarizing results.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>**kwds</strong> (<em>dict</em>) – Additional keyword arguments that might influence the extraction process.
@@ -1862,7 +2000,8 @@ affect resampling and model refinement strategies.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.pdfpeakextraction.PDFPeakExtraction.fit">
 <span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/pdfpeakextraction.html#PDFPeakExtraction.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.pdfpeakextraction.PDFPeakExtraction.fit" title="Link to this definition"></a></dt>
-<dd><p>Fit peaks in the PDF. Returns ModelCovariance instance summarizing results.</p>
+<dd><p>Fit peaks in the PDF. Returns ModelCovariance instance
+summarizing results.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>**kwds</strong> (<em>dict</em>) – Keyword arguments passed to ModelCovariance instance. Different keywords could have
@@ -1905,12 +2044,13 @@ different strategies to fit. See ModelCovariance class for more information.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.pdfpeakextraction.PDFPeakExtraction.resampledata">
 <span class="sig-name descname"><span class="pre">resampledata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dr</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/pdfpeakextraction.html#PDFPeakExtraction.resampledata"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.pdfpeakextraction.PDFPeakExtraction.resampledata" title="Link to this definition"></a></dt>
-<dd><p>Return (x, y, error in x, effective error in y) resampled by interval dr.</p>
+<dd><p>Return (x, y, error in x, effective error in y) resampled by
+interval dr.</p>
 <p>Uses values of self.x, self.y, self.dx, self.effective_dy.  The range is
 constrained by self.rng.</p>
 <p>The effective error may be scaled if class member scale is True.</p>
 <p>The method for ‘resampling’ the uncertainties is interpolation, since insufficient
-information exists in a PDFPeakExtraction object to propogate them correctly on the
+information exists in a PDFPeakExtraction object to propagate them correctly on the
 new grid.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -2003,7 +2143,8 @@ If set to “automatic”, it will be estimated from the data.</p></li>
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.pdfpeakextraction.PDFPeakExtraction.writepwastr">
 <span class="sig-name descname"><span class="pre">writepwastr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comments</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/pdfpeakextraction.html#PDFPeakExtraction.writepwastr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.pdfpeakextraction.PDFPeakExtraction.writepwastr" title="Link to this definition"></a></dt>
-<dd><p>Return string of extracted peaks (position, width, area) in PDF.</p>
+<dd><p>Return string of extracted peaks (position, width, area) in
+PDF.</p>
 <p>There is not enough information to recreate the extracted peaks from
 this file.</p>
 <dl class="field-list simple">
@@ -2063,7 +2204,8 @@ this file.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="diffpy.srmise.pdfpeakextraction.stdratio">
 <span class="sig-prename descclassname"><span class="pre">diffpy.srmise.pdfpeakextraction.</span></span><span class="sig-name descname"><span class="pre">stdratio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/pdfpeakextraction.html#stdratio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.pdfpeakextraction.stdratio" title="Link to this definition"></a></dt>
-<dd><p>Calculate ratio of standard deviation for runs of equal length in data.</p>
+<dd><p>Calculate ratio of standard deviation for runs of equal length in
+data.</p>
 <p>Uses a numerically-stable online algorithm for calculating the standard
 deviation.</p>
 <dl class="field-list simple">
@@ -2091,7 +2233,7 @@ ModelCovariance: Helper class for model covariance.</p>
 </section>
 <dl class="py class">
 <dt class="sig sig-object py" id="diffpy.srmise.modelcluster.ModelCluster">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.modelcluster.</span></span><span class="sig-name descname"><span class="pre">ModelCluster</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/modelcluster.html#ModelCluster"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.modelcluster.ModelCluster" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.modelcluster.</span></span><span class="sig-name descname"><span class="pre">ModelCluster</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/modelcluster.html#ModelCluster"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.modelcluster.ModelCluster" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Associate a contiguous cluster of data with an appropriate model.</p>
 <p>A ModelCluster instance is the basic unit of diffpy.srmise, combining data and
@@ -2215,7 +2357,8 @@ a model with the basic tools for controlling their interaction.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.modelcluster.ModelCluster.augment">
 <span class="sig-name descname"><span class="pre">augment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/modelcluster.html#ModelCluster.augment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.modelcluster.ModelCluster.augment" title="Link to this definition"></a></dt>
-<dd><p>Add peaks from another ModelCluster that improve this one’s quality.</p>
+<dd><p>Add peaks from another ModelCluster that improve this one’s
+quality.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>source</strong> (<em>ModelCluster instance</em>) – The ModelCluster instance to augment the model’s quality.</p>
@@ -2243,13 +2386,15 @@ a model with the basic tools for controlling their interaction.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.modelcluster.ModelCluster.cleanfit">
 <span class="sig-name descname"><span class="pre">cleanfit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/modelcluster.html#ModelCluster.cleanfit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.modelcluster.ModelCluster.cleanfit" title="Link to this definition"></a></dt>
-<dd><p>Remove poor-quality peaks in the fit.  Return number removed.</p>
+<dd><p>Remove poor-quality peaks in the fit.</p>
+<p>Return number removed.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.modelcluster.ModelCluster.contingent_fit">
 <span class="sig-name descname"><span class="pre">contingent_fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">minpoints</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">growth_threshold</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/modelcluster.html#ModelCluster.contingent_fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.modelcluster.ModelCluster.contingent_fit" title="Link to this definition"></a></dt>
-<dd><p>Fit cluster if it has grown sufficiently large since its last fit.</p>
+<dd><p>Fit cluster if it has grown sufficiently large since its last
+fit.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -2290,7 +2435,8 @@ a model with the basic tools for controlling their interaction.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.modelcluster.ModelCluster.estimatepeak">
 <span class="sig-name descname"><span class="pre">estimatepeak</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/modelcluster.html#ModelCluster.estimatepeak"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.modelcluster.ModelCluster.estimatepeak" title="Link to this definition"></a></dt>
-<dd><p>Attempt to add single peak to empty cluster.  Return True if successful.</p>
+<dd><p>Attempt to add single peak to empty cluster.  Return True if
+successful.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>True if successful, False otherwise.</p>
@@ -2303,7 +2449,7 @@ a model with the basic tools for controlling their interaction.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.modelcluster.ModelCluster.factory">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">factory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mcstr</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/modelcluster.html#ModelCluster.factory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.modelcluster.ModelCluster.factory" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">factory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mcstr</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/modelcluster.html#ModelCluster.factory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.modelcluster.ModelCluster.factory" title="Link to this definition"></a></dt>
 <dd><p>Create ModelCluster from string.</p>
 <section id="id18">
 <h4>Keywords<a class="headerlink" href="#id18" title="Link to this heading"></a></h4>
@@ -2343,7 +2489,7 @@ additional peaks are present. Default is False.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.modelcluster.ModelCluster.join_adjacent">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">join_adjacent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/modelcluster.html#ModelCluster.join_adjacent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.modelcluster.ModelCluster.join_adjacent" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">join_adjacent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/modelcluster.html#ModelCluster.join_adjacent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.modelcluster.ModelCluster.join_adjacent" title="Link to this definition"></a></dt>
 <dd><p>Create new ModelCluster from two adjacent ones.</p>
 <p>Suspected duplicate peaks are removed, and peaks may be adjusted if
 their sum where the clusters meet exceeds the data.  m1 and m2 are
@@ -2388,7 +2534,8 @@ unchanged.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.modelcluster.ModelCluster.plottable">
 <span class="sig-name descname"><span class="pre">plottable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">joined</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/modelcluster.html#ModelCluster.plottable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.modelcluster.ModelCluster.plottable" title="Link to this definition"></a></dt>
-<dd><p>Return sequence suitable for plotting cluster model+baseline with matplotlib.</p>
+<dd><p>Return sequence suitable for plotting cluster model+baseline
+with matplotlib.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>joined</strong> (<em>bool</em>) – Return sum of all peaks if joined is True, or each one individually if False.</p>
@@ -2405,7 +2552,8 @@ unchanged.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.modelcluster.ModelCluster.plottable_residual">
 <span class="sig-name descname"><span class="pre">plottable_residual</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/modelcluster.html#ModelCluster.plottable_residual"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.modelcluster.ModelCluster.plottable_residual" title="Link to this definition"></a></dt>
-<dd><p>Return sequence suitable for plotting cluster residual with matplotlib.</p>
+<dd><p>Return sequence suitable for plotting cluster residual with
+matplotlib.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>A sequence of plottable clusters and residuals.</p>
@@ -2420,19 +2568,21 @@ unchanged.</p>
 <dt class="sig sig-object py" id="diffpy.srmise.modelcluster.ModelCluster.prune">
 <span class="sig-name descname"><span class="pre">prune</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/modelcluster.html#ModelCluster.prune"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.modelcluster.ModelCluster.prune" title="Link to this definition"></a></dt>
 <dd><p>Remove peaks until model quality no longer improves.</p>
-<p>Peaks are removed in a greedy fashion, and the best possible model is
-by no means guaranteed.</p>
-<p>Due to the somewhat exploratory nature of prune many non-convergent
-fits will generally be performed, but it severely restricts the number
-of function evaluations permitted during fitting, and so fits that do
-not converge rapidly are abandoned.  Nevertheless, occasionally this
-method will take an unusually long time to complete.</p>
+<p>Peaks are removed in a greedy fashion, and the best possible
+model is by no means guaranteed.</p>
+<p>Due to the somewhat exploratory nature of prune many non-
+convergent fits will generally be performed, but it severely
+restricts the number of function evaluations permitted during
+fitting, and so fits that do not converge rapidly are abandoned.
+Nevertheless, occasionally this method will take an unusually
+long time to complete.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.modelcluster.ModelCluster.quality">
 <span class="sig-name descname"><span class="pre">quality</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">evaluator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/modelcluster.html#ModelCluster.quality"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.modelcluster.ModelCluster.quality" title="Link to this definition"></a></dt>
-<dd><p>Return ModelEvaluator instance containing calculated quality of the model.</p>
+<dd><p>Return ModelEvaluator instance containing calculated quality
+of the model.</p>
 <p>ModelEvaluator objects may be compared as though they were numerical
 quantities.  Its raw value is given by the ‘stat’ member.  For more
 details see ModelEvaluator documentation.</p>
@@ -2551,9 +2701,10 @@ blfbaselist - List of baseline function bases.Otherwise, define list from self.<
 
 <dl class="py class">
 <dt class="sig sig-object py" id="diffpy.srmise.modelcluster.ModelCovariance">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.modelcluster.</span></span><span class="sig-name descname"><span class="pre">ModelCovariance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/modelcluster.html#ModelCovariance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.modelcluster.ModelCovariance" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.modelcluster.</span></span><span class="sig-name descname"><span class="pre">ModelCovariance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/modelcluster.html#ModelCovariance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.modelcluster.ModelCovariance" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Helper class preserves uncertainty info (full covariance matrix) for a fit model.</p>
+<p>Helper class preserves uncertainty info (full covariance matrix)
+for a fit model.</p>
 <p>This object preserves a light-weight “frozen” version of a model which can be used
 to interrogate the model about the uncertainties of its parameters.</p>
 <p>Note that all parameters defined by a model, including fixed ones, are included in the
@@ -2567,7 +2718,8 @@ covariance matrix. Fixed parameters are defined to have 0 uncertainty.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.modelcluster.ModelCovariance.correlationwarning">
 <span class="sig-name descname"><span class="pre">correlationwarning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.8</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/modelcluster.html#ModelCovariance.correlationwarning"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.modelcluster.ModelCovariance.correlationwarning" title="Link to this definition"></a></dt>
-<dd><p>Report distinct variables with magnitude of correlation greater than threshold.</p>
+<dd><p>Report distinct variables with magnitude of correlation
+greater than threshold.</p>
 <p>Returns a list of tuples (i, j, c), where i and j are tuples indicating
 the modelpart and parameter indices of the correlated variables, and
 c is their correlation.</p>
@@ -2607,7 +2759,8 @@ which indicate the mth parameter of modelpart l.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.modelcluster.ModelCovariance.getcorrelation">
 <span class="sig-name descname"><span class="pre">getcorrelation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">j</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/modelcluster.html#ModelCovariance.getcorrelation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.modelcluster.ModelCovariance.getcorrelation" title="Link to this definition"></a></dt>
-<dd><p>Return the correlation between variables i and j, Corr_ij=Cov_ij/(sigma_i sigma_j)</p>
+<dd><p>Return the correlation between variables i and j,
+Corr_ij=Cov_ij/(sigma_i sigma_j)</p>
 <p>The variables may be specified as integers, or as a two-component tuple of integers (l, m)
 which indicate the mth parameter in peak l.</p>
 <p>The standard deviation of fixed parameters is 0, in which case the correlation is
@@ -2673,8 +2826,9 @@ which indicate the mth parameter of modelpart l.</p>
 <dt class="sig sig-object py" id="diffpy.srmise.modelcluster.ModelCovariance.getvalue">
 <span class="sig-name descname"><span class="pre">getvalue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/modelcluster.html#ModelCovariance.getvalue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.modelcluster.ModelCovariance.getvalue" title="Link to this definition"></a></dt>
 <dd><p>Return value of parameter i.</p>
-<p>The variable may be specified as an integer, or as a two-component tuple of integers (l, m)
-which indicate the mth parameter of modelpart l.</p>
+<p>The variable may be specified as an integer, or as a two-
+component tuple of integers <code class="docutils literal notranslate"><span class="pre">(part_idx,</span> <span class="pre">param_idx)</span></code> indicating
+the <code class="docutils literal notranslate"><span class="pre">param_idx</span></code>-th parameter of model part <code class="docutils literal notranslate"><span class="pre">part_idx</span></code>.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -2718,7 +2872,8 @@ parameters with 0 uncertainty.</p></li>
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.modelcluster.ModelCovariance.transform">
 <span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">in_format</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_format</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/modelcluster.html#ModelCovariance.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.modelcluster.ModelCovariance.transform" title="Link to this definition"></a></dt>
-<dd><p>Transform parameters and covariance matrix under specified change of variables.</p>
+<dd><p>Transform parameters and covariance matrix under specified
+change of variables.</p>
 <p>By default this change applies to all parameters of the model.  If the specified transformation
 is invalid for a given ModelPart the original parameterization is maintained for that part.</p>
 <p>This function assumes that the derivative of every variable under this change depends only on the
@@ -2749,10 +2904,11 @@ covariance matrix may not coincide with the degrees of freedom during model fitt
 </section>
 <section id="module-diffpy.srmise.dataclusters">
 <span id="diffpy-srmise-dataclusters-module"></span><h3>diffpy.srmise.dataclusters module<a class="headerlink" href="#module-diffpy.srmise.dataclusters" title="Link to this heading"></a></h3>
-<p>Defines class to partition sequences representing the x and y axis into peak-like clusters.</p>
+<p>Defines class to partition sequences representing the x and y axis
+into peak-like clusters.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="diffpy.srmise.dataclusters.DataClusters">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.dataclusters.</span></span><span class="sig-name descname"><span class="pre">DataClusters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">res</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/dataclusters.html#DataClusters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.dataclusters.DataClusters" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.dataclusters.</span></span><span class="sig-name descname"><span class="pre">DataClusters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">res</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/dataclusters.html#DataClusters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.dataclusters.DataClusters" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Find clusters corresponding to peaks in the PDF (y-array)</p>
 <p>DataClusters determines which points in inter-atomic distane, r,
@@ -2784,7 +2940,8 @@ formed.  A value of zero allows every point to be a cluster.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.dataclusters.DataClusters.animate">
 <span class="sig-name descname"><span class="pre">animate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/dataclusters.html#DataClusters.animate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.dataclusters.DataClusters.animate" title="Link to this definition"></a></dt>
-<dd><p>Animate clustering.  Restores state when complete.</p>
+<dd><p>Animate clustering.</p>
+<p>Restores state when complete.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -2815,7 +2972,8 @@ boundaries.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.dataclusters.DataClusters.combine_clusters">
 <span class="sig-name descname"><span class="pre">combine_clusters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">combine</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/dataclusters.html#DataClusters.combine_clusters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.dataclusters.DataClusters.combine_clusters" title="Link to this definition"></a></dt>
-<dd><p>Combine clusters specified by each subarray of cluster indices.</p>
+<dd><p>Combine clusters specified by each subarray of cluster
+indices.</p>
 <p>Clusters to combine must be contiguous, increasing, and have no
 unclustered points between them.</p>
 <dl class="field-list simple">
@@ -2832,14 +2990,18 @@ unclustered points between them.</p>
 <dt class="sig sig-object py" id="diffpy.srmise.dataclusters.DataClusters.cut">
 <span class="sig-name descname"><span class="pre">cut</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idx</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/dataclusters.html#DataClusters.cut"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.dataclusters.DataClusters.cut" title="Link to this definition"></a></dt>
 <dd><p>Return slice(s) for data given cluster index (or indices).</p>
-<p>Parameters
-idx - Cluster index (or sequence of indices).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>indices</strong><strong>)</strong><strong>.</strong> (<em>idx - Cluster index</em><em> (or </em><em>sequence of</em>)</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.dataclusters.DataClusters.find_adjacent_clusters">
 <span class="sig-name descname"><span class="pre">find_adjacent_clusters</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/dataclusters.html#DataClusters.find_adjacent_clusters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.dataclusters.DataClusters.find_adjacent_clusters" title="Link to this definition"></a></dt>
-<dd><p>Return all cluster indices with no unclustered points between them.</p>
+<dd><p>Return all cluster indices with no unclustered points between
+them.</p>
 <p>Return array([[leftmost_idx1,…,rightmost_idx1],…]) such that there
 are no unclustered points between each element in subarray of clusters
 (inclusive).  If no such clusters exist, returns an empty array.</p>
@@ -2848,7 +3010,8 @@ are no unclustered points between each element in subarray of clusters
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.dataclusters.DataClusters.find_nearest_cluster">
 <span class="sig-name descname"><span class="pre">find_nearest_cluster</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idx</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/dataclusters.html#DataClusters.find_nearest_cluster"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.dataclusters.DataClusters.find_nearest_cluster" title="Link to this definition"></a></dt>
-<dd><p>Return [cluster index, distance] for cluster nearest to x[idx].</p>
+<dd><p>Return [cluster index, distance] for cluster nearest to
+x[idx].</p>
 <p>The distance is positive/negative if the point is right/left of the
 nearest cluster.  If the point is within an existing cluster then
 distance = 0.</p>
@@ -2929,93 +3092,105 @@ SrMiseStaticOwnerError: Error when changing ModelPart instance owner.</p>
 </section>
 <dl class="py exception">
 <dt class="sig sig-object py" id="diffpy.srmise.srmiseerrors.SrMiseDataFormatError">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.srmiseerrors.</span></span><span class="sig-name descname"><span class="pre">SrMiseDataFormatError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/srmiseerrors.html#SrMiseDataFormatError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.srmiseerrors.SrMiseDataFormatError" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.srmiseerrors.</span></span><span class="sig-name descname"><span class="pre">SrMiseDataFormatError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/srmiseerrors.html#SrMiseDataFormatError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.srmiseerrors.SrMiseDataFormatError" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#diffpy.srmise.srmiseerrors.SrMiseError" title="diffpy.srmise.srmiseerrors.SrMiseError"><code class="xref py py-class docutils literal notranslate"><span class="pre">SrMiseError</span></code></a></p>
-<p>diffpy.srmise exception class.  Error in formatted data.</p>
+<p>diffpy.srmise exception class.</p>
+<p>Error in formatted data.</p>
 </dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="diffpy.srmise.srmiseerrors.SrMiseError">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.srmiseerrors.</span></span><span class="sig-name descname"><span class="pre">SrMiseError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/srmiseerrors.html#SrMiseError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.srmiseerrors.SrMiseError" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.srmiseerrors.</span></span><span class="sig-name descname"><span class="pre">SrMiseError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/srmiseerrors.html#SrMiseError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.srmiseerrors.SrMiseError" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
 <p>Superclass of all diffpy.srmise exceptions.</p>
 </dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="diffpy.srmise.srmiseerrors.SrMiseEstimationError">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.srmiseerrors.</span></span><span class="sig-name descname"><span class="pre">SrMiseEstimationError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/srmiseerrors.html#SrMiseEstimationError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.srmiseerrors.SrMiseEstimationError" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.srmiseerrors.</span></span><span class="sig-name descname"><span class="pre">SrMiseEstimationError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/srmiseerrors.html#SrMiseEstimationError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.srmiseerrors.SrMiseEstimationError" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#diffpy.srmise.srmiseerrors.SrMiseError" title="diffpy.srmise.srmiseerrors.SrMiseError"><code class="xref py py-class docutils literal notranslate"><span class="pre">SrMiseError</span></code></a></p>
-<p>diffpy.srmise.modelevaluator exception class.  Parameter estimation error.</p>
+<p>diffpy.srmise.modelevaluator exception class.</p>
+<p>Parameter estimation error.</p>
 </dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="diffpy.srmise.srmiseerrors.SrMiseFileError">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.srmiseerrors.</span></span><span class="sig-name descname"><span class="pre">SrMiseFileError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/srmiseerrors.html#SrMiseFileError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.srmiseerrors.SrMiseFileError" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.srmiseerrors.</span></span><span class="sig-name descname"><span class="pre">SrMiseFileError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/srmiseerrors.html#SrMiseFileError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.srmiseerrors.SrMiseFileError" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#diffpy.srmise.srmiseerrors.SrMiseError" title="diffpy.srmise.srmiseerrors.SrMiseError"><code class="xref py py-class docutils literal notranslate"><span class="pre">SrMiseError</span></code></a></p>
-<p>diffpy.srmise exception class.  Error while reading/writing files.</p>
+<p>diffpy.srmise exception class.</p>
+<p>Error while reading/writing files.</p>
 </dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="diffpy.srmise.srmiseerrors.SrMiseFitError">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.srmiseerrors.</span></span><span class="sig-name descname"><span class="pre">SrMiseFitError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/srmiseerrors.html#SrMiseFitError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.srmiseerrors.SrMiseFitError" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.srmiseerrors.</span></span><span class="sig-name descname"><span class="pre">SrMiseFitError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/srmiseerrors.html#SrMiseFitError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.srmiseerrors.SrMiseFitError" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#diffpy.srmise.srmiseerrors.SrMiseError" title="diffpy.srmise.srmiseerrors.SrMiseError"><code class="xref py py-class docutils literal notranslate"><span class="pre">SrMiseError</span></code></a></p>
-<p>diffpy.srmise exception class.  Error occurred during fitting.</p>
+<p>diffpy.srmise exception class.</p>
+<p>Error occurred during fitting.</p>
 </dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="diffpy.srmise.srmiseerrors.SrMiseLogError">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.srmiseerrors.</span></span><span class="sig-name descname"><span class="pre">SrMiseLogError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/srmiseerrors.html#SrMiseLogError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.srmiseerrors.SrMiseLogError" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.srmiseerrors.</span></span><span class="sig-name descname"><span class="pre">SrMiseLogError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/srmiseerrors.html#SrMiseLogError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.srmiseerrors.SrMiseLogError" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#diffpy.srmise.srmiseerrors.SrMiseError" title="diffpy.srmise.srmiseerrors.SrMiseError"><code class="xref py py-class docutils literal notranslate"><span class="pre">SrMiseError</span></code></a></p>
-<p>diffpy.srmise exception class.  Error while handling logging capabilities.</p>
+<p>diffpy.srmise exception class.</p>
+<p>Error while handling logging capabilities.</p>
 </dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="diffpy.srmise.srmiseerrors.SrMiseModelEvaluatorError">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.srmiseerrors.</span></span><span class="sig-name descname"><span class="pre">SrMiseModelEvaluatorError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/srmiseerrors.html#SrMiseModelEvaluatorError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.srmiseerrors.SrMiseModelEvaluatorError" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.srmiseerrors.</span></span><span class="sig-name descname"><span class="pre">SrMiseModelEvaluatorError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/srmiseerrors.html#SrMiseModelEvaluatorError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.srmiseerrors.SrMiseModelEvaluatorError" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#diffpy.srmise.srmiseerrors.SrMiseError" title="diffpy.srmise.srmiseerrors.SrMiseError"><code class="xref py py-class docutils literal notranslate"><span class="pre">SrMiseError</span></code></a></p>
-<p>diffpy.srmise.modelevaluator exception class.  Error when comparing models.</p>
+<p>diffpy.srmise.modelevaluator exception class.</p>
+<p>Error when comparing models.</p>
 </dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="diffpy.srmise.srmiseerrors.SrMisePDFKeyError">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.srmiseerrors.</span></span><span class="sig-name descname"><span class="pre">SrMisePDFKeyError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/srmiseerrors.html#SrMisePDFKeyError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.srmiseerrors.SrMisePDFKeyError" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.srmiseerrors.</span></span><span class="sig-name descname"><span class="pre">SrMisePDFKeyError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/srmiseerrors.html#SrMisePDFKeyError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.srmiseerrors.SrMisePDFKeyError" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#diffpy.srmise.srmiseerrors.SrMiseError" title="diffpy.srmise.srmiseerrors.SrMiseError"><code class="xref py py-class docutils literal notranslate"><span class="pre">SrMiseError</span></code></a></p>
-<p>diffpy.srmise exception class.  Requested PDF key can’t be found.</p>
+<p>diffpy.srmise exception class.</p>
+<p>Requested PDF key can’t be found.</p>
 </dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="diffpy.srmise.srmiseerrors.SrMiseQmaxError">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.srmiseerrors.</span></span><span class="sig-name descname"><span class="pre">SrMiseQmaxError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/srmiseerrors.html#SrMiseQmaxError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.srmiseerrors.SrMiseQmaxError" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.srmiseerrors.</span></span><span class="sig-name descname"><span class="pre">SrMiseQmaxError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/srmiseerrors.html#SrMiseQmaxError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.srmiseerrors.SrMiseQmaxError" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#diffpy.srmise.srmiseerrors.SrMiseError" title="diffpy.srmise.srmiseerrors.SrMiseError"><code class="xref py py-class docutils literal notranslate"><span class="pre">SrMiseError</span></code></a></p>
-<p>diffpy.srmise.modelevaluator exception class.  Error when setting qmax.</p>
+<p>diffpy.srmise.modelevaluator exception class.</p>
+<p>Error when setting qmax.</p>
 </dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="diffpy.srmise.srmiseerrors.SrMiseScalingError">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.srmiseerrors.</span></span><span class="sig-name descname"><span class="pre">SrMiseScalingError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/srmiseerrors.html#SrMiseScalingError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.srmiseerrors.SrMiseScalingError" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.srmiseerrors.</span></span><span class="sig-name descname"><span class="pre">SrMiseScalingError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/srmiseerrors.html#SrMiseScalingError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.srmiseerrors.SrMiseScalingError" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#diffpy.srmise.srmiseerrors.SrMiseError" title="diffpy.srmise.srmiseerrors.SrMiseError"><code class="xref py py-class docutils literal notranslate"><span class="pre">SrMiseError</span></code></a></p>
-<p>diffpy.srmise.peaks exception class.  Error when scaling a peak function.</p>
+<p>diffpy.srmise.peaks exception class.</p>
+<p>Error when scaling a peak function.</p>
 </dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="diffpy.srmise.srmiseerrors.SrMiseStaticOwnerError">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.srmiseerrors.</span></span><span class="sig-name descname"><span class="pre">SrMiseStaticOwnerError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/srmiseerrors.html#SrMiseStaticOwnerError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.srmiseerrors.SrMiseStaticOwnerError" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.srmiseerrors.</span></span><span class="sig-name descname"><span class="pre">SrMiseStaticOwnerError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/srmiseerrors.html#SrMiseStaticOwnerError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.srmiseerrors.SrMiseStaticOwnerError" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#diffpy.srmise.srmiseerrors.SrMiseError" title="diffpy.srmise.srmiseerrors.SrMiseError"><code class="xref py py-class docutils literal notranslate"><span class="pre">SrMiseError</span></code></a></p>
-<p>diffpy.srmise exception class.  Attempt to change owner of static model part.</p>
+<p>diffpy.srmise exception class.</p>
+<p>Attempt to change owner of static model part.</p>
 </dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="diffpy.srmise.srmiseerrors.SrMiseTransformationError">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.srmiseerrors.</span></span><span class="sig-name descname"><span class="pre">SrMiseTransformationError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/srmiseerrors.html#SrMiseTransformationError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.srmiseerrors.SrMiseTransformationError" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.srmiseerrors.</span></span><span class="sig-name descname"><span class="pre">SrMiseTransformationError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/srmiseerrors.html#SrMiseTransformationError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.srmiseerrors.SrMiseTransformationError" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#diffpy.srmise.srmiseerrors.SrMiseError" title="diffpy.srmise.srmiseerrors.SrMiseError"><code class="xref py py-class docutils literal notranslate"><span class="pre">SrMiseError</span></code></a></p>
-<p>diffpy.srmise exception class.  Error transforming model/covariance parameters.</p>
+<p>diffpy.srmise exception class.</p>
+<p>Error transforming model/covariance parameters.</p>
 </dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="diffpy.srmise.srmiseerrors.SrMiseUndefinedCovarianceError">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.srmiseerrors.</span></span><span class="sig-name descname"><span class="pre">SrMiseUndefinedCovarianceError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/srmiseerrors.html#SrMiseUndefinedCovarianceError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.srmiseerrors.SrMiseUndefinedCovarianceError" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.srmiseerrors.</span></span><span class="sig-name descname"><span class="pre">SrMiseUndefinedCovarianceError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/srmiseerrors.html#SrMiseUndefinedCovarianceError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.srmiseerrors.SrMiseUndefinedCovarianceError" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#diffpy.srmise.srmiseerrors.SrMiseError" title="diffpy.srmise.srmiseerrors.SrMiseError"><code class="xref py py-class docutils literal notranslate"><span class="pre">SrMiseError</span></code></a></p>
-<p>diffpy.srmise exception class.  Attempted to perform on undefined covariance.</p>
+<p>diffpy.srmise exception class.</p>
+<p>Attempted to perform on undefined covariance.</p>
 </dd></dl>
 
 </section>
@@ -3023,7 +3198,7 @@ SrMiseStaticOwnerError: Error when changing ModelPart instance owner.</p>
 <span id="diffpy-srmise-peakextraction-module"></span><h3>diffpy.srmise.peakextraction module<a class="headerlink" href="#module-diffpy.srmise.peakextraction" title="Link to this heading"></a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="diffpy.srmise.peakextraction.PeakExtraction">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.peakextraction.</span></span><span class="sig-name descname"><span class="pre">PeakExtraction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">newvars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/peakextraction.html#PeakExtraction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.peakextraction.PeakExtraction" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.peakextraction.</span></span><span class="sig-name descname"><span class="pre">PeakExtraction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">newvars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/peakextraction.html#PeakExtraction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.peakextraction.PeakExtraction" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Class for peak extraction.</p>
 <dl class="field-list simple">
@@ -3050,7 +3225,8 @@ SrMiseStaticOwnerError: Error when changing ModelPart instance owner.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.peakextraction.PeakExtraction.add_peaks">
 <span class="sig-name descname"><span class="pre">add_peaks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">peaks</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/peakextraction.html#PeakExtraction.add_peaks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.peakextraction.PeakExtraction.add_peaks" title="Link to this definition"></a></dt>
-<dd><p>Add peaks to extracted peaks, or initial_peaks if no extracted peaks exist.</p>
+<dd><p>Add peaks to extracted peaks, or initial_peaks if no
+extracted peaks exist.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>peaks</strong> (<em>Peaks object</em>) – The peaks instance</p>
@@ -3062,7 +3238,8 @@ SrMiseStaticOwnerError: Error when changing ModelPart instance owner.</p>
 <dt class="sig sig-object py" id="diffpy.srmise.peakextraction.PeakExtraction.clear">
 <span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/peakextraction.html#PeakExtraction.clear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.peakextraction.PeakExtraction.clear" title="Link to this definition"></a></dt>
 <dd><p>Clear all members.</p>
-<p>The purpose of the method is to ensure the object is in initialized state.</p>
+<p>The purpose of the method is to ensure the object is in
+initialized state.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -3121,31 +3298,37 @@ use those specified by initial_peaks instead.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.peakextraction.PeakExtraction.extract_single">
 <span class="sig-name descname"><span class="pre">extract_single</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">recursion_depth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/peakextraction.html#PeakExtraction.extract_single"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.peakextraction.PeakExtraction.extract_single" title="Link to this definition"></a></dt>
-<dd><p>Find ModelCluster with peaks extracted from data. Return ModelCovariance instance at top level.</p>
+<dd><p>Find ModelCluster with peaks extracted from data. Return
+ModelCovariance instance at top level.</p>
 <p>Every extracted peak is one of the peak functions supplied. All
 comparisons of different peak models are performed with the class
 specified by error_method.</p>
-<p>Parameters
-recursion_depth: (1) Tracks recursion with extract_single.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>recursion_depth</strong></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.peakextraction.PeakExtraction.fit_single">
 <span class="sig-name descname"><span class="pre">fit_single</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/peakextraction.html#PeakExtraction.fit_single"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.peakextraction.PeakExtraction.fit_single" title="Link to this definition"></a></dt>
-<dd><p>Fit peaks in initial_peaks with baseline. Return ModelCovariance
-instance summarizing results.</p>
+<dd><p>Fit peaks in initial_peaks with baseline.</p>
+<p>Return ModelCovariance instance summarizing results.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.peakextraction.PeakExtraction.getrangeslice">
 <span class="sig-name descname"><span class="pre">getrangeslice</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/peakextraction.html#PeakExtraction.getrangeslice"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.peakextraction.PeakExtraction.getrangeslice" title="Link to this definition"></a></dt>
-<dd><p>Convert the ranges in terms of x-coordinates to a slice object.</p>
+<dd><p>Convert the ranges in terms of x-coordinates to a slice
+object.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.peakextraction.PeakExtraction.plot">
 <span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/peakextraction.html#PeakExtraction.plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.peakextraction.PeakExtraction.plot" title="Link to this definition"></a></dt>
-<dd><p>Convenience function to plot data and extracted peaks with matplotlib.</p>
+<dd><p>Convenience function to plot data and extracted peaks with
+matplotlib.</p>
 <p>Uses initial peaks instead if no peaks have been extracted.</p>
 <p>Takes same keywords as ModelCluster.plottable()</p>
 <dl class="field-list simple">
@@ -3158,7 +3341,7 @@ instance summarizing results.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.peakextraction.PeakExtraction.read">
 <span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/peakextraction.html#PeakExtraction.read"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.peakextraction.PeakExtraction.read" title="Link to this definition"></a></dt>
-<dd><p>load PeakExtraction object from file</p>
+<dd><p>Load PeakExtraction object from file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>filename</strong> (<em>str</em>) – The file from which to read</p>
@@ -3214,7 +3397,8 @@ instance summarizing results.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.peakextraction.PeakExtraction.write">
 <span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/peakextraction.html#PeakExtraction.write"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.peakextraction.PeakExtraction.write" title="Link to this definition"></a></dt>
-<dd><p>Write string representation of PeakExtraction instance to file.</p>
+<dd><p>Write string representation of PeakExtraction instance to
+file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>filename</strong> (<em>str</em>) – The name of the file to write</p>
@@ -3250,16 +3434,16 @@ instance summarizing results.</p>
 </section>
 <section id="module-diffpy.srmise.pdfdataset">
 <span id="diffpy-srmise-pdfdataset-module"></span><h3>diffpy.srmise.pdfdataset module<a class="headerlink" href="#module-diffpy.srmise.pdfdataset" title="Link to this heading"></a></h3>
-<p>class PDFDataSet for experimental PDF data.</p>
+<p>Class PDFDataSet for experimental PDF data.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="diffpy.srmise.pdfdataset.PDFComponent">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.pdfdataset.</span></span><span class="sig-name descname"><span class="pre">PDFComponent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/pdfdataset.html#PDFComponent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.pdfdataset.PDFComponent" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.pdfdataset.</span></span><span class="sig-name descname"><span class="pre">PDFComponent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/pdfdataset.html#PDFComponent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.pdfdataset.PDFComponent" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Common base class.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.pdfdataset.PDFComponent.close">
 <span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/pdfdataset.html#PDFComponent.close"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.pdfdataset.PDFComponent.close" title="Link to this definition"></a></dt>
-<dd><p>close myself</p>
+<dd><p>Close myself.</p>
 <section id="parameter">
 <h4>Parameter<a class="headerlink" href="#parameter" title="Link to this heading"></a></h4>
 <dl class="simple">
@@ -3273,14 +3457,14 @@ instance summarizing results.</p>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="diffpy.srmise.pdfdataset.PDFDataFormatError">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.pdfdataset.</span></span><span class="sig-name descname"><span class="pre">PDFDataFormatError</span></span><a class="reference internal" href="../_modules/diffpy/srmise/pdfdataset.html#PDFDataFormatError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.pdfdataset.PDFDataFormatError" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.pdfdataset.</span></span><span class="sig-name descname"><span class="pre">PDFDataFormatError</span></span><a class="reference internal" href="../_modules/diffpy/srmise/pdfdataset.html#PDFDataFormatError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.pdfdataset.PDFDataFormatError" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
-<p>Exception class marking failure to proccess PDF data string.</p>
+<p>Exception class marking failure to process PDF data string.</p>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="diffpy.srmise.pdfdataset.PDFDataSet">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.pdfdataset.</span></span><span class="sig-name descname"><span class="pre">PDFDataSet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/pdfdataset.html#PDFDataSet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.pdfdataset.PDFDataSet" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.pdfdataset.</span></span><span class="sig-name descname"><span class="pre">PDFDataSet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/pdfdataset.html#PDFDataSet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.pdfdataset.PDFDataSet" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#diffpy.srmise.pdfdataset.PDFComponent" title="diffpy.srmise.pdfdataset.PDFComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">PDFComponent</span></code></a></p>
 <p>PDFDataSet is a class for experimental PDF data.</p>
 <dl class="py attribute">
@@ -3473,14 +3657,15 @@ It is retained here for backward compatibility when reading PDFgui project files
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.pdfdataset.PDFDataSet.clear">
 <span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/pdfdataset.html#PDFDataSet.clear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.pdfdataset.PDFDataSet.clear" title="Link to this definition"></a></dt>
-<dd><p>reset all data members to initial empty values</p>
-<p>The purpose of this method is to set the PDF dataset to initial empty values.</p>
+<dd><p>Reset all data members to initial empty values.</p>
+<p>The purpose of this method is to set the PDF dataset to initial
+empty values.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.pdfdataset.PDFDataSet.copy">
 <span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/pdfdataset.html#PDFDataSet.copy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.pdfdataset.PDFDataSet.copy" title="Link to this definition"></a></dt>
-<dd><p>copy self to other. if other is None, create new instance</p>
+<dd><p>Copy self to other. if other is None, create new instance.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>other</strong> (<em>PDFDataSet instance</em>) – ref to other object</p>
@@ -3497,8 +3682,8 @@ It is retained here for backward compatibility when reading PDFgui project files
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.pdfdataset.PDFDataSet.getvar">
 <span class="sig-name descname"><span class="pre">getvar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/pdfdataset.html#PDFDataSet.getvar"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.pdfdataset.PDFDataSet.getvar" title="Link to this definition"></a></dt>
-<dd><p>Obtain value corresponding to PdfFit dataset variable.
-Used by findParameters().</p>
+<dd><p>Obtain value corresponding to PdfFit dataset variable. Used
+by findParameters().</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>var</strong> (<em>str</em>) – string representation of dataset PdfFit variable.
@@ -3515,13 +3700,13 @@ Possible values: qdamp, qbroad, dscale</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="id21">
-<span class="sig-name descname"><span class="pre">persistentItems</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['robs',</span> <span class="pre">'Gobs',</span> <span class="pre">'drobs',</span> <span class="pre">'dGobs',</span> <span class="pre">'stype',</span> <span class="pre">'qmax',</span> <span class="pre">'qdamp',</span> <span class="pre">'qbroad',</span> <span class="pre">'dscale',</span> <span class="pre">'rmin',</span> <span class="pre">'rmax',</span> <span class="pre">'metadata']</span></em><a class="headerlink" href="#id21" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">persistentItems</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['robs',</span> <span class="pre">'Gobs',</span> <span class="pre">'drobs',</span> <span class="pre">'dGobs',</span> <span class="pre">'stype',</span> <span class="pre">'qmax',</span> <span class="pre">'qdamp',</span> <span class="pre">'qbroad',</span> <span class="pre">'dscale',</span> <span class="pre">'rmin',</span> <span class="pre">'rmax',</span> <span class="pre">'metadata']</span></span><a class="headerlink" href="#id21" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.pdfdataset.PDFDataSet.read">
 <span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/pdfdataset.html#PDFDataSet.read"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.pdfdataset.PDFDataSet.read" title="Link to this definition"></a></dt>
-<dd><p>load data from PDFGetX2 or PDFGetN gr file</p>
+<dd><p>Load data from PDFGetX2 or PDFGetN gr file.</p>
 <dl class="simple">
 <dt>filename<span class="classifier">str</span></dt><dd><p>file to read from</p>
 </dd>
@@ -3536,28 +3721,32 @@ Possible values: qdamp, qbroad, dscale</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.pdfdataset.PDFDataSet.readStr">
 <span class="sig-name descname"><span class="pre">readStr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datastring</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/pdfdataset.html#PDFDataSet.readStr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.pdfdataset.PDFDataSet.readStr" title="Link to this definition"></a></dt>
-<dd><p>read experimental PDF data from a string</p>
+<dd><p>Read experimental PDF data from a string.</p>
 <section id="id22">
 <h4>Parameter<a class="headerlink" href="#id22" title="Link to this heading"></a></h4>
 <dl class="simple">
 <dt>datastring<span class="classifier">str</span></dt><dd><p>string of raw data</p>
 </dd>
 </dl>
-<p>Returns
-self</p>
+<dl class="field-list simple">
+<dt class="field-odd">rtype<span class="colon">:</span></dt>
+<dd class="field-odd"><p>self</p>
+</dd>
+</dl>
 </section>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="id23">
-<span class="sig-name descname"><span class="pre">refinableVars</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'dscale':</span> <span class="pre">None,</span> <span class="pre">'qbroad':</span> <span class="pre">None,</span> <span class="pre">'qdamp':</span> <span class="pre">None}</span></em><a class="headerlink" href="#id23" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">refinableVars</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'dscale':</span> <span class="pre">None,</span> <span class="pre">'qbroad':</span> <span class="pre">None,</span> <span class="pre">'qdamp':</span> <span class="pre">None}</span></span><a class="headerlink" href="#id23" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.pdfdataset.PDFDataSet.setvar">
 <span class="sig-name descname"><span class="pre">setvar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/pdfdataset.html#PDFDataSet.setvar"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.pdfdataset.PDFDataSet.setvar" title="Link to this definition"></a></dt>
 <dd><p>Assign a data member using PdfFit-style variable notation.
-This method is typically utilized by the <cite>applyParameters()</cite> function.</p>
+This method is typically utilized by the <cite>applyParameters()</cite>
+function.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -3617,7 +3806,7 @@ Possible values include: ‘qdamp’, ‘qbroad’, ‘dscale’.</p></li>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, The Trustees of Columbia University in the City of New York.</p>
+    <p>&#169; Copyright 2026, The Trustees of Columbia University in the City of New York.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

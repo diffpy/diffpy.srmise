@@ -5,16 +5,19 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>diffpy.srmise.baselines.nanospherical &mdash; diffpy.srmise 0.7.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=7ab3649f" />
+  <title>diffpy.srmise.baselines.nanospherical &mdash; diffpy.srmise 0.8.0rc0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
 
   
       <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../../_static/documentation_options.js?v=b9678aa1"></script>
-      <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../../_static/documentation_options.js?v=e93019a4"></script>
+      <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../_static/copybutton.js?v=cca77546"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" /> 
@@ -43,7 +46,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../tutorial/index.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../extending.html">Extending SrMise</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../api/diffpy.srmise.html">Package API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../release.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../release.html">Release notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../license.html">License</a></li>
 </ul>
 
@@ -86,19 +89,20 @@
 <span class="c1">#</span>
 <span class="c1">##############################################################################</span>
 
-<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="kn">from</span> <span class="nn">diffpy.srmise.baselines.base</span> <span class="kn">import</span> <span class="n">BaselineFunction</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.srmise.baselines.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaselineFunction</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;diffpy.srmise&quot;</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="NanoSpherical">
 <a class="viewcode-back" href="../../../../api/diffpy.srmise.baselines.html#diffpy.srmise.baselines.nanospherical.NanoSpherical">[docs]</a>
-<span class="k">class</span> <span class="nc">NanoSpherical</span><span class="p">(</span><span class="n">BaselineFunction</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Methods for evaluation of baseline of spherical nanoparticle of uniform density.</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">NanoSpherical</span><span class="p">(</span><span class="n">BaselineFunction</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Methods for evaluation of baseline of spherical nanoparticle of</span>
+<span class="sd">    uniform density.</span>
 
 <span class="sd">    Allowed formats are</span>
 <span class="sd">    internal: [scale, radius]</span>
@@ -114,7 +118,7 @@
 <span class="sd">    Guinier et al. (1955). Small-angle Scattering from X-rays. New York: John Wiley &amp; Sons, Inc.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Cache</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Cache</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize a spherical nanoparticle baseline.</span>
 
 <span class="sd">        Parameters</span>
@@ -126,9 +130,20 @@
         <span class="c1"># Define parameterdict</span>
         <span class="n">parameterdict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;scale&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;radius&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
         <span class="n">formats</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;internal&quot;</span><span class="p">]</span>
-        <span class="n">default_formats</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;default_input&quot;</span><span class="p">:</span> <span class="s2">&quot;internal&quot;</span><span class="p">,</span> <span class="s2">&quot;default_output&quot;</span><span class="p">:</span> <span class="s2">&quot;internal&quot;</span><span class="p">}</span>
+        <span class="n">default_formats</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;default_input&quot;</span><span class="p">:</span> <span class="s2">&quot;internal&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;default_output&quot;</span><span class="p">:</span> <span class="s2">&quot;internal&quot;</span><span class="p">,</span>
+        <span class="p">}</span>
         <span class="n">metadict</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="n">BaselineFunction</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameterdict</span><span class="p">,</span> <span class="n">formats</span><span class="p">,</span> <span class="n">default_formats</span><span class="p">,</span> <span class="n">metadict</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">Cache</span><span class="p">)</span>
+        <span class="n">BaselineFunction</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">parameterdict</span><span class="p">,</span>
+            <span class="n">formats</span><span class="p">,</span>
+            <span class="n">default_formats</span><span class="p">,</span>
+            <span class="n">metadict</span><span class="p">,</span>
+            <span class="kc">None</span><span class="p">,</span>
+            <span class="n">Cache</span><span class="p">,</span>
+        <span class="p">)</span>
 
     <span class="c1"># Methods required by BaselineFunction ####</span>
 
@@ -148,7 +163,7 @@
     <span class="c1">#            emsg = &quot;Arrays r, y must have equal length.&quot;</span>
     <span class="c1">#            raise ValueError(emsg)</span>
 
-    <span class="k">def</span> <span class="nf">_jacobianraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pars</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">free</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_jacobianraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pars</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">free</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the Jacobian of the spherical baseline.</span>
 
 <span class="sd">        Parameters</span>
@@ -199,7 +214,7 @@
                 <span class="n">jacobian</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_jacobianrawradius</span><span class="p">(</span><span class="n">pars</span><span class="p">,</span> <span class="n">r</span><span class="p">[</span><span class="n">s</span><span class="p">])</span>
         <span class="k">return</span> <span class="n">jacobian</span>
 
-    <span class="k">def</span> <span class="nf">_jacobianrawscale</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pars</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_jacobianrawscale</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pars</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return partial Jacobian wrt scale without bounds checking.</span>
 
 <span class="sd">        Parameters</span>
@@ -225,7 +240,7 @@
         <span class="n">sign</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">pars</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
         <span class="k">return</span> <span class="o">-</span><span class="n">sign</span> <span class="o">*</span> <span class="n">r</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="mf">3.0</span> <span class="o">/</span> <span class="mf">4.0</span><span class="p">)</span> <span class="o">*</span> <span class="n">rdivR</span> <span class="o">+</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">16.0</span><span class="p">)</span> <span class="o">*</span> <span class="n">rdivR</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_jacobianrawradius</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pars</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_jacobianrawradius</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pars</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return partial Jacobian wrt radius without bounds checking.</span>
 
 <span class="sd">        Parameters</span>
@@ -249,7 +264,7 @@
         <span class="n">sign</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">pars</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
         <span class="k">return</span> <span class="n">sign</span> <span class="o">*</span> <span class="n">s</span> <span class="o">*</span> <span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="n">r</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">r</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">R</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">16</span> <span class="o">*</span> <span class="n">R</span><span class="o">**</span><span class="mi">4</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_transform_parametersraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pars</span><span class="p">,</span> <span class="n">in_format</span><span class="p">,</span> <span class="n">out_format</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_transform_parametersraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pars</span><span class="p">,</span> <span class="n">in_format</span><span class="p">,</span> <span class="n">out_format</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert parameter values from in_format to out_format.</span>
 
 <span class="sd">        Parameters</span>
@@ -287,8 +302,9 @@
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Argument &#39;out_format&#39; must be one of </span><span class="si">%s</span><span class="s2">.&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">parformats</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">temp</span>
 
-    <span class="k">def</span> <span class="nf">_valueraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pars</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return value of spherical baseline for the given parameters and r values.</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_valueraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pars</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return value of spherical baseline for the given parameters</span>
+<span class="sd">        and r values.</span>
 
 <span class="sd">        Outside the interval [0, radius] the baseline is 0.</span>
 
@@ -320,8 +336,9 @@
             <span class="n">out</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_valueraw2</span><span class="p">(</span><span class="n">pars</span><span class="p">,</span> <span class="n">r</span><span class="p">[</span><span class="n">s</span><span class="p">])</span>
             <span class="k">return</span> <span class="n">out</span>
 
-    <span class="k">def</span> <span class="nf">_valueraw2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pars</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return value of spherical baseline without bounds checking for given parameters and r values.</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_valueraw2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pars</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return value of spherical baseline without bounds checking</span>
+<span class="sd">        for given parameters and r values.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -342,8 +359,8 @@
         <span class="n">rdivR</span> <span class="o">=</span> <span class="n">r</span> <span class="o">/</span> <span class="n">R</span>
         <span class="k">return</span> <span class="o">-</span><span class="n">s</span> <span class="o">*</span> <span class="n">r</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="mf">3.0</span> <span class="o">/</span> <span class="mf">4.0</span><span class="p">)</span> <span class="o">*</span> <span class="n">rdivR</span> <span class="o">+</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">16.0</span><span class="p">)</span> <span class="o">*</span> <span class="n">rdivR</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_getdomain</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pars</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return slice object for which r &gt; 0 and r &lt; twice the radius</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_getdomain</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pars</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return slice object for which r &gt; 0 and r &lt; twice the radius.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -363,7 +380,7 @@
 
 <div class="viewcode-block" id="NanoSpherical.getmodule">
 <a class="viewcode-back" href="../../../../api/diffpy.srmise.baselines.html#diffpy.srmise.baselines.nanospherical.NanoSpherical.getmodule">[docs]</a>
-    <span class="k">def</span> <span class="nf">getmodule</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">getmodule</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="vm">__name__</span></div>
 </div>
 
@@ -405,7 +422,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, The Trustees of Columbia University in the City of New York.</p>
+    <p>&#169; Copyright 2026, The Trustees of Columbia University in the City of New York.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

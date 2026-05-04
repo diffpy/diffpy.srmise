@@ -6,21 +6,24 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Summary of SrMise parameters &mdash; diffpy.srmise 0.7.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=7ab3649f" />
+  <title>Summary of SrMise parameters &mdash; diffpy.srmise 0.8.0rc0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=b9678aa1"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/documentation_options.js?v=e93019a4"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=cca77546"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Peak fitting" href="fit_initial.html" />
-    <link rel="prev" title="Peak extraction of a single peak" href="extract_single_peak.html" /> 
+    <link rel="next" title="Peak fitting" href="fit-initial.html" />
+    <link rel="prev" title="Peak extraction of a single peak" href="extract-single-peak.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -44,17 +47,34 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorial</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="extract_single_peak.html">Peak extraction of a single peak</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Summary of SrMise parameters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="fit_initial.html">Peak fitting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="query_results.html">Querying SrMise results</a></li>
-<li class="toctree-l2"><a class="reference internal" href="multimodel_known_uncertainties.html">Multimodeling with known uncertainty</a></li>
-<li class="toctree-l2"><a class="reference internal" href="multimodel_unknown_uncertainties.html">Multimodeling with unknown uncertainty</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#purpose">Purpose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#overview">Overview</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#getting-started">Getting Started</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="extract-single-peak.html">Peak extraction of a single peak</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Summary of SrMise parameters</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#baseline">baseline</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cres">cres</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dg">dg</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#initial-peaks">initial_peaks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nyquist">nyquist</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pf">pf</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#qmax">qmax</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rng">rng</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#supersample">supersample</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#script-parameter-summary-py">Script (parameter-summary.py)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="fit-initial.html">Peak fitting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="query-results.html">Querying SrMise results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="multimodel-known-uncertainties.html">Multimodeling with known uncertainty</a></li>
+<li class="toctree-l3"><a class="reference internal" href="multimodel-unknown-uncertainties.html">Multimodeling with unknown uncertainty</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../extending.html">Extending SrMise</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api/diffpy.srmise.html">Package API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../release.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release.html">Release notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 </ul>
 
@@ -75,7 +95,7 @@
           <li class="breadcrumb-item"><a href="index.html">Tutorial</a></li>
       <li class="breadcrumb-item active">Summary of SrMise parameters</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/tutorial/parameter_summary.rst.txt" rel="nofollow"> View page source</a>
+              <a href="https://github.com/diffpy/diffpy.srmise/blob/main/docs/source/tutorial/parameter-summary.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -88,7 +108,7 @@
 <section id="summary-of-srmise-parameters">
 <h1>Summary of SrMise parameters<a class="headerlink" href="#summary-of-srmise-parameters" title="Link to this heading"></a></h1>
 <div class="line-block">
-<div class="line">Script: <a class="reference internal" href="#parameter-summary-py">parameter_summary.py</a></div>
+<div class="line">Script: <a href="#id5"><span class="problematic" id="id6">parameter_summary.py_</span></a></div>
 <div class="line">Sample: <a class="reference external" href="index.html#tio2">TiO<sub>2</sub></a></div>
 </div>
 <p>This example offers an overview of the SrMise extraction parameters, and
@@ -96,7 +116,7 @@ demonstrates their use by explicitly setting them to reasonable values in the
 context of a titanium dioxide (rutile) X-ray PDF with unreliable uncertainties.</p>
 <p>For brevity, code snippets below simply add an entry to the dictionary <code class="docutils literal notranslate"><span class="pre">kwds</span></code>,
 which sets SrMise parameters as part of the following pattern:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">diffpy.srmise</span> <span class="kn">import</span> <span class="n">PDFPeakExtraction</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.srmise</span><span class="w"> </span><span class="kn">import</span> <span class="n">PDFPeakExtraction</span>
 
 <span class="o">...</span>
 
@@ -108,10 +128,10 @@ which sets SrMise parameters as part of the following pattern:</p>
 </pre></div>
 </div>
 <p>Run and plot the results of this example with</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">parameter_summary</span><span class="o">.</span><span class="n">py</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">parameter</span><span class="o">-</span><span class="n">summary</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
-<p><img alt="images/parameter_summary1.png" src="../_images/parameter_summary1.png" /></p>
+<p><img alt="images/parameter_summary1.png" src="../_images/parameter-summary1.png" /></p>
 <section id="baseline">
 <h2>baseline<a class="headerlink" href="#baseline" title="Link to this heading"></a></h2>
 <div class="line-block">
@@ -152,7 +172,7 @@ parameters.</p></li>
 reasonable for the TiO<sub>2</sub> sample.  This baseline may be utilized from the
 command-line with the <code class="docutils literal notranslate"><span class="pre">--bpoly1</span> <span class="pre">-0.65</span> <span class="pre">0c</span></code> options, or in a script as
 follows:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">diffpy.srmise.baselines</span> <span class="kn">import</span> <span class="n">Polynomial</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.srmise.baselines</span><span class="w"> </span><span class="kn">import</span> <span class="n">Polynomial</span>
 
 <span class="o">...</span>
 
@@ -163,11 +183,11 @@ follows:</p>
 </pre></div>
 </div>
 <p>Run the following command to view this baseline.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">srmise</span> <span class="n">data</span><span class="o">/</span><span class="n">TiO2_fine_qmax26</span><span class="o">.</span><span class="n">gr</span> <span class="o">--</span><span class="n">bpoly1</span> <span class="o">-</span><span class="mf">0.65</span> <span class="mi">0</span><span class="n">c</span> <span class="o">--</span><span class="nb">range</span> <span class="mi">0</span> <span class="mi">10</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">srmise</span> <span class="n">data</span><span class="o">/</span><span class="n">TiO2</span><span class="o">-</span><span class="n">fine</span><span class="o">-</span><span class="n">qmax26</span><span class="o">.</span><span class="n">gr</span> <span class="o">--</span><span class="n">bpoly1</span> <span class="o">-</span><span class="mf">0.65</span> <span class="mi">0</span><span class="n">c</span> <span class="o">--</span><span class="nb">range</span> <span class="mi">0</span> <span class="mi">10</span>
     <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">extract</span> <span class="o">--</span><span class="n">plot</span>
 </pre></div>
 </div>
-<p><img alt="images/parameter_summary2.png" src="../_images/parameter_summary2.png" /></p>
+<p><img alt="images/parameter_summary2.png" src="../_images/parameter-summary2.png" /></p>
 </section>
 <section id="cres">
 <h2>cres<a class="headerlink" href="#cres" title="Link to this heading"></a></h2>
@@ -183,7 +203,7 @@ cluster if the distance (along the r-axis) to the nearest cluster, d, is
 less than d<sub>c</sub>. (See image.)  Otherwise this point is the first in a new
 cluster.  Note that SrMise oversamples the PDF during the clustering phase,
 so values less than the Nyquist rate may be specified.</p>
-<p><img alt="images/parameter_summary3.png" src="../_images/parameter_summary3.png" /></p>
+<p><img alt="images/parameter_summary3.png" src="../_images/parameter-summary3.png" /></p>
 <hr class="docutils" />
 <p>Example</p>
 <p>A clustering resolution of 0.05, about half the Nyquist sampling interval for
@@ -243,7 +263,7 @@ prevents removal by pruning.</p>
 which takes a position and attempts to estimate peak parameters.  The second
 is manual specification, where the user provides initial values for all
 peak parameters.</p>
-<p>SrMise version 0.7.0 does not support setting initial_peaks from the
+<p>SrMise version 0.8.0rc0 does not support setting initial_peaks from the
 command-line.</p>
 <hr class="docutils" />
 <p>Example</p>
@@ -256,7 +276,7 @@ widths of these latter peaks have been fixed at a reasonable value for a peak
 arising from a single atomic pair distance.  Although initial_peaks may be set
 directly, the  <code class="docutils literal notranslate"><span class="pre">estimate_peak()</span></code> and <code class="docutils literal notranslate"><span class="pre">addpeaks()</span></code> methods of
 PDFPeakExtraction used below are often more convenient.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">diffpy.srmise.peaks</span> <span class="kn">import</span> <span class="n">GaussianOverR</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.srmise.peaks</span><span class="w"> </span><span class="kn">import</span> <span class="n">GaussianOverR</span>
 
 <span class="n">pf</span> <span class="o">=</span> <span class="n">GaussianOverR</span><span class="p">(</span><span class="n">maxwidth</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
 
@@ -275,7 +295,7 @@ PDFPeakExtraction used below are often more convenient.</p>
 <span class="n">ppe</span><span class="o">.</span><span class="n">addpeaks</span><span class="p">(</span><span class="n">peaks</span><span class="p">)</span> <span class="c1"># adds to initial_peaks</span>
 </pre></div>
 </div>
-<p><img alt="images/parameter_summary4.png" src="../_images/parameter_summary4.png" /></p>
+<p><img alt="images/parameter_summary4.png" src="../_images/parameter-summary4.png" /></p>
 <p>While initial peaks are fixed during the early stages of peak extraction, in
 later stages they are treated as any other peak identified by SrMise.  In
 particular, they may be removed by pruning.  This can be prevented by setting
@@ -333,7 +353,7 @@ should be specified explicitly if using SrMise for peak fitting.</p></li>
 <p>The default peak function is reasonable for the TiO<sub>2</sub> example, but can be
 explicitly specified from the command-line with <code class="docutils literal notranslate"><span class="pre">--pf</span> <span class="pre">&quot;GaussianOverR(0.7)&quot;</span></code>.
 In scripts, use</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">diffpy.srmise.peaks</span> <span class="kn">import</span> <span class="n">GaussianOverR</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.srmise.peaks</span><span class="w"> </span><span class="kn">import</span> <span class="n">GaussianOverR</span>
 
 <span class="o">...</span>
 
@@ -412,7 +432,7 @@ a script use</p>
 <p>or <code class="docutils literal notranslate"><span class="pre">--supersample</span> <span class="pre">4.0</span></code> at the command-line.</p>
 </section>
 <section id="script-parameter-summary-py">
-<span id="parameter-summary-py"></span><h2>Script (parameter_summary.py)<a class="headerlink" href="#script-parameter-summary-py" title="Link to this heading"></a></h2>
+<span id="parameter-summary-py"></span><h2>Script (parameter-summary.py)<a class="headerlink" href="#script-parameter-summary-py" title="Link to this heading"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
 <span class="c1">##############################################################################</span>
 <span class="c1">#</span>
@@ -440,24 +460,25 @@ a script use</p>
 <span class="sd">nyquist (whether to use Nyquist sampling)</span>
 <span class="sd">supersample (minimum amount to oversample during initial stages)</span>
 <span class="sd">cres (clustering resolution)</span>
-<span class="sd">initial_peaks (peaks already assumed to exist during extraction)&quot;&quot;&quot;</span>
+<span class="sd">initial_peaks (peaks already assumed to exist during extraction)</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
-<span class="kn">from</span> <span class="nn">diffpy.srmise.applications.plot</span> <span class="kn">import</span> <span class="n">makeplot</span>
-<span class="kn">from</span> <span class="nn">diffpy.srmise.baselines.polynomial</span> <span class="kn">import</span> <span class="n">Polynomial</span>
-<span class="kn">from</span> <span class="nn">diffpy.srmise.pdfpeakextraction</span> <span class="kn">import</span> <span class="n">PDFPeakExtraction</span>
-<span class="kn">from</span> <span class="nn">diffpy.srmise.peaks.gaussianoverr</span> <span class="kn">import</span> <span class="n">GaussianOverR</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.srmise.applications.plot</span><span class="w"> </span><span class="kn">import</span> <span class="n">makeplot</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.srmise.baselines.polynomial</span><span class="w"> </span><span class="kn">import</span> <span class="n">Polynomial</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.srmise.pdfpeakextraction</span><span class="w"> </span><span class="kn">import</span> <span class="n">PDFPeakExtraction</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.srmise.peaks.gaussianoverr</span><span class="w"> </span><span class="kn">import</span> <span class="n">GaussianOverR</span>
 
 
-<span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 
     <span class="c1"># Initialize peak extraction</span>
     <span class="c1"># Create peak extraction object</span>
     <span class="n">ppe</span> <span class="o">=</span> <span class="n">PDFPeakExtraction</span><span class="p">()</span>
 
     <span class="c1"># Load the PDF from a file</span>
-    <span class="n">ppe</span><span class="o">.</span><span class="n">loadpdf</span><span class="p">(</span><span class="s2">&quot;data/TiO2_fine_qmax26.gr&quot;</span><span class="p">)</span>
+    <span class="n">ppe</span><span class="o">.</span><span class="n">loadpdf</span><span class="p">(</span><span class="s2">&quot;data/TiO2-fine-qmax26.gr&quot;</span><span class="p">)</span>
 
     <span class="c1"># Set up extraction parameters.</span>
     <span class="c1"># In this section we&#39;ll examine the major extraction parameters in detail.</span>
@@ -634,8 +655,8 @@ a script use</p>
     <span class="c1"># half-maximum), and area of of extracted peaks.  The reported values</span>
     <span class="c1"># are for Gaussians in the radial distribution function (RDF) corresponding</span>
     <span class="c1"># to this PDF.</span>
-    <span class="n">ppe</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;output/parameter_summary.srmise&quot;</span><span class="p">)</span>
-    <span class="n">ppe</span><span class="o">.</span><span class="n">writepwa</span><span class="p">(</span><span class="s2">&quot;output/parameter_summary.pwa&quot;</span><span class="p">)</span>
+    <span class="n">ppe</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;output/parameter-summary.srmise&quot;</span><span class="p">)</span>
+    <span class="n">ppe</span><span class="o">.</span><span class="n">writepwa</span><span class="p">(</span><span class="s2">&quot;output/parameter-summary.pwa&quot;</span><span class="p">)</span>
 
     <span class="c1"># Plot results.</span>
     <span class="c1"># Display plot of extracted peak.  It is also possible to plot an existing</span>
@@ -658,14 +679,14 @@ a script use</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="extract_single_peak.html" class="btn btn-neutral float-left" title="Peak extraction of a single peak" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="fit_initial.html" class="btn btn-neutral float-right" title="Peak fitting" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="extract-single-peak.html" class="btn btn-neutral float-left" title="Peak extraction of a single peak" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="fit-initial.html" class="btn btn-neutral float-right" title="Peak fitting" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, The Trustees of Columbia University in the City of New York.</p>
+    <p>&#169; Copyright 2026, The Trustees of Columbia University in the City of New York.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

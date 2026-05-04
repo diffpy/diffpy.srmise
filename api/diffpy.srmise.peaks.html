@@ -6,16 +6,19 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>diffpy.srmise.peaks package &mdash; diffpy.srmise 0.7.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=7ab3649f" />
+  <title>diffpy.srmise.peaks package &mdash; diffpy.srmise 0.8.0rc0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=b9678aa1"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/documentation_options.js?v=e93019a4"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=cca77546"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -46,13 +49,20 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../extending.html">Extending SrMise</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="diffpy.srmise.html">Package API</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">diffpy.srmise.peaks package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="diffpy.srmise.modelevaluators.html">diffpy.srmise.modelevaluators package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="diffpy.srmise.applications.html">diffpy.srmise.applications package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="diffpy.srmise.baselines.html">diffpy.srmise.baselines package</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="diffpy.srmise.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">diffpy.srmise.peaks package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../release.html">Release Notes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="diffpy.srmise.modelevaluators.html">diffpy.srmise.modelevaluators package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="diffpy.srmise.applications.html">diffpy.srmise.applications package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="diffpy.srmise.baselines.html">diffpy.srmise.baselines package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="diffpy.srmise.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../release.html">Release notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 </ul>
 
@@ -73,7 +83,7 @@
           <li class="breadcrumb-item"><a href="diffpy.srmise.html">diffpy.srmise package</a></li>
       <li class="breadcrumb-item active">diffpy.srmise.peaks package</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/api/diffpy.srmise.peaks.rst.txt" rel="nofollow"> View page source</a>
+              <a href="https://github.com/diffpy/diffpy.srmise/blob/main/docs/source/api/diffpy.srmise.peaks.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -89,9 +99,10 @@
 <span id="diffpy-srmise-peaks-gaussianoverr-module"></span><h3>diffpy.srmise.peaks.gaussianoverr module<a class="headerlink" href="#module-diffpy.srmise.peaks.gaussianoverr" title="Link to this heading"></a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="diffpy.srmise.peaks.gaussianoverr.GaussianOverR">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.peaks.gaussianoverr.</span></span><span class="sig-name descname"><span class="pre">GaussianOverR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">maxwidth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/peaks/gaussianoverr.html#GaussianOverR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.peaks.gaussianoverr.GaussianOverR" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.peaks.gaussianoverr.</span></span><span class="sig-name descname"><span class="pre">GaussianOverR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">maxwidth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/peaks/gaussianoverr.html#GaussianOverR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.peaks.gaussianoverr.GaussianOverR" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#diffpy.srmise.peaks.base.PeakFunction" title="diffpy.srmise.peaks.base.PeakFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">PeakFunction</span></code></a></p>
-<p>Methods for evaluation and parameter estimation of width-limited Gaussian/r.</p>
+<p>Methods for evaluation and parameter estimation of width-limited
+Gaussian/r.</p>
 <p>Allowed formats are
 internal: [position, parameterized width-squared, area]
 pwa: [position, full width at half maximum, area]
@@ -126,7 +137,7 @@ reason.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.peaks.gaussianoverr.GaussianOverR.getmodule">
 <span class="sig-name descname"><span class="pre">getmodule</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/peaks/gaussianoverr.html#GaussianOverR.getmodule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.peaks.gaussianoverr.GaussianOverR.getmodule" title="Link to this definition"></a></dt>
-<dd><p>Return ‘diffpy.srmise.basefunction’</p>
+<dd><p>Return ‘diffpy.srmise.basefunction’.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -176,9 +187,10 @@ SrMiseScalingError if the parameters cannot be scaled.</p>
 <span id="diffpy-srmise-peaks-terminationripples-module"></span><h3>diffpy.srmise.peaks.terminationripples module<a class="headerlink" href="#module-diffpy.srmise.peaks.terminationripples" title="Link to this heading"></a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="diffpy.srmise.peaks.terminationripples.TerminationRipples">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.peaks.terminationripples.</span></span><span class="sig-name descname"><span class="pre">TerminationRipples</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qmax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extension</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">supersample</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/peaks/terminationripples.html#TerminationRipples"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.peaks.terminationripples.TerminationRipples" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.peaks.terminationripples.</span></span><span class="sig-name descname"><span class="pre">TerminationRipples</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qmax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extension</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">supersample</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/peaks/terminationripples.html#TerminationRipples"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.peaks.terminationripples.TerminationRipples" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#diffpy.srmise.peaks.base.PeakFunction" title="diffpy.srmise.peaks.base.PeakFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">PeakFunction</span></code></a></p>
-<p>Methods for evaluation and parameter estimation of a peak function with termination ripples.</p>
+<p>Methods for evaluation and parameter estimation of a peak
+function with termination ripples.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.peaks.terminationripples.TerminationRipples.cut_freq">
 <span class="sig-name descname"><span class="pre">cut_freq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sequence</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/peaks/terminationripples.html#TerminationRipples.cut_freq"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.peaks.terminationripples.TerminationRipples.cut_freq" title="Link to this definition"></a></dt>
@@ -247,7 +259,7 @@ reason.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.peaks.terminationripples.TerminationRipples.getmodule">
 <span class="sig-name descname"><span class="pre">getmodule</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/peaks/terminationripples.html#TerminationRipples.getmodule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.peaks.terminationripples.TerminationRipples.getmodule" title="Link to this definition"></a></dt>
-<dd><p>Return ‘diffpy.srmise.basefunction’</p>
+<dd><p>Return ‘diffpy.srmise.basefunction’.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -277,7 +289,8 @@ previously calculated values instead. Default is None</p></li>
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.peaks.terminationripples.TerminationRipples.scale_at">
 <span class="sig-name descname"><span class="pre">scale_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/peaks/terminationripples.html#TerminationRipples.scale_at"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.peaks.terminationripples.TerminationRipples.scale_at" title="Link to this definition"></a></dt>
-<dd><p>Change parameters so value(x)-&gt;scale*value(x) for the base function.</p>
+<dd><p>Change parameters so value(x)-&gt;scale*value(x) for the base
+function.</p>
 <p>Does not change position or height of peak’s maxima.  Raises
 SrMiseScalingError if the parameters cannot be scaled.</p>
 <dl class="field-list simple">
@@ -304,7 +317,8 @@ SrMiseScalingError if the parameters cannot be scaled.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.peaks.terminationripples.TerminationRipples.value">
 <span class="sig-name descname"><span class="pre">value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">peak</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rng</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/peaks/terminationripples.html#TerminationRipples.value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.peaks.terminationripples.TerminationRipples.value" title="Link to this definition"></a></dt>
-<dd><p>Calculate (rippled) value of peak, possibly restricted by range.</p>
+<dd><p>Calculate (rippled) value of peak, possibly restricted by
+range.</p>
 <p>This function overrides its counterpart in PeakFunction in order
 to minimize the impact of edge-effects from introducing termination
 ripples into an existing peak function.</p>
@@ -335,16 +349,22 @@ previously calculated values instead. Default is None.</p></li>
 <span id="diffpy-srmise-peaks-base-module"></span><h3>diffpy.srmise.peaks.base module<a class="headerlink" href="#module-diffpy.srmise.peaks.base" title="Link to this heading"></a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="diffpy.srmise.peaks.base.Peak">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.peaks.base.</span></span><span class="sig-name descname"><span class="pre">Peak</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">owner</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pars</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">free</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">removable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">static_owner</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/peaks/base.html#Peak"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.peaks.base.Peak" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.peaks.base.</span></span><span class="sig-name descname"><span class="pre">Peak</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">owner</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pars</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">free</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">removable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">static_owner</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/peaks/base.html#Peak"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.peaks.base.Peak" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="diffpy.srmise.html#diffpy.srmise.modelparts.ModelPart" title="diffpy.srmise.modelparts.ModelPart"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModelPart</span></code></a></p>
-<p>Represents a single peak associated with a PeakFunction subclass.</p>
+<p>Represents a single peak associated with a PeakFunction
+subclass.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.peaks.base.Peak.factory">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">factory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">peakstr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ownerlist</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/peaks/base.html#Peak.factory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.peaks.base.Peak.factory" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">factory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">peakstr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ownerlist</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/peaks/base.html#Peak.factory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.peaks.base.Peak.factory" title="Link to this definition"></a></dt>
 <dd><p>Instantiate a Peak from a string.</p>
-<p>Parameters:
-peakstr: string representing peak
-ownerlist: List of BaseFunctions that owner is in</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>peakstr</strong> (<em>string representing peak</em>)</p></li>
+<li><p><strong>ownerlist</strong> (<em>List</em><em> of </em><em>BaseFunctions that owner is in</em>)</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -354,17 +374,23 @@ ownerlist: List of BaseFunctions that owner is in</p>
 <p>Does not change position or height of peak’s maxima.  If parameters
 that are not free would be changed, or violates other constraints,
 the peak is not adjusted.</p>
-<p>Parameters
-x: (float) Position of the border
-scale: (float &gt; 0) Amount by which to scale.</p>
-<p>Returns True if parameters were scaled, False otherwise.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>(</em><em>float</em><em>) </em><em>Position</em><em> of </em><em>the border</em>)</p></li>
+<li><p><strong>scale</strong> (<em>(</em><em>float &gt; 0</em><em>) </em><em>Amount by which to scale.</em>)</p></li>
+<li><p><strong>scaled</strong> (<em>Returns True if parameters were</em>)</p></li>
+<li><p><strong>otherwise.</strong> (<em>False</em>)</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="diffpy.srmise.peaks.base.PeakFunction">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.peaks.base.</span></span><span class="sig-name descname"><span class="pre">PeakFunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameterdict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parformats</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_formats</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/peaks/base.html#PeakFunction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.peaks.base.PeakFunction" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.peaks.base.</span></span><span class="sig-name descname"><span class="pre">PeakFunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameterdict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parformats</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_formats</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/peaks/base.html#PeakFunction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.peaks.base.PeakFunction" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="diffpy.srmise.html#diffpy.srmise.basefunction.BaseFunction" title="diffpy.srmise.basefunction.BaseFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseFunction</span></code></a></p>
 <p>Base class for functions which represent peaks.</p>
 <section id="class-members">
@@ -407,13 +433,14 @@ transform_parameters()</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.peaks.base.PeakFunction.actualize">
 <span class="sig-name descname"><span class="pre">actualize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">in_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'default_input'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">free</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">removable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">static_owner</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/peaks/base.html#PeakFunction.actualize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.peaks.base.PeakFunction.actualize" title="Link to this definition"></a></dt>
-<dd><p>Create ModelPart instance of self with given parameters.  (“Virtual” method)</p>
+<dd><p>Create ModelPart instance of self with given parameters.</p>
+<p>(“Virtual” method)</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.peaks.base.PeakFunction.getmodule">
 <span class="sig-name descname"><span class="pre">getmodule</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/peaks/base.html#PeakFunction.getmodule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.peaks.base.PeakFunction.getmodule" title="Link to this definition"></a></dt>
-<dd><p>Return ‘diffpy.srmise.basefunction’</p>
+<dd><p>Return ‘diffpy.srmise.basefunction’.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -426,26 +453,34 @@ transform_parameters()</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="diffpy.srmise.peaks.base.Peaks">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.peaks.base.</span></span><span class="sig-name descname"><span class="pre">Peaks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/peaks/base.html#Peaks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.peaks.base.Peaks" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.peaks.base.</span></span><span class="sig-name descname"><span class="pre">Peaks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/peaks/base.html#Peaks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.peaks.base.Peaks" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="diffpy.srmise.html#diffpy.srmise.modelparts.ModelParts" title="diffpy.srmise.modelparts.ModelParts"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModelParts</span></code></a></p>
 <p>A collection for Peak objects.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.peaks.base.Peaks.argsort">
 <span class="sig-name descname"><span class="pre">argsort</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'position'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/peaks/base.html#Peaks.argsort"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.peaks.base.Peaks.argsort" title="Link to this definition"></a></dt>
-<dd><p>Return sequence of indices which sort peaks in order specified by key.</p>
+<dd><p>Return sequence of indices which sort peaks in order
+specified by key.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.peaks.base.Peaks.match_at">
 <span class="sig-name descname"><span class="pre">match_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/peaks/base.html#Peaks.match_at"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.peaks.base.Peaks.match_at" title="Link to this definition"></a></dt>
-<dd><p>Alter peaks so their sum at x is y, preserving each peak’s maximum.</p>
+<dd><p>Alter peaks so their sum at x is y, preserving each peak’s
+maximum.</p>
 <p>Each peak is scaled equally.  Peaks with fixed parameters, a maximum
 very close to x, or other issues may prevent optimal results.  If the
 peaks cannot be scaled at all they are left unchanged.</p>
-<p>Parameters:
-x: (float) Position at which to match.
-y: (float) Height to match.</p>
-<p>Returns True if one or more peaks was scaled, False otherwise.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>(</em><em>float</em><em>) </em><em>Position at which to match.</em>)</p></li>
+<li><p><strong>y</strong> (<em>(</em><em>float</em><em>) </em><em>Height to match.</em>)</p></li>
+<li><p><strong>scaled</strong> (<em>Returns True if one</em><em> or </em><em>more peaks was</em>)</p></li>
+<li><p><strong>otherwise.</strong> (<em>False</em>)</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -461,9 +496,10 @@ y: (float) Height to match.</p>
 <span id="diffpy-srmise-peaks-gaussian-module"></span><h3>diffpy.srmise.peaks.gaussian module<a class="headerlink" href="#module-diffpy.srmise.peaks.gaussian" title="Link to this heading"></a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="diffpy.srmise.peaks.gaussian.Gaussian">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.peaks.gaussian.</span></span><span class="sig-name descname"><span class="pre">Gaussian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">maxwidth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/peaks/gaussian.html#Gaussian"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.peaks.gaussian.Gaussian" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">diffpy.srmise.peaks.gaussian.</span></span><span class="sig-name descname"><span class="pre">Gaussian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">maxwidth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/peaks/gaussian.html#Gaussian"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.peaks.gaussian.Gaussian" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#diffpy.srmise.peaks.base.PeakFunction" title="diffpy.srmise.peaks.base.PeakFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">PeakFunction</span></code></a></p>
-<p>Methods for evaluation and parameter estimation of width-limited Gaussian.</p>
+<p>Methods for evaluation and parameter estimation of width-limited
+Gaussian.</p>
 <p>Allowed formats are
 internal: [position, parameterized width-squared, area]
 pwa: [position, full width at half maximum, area]
@@ -498,21 +534,22 @@ reason.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.peaks.gaussian.Gaussian.getmodule">
 <span class="sig-name descname"><span class="pre">getmodule</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/peaks/gaussian.html#Gaussian.getmodule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.peaks.gaussian.Gaussian.getmodule" title="Link to this definition"></a></dt>
-<dd><p>Return ‘diffpy.srmise.basefunction’</p>
+<dd><p>Return ‘diffpy.srmise.basefunction’.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="diffpy.srmise.peaks.gaussian.Gaussian.max">
 <span class="sig-name descname"><span class="pre">max</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pars</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/diffpy/srmise/peaks/gaussian.html#Gaussian.max"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#diffpy.srmise.peaks.gaussian.Gaussian.max" title="Link to this definition"></a></dt>
-<dd><p>Return position and height of the peak maximum.
-:param pars: A sequence of parameters defining the Gaussian shape.
-:type pars: array_like</p>
+<dd><p>Return position and height of the peak maximum.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The position and height of the peak maximum.</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>pars</strong> (<em>array_like</em>) – A sequence of parameters defining the Gaussian shape.</p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>array_like</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The position and height of the peak maximum.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>array_like</p>
 </dd>
 </dl>
 </dd></dl>
@@ -557,7 +594,7 @@ SrMiseScalingError if the parameters cannot be scaled.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, The Trustees of Columbia University in the City of New York.</p>
+    <p>&#169; Copyright 2026, The Trustees of Columbia University in the City of New York.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

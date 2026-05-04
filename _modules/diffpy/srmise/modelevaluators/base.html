@@ -5,16 +5,19 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>diffpy.srmise.modelevaluators.base &mdash; diffpy.srmise 0.7.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=7ab3649f" />
+  <title>diffpy.srmise.modelevaluators.base &mdash; diffpy.srmise 0.8.0rc0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
 
   
       <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../../_static/documentation_options.js?v=b9678aa1"></script>
-      <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../../_static/documentation_options.js?v=e93019a4"></script>
+      <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../_static/copybutton.js?v=cca77546"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" /> 
@@ -43,7 +46,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../tutorial/index.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../extending.html">Extending SrMise</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../api/diffpy.srmise.html">Package API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../release.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../release.html">Release notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../license.html">License</a></li>
 </ul>
 
@@ -114,22 +117,24 @@
 <span class="c1">#</span>
 <span class="c1">########################################################################</span>
 
-<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;diffpy.srmise&quot;</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="ModelEvaluator">
 <a class="viewcode-back" href="../../../../api/diffpy.srmise.modelevaluators.html#diffpy.srmise.modelevaluators.base.ModelEvaluator">[docs]</a>
-<span class="k">class</span> <span class="nc">ModelEvaluator</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Class for evaluating the quality of a fit.  Comparison between different</span>
-<span class="sd">    models of the same type is defined so that better models are &#39;greater than&#39;</span>
-<span class="sd">    worse models.&quot;&quot;&quot;</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ModelEvaluator</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Class for evaluating the quality of a fit.</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">higher_is_better</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Constructor of ModelEvaluator</span>
+<span class="sd">    Comparison between different models of the same type is defined so</span>
+<span class="sd">    that better models are &#39;greater than&#39; worse models.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">higher_is_better</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Constructor of ModelEvaluator.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -144,69 +149,69 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">chisq</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">return</span>
 
-    <span class="k">def</span> <span class="fm">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;&quot;&quot;&quot;</span>
 
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">method</span>  <span class="c1"># Comparison between same types required</span>
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">stat</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">other</span><span class="o">.</span><span class="n">stat</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>  <span class="c1"># The statistic must already be calculated</span>
 
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">higher_is_better</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">higher_is_better</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">stat</span> <span class="o">&lt;</span> <span class="n">other</span><span class="o">.</span><span class="n">stat</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">other</span><span class="o">.</span><span class="n">stat</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">stat</span>
 
-    <span class="k">def</span> <span class="fm">__le__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__le__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;&quot;&quot;&quot;</span>
 
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">method</span>  <span class="c1"># Comparison between same types required</span>
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">stat</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">other</span><span class="o">.</span><span class="n">stat</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>  <span class="c1"># The statistic must already be calculated</span>
 
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">higher_is_better</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">higher_is_better</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">stat</span> <span class="o">&lt;=</span> <span class="n">other</span><span class="o">.</span><span class="n">stat</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">other</span><span class="o">.</span><span class="n">stat</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stat</span>
 
-    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;&quot;&quot;&quot;</span>
 
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">method</span>  <span class="c1"># Comparison between same types required</span>
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">stat</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">other</span><span class="o">.</span><span class="n">stat</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>  <span class="c1"># The statistic must already be calculated</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">stat</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">stat</span>
 
-    <span class="k">def</span> <span class="fm">__ne__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__ne__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;&quot;&quot;&quot;</span>
 
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">method</span>  <span class="c1"># Comparison between same types required</span>
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">stat</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">other</span><span class="o">.</span><span class="n">stat</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>  <span class="c1"># The statistic must already be calculated</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">stat</span> <span class="o">!=</span> <span class="n">other</span><span class="o">.</span><span class="n">stat</span>
 
-    <span class="k">def</span> <span class="fm">__gt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__gt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;&quot;&quot;&quot;</span>
 
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">method</span>  <span class="c1"># Comparison between same types required</span>
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">stat</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">other</span><span class="o">.</span><span class="n">stat</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>  <span class="c1"># The statistic must already be calculated</span>
 
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">higher_is_better</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">higher_is_better</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">stat</span> <span class="o">&gt;</span> <span class="n">other</span><span class="o">.</span><span class="n">stat</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">other</span><span class="o">.</span><span class="n">stat</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">stat</span>
 
-    <span class="k">def</span> <span class="fm">__ge__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__ge__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;&quot;&quot;&quot;</span>
 
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">method</span>  <span class="c1"># Comparison between same types required</span>
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">stat</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">other</span><span class="o">.</span><span class="n">stat</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>  <span class="c1"># The statistic must already be calculated</span>
 
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">higher_is_better</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">higher_is_better</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">stat</span> <span class="o">&gt;=</span> <span class="n">other</span><span class="o">.</span><span class="n">stat</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">other</span><span class="o">.</span><span class="n">stat</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stat</span>
 
 <div class="viewcode-block" id="ModelEvaluator.chi_squared">
 <a class="viewcode-back" href="../../../../api/diffpy.srmise.modelevaluators.html#diffpy.srmise.modelevaluators.base.ModelEvaluator.chi_squared">[docs]</a>
-    <span class="k">def</span> <span class="nf">chi_squared</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expected</span><span class="p">,</span> <span class="n">observed</span><span class="p">,</span> <span class="n">error</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">chi_squared</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expected</span><span class="p">,</span> <span class="n">observed</span><span class="p">,</span> <span class="n">error</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculates chi-squared statistic.</span>
 
 <span class="sd">        Parameters</span>
@@ -216,8 +221,8 @@
 <span class="sd">        observed : float</span>
 <span class="sd">            The observed value.</span>
 <span class="sd">        error : float</span>
-<span class="sd">            The error statistic.&quot;&quot;&quot;</span>
-
+<span class="sd">            The error statistic.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">chisq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">expected</span> <span class="o">-</span> <span class="n">observed</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">error</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">chisq</span></div>
 </div>
@@ -234,7 +239,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, The Trustees of Columbia University in the City of New York.</p>
+    <p>&#169; Copyright 2026, The Trustees of Columbia University in the City of New York.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

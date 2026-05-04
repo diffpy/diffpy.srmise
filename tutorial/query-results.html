@@ -6,21 +6,24 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Querying SrMise results &mdash; diffpy.srmise 0.7.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=7ab3649f" />
+  <title>Querying SrMise results &mdash; diffpy.srmise 0.8.0rc0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
       <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=b9678aa1"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/documentation_options.js?v=e93019a4"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=cca77546"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Multimodeling with known uncertainty" href="multimodel_known_uncertainties.html" />
-    <link rel="prev" title="Peak fitting" href="fit_initial.html" /> 
+    <link rel="next" title="Multimodeling with known uncertainty" href="multimodel-known-uncertainties.html" />
+    <link rel="prev" title="Peak fitting" href="fit-initial.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -44,17 +47,25 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorial</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="extract_single_peak.html">Peak extraction of a single peak</a></li>
-<li class="toctree-l2"><a class="reference internal" href="parameter_summary.html">Summary of SrMise parameters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="fit_initial.html">Peak fitting</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Querying SrMise results</a></li>
-<li class="toctree-l2"><a class="reference internal" href="multimodel_known_uncertainties.html">Multimodeling with known uncertainty</a></li>
-<li class="toctree-l2"><a class="reference internal" href="multimodel_unknown_uncertainties.html">Multimodeling with unknown uncertainty</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#purpose">Purpose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#overview">Overview</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#getting-started">Getting Started</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="extract-single-peak.html">Peak extraction of a single peak</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parameter-summary.html">Summary of SrMise parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fit-initial.html">Peak fitting</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Querying SrMise results</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#script-query-results-py">Script (query_results.py)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="multimodel-known-uncertainties.html">Multimodeling with known uncertainty</a></li>
+<li class="toctree-l3"><a class="reference internal" href="multimodel-unknown-uncertainties.html">Multimodeling with unknown uncertainty</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../extending.html">Extending SrMise</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api/diffpy.srmise.html">Package API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../release.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release.html">Release notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 </ul>
 
@@ -75,7 +86,7 @@
           <li class="breadcrumb-item"><a href="index.html">Tutorial</a></li>
       <li class="breadcrumb-item active">Querying SrMise results</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/tutorial/query_results.rst.txt" rel="nofollow"> View page source</a>
+              <a href="https://github.com/diffpy/diffpy.srmise/blob/main/docs/source/tutorial/query-results.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -88,7 +99,7 @@
 <section id="querying-srmise-results">
 <h1>Querying SrMise results<a class="headerlink" href="#querying-srmise-results" title="Link to this heading"></a></h1>
 <div class="line-block">
-<div class="line">Script: <a class="reference internal" href="#query-results-py">query_results.py</a></div>
+<div class="line">Script: <a href="#id5"><span class="problematic" id="id6">query_results.py_</span></a></div>
 <div class="line">Sample: <a class="reference external" href="index.html#ag">Ag</a></div>
 </div>
 <p>In previous examples the results of peak extraction/fitting were read from the
@@ -98,19 +109,19 @@ within scripts.</p>
 <p>First, visually check that the baseline obtained in the earlier silver example
 (set using the <code class="docutils literal notranslate"><span class="pre">--bsrmise</span> <span class="pre">filename.srmise</span></code> option) is reasonable over a
 larger range.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">srmise</span> <span class="n">data</span><span class="o">/</span><span class="n">Ag_nyquist_qmax30</span><span class="o">.</span><span class="n">gr</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">extract</span> <span class="o">--</span><span class="n">plot</span> <span class="o">--</span><span class="nb">range</span> <span class="mi">2</span> <span class="mi">10</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">srmise</span> <span class="n">docs</span><span class="o">/</span><span class="n">examples</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">Ag</span><span class="o">-</span><span class="n">nyquist</span><span class="o">-</span><span class="n">qmax30</span><span class="o">.</span><span class="n">gr</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">extract</span> <span class="o">--</span><span class="n">plot</span> <span class="o">--</span><span class="nb">range</span> <span class="mi">2</span> <span class="mi">10</span>
     <span class="o">--</span><span class="n">bsrmise</span> <span class="n">output</span><span class="o">/</span><span class="n">query_results</span><span class="o">.</span><span class="n">srmise</span>
 </pre></div>
 </div>
-<p><img alt="images/query_results1.png" src="../_images/query_results1.png" /></p>
+<p><img alt="images/query_results1.png" src="../_images/query-results1.png" /></p>
 <p>Next, run</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">query_results</span><span class="o">.</span><span class="n">py</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">query</span><span class="o">-</span><span class="n">results</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
 <p>to perform peak extraction, the example analysis, and obtain the two plots
 below.</p>
-<p><img alt="images/query_results2.png" src="../_images/query_results2.png" /></p>
-<p><img alt="images/query_results3.png" src="../_images/query_results3.png" /></p>
+<p><img alt="images/query_results2.png" src="../_images/query-results2.png" /></p>
+<p><img alt="images/query_results3.png" src="../_images/query-results3.png" /></p>
 <p>Now the methods of the script are described.  The way to evaluate model
 uncertainties with SrMise is with a <code class="docutils literal notranslate"><span class="pre">ModelCovariance</span></code> instance returned after
 peak extraction (or fitting).</p>
@@ -139,7 +150,7 @@ the baseline. The methods of greatest interest are as follows.</p>
 <span class="n">cov</span><span class="o">.</span><span class="n">getcorrelation</span><span class="p">((</span><span class="n">i1</span><span class="p">,</span><span class="n">j1</span><span class="p">),</span> <span class="p">(</span><span class="n">i2</span><span class="p">,</span><span class="n">j2</span><span class="p">))</span>
 </pre></div>
 </div>
-<p>Suppose, for example, one wants to emperically estimate the number of silver
+<p>Suppose, for example, one wants to empirically estimate the number of silver
 atoms contributing to each occupied coordination shell of the FCC structure,
 knowing that the coordination number (i.e. nearest neighbors) of an ideal FCC
 structure is exactly 12.  For a monoelemental material the intensity of a peak
@@ -183,7 +194,8 @@ usual methods are</p>
 <span class="c1"># See LICENSE.txt for license information.</span>
 <span class="c1">#</span>
 <span class="c1">##############################################################################</span>
-<span class="sd">&quot;&quot;&quot;Example of extracting multiple peaks and accessing results programatically.</span>
+<span class="sd">&quot;&quot;&quot;Example of extracting multiple peaks and accessing results</span>
+<span class="sd">programmatically.</span>
 
 <span class="sd">This example shows how to extract a range of peaks from a simple crystalline</span>
 <span class="sd">PDF using a crystalline baseline obtained from an existing trial.  It shows</span>
@@ -192,34 +204,34 @@ usual methods are</p>
 <span class="sd">to evaluate the model on an arbitrary grid.</span>
 
 <span class="sd">The peaks extracted by this script are equivalent to those obtained running</span>
-<span class="sd">srmise data/Ag_nyquist_qmax30.gr --range 2. 10. \</span>
-<span class="sd">    --bsrmise output/extract_single_peak.srmise \</span>
-<span class="sd">    --save output/query_results.srmise \</span>
-<span class="sd">    --pwa output/query_results.pwa --plot</span>
+<span class="sd">srmise data/Ag-nyquist-qmax30.gr --range 2. 10. \</span>
+<span class="sd">    --bsrmise output/extract-single-peak.srmise \</span>
+<span class="sd">    --save output/query-results.srmise \</span>
+<span class="sd">    --pwa output/query-results.pwa --plot</span>
 <span class="sd">at the command line.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="kn">from</span> <span class="nn">diffpy.srmise.modelcluster</span> <span class="kn">import</span> <span class="n">ModelCovariance</span>
-<span class="kn">from</span> <span class="nn">diffpy.srmise.pdfpeakextraction</span> <span class="kn">import</span> <span class="n">PDFPeakExtraction</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.srmise.modelcluster</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModelCovariance</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.srmise.pdfpeakextraction</span><span class="w"> </span><span class="kn">import</span> <span class="n">PDFPeakExtraction</span>
 
 
-<span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 
     <span class="c1"># Initialize peak extraction</span>
     <span class="c1"># Create peak extraction object</span>
     <span class="n">ppe</span> <span class="o">=</span> <span class="n">PDFPeakExtraction</span><span class="p">()</span>
 
     <span class="c1"># Load the PDF from a file</span>
-    <span class="n">ppe</span><span class="o">.</span><span class="n">loadpdf</span><span class="p">(</span><span class="s2">&quot;data/Ag_nyquist_qmax30.gr&quot;</span><span class="p">)</span>
+    <span class="n">ppe</span><span class="o">.</span><span class="n">loadpdf</span><span class="p">(</span><span class="s2">&quot;data/Ag-nyquist-qmax30.gr&quot;</span><span class="p">)</span>
 
     <span class="c1"># Obtain baseline from a saved diffpy.srmise trial.  This is not the</span>
     <span class="c1"># initial baseline estimate from the previous example, but the baseline</span>
     <span class="c1"># after both it and the extracted peaks have been fit to the data.</span>
     <span class="n">ppebl</span> <span class="o">=</span> <span class="n">PDFPeakExtraction</span><span class="p">()</span>
-    <span class="n">ppebl</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;output/extract_single_peak.srmise&quot;</span><span class="p">)</span>
+    <span class="n">ppebl</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;output/extract-single-peak.srmise&quot;</span><span class="p">)</span>
     <span class="n">baseline</span> <span class="o">=</span> <span class="n">ppebl</span><span class="o">.</span><span class="n">extracted</span><span class="o">.</span><span class="n">baseline</span>
 
     <span class="c1"># Set up extraction parameters.</span>
@@ -368,8 +380,8 @@ usual methods are</p>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%i</span><span class="s2">: </span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">total_ideal_intensity</span><span class="p">,</span> <span class="n">total_observed_intensity</span><span class="p">))</span>
 
     <span class="c1"># Save output</span>
-    <span class="n">ppe</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;output/query_results.srmise&quot;</span><span class="p">)</span>
-    <span class="n">ppe</span><span class="o">.</span><span class="n">writepwa</span><span class="p">(</span><span class="s2">&quot;output/query_results.pwa&quot;</span><span class="p">)</span>
+    <span class="n">ppe</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;output/query-results.srmise&quot;</span><span class="p">)</span>
+    <span class="n">ppe</span><span class="o">.</span><span class="n">writepwa</span><span class="p">(</span><span class="s2">&quot;output/query-results.pwa&quot;</span><span class="p">)</span>
 
     <span class="c1"># Evaluating a model.</span>
     <span class="c1"># Although the ModelCovariance object is useful, the model used for fitting</span>
@@ -402,14 +414,14 @@ usual methods are</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="fit_initial.html" class="btn btn-neutral float-left" title="Peak fitting" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="multimodel_known_uncertainties.html" class="btn btn-neutral float-right" title="Multimodeling with known uncertainty" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="fit-initial.html" class="btn btn-neutral float-left" title="Peak fitting" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="multimodel-known-uncertainties.html" class="btn btn-neutral float-right" title="Multimodeling with known uncertainty" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, The Trustees of Columbia University in the City of New York.</p>
+    <p>&#169; Copyright 2026, The Trustees of Columbia University in the City of New York.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

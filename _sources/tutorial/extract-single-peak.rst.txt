@@ -1,6 +1,6 @@
 .. include:: abbreviations.txt
 
-.. include:: sample_links.txt
+.. include:: sample-links.txt
 
 
 .. include:: ../../examples/README.rst
@@ -13,4 +13,4 @@
 Script (extract_single_peak.py)
 -------------------------------
 
-.. literalinclude:: ../../examples/extract_single_peak.py
+.. literalinclude:: ../../examples/extract-single-peak.py

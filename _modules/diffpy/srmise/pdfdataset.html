@@ -5,16 +5,19 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>diffpy.srmise.pdfdataset &mdash; diffpy.srmise 0.7.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=7ab3649f" />
+  <title>diffpy.srmise.pdfdataset &mdash; diffpy.srmise 0.8.0rc0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=b9678aa1"></script>
-      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/documentation_options.js?v=e93019a4"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=cca77546"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -43,7 +46,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../extending.html">Extending SrMise</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../api/diffpy.srmise.html">Package API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../release.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../release.html">Release notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
 </ul>
 
@@ -88,27 +91,24 @@
 <span class="c1"># LICENSE_PDFgui.txt for the full PDFgui license.</span>
 <span class="c1">#</span>
 <span class="c1">##############################################################################</span>
+<span class="sd">&quot;&quot;&quot;Class PDFDataSet for experimental PDF data.&quot;&quot;&quot;</span>
 
 
-<span class="sd">&quot;&quot;&quot;class PDFDataSet for experimental PDF data.</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os.path</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">getpass</span><span class="w"> </span><span class="kn">import</span> <span class="n">getuser</span>
 
-
-<span class="kn">import</span> <span class="nn">os.path</span>
-<span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">from</span> <span class="nn">getpass</span> <span class="kn">import</span> <span class="n">getuser</span>
-
-<span class="kn">from</span> <span class="nn">diffpy.srmise.srmiseerrors</span> <span class="kn">import</span> <span class="n">SrMiseFileError</span><span class="p">,</span> <span class="n">SrMisePDFKeyError</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.srmise.srmiseerrors</span><span class="w"> </span><span class="kn">import</span> <span class="n">SrMiseFileError</span><span class="p">,</span> <span class="n">SrMisePDFKeyError</span>
 
 
 <div class="viewcode-block" id="PDFComponent">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.pdfdataset.PDFComponent">[docs]</a>
-<span class="k">class</span> <span class="nc">PDFComponent</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">PDFComponent</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Common base class.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;initialize the object</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the object.</span>
 
 <span class="sd">        Parameter</span>
 <span class="sd">        ---------</span>
@@ -119,8 +119,8 @@
 
 <div class="viewcode-block" id="PDFComponent.close">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.pdfdataset.PDFComponent.close">[docs]</a>
-    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;close myself</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Close myself.</span>
 
 <span class="sd">        Parameter</span>
 <span class="sd">        ---------</span>
@@ -134,7 +134,7 @@
 
 <div class="viewcode-block" id="PDFDataSet">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.pdfdataset.PDFDataSet">[docs]</a>
-<span class="k">class</span> <span class="nc">PDFDataSet</span><span class="p">(</span><span class="n">PDFComponent</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">PDFDataSet</span><span class="p">(</span><span class="n">PDFComponent</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;PDFDataSet is a class for experimental PDF data.</span>
 
 <span class="sd">    Attributes</span>
@@ -193,7 +193,7 @@
     <span class="p">]</span>
     <span class="n">refinableVars</span> <span class="o">=</span> <span class="nb">dict</span><span class="o">.</span><span class="n">fromkeys</span><span class="p">((</span><span class="s2">&quot;qdamp&quot;</span><span class="p">,</span> <span class="s2">&quot;qbroad&quot;</span><span class="p">,</span> <span class="s2">&quot;dscale&quot;</span><span class="p">))</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize.</span>
 
 <span class="sd">        name : str</span>
@@ -205,10 +205,12 @@
 
 <div class="viewcode-block" id="PDFDataSet.clear">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.pdfdataset.PDFDataSet.clear">[docs]</a>
-    <span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;reset all data members to initial empty values</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reset all data members to initial empty values.</span>
 
-<span class="sd">        The purpose of this method is to set the PDF dataset to initial empty values.&quot;&quot;&quot;</span>
+<span class="sd">        The purpose of this method is to set the PDF dataset to initial</span>
+<span class="sd">        empty values.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">robs</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">Gobs</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">drobs</span> <span class="o">=</span> <span class="p">[]</span>
@@ -229,9 +231,10 @@
 
 <div class="viewcode-block" id="PDFDataSet.setvar">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.pdfdataset.PDFDataSet.setvar">[docs]</a>
-    <span class="k">def</span> <span class="nf">setvar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setvar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Assign a data member using PdfFit-style variable notation.</span>
-<span class="sd">        This method is typically utilized by the `applyParameters()` function.</span>
+<span class="sd">        This method is typically utilized by the `applyParameters()`</span>
+<span class="sd">        function.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -258,9 +261,9 @@
 
 <div class="viewcode-block" id="PDFDataSet.getvar">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.pdfdataset.PDFDataSet.getvar">[docs]</a>
-    <span class="k">def</span> <span class="nf">getvar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">var</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Obtain value corresponding to PdfFit dataset variable.</span>
-<span class="sd">        Used by findParameters().</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">getvar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">var</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Obtain value corresponding to PdfFit dataset variable. Used</span>
+<span class="sd">        by findParameters().</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -284,8 +287,8 @@
 
 <div class="viewcode-block" id="PDFDataSet.read">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.pdfdataset.PDFDataSet.read">[docs]</a>
-    <span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;load data from PDFGetX2 or PDFGetN gr file</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Load data from PDFGetX2 or PDFGetN gr file.</span>
 
 <span class="sd">        filename : str</span>
 <span class="sd">            file to read from</span>
@@ -312,8 +315,8 @@
 
 <div class="viewcode-block" id="PDFDataSet.readStr">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.pdfdataset.PDFDataSet.readStr">[docs]</a>
-    <span class="k">def</span> <span class="nf">readStr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">datastring</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;read experimental PDF data from a string</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">readStr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">datastring</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Read experimental PDF data from a string.</span>
 
 <span class="sd">        Parameter</span>
 <span class="sd">        ---------</span>
@@ -321,6 +324,7 @@
 <span class="sd">            string of raw data</span>
 
 <span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">        self</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
@@ -391,7 +395,7 @@
         <span class="k">if</span> <span class="n">res</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;doping&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">groups</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
 
-        <span class="c1"># parsing gerneral metadata</span>
+        <span class="c1"># parsing general metadata</span>
         <span class="k">if</span> <span class="n">metadata</span><span class="p">:</span>
             <span class="n">regexp</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;\b(\w+)\ *=\ *(</span><span class="si">%(f)s</span><span class="s2">)\b&quot;</span> <span class="o">%</span> <span class="n">rx</span>
             <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
@@ -442,7 +446,7 @@
 
 <div class="viewcode-block" id="PDFDataSet.write">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.pdfdataset.PDFDataSet.write">[docs]</a>
-    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Write experimental PDF data to a file.</span>
 
 <span class="sd">        Parameters</span>
@@ -463,9 +467,8 @@
 
 <div class="viewcode-block" id="PDFDataSet.writeStr">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.pdfdataset.PDFDataSet.writeStr">[docs]</a>
-    <span class="k">def</span> <span class="nf">writeStr</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">writeStr</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;String representation of experimental PDF data.</span>
-
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -515,8 +518,8 @@
 
 <div class="viewcode-block" id="PDFDataSet.copy">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.pdfdataset.PDFDataSet.copy">[docs]</a>
-    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;copy self to other. if other is None, create new instance</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Copy self to other. if other is None, create new instance.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -552,7 +555,7 @@
         <span class="n">copy_attributes</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;metadata&quot;</span><span class="p">,)</span>
         <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">assign_attributes</span><span class="p">:</span>
             <span class="nb">setattr</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">))</span>
-        <span class="kn">import</span> <span class="nn">copy</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">copy</span>
 
         <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">copy_attributes</span><span class="p">:</span>
             <span class="nb">setattr</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">)))</span>
@@ -566,8 +569,8 @@
 
 <div class="viewcode-block" id="PDFDataFormatError">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.pdfdataset.PDFDataFormatError">[docs]</a>
-<span class="k">class</span> <span class="nc">PDFDataFormatError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Exception class marking failure to proccess PDF data string.&quot;&quot;&quot;</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">PDFDataFormatError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Exception class marking failure to process PDF data string.&quot;&quot;&quot;</span>
 
     <span class="k">pass</span></div>
 
@@ -575,7 +578,7 @@
 
 <span class="c1"># simple test code</span>
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="kn">import</span> <span class="nn">sys</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
 
     <span class="n">filename</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">dataset</span> <span class="o">=</span> <span class="n">PDFDataSet</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
@@ -590,7 +593,12 @@
         <span class="nb">print</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="s2">&quot;=&quot;</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;== robs Gobs drobs dGobs ==&quot;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">robs</span><span class="p">)):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">robs</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">dataset</span><span class="o">.</span><span class="n">Gobs</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">dataset</span><span class="o">.</span><span class="n">drobs</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">dataset</span><span class="o">.</span><span class="n">dGobs</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="n">dataset</span><span class="o">.</span><span class="n">robs</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+            <span class="n">dataset</span><span class="o">.</span><span class="n">Gobs</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+            <span class="n">dataset</span><span class="o">.</span><span class="n">drobs</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+            <span class="n">dataset</span><span class="o">.</span><span class="n">dGobs</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+        <span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;== writeStr() ==&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">writeStr</span><span class="p">())</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;== datasetcopy.writeStr() ==&quot;</span><span class="p">)</span>
@@ -607,7 +615,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, The Trustees of Columbia University in the City of New York.</p>
+    <p>&#169; Copyright 2026, The Trustees of Columbia University in the City of New York.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

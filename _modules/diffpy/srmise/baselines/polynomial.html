@@ -5,16 +5,19 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>diffpy.srmise.baselines.polynomial &mdash; diffpy.srmise 0.7.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=7ab3649f" />
+  <title>diffpy.srmise.baselines.polynomial &mdash; diffpy.srmise 0.8.0rc0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
 
   
       <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../../_static/documentation_options.js?v=b9678aa1"></script>
-      <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../../_static/documentation_options.js?v=e93019a4"></script>
+      <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../_static/copybutton.js?v=cca77546"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" /> 
@@ -43,7 +46,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../tutorial/index.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../extending.html">Extending SrMise</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../api/diffpy.srmise.html">Package API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../release.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../release.html">Release notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../license.html">License</a></li>
 </ul>
 
@@ -86,22 +89,24 @@
 <span class="c1">#</span>
 <span class="c1">##############################################################################</span>
 
-<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="kn">from</span> <span class="nn">diffpy.srmise.baselines.base</span> <span class="kn">import</span> <span class="n">BaselineFunction</span>
-<span class="kn">from</span> <span class="nn">diffpy.srmise.srmiseerrors</span> <span class="kn">import</span> <span class="n">SrMiseEstimationError</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.srmise.baselines.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaselineFunction</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.srmise.srmiseerrors</span><span class="w"> </span><span class="kn">import</span> <span class="n">SrMiseEstimationError</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;diffpy.srmise&quot;</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="Polynomial">
 <a class="viewcode-back" href="../../../../api/diffpy.srmise.baselines.html#diffpy.srmise.baselines.polynomial.Polynomial">[docs]</a>
-<span class="k">class</span> <span class="nc">Polynomial</span><span class="p">(</span><span class="n">BaselineFunction</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Methods for evaluation and parameter estimation of a polynomial baseline.&quot;&quot;&quot;</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Polynomial</span><span class="p">(</span><span class="n">BaselineFunction</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Methods for evaluation and parameter estimation of a polynomial</span>
+<span class="sd">    baseline.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">degree</span><span class="p">,</span> <span class="n">Cache</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">degree</span><span class="p">,</span> <span class="n">Cache</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize a polynomial function of degree d.</span>
 
 <span class="sd">        Parameters</span>
@@ -127,15 +132,26 @@
         <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">degree</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
             <span class="n">parameterdict</span><span class="p">[</span><span class="s2">&quot;a_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">d</span><span class="p">)]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">degree</span> <span class="o">-</span> <span class="n">d</span>
         <span class="n">formats</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;internal&quot;</span><span class="p">]</span>
-        <span class="n">default_formats</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;default_input&quot;</span><span class="p">:</span> <span class="s2">&quot;internal&quot;</span><span class="p">,</span> <span class="s2">&quot;default_output&quot;</span><span class="p">:</span> <span class="s2">&quot;internal&quot;</span><span class="p">}</span>
+        <span class="n">default_formats</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;default_input&quot;</span><span class="p">:</span> <span class="s2">&quot;internal&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;default_output&quot;</span><span class="p">:</span> <span class="s2">&quot;internal&quot;</span><span class="p">,</span>
+        <span class="p">}</span>
         <span class="n">metadict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;degree&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">degree</span><span class="p">,</span> <span class="nb">repr</span><span class="p">)}</span>
-        <span class="n">BaselineFunction</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameterdict</span><span class="p">,</span> <span class="n">formats</span><span class="p">,</span> <span class="n">default_formats</span><span class="p">,</span> <span class="n">metadict</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">Cache</span><span class="p">)</span>
+        <span class="n">BaselineFunction</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">parameterdict</span><span class="p">,</span>
+            <span class="n">formats</span><span class="p">,</span>
+            <span class="n">default_formats</span><span class="p">,</span>
+            <span class="n">metadict</span><span class="p">,</span>
+            <span class="kc">None</span><span class="p">,</span>
+            <span class="n">Cache</span><span class="p">,</span>
+        <span class="p">)</span>
 
     <span class="c1"># Methods required by BaselineFunction ####</span>
 
 <div class="viewcode-block" id="Polynomial.estimate_parameters">
 <a class="viewcode-back" href="../../../../api/diffpy.srmise.baselines.html#diffpy.srmise.baselines.polynomial.Polynomial.estimate_parameters">[docs]</a>
-    <span class="k">def</span> <span class="nf">estimate_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">estimate_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Estimate parameters for polynomial baseline.</span>
 
 <span class="sd">        Estimation is currently implemented only for degree &lt; 2.  This</span>
@@ -180,7 +196,7 @@
                 <span class="n">cut</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">/</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
                 <span class="n">cut_idx</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">argsort</span><span class="p">()[:</span> <span class="nb">int</span><span class="p">(</span><span class="n">cut</span><span class="p">)]</span>
 
-                <span class="kn">import</span> <span class="nn">numpy.linalg</span> <span class="k">as</span> <span class="nn">la</span>
+                <span class="kn">import</span><span class="w"> </span><span class="nn">numpy.linalg</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">la</span>
 
                 <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">r</span><span class="p">[</span><span class="n">cut_idx</span><span class="p">]])</span><span class="o">.</span><span class="n">T</span>
                 <span class="n">slope</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">lstsq</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="n">cut_idx</span><span class="p">],</span> <span class="n">rcond</span><span class="o">=-</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
@@ -190,7 +206,7 @@
                 <span class="k">raise</span> <span class="n">SrMiseEstimationError</span><span class="p">(</span><span class="n">emsg</span><span class="p">)</span></div>
 
 
-    <span class="k">def</span> <span class="nf">_jacobianraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pars</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">free</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_jacobianraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pars</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">free</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the Jacobian of a polynomial.</span>
 
 <span class="sd">        Parameters</span>
@@ -229,10 +245,11 @@
                 <span class="n">jacobian</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">idx</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">jacobian</span>
 
-    <span class="k">def</span> <span class="nf">_transform_parametersraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pars</span><span class="p">,</span> <span class="n">in_format</span><span class="p">,</span> <span class="n">out_format</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_transform_parametersraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pars</span><span class="p">,</span> <span class="n">in_format</span><span class="p">,</span> <span class="n">out_format</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert parameter values from in_format to out_format.</span>
 
 <span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
 <span class="sd">        pars : array-like</span>
 <span class="sd">            The sequence of parameters</span>
 <span class="sd">        in_format : str</span>
@@ -264,8 +281,9 @@
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Argument &#39;out_format&#39; must be one of </span><span class="si">%s</span><span class="s2">.&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">parformats</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">temp</span>
 
-    <span class="k">def</span> <span class="nf">_valueraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pars</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return value of polynomial for the given parameters and r values.</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_valueraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pars</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return value of polynomial for the given parameters and r</span>
+<span class="sd">        values.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -291,7 +309,7 @@
 
 <div class="viewcode-block" id="Polynomial.getmodule">
 <a class="viewcode-back" href="../../../../api/diffpy.srmise.baselines.html#diffpy.srmise.baselines.polynomial.Polynomial.getmodule">[docs]</a>
-    <span class="k">def</span> <span class="nf">getmodule</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">getmodule</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="vm">__name__</span></div>
 </div>
 
@@ -350,7 +368,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, The Trustees of Columbia University in the City of New York.</p>
+    <p>&#169; Copyright 2026, The Trustees of Columbia University in the City of New York.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

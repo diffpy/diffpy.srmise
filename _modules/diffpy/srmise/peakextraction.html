@@ -5,16 +5,19 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>diffpy.srmise.peakextraction &mdash; diffpy.srmise 0.7.0 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=7ab3649f" />
+  <title>diffpy.srmise.peakextraction &mdash; diffpy.srmise 0.8.0rc0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=b9678aa1"></script>
-      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/documentation_options.js?v=e93019a4"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=cca77546"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -43,7 +46,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorial/index.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../extending.html">Extending SrMise</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../api/diffpy.srmise.html">Package API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../release.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../release.html">Release notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
 </ul>
 
@@ -86,27 +89,27 @@
 <span class="c1">#</span>
 <span class="c1">##############################################################################</span>
 
-<span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">import</span> <span class="nn">os.path</span>
-<span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os.path</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
 
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="kn">from</span> <span class="nn">diffpy.srmise</span> <span class="kn">import</span> <span class="n">srmiselog</span>
-<span class="kn">from</span> <span class="nn">diffpy.srmise.baselines.base</span> <span class="kn">import</span> <span class="n">Baseline</span>
-<span class="kn">from</span> <span class="nn">diffpy.srmise.dataclusters</span> <span class="kn">import</span> <span class="n">DataClusters</span>
-<span class="kn">from</span> <span class="nn">diffpy.srmise.modelcluster</span> <span class="kn">import</span> <span class="n">ModelCluster</span><span class="p">,</span> <span class="n">ModelCovariance</span>
-<span class="kn">from</span> <span class="nn">diffpy.srmise.peaks.base</span> <span class="kn">import</span> <span class="n">Peak</span><span class="p">,</span> <span class="n">Peaks</span>
-<span class="kn">from</span> <span class="nn">diffpy.srmise.srmiseerrors</span> <span class="kn">import</span> <span class="n">SrMiseDataFormatError</span><span class="p">,</span> <span class="n">SrMiseEstimationError</span><span class="p">,</span> <span class="n">SrMiseFileError</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.srmise</span><span class="w"> </span><span class="kn">import</span> <span class="n">srmiselog</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.srmise.baselines.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">Baseline</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.srmise.dataclusters</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataClusters</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.srmise.modelcluster</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModelCluster</span><span class="p">,</span> <span class="n">ModelCovariance</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.srmise.peaks.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">Peak</span><span class="p">,</span> <span class="n">Peaks</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.srmise.srmiseerrors</span><span class="w"> </span><span class="kn">import</span> <span class="n">SrMiseDataFormatError</span><span class="p">,</span> <span class="n">SrMiseEstimationError</span><span class="p">,</span> <span class="n">SrMiseFileError</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;diffpy.srmise&quot;</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="PeakExtraction">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.peakextraction.PeakExtraction">[docs]</a>
-<span class="k">class</span> <span class="nc">PeakExtraction</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">PeakExtraction</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Class for peak extraction.</span>
 
 <span class="sd">    Parameters</span>
@@ -141,12 +144,14 @@
 <span class="sd">    extraction_type : Type of extraction</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">newvars</span><span class="o">=</span><span class="p">[]):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">newvars</span><span class="o">=</span><span class="p">[]):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize PeakExtraction object.</span>
 
 <span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
 <span class="sd">        newvars : array-like</span>
-<span class="sd">            Sequence of strings that represent additional extraction parameters.&quot;&quot;&quot;</span>
+<span class="sd">            Sequence of strings that represent additional extraction parameters.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">extractvars</span> <span class="o">=</span> <span class="nb">dict</span><span class="o">.</span><span class="n">fromkeys</span><span class="p">(</span>
             <span class="p">(</span>
@@ -169,10 +174,12 @@
 
 <div class="viewcode-block" id="PeakExtraction.clear">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.peakextraction.PeakExtraction.clear">[docs]</a>
-    <span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Clear all members.</span>
 
-<span class="sd">        The purpose of the method is to ensure the object is in initialized state.&quot;&quot;&quot;</span>
+<span class="sd">        The purpose of the method is to ensure the object is in</span>
+<span class="sd">        initialized state.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dx</span> <span class="o">=</span> <span class="kc">None</span>
@@ -189,7 +196,7 @@
 
 <div class="viewcode-block" id="PeakExtraction.clearcalc">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.peakextraction.PeakExtraction.clearcalc">[docs]</a>
-    <span class="k">def</span> <span class="nf">clearcalc</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">clearcalc</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Clear all calculated members.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">extracted</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">extraction_type</span> <span class="o">=</span> <span class="kc">None</span></div>
@@ -197,7 +204,7 @@
 
 <div class="viewcode-block" id="PeakExtraction.setdata">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.peakextraction.PeakExtraction.setdata">[docs]</a>
-    <span class="k">def</span> <span class="nf">setdata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dy</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setdata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dx</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dy</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
             <span class="n">emsg</span> <span class="o">=</span> <span class="s2">&quot;Sequences x and y must have the same length.&quot;</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">emsg</span><span class="p">)</span>
@@ -220,7 +227,7 @@
 
 <div class="viewcode-block" id="PeakExtraction.setvars">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.peakextraction.PeakExtraction.setvars">[docs]</a>
-    <span class="k">def</span> <span class="nf">setvars</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setvars</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set one or more extraction variables.</span>
 
 <span class="sd">        Parameters</span>
@@ -257,7 +264,7 @@
 
 <div class="viewcode-block" id="PeakExtraction.defaultvars">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.peakextraction.PeakExtraction.defaultvars">[docs]</a>
-    <span class="k">def</span> <span class="nf">defaultvars</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">defaultvars</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set unset(=None) extraction variables to default values.</span>
 
 <span class="sd">        Certain variables may be partially set for convenience, and are transformed</span>
@@ -300,7 +307,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">effective_dy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">effective_dy</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">))</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pf</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="s2">&quot;pf&quot;</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
-            <span class="kn">from</span> <span class="nn">diffpy.srmise.peaks.gaussianoverr</span> <span class="kn">import</span> <span class="n">GaussianOverR</span>
+            <span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.srmise.peaks.gaussianoverr</span><span class="w"> </span><span class="kn">import</span> <span class="n">GaussianOverR</span>
 
             <span class="c1"># TODO: Make a more useful default.</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">pf</span> <span class="o">=</span> <span class="p">[</span><span class="n">GaussianOverR</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span>
@@ -325,13 +332,13 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">baseline</span> <span class="o">=</span> <span class="kc">None</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">baseline</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="s2">&quot;baseline&quot;</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
-            <span class="kn">from</span> <span class="nn">diffpy.srmise.baselines.polynomial</span> <span class="kn">import</span> <span class="n">Polynomial</span>
+            <span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.srmise.baselines.polynomial</span><span class="w"> </span><span class="kn">import</span> <span class="n">Polynomial</span>
 
             <span class="n">bl</span> <span class="o">=</span> <span class="n">Polynomial</span><span class="p">(</span><span class="n">degree</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">baseline</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">actualize</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([]),</span> <span class="s2">&quot;internal&quot;</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">error_method</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="s2">&quot;error_method&quot;</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
-            <span class="kn">from</span> <span class="nn">diffpy.srmise.modelevaluators.aic</span> <span class="kn">import</span> <span class="n">AIC</span>
+            <span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.srmise.modelevaluators.aic</span><span class="w"> </span><span class="kn">import</span> <span class="n">AIC</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">error_method</span> <span class="o">=</span> <span class="n">AIC</span>
 
@@ -339,7 +346,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">initial_peaks</span> <span class="o">=</span> <span class="n">Peaks</span><span class="p">()</span></div>
 
 
-    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return string summary of PeakExtraction.&quot;&quot;&quot;</span>
         <span class="n">out</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">extractvars</span><span class="p">:</span>
@@ -355,8 +362,9 @@
 
 <div class="viewcode-block" id="PeakExtraction.plot">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.peakextraction.PeakExtraction.plot">[docs]</a>
-    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Convenience function to plot data and extracted peaks with matplotlib.</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Convenience function to plot data and extracted peaks with</span>
+<span class="sd">        matplotlib.</span>
 
 <span class="sd">        Uses initial peaks instead if no peaks have been extracted.</span>
 
@@ -394,8 +402,8 @@
 
 <div class="viewcode-block" id="PeakExtraction.read">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.peakextraction.PeakExtraction.read">[docs]</a>
-    <span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;load PeakExtraction object from file</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Load PeakExtraction object from file.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -421,7 +429,7 @@
 
 <div class="viewcode-block" id="PeakExtraction.readstr">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.peakextraction.PeakExtraction.readstr">[docs]</a>
-    <span class="k">def</span> <span class="nf">readstr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">datastring</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">readstr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">datastring</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize members from string.</span>
 
 <span class="sd">        Parameters</span>
@@ -429,7 +437,7 @@
 <span class="sd">        datastring : array-like</span>
 <span class="sd">            The raw data to read</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="kn">from</span> <span class="nn">diffpy.srmise.basefunction</span> <span class="kn">import</span> <span class="n">BaseFunction</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.srmise.basefunction</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseFunction</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 
@@ -541,7 +549,7 @@
             <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">res</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">initial_peaks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Peak</span><span class="o">.</span><span class="n">factory</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">safepf</span><span class="p">))</span>
 
-        <span class="c1">#  Instantiating srmise metatdata</span>
+        <span class="c1">#  Instantiating srmise metadata</span>
 
         <span class="c1"># pf</span>
         <span class="n">res</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^pf=(.*)$&quot;</span><span class="p">,</span> <span class="n">srmisemetadata</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">M</span><span class="p">)</span>
@@ -640,8 +648,9 @@
 
 <div class="viewcode-block" id="PeakExtraction.write">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.peakextraction.PeakExtraction.write">[docs]</a>
-    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Write string representation of PeakExtraction instance to file.</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Write string representation of PeakExtraction instance to</span>
+<span class="sd">        file.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -657,18 +666,18 @@
 
 <div class="viewcode-block" id="PeakExtraction.writestr">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.peakextraction.PeakExtraction.writestr">[docs]</a>
-    <span class="k">def</span> <span class="nf">writestr</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">writestr</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return string representation of PeakExtraction object.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        The str representation of PeakExtraction object</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="kn">import</span> <span class="nn">time</span>
-        <span class="kn">from</span> <span class="nn">getpass</span> <span class="kn">import</span> <span class="n">getuser</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">getpass</span><span class="w"> </span><span class="kn">import</span> <span class="n">getuser</span>
 
-        <span class="kn">from</span> <span class="nn">diffpy.srmise</span> <span class="kn">import</span> <span class="n">__version__</span>
-        <span class="kn">from</span> <span class="nn">diffpy.srmise.basefunction</span> <span class="kn">import</span> <span class="n">BaseFunction</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.srmise</span><span class="w"> </span><span class="kn">import</span> <span class="n">__version__</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.srmise.basefunction</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseFunction</span>
 
         <span class="n">lines</span> <span class="o">=</span> <span class="p">[]</span>
 
@@ -807,29 +816,31 @@
 
 <div class="viewcode-block" id="PeakExtraction.writemetadata">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.peakextraction.PeakExtraction.writemetadata">[docs]</a>
-    <span class="k">def</span> <span class="nf">writemetadata</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">writemetadata</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return string for metadata not defined by srmise class.&quot;&quot;&quot;</span>
         <span class="k">return</span></div>
 
 
 <div class="viewcode-block" id="PeakExtraction.readmetadata">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.peakextraction.PeakExtraction.readmetadata">[docs]</a>
-    <span class="k">def</span> <span class="nf">readmetadata</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">readmetadata</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return string for metadata not defined by srmise class.&quot;&quot;&quot;</span>
         <span class="k">return</span></div>
 
 
 <div class="viewcode-block" id="PeakExtraction.writesummary">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.peakextraction.PeakExtraction.writesummary">[docs]</a>
-    <span class="k">def</span> <span class="nf">writesummary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">writesummary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return summary of peak extraction results.&quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 
 
 <div class="viewcode-block" id="PeakExtraction.getrangeslice">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.peakextraction.PeakExtraction.getrangeslice">[docs]</a>
-    <span class="k">def</span> <span class="nf">getrangeslice</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert the ranges in terms of x-coordinates to a slice object.&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">getrangeslice</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert the ranges in terms of x-coordinates to a slice</span>
+<span class="sd">        object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">low_idx</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">low_idx</span><span class="p">]</span> <span class="o">&lt;</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
             <span class="n">low_idx</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -841,7 +852,7 @@
 
 <div class="viewcode-block" id="PeakExtraction.estimate_peak">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.peakextraction.PeakExtraction.estimate_peak">[docs]</a>
-    <span class="k">def</span> <span class="nf">estimate_peak</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">add</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">estimate_peak</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">add</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return new estimated peak near x.</span>
 
 <span class="sd">        Peaks already extracted, if any, are taken into account.  If none exist,</span>
@@ -874,7 +885,11 @@
             <span class="n">dy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">effective_dy</span><span class="p">[</span><span class="n">rangeslice</span><span class="p">]</span>
 
         <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">x1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">or</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">x1</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
-            <span class="n">emsg</span> <span class="o">=</span> <span class="s2">&quot;Argument x=</span><span class="si">%s</span><span class="s2"> outside allowed range (</span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">).&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">x1</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">emsg</span> <span class="o">=</span> <span class="s2">&quot;Argument x=</span><span class="si">%s</span><span class="s2"> outside allowed range (</span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">).&quot;</span> <span class="o">%</span> <span class="p">(</span>
+                <span class="n">x</span><span class="p">,</span>
+                <span class="n">x1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                <span class="n">x1</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+            <span class="p">)</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">emsg</span><span class="p">)</span>
 
         <span class="c1"># Object performing clustering on data. Note that DataClusters</span>
@@ -907,8 +922,9 @@
 
 <div class="viewcode-block" id="PeakExtraction.add_peaks">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.peakextraction.PeakExtraction.add_peaks">[docs]</a>
-    <span class="k">def</span> <span class="nf">add_peaks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">peaks</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add peaks to extracted peaks, or initial_peaks if no extracted peaks exist.</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_peaks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">peaks</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add peaks to extracted peaks, or initial_peaks if no</span>
+<span class="sd">        extracted peaks exist.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -926,15 +942,18 @@
 
 <div class="viewcode-block" id="PeakExtraction.extract_single">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.peakextraction.PeakExtraction.extract_single">[docs]</a>
-    <span class="k">def</span> <span class="nf">extract_single</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">recursion_depth</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Find ModelCluster with peaks extracted from data. Return ModelCovariance instance at top level.</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">extract_single</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">recursion_depth</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Find ModelCluster with peaks extracted from data. Return</span>
+<span class="sd">        ModelCovariance instance at top level.</span>
 
 <span class="sd">        Every extracted peak is one of the peak functions supplied. All</span>
 <span class="sd">        comparisons of different peak models are performed with the class</span>
 <span class="sd">        specified by error_method.</span>
 
 <span class="sd">        Parameters</span>
-<span class="sd">        recursion_depth: (1) Tracks recursion with extract_single.&quot;&quot;&quot;</span>
+<span class="sd">        ----------</span>
+<span class="sd">        recursion_depth: (1) Tracks recursion with extract_single.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">clearcalc</span><span class="p">()</span>
         <span class="n">tracer</span> <span class="o">=</span> <span class="n">srmiselog</span><span class="o">.</span><span class="n">tracer</span>
         <span class="n">tracer</span><span class="o">.</span><span class="n">pushc</span><span class="p">()</span>
@@ -965,7 +984,18 @@
         <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="n">rangeslice</span><span class="p">]</span> <span class="o">-</span> <span class="n">ip</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
         <span class="c1"># List of ModelClusters containing extracted peaks.</span>
-        <span class="n">mclusters</span> <span class="o">=</span> <span class="p">[</span><span class="n">ModelCluster</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">bl</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dy</span><span class="p">,</span> <span class="n">dclusters</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">error_method</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pf</span><span class="p">)]</span>
+        <span class="n">mclusters</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">ModelCluster</span><span class="p">(</span>
+                <span class="kc">None</span><span class="p">,</span>
+                <span class="n">bl</span><span class="p">,</span>
+                <span class="n">x</span><span class="p">,</span>
+                <span class="n">y</span><span class="p">,</span>
+                <span class="n">dy</span><span class="p">,</span>
+                <span class="n">dclusters</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">error_method</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">pf</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">]</span>
 
         <span class="c1"># The minimum number of points required to make a valid fit, as</span>
         <span class="c1"># determined by the peak functions and error method used.  This is a</span>
@@ -1071,7 +1101,7 @@
                 <span class="c1"># near_peaks: array containing the indices of two nearest peaks on either side of border_x</span>
                 <span class="c1"># other_peaks: all the other peaks in full_cluster</span>
                 <span class="c1"># left_data, right_data: indices defining the extent of the &quot;interpeak range&quot; for x, etc.</span>
-                <span class="n">near_peaks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">)</span>
+                <span class="n">near_peaks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
 
                 <span class="c1"># interpeak range goes from peak to peak of next nearest peaks, although their contributions</span>
                 <span class="c1"># to the data are still removed.</span>
@@ -1099,7 +1129,12 @@
                     <span class="n">right_data</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">x</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">(</span><span class="n">peak_pos</span><span class="p">[</span><span class="n">pivot</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
                     <span class="n">near_peaks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">near_peaks</span><span class="p">,</span> <span class="n">pivot</span><span class="p">)</span>
 
-                <span class="n">other_peaks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">pivot</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">pivot</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">peak_pos</span><span class="p">))])</span>
+                <span class="n">other_peaks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+                    <span class="p">[</span>
+                        <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">pivot</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span>
+                        <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">pivot</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">peak_pos</span><span class="p">)),</span>
+                    <span class="p">]</span>
+                <span class="p">)</span>
 
                 <span class="c1"># Go from indices to lists of peaks.</span>
                 <span class="n">near_peaks</span> <span class="o">=</span> <span class="n">Peaks</span><span class="p">([</span><span class="n">full_cluster</span><span class="o">.</span><span class="n">model</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">near_peaks</span><span class="p">])</span>
@@ -1181,7 +1216,11 @@
                     <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span>
                     <span class="s2">&quot;---End of combining clusters---&quot;</span><span class="p">,</span>
                 <span class="p">]</span>
-                <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">msg</span><span class="p">),</span> <span class="n">mclusters</span><span class="p">[</span><span class="n">step</span><span class="o">.</span><span class="n">lastcluster_idx</span><span class="p">],</span> <span class="n">full_cluster</span><span class="p">)</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+                    <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">msg</span><span class="p">),</span>
+                    <span class="n">mclusters</span><span class="p">[</span><span class="n">step</span><span class="o">.</span><span class="n">lastcluster_idx</span><span class="p">],</span>
+                    <span class="n">full_cluster</span><span class="p">,</span>
+                <span class="p">)</span>
 
                 <span class="n">mclusters</span><span class="p">[</span><span class="n">step</span><span class="o">.</span><span class="n">lastcluster_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">full_cluster</span>
             <span class="c1">#  End update cluster fits ###</span>
@@ -1215,7 +1254,7 @@
                 <span class="c1"># near_peaks: array containing the indices of two nearest peaks on either side of border_x</span>
                 <span class="c1"># other_peaks: all the other peaks in new_cluster</span>
                 <span class="c1"># left_data, right_data: indices defining the extent of the &quot;interpeak range&quot; for x, etc.</span>
-                <span class="n">near_peaks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">)</span>
+                <span class="n">near_peaks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
 
                 <span class="c1"># interpeak range goes from peak to peak of next nearest peaks, although their contributions</span>
                 <span class="c1"># to the data are still removed.</span>
@@ -1243,7 +1282,12 @@
                     <span class="n">right_data</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">x</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">(</span><span class="n">peak_pos</span><span class="p">[</span><span class="n">pivot</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
                     <span class="n">near_peaks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">near_peaks</span><span class="p">,</span> <span class="n">pivot</span><span class="p">)</span>
 
-                <span class="n">other_peaks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">pivot</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">pivot</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">peak_pos</span><span class="p">))])</span>
+                <span class="n">other_peaks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+                    <span class="p">[</span>
+                        <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">pivot</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span>
+                        <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">pivot</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">peak_pos</span><span class="p">)),</span>
+                    <span class="p">]</span>
+                <span class="p">)</span>
 
                 <span class="c1"># Go from indices to lists of peaks.</span>
                 <span class="n">near_peaks</span> <span class="o">=</span> <span class="n">Peaks</span><span class="p">([</span><span class="n">new_cluster</span><span class="o">.</span><span class="n">model</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">near_peaks</span><span class="p">])</span>
@@ -1403,7 +1447,12 @@
                     <span class="s2">&quot;---End of combining clusters---&quot;</span><span class="p">,</span>
                 <span class="p">]</span>
 
-                <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">msg</span><span class="p">),</span> <span class="n">mclusters</span><span class="p">[</span><span class="n">idx</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span> <span class="n">mclusters</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">new_cluster</span><span class="p">)</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+                    <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">msg</span><span class="p">),</span>
+                    <span class="n">mclusters</span><span class="p">[</span><span class="n">idx</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span>
+                    <span class="n">mclusters</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span>
+                    <span class="n">new_cluster</span><span class="p">,</span>
+                <span class="p">)</span>
 
                 <span class="n">mclusters</span><span class="p">[</span><span class="n">idx</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_cluster</span>
                 <span class="k">del</span> <span class="n">mclusters</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
@@ -1447,10 +1496,11 @@
 
 <div class="viewcode-block" id="PeakExtraction.fit_single">
 <a class="viewcode-back" href="../../../api/diffpy.srmise.html#diffpy.srmise.peakextraction.PeakExtraction.fit_single">[docs]</a>
-    <span class="k">def</span> <span class="nf">fit_single</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Fit peaks in initial_peaks with baseline. Return ModelCovariance</span>
-<span class="sd">        instance summarizing results.&quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fit_single</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Fit peaks in initial_peaks with baseline.</span>
 
+<span class="sd">        Return ModelCovariance instance summarizing results.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">clearcalc</span><span class="p">()</span>
 
         <span class="c1"># Make sure all required extraction variables have some value</span>
@@ -1476,7 +1526,12 @@
 
         <span class="c1"># Fit model with baseline and calculate covariance matrix</span>
         <span class="n">cov</span> <span class="o">=</span> <span class="n">ModelCovariance</span><span class="p">()</span>
-        <span class="n">ext</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">fitbaseline</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">estimate</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cov</span><span class="o">=</span><span class="n">cov</span><span class="p">,</span> <span class="n">cov_format</span><span class="o">=</span><span class="s2">&quot;default_output&quot;</span><span class="p">)</span>
+        <span class="n">ext</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+            <span class="n">fitbaseline</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">estimate</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">cov</span><span class="o">=</span><span class="n">cov</span><span class="p">,</span>
+            <span class="n">cov_format</span><span class="o">=</span><span class="s2">&quot;default_output&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
 
         <span class="c1"># Update calculated instance variables</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">extraction_type</span> <span class="o">=</span> <span class="s2">&quot;fit_single&quot;</span>
@@ -1493,10 +1548,10 @@
 <span class="c1"># simple test code</span>
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
 
-    <span class="kn">from</span> <span class="nn">numpy.random</span> <span class="kn">import</span> <span class="n">randn</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">numpy.random</span><span class="w"> </span><span class="kn">import</span> <span class="n">randn</span>
 
-    <span class="kn">from</span> <span class="nn">diffpy.srmise.modelevaluators.aicc</span> <span class="kn">import</span> <span class="n">AICc</span>
-    <span class="kn">from</span> <span class="nn">diffpy.srmise.peaks.gaussianoverr</span> <span class="kn">import</span> <span class="n">GaussianOverR</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.srmise.modelevaluators.aicc</span><span class="w"> </span><span class="kn">import</span> <span class="n">AICc</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">diffpy.srmise.peaks.gaussianoverr</span><span class="w"> </span><span class="kn">import</span> <span class="n">GaussianOverR</span>
 
     <span class="n">srmiselog</span><span class="o">.</span><span class="n">setlevel</span><span class="p">(</span><span class="s2">&quot;info&quot;</span><span class="p">)</span>
     <span class="n">srmiselog</span><span class="o">.</span><span class="n">liveplotting</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
@@ -1513,18 +1568,18 @@
     <span class="n">err</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">r</span><span class="p">))</span>
     <span class="n">evaluator</span> <span class="o">=</span> <span class="n">AICc</span><span class="p">()</span>
 
-    <span class="n">te</span> <span class="o">=</span> <span class="n">PeakExtraction</span><span class="p">()</span>
-    <span class="n">te</span><span class="o">.</span><span class="n">setdata</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
-    <span class="n">te</span><span class="o">.</span><span class="n">setvars</span><span class="p">(</span><span class="n">rng</span><span class="o">=</span><span class="p">[</span><span class="mf">1.51</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">],</span> <span class="n">pf</span><span class="o">=</span><span class="p">[</span><span class="n">pf</span><span class="p">],</span> <span class="n">cres</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">effective_dy</span><span class="o">=</span><span class="mf">1.5</span> <span class="o">*</span> <span class="n">err</span><span class="p">)</span>
-    <span class="n">te</span><span class="o">.</span><span class="n">extract_single</span><span class="p">()</span>
+    <span class="n">peak_extraction</span> <span class="o">=</span> <span class="n">PeakExtraction</span><span class="p">()</span>
+    <span class="n">peak_extraction</span><span class="o">.</span><span class="n">setdata</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+    <span class="n">peak_extraction</span><span class="o">.</span><span class="n">setvars</span><span class="p">(</span><span class="n">rng</span><span class="o">=</span><span class="p">[</span><span class="mf">1.51</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">],</span> <span class="n">pf</span><span class="o">=</span><span class="p">[</span><span class="n">pf</span><span class="p">],</span> <span class="n">cres</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">effective_dy</span><span class="o">=</span><span class="mf">1.5</span> <span class="o">*</span> <span class="n">err</span><span class="p">)</span>
+    <span class="n">peak_extraction</span><span class="o">.</span><span class="n">extract_single</span><span class="p">()</span>
 
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--- Actual Peak parameters ---&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">ideal_peaks</span><span class="p">)</span>
 
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- After extraction ---&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">te</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">peak_extraction</span><span class="p">)</span>
 
-    <span class="n">te</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+    <span class="n">peak_extraction</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
     <span class="nb">input</span><span class="p">()</span>
 </pre></div>
 
@@ -1535,7 +1590,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, The Trustees of Columbia University in the City of New York.</p>
+    <p>&#169; Copyright 2026, The Trustees of Columbia University in the City of New York.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
