@@ -140,7 +140,7 @@ def run(plot=True):
         dG = ms.dgs[np.argmax(cls_probs)]
         best_dGs.append(dG)
 
-    print("\n--------- Best models for at least one dG ---------" % dG)
+    print(f"\n--------- Best models for at least one dG: {dG} ---------")
     print("   Best dG  Model  Class  Free       AIC     Prob  File")
     for dG in best_dGs:
 

@@ -570,7 +570,6 @@ class PDFPeakExtraction(PeakExtraction):
         ModelCovariance instance
             The fitted ModelCovariance instance.
         """
-
         self.clearcalc()
 
         # Make sure all required extraction variables have some value
@@ -664,7 +663,6 @@ class PDFPeakExtraction(PeakExtraction):
         -------
         None
         """
-
         # filename
         res = re.search(r"^filename=(.*)$", metastr, re.M)
         if res:
@@ -758,7 +756,6 @@ class PDFPeakExtraction(PeakExtraction):
         -------
         None
         """
-
         if self.extracted is None:
             emsg = "Cannot write summary: Peak Extraction has not been performed."
             raise SrMiseError(emsg)
@@ -1068,7 +1065,6 @@ def stdratio(data):
         an array of length floor(len(data)/2)-1.  The ith element is
         equivalent to std(data[:i+2])/std(data[i+2:2i+4]).
     """
-
     limit = int(np.floor(len(data) / 2))
     std_left = np.zeros(limit)
     std_right = np.zeros(limit)

@@ -34,7 +34,8 @@ def eatkwds(*args, **kwds):
 
 class MultimodelSelection(PeakStability):
     """Quick and dirty multimodel selection using AIC and its
-    offspring."""
+    offspring.
+    """
 
     def __init__(self):
         """"""
@@ -198,7 +199,8 @@ class MultimodelSelection(PeakStability):
 
     def makesortedprobs(self):
         """Make probabilities for the sequence of AICs in a sorted
-        order."""
+        order.
+        """
         self.sortedprobs = {}
 
         for dg in self.dgs:
@@ -610,7 +612,6 @@ class MultimodelSelection(PeakStability):
         "cbaxis" - The colorbar axis, if it exists.
         "cb" - The colorbar, if it exists.
         """
-
         from matplotlib import cm, colorbar, colors
         from matplotlib.collections import PolyCollection
 

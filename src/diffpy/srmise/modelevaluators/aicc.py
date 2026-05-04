@@ -55,6 +55,7 @@ class AICc(ModelEvaluator):
         small sample size).
 
         Parameters
+        ----------
         fit: A ModelCluster
             The ModelCluster to evaluate.
         count_fixed : bool
@@ -102,7 +103,6 @@ class AICc(ModelEvaluator):
         int
             The minimum number of points required to make an estimate of a model's quality.
         """
-
         # From the denominator of AICc, it is clear that the first positive finite contribution to
         # parameter cost is at n>=k+2
         return npars + 2
@@ -124,7 +124,6 @@ class AICc(ModelEvaluator):
         float
             The cost for adding k parameters to the current model cluster.
         """
-
         # Weight the penalty for additional parameters.
         # If this isn't 1 there had better be a good reason.
         fudgefactor = 1.0
@@ -152,7 +151,6 @@ class AICc(ModelEvaluator):
         bool
             Whether the current model cluster is justified or not.
         """
-
         if self.chisq is None:
             self.chisq = self.chi_squared(fit.value(), fit.y_cluster, fit.error_cluster)
 
@@ -188,7 +186,6 @@ class AICc(ModelEvaluator):
         array-like
             The sequence of Akaike weights
         """
-
         aic_stats = np.array([aic.stat for aic in aics])
         aic_min = min(aic_stats)
         return np.exp(-(aic_stats - aic_min) / 2.0)

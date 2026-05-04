@@ -24,7 +24,8 @@ logger = logging.getLogger("diffpy.srmise")
 
 class TerminationRipples(PeakFunction):
     """Methods for evaluation and parameter estimation of a peak
-    function with termination ripples."""
+    function with termination ripples.
+    """
 
     def __init__(self, base, qmax, extension=4.0, supersample=5.0, Cache=None):
         """Peak function constructor which adds termination ripples to

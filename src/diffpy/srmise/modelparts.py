@@ -307,6 +307,7 @@ class ModelParts(list):
         """Calculate the Jacobian of freepars.
 
         Parameters
+        ----------
         freepars : array-like
             The sequence of free parameters
         r : array-like
@@ -438,6 +439,7 @@ class ModelParts(list):
         """Transforms format of parameters in this modelpart.
 
         Parameters
+        ----------
         in_format : str
             The format the parameters are already in.
         out_format : str
@@ -460,7 +462,7 @@ class ModelPart(object):
     """Represents a single part (instance of some function) of a model.
 
     Attributes
-    -------
+    ----------
     pars : array-like
         The array containing the parameters of this model part
     free : array-like
@@ -502,6 +504,7 @@ class ModelPart(object):
         """Constructor for instance members.
 
         Parameters
+        ----------
         owner : BaseFunction subclass
             The instance of a BaseFunction subclass
         pars : array-like

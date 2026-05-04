@@ -142,7 +142,6 @@ class ModelEvaluator:
         error : float
             The error statistic.
         """
-
         self.chisq = np.sum((expected - observed) ** 2 / error**2)
         return self.chisq
 

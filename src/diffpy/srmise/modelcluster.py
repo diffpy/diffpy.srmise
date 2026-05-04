@@ -266,11 +266,11 @@ class ModelCovariance(object):
         """Return value of parameter i.
 
         The variable may be specified as an integer, or as a two-
-        component tuple of integers (l, m) which indicate the mth
-        parameter of modelpart l.
+        component tuple of integers ``(part_idx, param_idx)`` indicating
+        the ``param_idx``-th parameter of model part ``part_idx``.
         """
-        (l, m) = i if i in self.pmap else self.ipmap[i]
-        return self.model[l][m]
+        part_idx, param_idx = i if i in self.pmap else self.ipmap[i]
+        return self.model[part_idx][param_idx]
 
     def getuncertainty(self, i):
         """Return uncertainty of parameter i.
@@ -288,7 +288,7 @@ class ModelCovariance(object):
         float
             The uncertainty of variable at index i.
         """
-        (l, m) = i if i in self.pmap else self.ipmap[i]
+        part_idx, param_idx = i if i in self.pmap else self.ipmap[i]
         return np.sqrt(self.getcovariance(i, i))
 
     def getcovariance(self, i, j):
@@ -369,7 +369,8 @@ class ModelCovariance(object):
 
     def __str__(self):
         """Return string of value (uncertainty) pairs for all
-        parameters."""
+        parameters.
+        """
         if self.model is None or self.cov is None:
             return "Model and/or Covariance matrix undefined."
         lines = []
@@ -799,16 +800,16 @@ class ModelCluster(object):
             The new ModelCluster instance between m1 and m2.
         """
         # Check for members that must be shared.
-        if not (m1.r_data is m2.r_data):
+        if m1.r_data is not m2.r_data:
             emsg = "Cannot join ModelClusters that do not share r_data."
             raise ValueError(emsg)
-        if not (m1.y_data is m2.y_data):
+        if m1.y_data is not m2.y_data:
             emsg = "Cannot join ModelClusters that do not share y_data."
             raise ValueError(emsg)
-        if not (m1.y_error is m2.y_error):
+        if m1.y_error is not m2.y_error:
             emsg = "Cannot join ModelClusters that do not share y_error."
             raise ValueError(emsg)
-        if not (m1.error_method is m2.error_method):
+        if m1.error_method is not m2.error_method:
             emsg = "Cannot join ModelClusters that do not share error_method."
             raise ValueError(emsg)
         if not (m1.baseline == m2.baseline):

@@ -12,7 +12,8 @@
 #
 ##############################################################################
 """Defines BaseFunction, the base class for mathematical functions in
-srmise."""
+srmise.
+"""
 
 import logging
 import re
@@ -30,7 +31,7 @@ class BaseFunction(object):
     sequences.
 
     Attributes
-    -------------
+    ----------
     parameterdict : dict
         The dictionary mapping string keys to their index in the
         sequence of parameters.  These keys apply only to the
@@ -102,7 +103,6 @@ class BaseFunction(object):
             The class (not instance) which implements caching of BaseFunction
             evaluations.
         """
-
         self.parameterdict = parameterdict
         self.npars = len(self.parameterdict)
 
@@ -448,6 +448,7 @@ class BaseFunction(object):
             The list of BaseFunction (or subclass) instances.
 
         Returns
+        -------
         Basefunction instance
             The BaseFunction instance based on the parameter strings
         """
@@ -505,6 +506,7 @@ class BaseFunction(object):
         is guaranteed to be safe for saving/reinstantiating peak functions.
 
         Parameters
+        ----------
         fs: List of BaseFunction instances.
         """
         fsafe = []

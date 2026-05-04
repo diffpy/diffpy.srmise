@@ -556,8 +556,8 @@ def on_draw(event):
 
 def readcompare(filename):
     """Returns a list of distances read from filename, otherwise
-    None."""
-
+    None.
+    """
     # TODO: Make this safer
     try:
         datastring = open(filename, "rb").read()

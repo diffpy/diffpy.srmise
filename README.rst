@@ -102,7 +102,9 @@ The following creates and activates a new environment named ``diffpy.srmise_env`
         conda create -n diffpy.srmise_env diffpy.srmise
         conda activate diffpy.srmise_env
 
-The output should print the latest version displayed on the badges above.
+You can also install diffpy.srmise in another activated environment with ::
+
+        conda install -c conda-forge diffpy.srmise
 
 If the above does not work, you can use ``pip`` to download and install the latest release from
 `Python Package Index <https://pypi.python.org>`_.
@@ -120,6 +122,7 @@ This package also provides command-line utilities. To check the software has bee
 
         diffpy.srmise --version
 
+The output should print the latest version displayed on the badges above.
 You can also type the following command to verify the installation. ::
 
         python -c "import diffpy.srmise; print(diffpy.srmise.__version__)"
