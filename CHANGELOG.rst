@@ -4,6 +4,30 @@ Release notes
 
 .. current developments
 
+0.8.0
+=====
+
+**Added:**
+
+* Support for Python 3.14
+* Spelling check via Codespell in pre-commit
+* Coverage report in each PR
+* Codespell for automatic spelling check, configured in pre-commit
+
+**Changed:**
+
+* Improved the error message of `extract()` when user has issue in CLI control
+
+**Fixed:**
+
+* Typos in the source code and documentation
+* Fixed extracting single peak with `py2` legacy cleanup
+
+**Removed:**
+
+* Support for Python 3.11
+
+
 0.7.0
 =====
 
