@@ -99,7 +99,6 @@ def setfilelevel(level):
     ----------
     level: The logging level.
     """
-    global fh
     if fh is not None:
         level = LEVELS.get(level, level)
         fh.setLevel(level)
@@ -117,7 +116,6 @@ def setlevel(level):
     ----------
     level: The logging level.
     """
-    global ch
     level = LEVELS.get(level, level)
     ch.setLevel(level)
     if level < logger.getEffectiveLevel():

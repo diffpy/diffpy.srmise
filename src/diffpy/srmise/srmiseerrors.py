@@ -28,6 +28,8 @@ SrMiseScalingError: Error while scaling a peak function.
 SrMiseStaticOwnerError: Error when changing ModelPart instance owner.
 """
 
+# FIXME: remove this line when `docformatter` fixes the blank line bug
+
 
 # Superclass class for diffpy.srmise.mise
 class SrMiseError(Exception):

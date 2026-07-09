@@ -48,7 +48,7 @@ class PeakStability:
 
         in_s = open(filename, "rb")
         try:
-            (self.results, ppestr) = pickle.load(in_s)
+            self.results, ppestr = pickle.load(in_s)
             self.ppe = PDFPeakExtraction()
             self.ppe.readstr(ppestr)
 
@@ -144,7 +144,7 @@ class PeakStability:
         if idx is not None:
             result = self.results[idx]
             self.ppe.setvars(quiet=True, effective_dy=result[0] * np.ones(len(self.ppe.x)))
-            (r, y, dr, dy) = self.ppe.resampledata(result[3])
+            r, y, dr, dy = self.ppe.resampledata(result[3])
             self.ppe.extracted = ModelCluster(
                 result[1],
                 result[2],

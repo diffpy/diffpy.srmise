@@ -13,25 +13,26 @@
 """Extract multiple models from crystalline PDF with known uncertainties
 for use in later AIC-driven multimodeling analysis.
 
-The multimodel approach generates many models of varying complexity by assuming
-a range of experimental uncertainties are physically plausible.  This example
-shows how to generate multiple models from a crystalline silver PDF with
-experimentally determined uncertainties.  The Akaike Information Criterion (AIC)
-will later be used to see which models are relatively more likely to describe
-the experimental data.  For complex PDFs, especially, there are many sets of
-peaks which are physically distinct yet appear to fit the experimental data
-similarly well.  Multimodeling can help determine which models are worth
-investigating first.
+The multimodel approach generates many models of varying complexity by
+assuming a range of experimental uncertainties are physically plausible.
+This example shows how to generate multiple models from a crystalline
+silver PDF with experimentally determined uncertainties.  The Akaike
+Information Criterion (AIC) will later be used to see which models are
+relatively more likely to describe the experimental data.  For complex
+PDFs, especially, there are many sets of peaks which are physically
+distinct yet appear to fit the experimental data similarly well.
+Multimodeling can help determine which models are worth investigating
+first.
 
-NOTE: The multimodeling API used here is expected to change drastically in a
-future version of diffpy.srmise.
+NOTE: The multimodeling API used here is expected to change drastically
+in a future version of diffpy.srmise.
 
-For more information on the multimodeling approach taken here see
-[1] Granlund, et al. (2015) Acta Crystallographica A, 71(4), 392-409.
-    doi:10.1107/S2053273315005276
-The standard reference of AIC-based multimodel selection is
-[2] Burnham and Anderson. (2002). Model Selection and Multimodel Inference.
-    New York, NY: Springer. doi:10.1007/b97636
+For more information on the multimodeling approach taken here see [1]
+Granlund, et al. (2015) Acta Crystallographica A, 71(4), 392-409.
+doi:10.1107/S2053273315005276 The standard reference of AIC-based
+multimodel selection is [2] Burnham and Anderson. (2002). Model
+Selection and Multimodel Inference.     New York, NY: Springer.
+doi:10.1007/b97636
 """
 
 import numpy as np

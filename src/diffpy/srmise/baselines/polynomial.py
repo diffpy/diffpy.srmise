@@ -24,8 +24,7 @@ logger = logging.getLogger("diffpy.srmise")
 
 class Polynomial(BaselineFunction):
     """Methods for evaluation and parameter estimation of a polynomial
-    baseline.
-    """
+    baseline."""
 
     def __init__(self, degree, Cache=None):
         """Initialize a polynomial function of degree d.

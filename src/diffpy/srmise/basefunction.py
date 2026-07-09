@@ -12,8 +12,7 @@
 #
 ##############################################################################
 """Defines BaseFunction, the base class for mathematical functions in
-srmise.
-"""
+srmise."""
 
 import logging
 import re

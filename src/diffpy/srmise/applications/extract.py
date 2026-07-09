@@ -433,7 +433,7 @@ def main():
     )
     parser.add_option_group(group)
 
-    (options, args) = parser.parse_args()
+    options, args = parser.parse_args()
 
     if len(args) != 1:
         parser.error("Exactly one argument required. \n" + usage)

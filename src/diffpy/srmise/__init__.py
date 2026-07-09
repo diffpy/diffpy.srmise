@@ -13,8 +13,7 @@
 #
 ##############################################################################
 """Peak extraction and peak fitting tool for atomic pair distribution
-functions.
-"""
+functions."""
 
 # package version
 from diffpy.srmise.version import __version__  # noqa

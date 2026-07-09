@@ -332,8 +332,9 @@ class PDFPeakExtraction(PeakExtraction):
             return 1.0
 
     def extract(self, **kwds):
-        """Extract peaks from the PDF. Returns ModelCovariance instance
-        summarizing results.
+        """Extract peaks from the PDF.
+
+        Returns ModelCovariance instance summarizing results.
 
         Parameters
         ----------
@@ -394,7 +395,7 @@ class PDFPeakExtraction(PeakExtraction):
             if dr_nyquist / dr_raw < self.supersample:
                 # supersample PDF for initial extraction
                 dr = dr_nyquist / self.supersample
-                (r1, y1, r_error1, y_error1) = self.resampledata(dr)
+                r1, y1, r_error1, y_error1 = self.resampledata(dr)
             else:
                 # provided PDF already sufficiently oversampled
                 r1 = self.x[rngslice]
@@ -483,7 +484,7 @@ class PDFPeakExtraction(PeakExtraction):
                         dr_nyquist,
                     )
 
-                    (r2, y2, r_error2, y_error2) = self.resampledata(dr_resample)
+                    r2, y2, r_error2, y_error2 = self.resampledata(dr_resample)
 
                     ext = ModelCluster(
                         ext.model,
@@ -556,8 +557,9 @@ class PDFPeakExtraction(PeakExtraction):
         return cov
 
     def fit(self, **kwds):
-        """Fit peaks in the PDF. Returns ModelCovariance instance
-        summarizing results.
+        """Fit peaks in the PDF.
+
+        Returns ModelCovariance instance summarizing results.
 
         Parameters
         ----------
@@ -602,7 +604,7 @@ class PDFPeakExtraction(PeakExtraction):
             y1 = self.y[rngslice]
             y_error1 = self.effective_dy[rngslice]
         else:
-            (r1, y1, r_error1, y_error1) = self.resampledata(dr_nyquist)
+            r1, y1, r_error1, y_error1 = self.resampledata(dr_nyquist)
 
         # Set up for fit_single
         pe = PeakExtraction()

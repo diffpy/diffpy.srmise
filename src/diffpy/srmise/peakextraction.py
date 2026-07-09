@@ -719,8 +719,7 @@ class PeakExtraction(object):
 
     def getrangeslice(self):
         """Convert the ranges in terms of x-coordinates to a slice
-        object.
-        """
+        object."""
         low_idx = 0
         while self.x[low_idx] < max(self.x[0], self.rng[0]):
             low_idx += 1
@@ -814,8 +813,9 @@ class PeakExtraction(object):
             self.initial_peaks.sort(key="position")
 
     def extract_single(self, recursion_depth=1):
-        """Find ModelCluster with peaks extracted from data. Return
-        ModelCovariance instance at top level.
+        """Find ModelCluster with peaks extracted from data.
+
+        Return ModelCovariance instance at top level.
 
         Every extracted peak is one of the peak functions supplied. All
         comparisons of different peak models are performed with the class

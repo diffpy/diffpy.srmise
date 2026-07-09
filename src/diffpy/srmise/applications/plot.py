@@ -522,7 +522,6 @@ _lastxpos = {}
 
 
 def on_draw(event):
-    global _lastxpos
     fig = event.canvas.figure
     ax_main = fig.get_axes()[0]
     invisiblelabel = ax_main.axis["left"].label
@@ -556,8 +555,7 @@ def on_draw(event):
 
 def readcompare(filename):
     """Returns a list of distances read from filename, otherwise
-    None.
-    """
+    None."""
     # TODO: Make this safer
     try:
         datastring = open(filename, "rb").read()

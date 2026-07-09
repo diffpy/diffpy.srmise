@@ -16,7 +16,6 @@
 ##############################################################################
 """Class PDFDataSet for experimental PDF data."""
 
-
 import os.path
 import re
 import time
@@ -169,8 +168,9 @@ class PDFDataSet(PDFComponent):
         return
 
     def getvar(self, var):
-        """Obtain value corresponding to PdfFit dataset variable. Used
-        by findParameters().
+        """Obtain value corresponding to PdfFit dataset variable.
+
+        Used by findParameters().
 
         Parameters
         ----------
@@ -411,17 +411,18 @@ class PDFDataSet(PDFComponent):
         return datastring
 
     def copy(self, other=None):
-        """Copy self to other. if other is None, create new instance.
+        """Copy self to other.
 
-        Parameters
-        ----------
-        other : PDFDataSet instance
-            ref to other object
+        if other is None, create new instance.
+                Parameters
+                ----------
+                other : PDFDataSet instance
+                    ref to other object
 
-        Returns
-        -------
-        PDFDataSet instance
-            reference to copied object
+                Returns
+                -------
+                PDFDataSet instance
+                    reference to copied object
         """
         if other is None:
             other = PDFDataSet(self.name)

@@ -24,8 +24,7 @@ logger = logging.getLogger("diffpy.srmise")
 
 class TerminationRipples(PeakFunction):
     """Methods for evaluation and parameter estimation of a peak
-    function with termination ripples.
-    """
+    function with termination ripples."""
 
     def __init__(self, base, qmax, extension=4.0, supersample=5.0, Cache=None):
         """Peak function constructor which adds termination ripples to
@@ -241,7 +240,7 @@ class TerminationRipples(PeakFunction):
             if rng is None:
                 rng = slice(0, len(r))
             rpart = r[rng]
-            (ext_r, ext_slice) = self.extend_grid(rpart, dr)
+            ext_r, ext_slice = self.extend_grid(rpart, dr)
             jac = self._jacobianraw(peak.pars, ext_r, peak.free)
             output = [None for j in jac]
             for idx in range(len(output)):
@@ -253,7 +252,7 @@ class TerminationRipples(PeakFunction):
         except TypeError:
             # dr is ad hoc if r is a single point.
             dr = 2 * np.pi / (self.supersample * self.qmax)
-            (ext_r, ext_slice) = self.extend_grid(np.array([r]), dr)
+            ext_r, ext_slice = self.extend_grid(np.array([r]), dr)
             jac = self._jacobianraw(peak.pars, ext_r, peak.free)
             for idx in range(len(output)):
                 if jac[idx] is not None:
@@ -297,7 +296,7 @@ class TerminationRipples(PeakFunction):
         dr_super = 2 * np.pi / (self.supersample * self.qmax)
         if np.isscalar(r):
             # dr is ad hoc if r is a single point.
-            (ext_r, ext_slice) = self.extend_grid(np.array([r]), dr_super)
+            ext_r, ext_slice = self.extend_grid(np.array([r]), dr_super)
             value = self._valueraw(peak.pars, ext_r)
             value = self.cut_freq(value, dr_super)
             return value[ext_slice][0]
@@ -324,7 +323,7 @@ class TerminationRipples(PeakFunction):
             if segments > 1:
                 rpart = np.arange(rpart[0], rpart[-1] + dr_segmented / 2, dr_segmented)
 
-            (ext_r, ext_slice) = self.extend_grid(rpart, dr_segmented)
+            ext_r, ext_slice = self.extend_grid(rpart, dr_segmented)
             value = self._valueraw(peak.pars, ext_r)
             value = self.cut_freq(value, dr_segmented)
             output[rng] = value[ext_slice][::segments]
