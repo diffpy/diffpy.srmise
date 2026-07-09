@@ -12,8 +12,7 @@
 #
 ##############################################################################
 """Defines class to partition sequences representing the x and y axis
-into peak-like clusters.
-"""
+into peak-like clusters."""
 
 import logging
 
@@ -280,7 +279,7 @@ class DataClusters:
         Returns
         -------
         array-like
-            The array of cluster index and the distacne to the nearest cluster. None if no clusters exist.
+            The array of cluster index and the distance to the nearest cluster. None if no clusters exist.
         """
         if self.status == self.INIT:
             raise Exception("Cannot cluster next point while status is INIT.")
@@ -399,9 +398,10 @@ class DataClusters:
         """Return all cluster indices with no unclustered points between
         them.
 
-        Return array([[leftmost_idx1,...,rightmost_idx1],...]) such that there
-        are no unclustered points between each element in subarray of clusters
-        (inclusive).  If no such clusters exist, returns an empty array.
+        Return array([[leftmost_idx1,...,rightmost_idx1],...]) such that
+        there are no unclustered points between each element in subarray
+        of clusters (inclusive).  If no such clusters exist, returns an
+        empty array.
         """
         if self.status == self.INIT:
             raise Exception("Cannot cluster next point while status is INIT.")
@@ -469,7 +469,7 @@ class DataClusters:
         plt.plot(self.x, self.y, *args, **kwds)
         plt.ioff()
         boundaries = self.cluster_boundaries()
-        (ymin, ymax) = ax.get_ylim()
+        ymin, ymax = ax.get_ylim()
         for b in boundaries:
             plt.axvline(b[0], 0, (b[1] - ymin) / (ymax - ymin), color="k")
         plt.ion()

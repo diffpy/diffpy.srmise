@@ -369,8 +369,7 @@ class ModelCovariance(object):
 
     def __str__(self):
         """Return string of value (uncertainty) pairs for all
-        parameters.
-        """
+        parameters."""
         if self.model is None or self.cov is None:
             return "Model and/or Covariance matrix undefined."
         lines = []
@@ -977,8 +976,9 @@ class ModelCluster(object):
         self.replacepeaks([], slice(idx, idx + 1))
 
     def estimatepeak(self):
-        """Attempt to add single peak to empty cluster.  Return True if
-        successful.
+        """Attempt to add single peak to empty cluster.
+
+        Return True if successful.
 
         Returns
         -------

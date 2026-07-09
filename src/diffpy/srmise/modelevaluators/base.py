@@ -72,7 +72,6 @@ class ModelEvaluator:
 
     def __lt__(self, other):
         """"""
-
         assert self.method == other.method  # Comparison between same types required
         assert self.stat is not None and other.stat is not None  # The statistic must already be calculated
 
@@ -83,7 +82,6 @@ class ModelEvaluator:
 
     def __le__(self, other):
         """"""
-
         assert self.method == other.method  # Comparison between same types required
         assert self.stat is not None and other.stat is not None  # The statistic must already be calculated
 
@@ -94,7 +92,6 @@ class ModelEvaluator:
 
     def __eq__(self, other):
         """"""
-
         assert self.method == other.method  # Comparison between same types required
         assert self.stat is not None and other.stat is not None  # The statistic must already be calculated
 
@@ -102,7 +99,6 @@ class ModelEvaluator:
 
     def __ne__(self, other):
         """"""
-
         assert self.method == other.method  # Comparison between same types required
         assert self.stat is not None and other.stat is not None  # The statistic must already be calculated
 
@@ -110,7 +106,6 @@ class ModelEvaluator:
 
     def __gt__(self, other):
         """"""
-
         assert self.method == other.method  # Comparison between same types required
         assert self.stat is not None and other.stat is not None  # The statistic must already be calculated
 
@@ -121,7 +116,6 @@ class ModelEvaluator:
 
     def __ge__(self, other):
         """"""
-
         assert self.method == other.method  # Comparison between same types required
         assert self.stat is not None and other.stat is not None  # The statistic must already be calculated
 

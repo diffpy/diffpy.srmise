@@ -34,8 +34,7 @@ def eatkwds(*args, **kwds):
 
 class MultimodelSelection(PeakStability):
     """Quick and dirty multimodel selection using AIC and its
-    offspring.
-    """
+    offspring."""
 
     def __init__(self):
         """"""
@@ -86,7 +85,7 @@ class MultimodelSelection(PeakStability):
             self.aics[dg] = []
             aics_out[dg] = []
 
-        (r, y, dr, dy) = self.ppe.resampledata(dr)
+        r, y, dr, dy = self.ppe.resampledata(dr)
 
         for model_idx in range(len(self.results)):
             print("Testing model %s of %s." % (model_idx, len(self.results)))
@@ -199,8 +198,7 @@ class MultimodelSelection(PeakStability):
 
     def makesortedprobs(self):
         """Make probabilities for the sequence of AICs in a sorted
-        order.
-        """
+        order."""
         self.sortedprobs = {}
 
         for dg in self.dgs:

@@ -135,8 +135,7 @@ class Peaks(ModelParts):
 
     def argsort(self, key="position"):
         """Return sequence of indices which sort peaks in order
-        specified by key.
-        """
+        specified by key."""
         keypars = np.array([p[key] for p in self])
         # In normal use the peaks will already be sorted, so check for it.
         sorted = True
@@ -215,8 +214,7 @@ class Peaks(ModelParts):
 
 class Peak(ModelPart):
     """Represents a single peak associated with a PeakFunction
-    subclass.
-    """
+    subclass."""
 
     def __init__(self, owner, pars, free=None, removable=True, static_owner=False):
         """Set instance members.

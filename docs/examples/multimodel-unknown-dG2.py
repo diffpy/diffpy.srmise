@@ -13,31 +13,34 @@
 """AIC-driven multimodel analysis of nanoparticle PDF with unknown
 uncertainties.
 
-The multimodel approach generates many models of varying complexity by assuming
-a range of experimental uncertainties are physically plausible.  This example
-shows how to analyze multiple models obtained from a C60 nanoparticle PDF with
-unreliable uncertainties.  The Akaike Information Criterion (AIC) can be used to
-see which models are relatively more likely to describe the experimental data.
-For complex PDFs, especially, there are many sets of peaks which are physically
-distinct yet appear to fit the experimental data similarly well.  Here we
-calculate the Akaike probabilities, which are a measure of the likelihood that a
-given model is the best model (in the sense of Kullback-Leibler information
+The multimodel approach generates many models of varying complexity by
+assuming a range of experimental uncertainties are physically plausible.
+This example shows how to analyze multiple models obtained from a C60
+nanoparticle PDF with unreliable uncertainties.  The Akaike Information
+Criterion (AIC) can be used to see which models are relatively more
+likely to describe the experimental data. For complex PDFs, especially,
+there are many sets of peaks which are physically distinct yet appear to
+fit the experimental data similarly well.  Here we calculate the Akaike
+probabilities, which are a measure of the likelihood that a given model
+is the best model (in the sense of Kullback-Leibler information
 divergence) relative to all the other ones in the same comparison.  This
-analysis reflects ignorance of the experimental uncertainties by evaluating
-the Akaike probabilities for a range of assumed uncertainties, returning models
-which are selected as best at least once.  This is a weaker analysis than
-possible when the uncertainties are known.
+analysis reflects ignorance of the experimental uncertainties by
+evaluating the Akaike probabilities for a range of assumed
+uncertainties, returning models which are selected as best at least
+once.  This is a weaker analysis than possible when the uncertainties
+are known.
 
-NOTE: The multimodeling API used here is expected to change drastically in a
-future version of diffpy.srmise.
+NOTE: The multimodeling API used here is expected to change drastically
+in a future version of diffpy.srmise.
 
-For more information on the multimodeling approach taken here see
-[1] Granlund, et al. (2015) Acta Crystallographica A, 71(4), 392-409.
-    doi:10.1107/S2053273315005276
-The standard reference of AIC-based multimodel selection is
-[2] Burnham and Anderson. (2002). Model Selection and Multimodel Inference.
-    New York, NY: Springer. doi:10.1007/b97636
+For more information on the multimodeling approach taken here see [1]
+Granlund, et al. (2015) Acta Crystallographica A, 71(4), 392-409.
+doi:10.1107/S2053273315005276 The standard reference of AIC-based
+multimodel selection is [2] Burnham and Anderson. (2002). Model
+Selection and Multimodel Inference.     New York, NY: Springer.
+doi:10.1007/b97636
 """
+
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -88,7 +91,7 @@ def run(plot=True):
     # Nyquist sampling minimizes correlations in the PDF, which is the closest
     # approximation to independence possible for the PDF.
     dr = np.pi / ms.ppe.qmax
-    (r, y, dr2, dy) = ms.ppe.resampledata(dr)
+    r, y, dr2, dy = ms.ppe.resampledata(dr)
 
     # Classify models
     # All models are placed into classes.  Models in the same class
@@ -155,7 +158,7 @@ def run(plot=True):
         # "aic" -> The AIC for this model given uncertainty dG
         # "prob" -> The AIC probability given uncertainty dG
         # These all have dedicated getter functions.
-        (model, cls, nfree, aic, prob) = ms.get(dG, "model", "class", "nfree", "aic", "prob")
+        model, cls, nfree, aic, prob = ms.get(dG, "model", "class", "nfree", "aic", "prob")
 
         filename_base = "output/unknown_dG_m" + str(model)
 

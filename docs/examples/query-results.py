@@ -103,7 +103,7 @@ def run(plot=True):
     print("    Covariance(width, area) = ", cov.getcovariance((0, 1), (0, 2)))
 
     # Baseline parameters.  By convention, baseline is final element in cov.
-    (slope, intercept) = cov.model[-1]
+    slope, intercept = cov.model[-1]
     print("\nThe linear baseline B(r)=%f*r + %f" % tuple(par for par in cov.model[-1]))
 
     print("\n ------ Uncertainties from a Saved File --------")
@@ -173,7 +173,7 @@ def run(plot=True):
     # Calculated the scaled intensities and uncertainties.
     intensity = []
     for i in range(0, len(cov.model) - 1):
-        (area, darea) = cov.get((i, 2))
+        area, darea = cov.get((i, 2))
         area *= scale
         darea = area * np.sqrt((dscale / scale) ** 2 + (darea / area) ** 2)
         intensity.append((ideal_intensity[i], area, darea))

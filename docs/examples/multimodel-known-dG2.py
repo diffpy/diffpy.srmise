@@ -13,25 +13,26 @@
 """AIC-driven multimodel analysis of crystalline PDF with known
 uncertainties.
 
-The multimodel approach generates many models of varying complexity by assuming
-a range of experimental uncertainties are physically plausible.  This example
-shows how to analyze multiple models obtained (in the previous script) from a
-crystalline silver PDF with experimentally determined uncertainties.  This
-involves calculating the Akaike probabilities, which are a measure of the
-likelihood that a given model is the best model (in the sense of
-Kullback-Leibler divergence) relative to all the other ones in the same
-comparison.
+The multimodel approach generates many models of varying complexity by
+assuming a range of experimental uncertainties are physically plausible.
+This example shows how to analyze multiple models obtained (in the
+previous script) from a crystalline silver PDF with experimentally
+determined uncertainties.  This involves calculating the Akaike
+probabilities, which are a measure of the likelihood that a given model
+is the best model (in the sense of Kullback-Leibler divergence) relative
+to all the other ones in the same comparison.
 
-NOTE: The multimodeling API used here is expected to change drastically in a
-future version of diffpy.srmise.
+NOTE: The multimodeling API used here is expected to change drastically
+in a future version of diffpy.srmise.
 
-For more information on the multimodeling approach taken here see
-[1] Granlund, et al. (2015) Acta Crystallographica A, 71(4), 392-409.
-    doi:10.1107/S2053273315005276
-The standard reference of AIC-based multimodel selection is
-[2] Burnham and Anderson. (2002). Model Selection and Multimodel Inference.
-    New York, NY: Springer. doi:10.1007/b97636
+For more information on the multimodeling approach taken here see [1]
+Granlund, et al. (2015) Acta Crystallographica A, 71(4), 392-409.
+doi:10.1107/S2053273315005276 The standard reference of AIC-based
+multimodel selection is [2] Burnham and Anderson. (2002). Model
+Selection and Multimodel Inference.     New York, NY: Springer.
+doi:10.1007/b97636
 """
+
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -73,7 +74,7 @@ def run(plot=True):
     # Nyquist sampling minimizes correlations in the PDF, which is the closest
     # approximation to independence possible for the PDF.
     dr = np.pi / ms.ppe.qmax
-    (r, y, dr2, dy) = ms.ppe.resampledata(dr)
+    r, y, dr2, dy = ms.ppe.resampledata(dr)
 
     # Classify models
     # All models are placed into classes.  Models in the same class
@@ -133,7 +134,7 @@ def run(plot=True):
         # "prob" -> The AIC probability given uncertainty dG
         # These all have dedicated getter functions.  For example, the model
         # index can also be obtained using get_model(dG, corder=i)
-        (model, cls, nfree, aic, prob) = ms.get(dG, "model", "class", "nfree", "aic", "prob", corder=i)
+        model, cls, nfree, aic, prob = ms.get(dG, "model", "class", "nfree", "aic", "prob", corder=i)
 
         filename_base = "output/known_dG_m" + str(model)
 

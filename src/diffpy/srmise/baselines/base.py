@@ -128,8 +128,7 @@ class BaselineFunction(BaseFunction):
 
 class Baseline(ModelPart):
     """Represents a baseline associated with a BaselineFunction
-    subclass.
-    """
+    subclass."""
 
     def __init__(self, owner, pars, free=None, removable=False, static_owner=False):
         """Initialize the BaselineComponent instance with specified
